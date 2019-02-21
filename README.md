@@ -1,6 +1,6 @@
-# ElyceCole.com
+# hardproblems.com
 
-This repository houses the source code for the ElyceCole.com app website.
+This repository houses the source code for the hardproblems.com website.
 
 ## Development
 
@@ -9,8 +9,8 @@ We use [Middleman](https://middlemanapp.com/) to build the static pages which ar
 To run the site on your own machine, simply clone the repo, install the packages necessary, and start up a Middleman server.
 
 ```
-$ git clone git@github.com:dburka/elycecole.git
-$ cd elycecole
+$ git clone git@github.com:dburka/hardproblems.git
+$ cd hardproblems
 $ bundle install
 $ middleman server
 ```
