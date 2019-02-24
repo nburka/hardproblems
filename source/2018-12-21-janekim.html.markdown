@@ -1,5 +1,5 @@
 ---
-title: Jane Kim, CEO of Kim Finance
+title: Jane Kim
 subtitle: Jane, a professor at Pine State, is an expert on conflict resolution. Most recently she worked on a Peace Accord.
 img: episode-001.jpg
 episode: 001

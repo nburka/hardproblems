@@ -1,5 +1,5 @@
 ---
-title: Kathryn Okone, nurse at Civil Hospital
+title: Kathryn Okone, RN MPH
 subtitle: John founded Acme Corp twenty years ago with the goal of improving cancer outcomes in low-income settings.
 img: episode-002.jpg
 episode: 002

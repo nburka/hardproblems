@@ -1,5 +1,5 @@
 ---
-title: Sarah Jones, author of The Important Book of Change
+title: Sarah Jones
 subtitle: Sarah, a professor at Pine State, is an expert on conflict resolution. Most recently she worked on a Peace Accord.
 img: episode-004.jpg
 episode: 004
