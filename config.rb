@@ -38,6 +38,8 @@ activate :blog do |blog|
 
   blog.tag_template = "tag.html"
   blog.calendar_template = "calendar.html"
+    
+  blog.new_article_template = File.expand_path('../source/article.yml', __FILE__)
 
   # Enable pagination
   # blog.paginate = true

@@ -1,63 +1,28 @@
 <!doctype html>
 <html>
 <head>
-  <!-- Google Analytics
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <!-- Use the title from a page's frontmatter if it has one -->
-  <title>Hard Problems Podcast - <%= ' - ' + current_article.title unless current_article.nil? %></title>
-  <meta name="description" content="Elyce Cole and Daniel Burka interview people who are working on the world's hard and meaningful problems.">
-  <meta name="author" content="Elyce Cole and Daniel Burka">
-
-  <!-- Browser/Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Open Graph Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta property="og:url"                content="http://www.hardproblems.com" />
-  <meta property="og:type"               content="article" />
-  <meta property="og:title"              content="Hard Problems Podcast" />
-  <meta property="og:description"        content="Elyce Cole and Daniel Burka interview people who are working on the world's hard and meaningful problems." />
-  <meta property="og:image"              content="https://hardproblems.com/images/socialmedia.jpg" />
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <%= stylesheet_link_tag "site" %>
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  
-  <!-- JS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <%= javascript_include_tag "site" %> -->
-    
-  <!-- RSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="/images/favicon.png">
-
+    <%= partial "site-head" %>
 </head>
 
-  <body>
+<body>
     <div class="feature">
-        
+        <%= partial "recent-episodes" %>
     </div>
 
     <div class="half">
         <div class="contents">
-            <h1>Hard Problems Podcast</h1>
-
-            <h2><%= current_article.title unless current_article.nil? %></h2>
+            
+            <nav><a href="/"><%= partial "site-title" %></a></nav>
+            
+            <h1><%= current_article.title unless current_article.nil? %></h1>
+            
+            <p class="intro"><%= current_article.data.subtitle %></p>
+            
+            <img src="/images/episodes/<%= current_article.data.img %>" class="episode-image">
+            
             <%= yield %>
+            
+        </div>
     </div>
-      
   </body>
 </html>

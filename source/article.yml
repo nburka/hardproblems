@@ -1,0 +1,7 @@
+---
+title: <%= @title %>
+subtitle: 
+img: default.png
+episode: 
+date: <%= @date.strftime('%F %R %Z') %>
+---

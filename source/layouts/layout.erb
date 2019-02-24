@@ -1,84 +1,20 @@
 <!doctype html>
 <html>
 <head>
-  <!-- Google Analytics
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <!-- Use the title from a page's frontmatter if it has one -->
-  <title>Hard Problems Podcast<%= ' - ' + current_article.title unless current_article.nil? %></title>
-  <meta name="description" content="Elyce Cole and Daniel Burka interview people who are working on the world's hard and meaningful problems.">
-  <meta name="author" content="Elyce Cole and Daniel Burka">
-
-  <!-- Browser/Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Open Graph Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta property="og:url"                content="http://www.hardproblems.com" />
-  <meta property="og:type"               content="article" />
-  <meta property="og:title"              content="Hard Problems Podcast" />
-  <meta property="og:description"        content="Elyce Cole and Daniel Burka interview people who are working on the world's hard and meaningful problems." />
-  <meta property="og:image"              content="https://hardproblems.com/images/socialmedia.jpg" />
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <%= stylesheet_link_tag "site" %>
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  
-  <!-- JS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <%= javascript_include_tag "site" %> -->
-    
-  <!-- RSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="/images/favicon.png">
-
+    <%= partial "site-head" %>
 </head>
 <body>
     <div class="feature">
-        
+        <%= partial "recent-episodes" %>
     </div>
 
     <div class="half">
         <div class="contents">
-            <h1>Hard Problems Podcast</h1>
-            <b class="subtitle">Coming soon...</b>
+            <h1><%= partial "site-title" %></h1>
             
-            <aside>
-              <h2>Recent Articles</h2>
-              <ol>
-                <% blog.articles[0...10].each do |article| %>
-                  <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
-                <% end %>
-              </ol>
-
-              <!--h2>Tags</h2>
-              <ol>
-                <% blog.tags.each do |tag, articles| %>
-                  <li><%= link_to "#{tag} (#{articles.size})", tag_path(tag) %></li>
-                <% end %>
-              </ol-->
-
-              <!--h2>By Year</h2>
-              <ol>
-                <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
-                  <li><%= link_to "#{year} (#{articles.size})", blog_year_path(year) %></li>
-                <% end %>
-              </ol-->
-        </aside>
+            <h2>About this podcast</h2>
             
-            <p class="intro">This is a new experiment from Elyce Cole and Daniel Burka. We are working on a new podcast where we plan to interview people who work hard, meanginful projects.</p>
+            <p class="intro">This is a new experiment from Elyce Cole and Daniel Burka. We are working on a new podcast where we plan to interview people who work hard, meaningful projects.</p>
 
             <p>We will interview the people working on some of the hardest challenges in the world. Hard problems like health, education, good government, financial security, global warming, and inequality. These are the types of challenges that require years of concerted effort and coordination between many people. Most seem insurmountable and progress is sometimes hard to measure.</p>
 
@@ -89,7 +25,6 @@
             
             <p><a href="mailto:contact@hardproblems.com">contact@hardproblems.com</a></p>
             
-            <!--footer><a href="mailto:contact@elycecole.com"><img src="/images/email.png"></a> <a href="https://www.linkedin.com/in/elyce-cole-1380903a/"><img src="/images/linkedin.png"></a></footer-->
         </div>
     </div>
 </body>
