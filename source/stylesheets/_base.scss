@@ -88,7 +88,7 @@ p, li {
 
 footer {
     position: absolute;
-    top: 60px;
+    top: 75px;
     right: 0;
 }
 
@@ -161,8 +161,8 @@ footer a:hover img {
 }
 
 .article-image {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     float: right;
     margin: 0 0 16px 16px;
 }
@@ -172,6 +172,12 @@ footer a:hover img {
     width: 240px;
     margin: 0 0 40px 40px;
 }
+
+.subscribe span {
+    color: rgba(0,0,0,0.2);
+    margin: 0 4px;
+}
+
 
 nav {
     margin: -40px 0 0 0;
@@ -239,7 +245,14 @@ nav {
     
     aside h2 {
         color: rgba(0,0,0,0.2);
-        margin-bottom: 1.5em;
+    }
+    
+    .article-list {
+        margin-top: 1.5em;
+    }
+    
+    .subscribe {
+        margin-bottom: 2em;
     }
     
     .article-list li {

@@ -1,12 +1,17 @@
 <aside>
+  <h2>Subscribe</h2>
+  <div class="subscribe">
+      <a href="#" class="subscribe-itunes">iTunes</a> <span>/</span> <a href="#" class="subscribe-google">Google Play</a> <span>/</span> <a href="#" class="subscribe-rss">RSS</a></div>
+    
   <h2>Recent episodes</h2>
+    
   <ol class="article-list">
     <% blog.articles[0...10].each do |article| %>
       <li>
           <a href="#"><img src="/images/episodes/<%= article.data.img %>" class="article-image"></a>
           <h4><%= link_to article.title, article %></h4>
           <p class="article-subtitle"><%= article.data.subtitle %></p>
-          <div class="article-date">Episode <%= article.data.episode %>, <%= article.date.strftime('%b %e') %></div>
+          <div class="article-date">Episode <%= article.data.episode %> &#8212; <%= article.date.strftime('%b %e, %Y') %></div>
       </li>
     <% end %>
   </ol>
