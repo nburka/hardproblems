@@ -14,13 +14,17 @@
             
             <nav><a href="/"><%= partial "site-title" %></a></nav>
             
-            <h1><%= current_article.title unless current_article.nil? %></h1>
+            <h1 class="guest"><%= current_article.title unless current_article.nil? %></h1>
             
             <p class="intro"><%= current_article.data.subtitle %></p>
             
             <!--img src="/images/episodes/<%= current_article.data.img %>" class="episode-image"-->
             
             <%= yield %>
+            
+            <hr>
+            
+            <%= partial "site-about" %>
             
         </div>
     </div>
