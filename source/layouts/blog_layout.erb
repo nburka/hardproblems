@@ -16,9 +16,7 @@
             
             <h1 class="guest"><%= current_article.title unless current_article.nil? %></h1>
             
-            <p class="intro"><%= current_article.data.subtitle %></p>
             
-            <!--img src="/images/episodes/<%= current_article.data.img %>" class="episode-image"-->
             
             <%= yield %>
             
