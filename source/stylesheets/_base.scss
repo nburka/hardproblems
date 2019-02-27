@@ -2,6 +2,7 @@ body {
     font-size: 18px;
     font-family: 'Cooper Hewitt', 'Barlow Semi Condensed', sans-serif;
     padding: 100px 32px;
+    border-top: 5px solid #FFE100;
 }
 
 a,
@@ -24,7 +25,7 @@ hr {
 }
 
 h1 {
-    font-size: 18px;
+    font-size: 32px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -32,6 +33,13 @@ h1 {
     position: absolute;
     top: 32px;
     left: 32px;
+}
+
+h1 span {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
 }
 
 b.subtitle {
@@ -61,7 +69,7 @@ h3 {
 }
 
 h4 {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 300;
     margin: 2em 0 0.5em 0;
     color: #999;
@@ -154,8 +162,6 @@ footer a:hover img,
 }
 
 .article-list h4 {
-    font-weight: 300;
-    font-size: 100%;
     margin: 0;
     padding: 0.3em 0 0 0;
 }
@@ -204,7 +210,8 @@ nav {
         line-height: 1.6;
         letter-spacing: 0.01em;
         background-image: linear-gradient(to right, #fff 50% , #E0E8E7 50%, #ecf0f0 55%);
-        padding: 64px 0;
+        padding: 0;
+        border: none;
     }
     
     h1 {
@@ -220,9 +227,7 @@ nav {
     }
     
     h1 span {
-        display: block;
         font-size: 16px;
-        text-transform: uppercase;
         letter-spacing: 0.4em;
         padding-left: 3px;
     }
@@ -254,7 +259,8 @@ nav {
     .half {
         margin-right: 50%;
         //box-shadow: 20px 0 30px rgba(0,0,0,0.06);
-        padding: 40px;
+        padding: 120px 40px;
+        //border-top: 5px solid #FFE100;
     }
     
     .feature {
