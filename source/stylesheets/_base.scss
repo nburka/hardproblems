@@ -258,9 +258,9 @@ nav {
     
     .half {
         margin-right: 50%;
-        //box-shadow: 20px 0 30px rgba(0,0,0,0.06);
+        //box-shadow: 20px 0 0 #FFE100;
         padding: 120px 40px;
-        //border-top: 5px solid #FFE100;
+        border-left: 20px solid #FFE100;
     }
     
     .feature {
@@ -275,7 +275,7 @@ nav {
     }
     
     aside h2 {
-        color: rgba(0,0,0,0.2);
+        color: rgba(0,0,0,0.4);
     }
     
     .article-list {
