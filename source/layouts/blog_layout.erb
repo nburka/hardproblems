@@ -5,16 +5,16 @@
 </head>
 
 <body>
-    <div class="feature">
+    <div class="feature no-mobile">
         <%= partial "recent-episodes" %>
     </div>
 
     <div class="half">
         <div class="contents">
             
-            <nav><a href="/"><%= partial "site-title" %></a></nav>
+            <h1><a href="/"><%= partial "site-title" %></a></h1>
             
-            <h1 class="guest"><%= current_article.title unless current_article.nil? %></h1>
+            <h2 class="guest"><%= current_article.title unless current_article.nil? %></h2>
             
             
             

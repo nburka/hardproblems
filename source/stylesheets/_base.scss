@@ -1,7 +1,7 @@
 body {
     font-size: 18px;
     font-family: 'Cooper Hewitt', 'Barlow Semi Condensed', sans-serif;
-    padding: 50px 16px;
+    padding: 100px 32px;
 }
 
 a,
@@ -24,18 +24,14 @@ hr {
 }
 
 h1 {
-    font-size: 14px;
-    letter-spacing: 0.05em;
+    font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #000;
     position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 16px 16px 10px 16px;
-    background: #fee100;
-    width: 100%;
-    box-sizing: border-box;
+    top: 32px;
+    left: 32px;
 }
 
 b.subtitle {
@@ -44,10 +40,17 @@ b.subtitle {
 }
 
 h2 {
-    font-size: 30px;
-    font-weight: 500;
-    margin: 1em 0 0.5em 0;
-    
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin: 1.5em 0 0.5em 0;
+    padding-top: 1em;
+    color: rgba(0,0,0,0.3);
+    text-transform: uppercase;
+}
+
+h2.guest {
+    color: #000;
 }
 
 h3 {
@@ -87,11 +90,16 @@ p, li {
     display: block;
 }
 
+.no-mobile {
+    display: none;
+}
+
 .small {
     font-size: 12px;
 }
 
 footer {
+    display: none; /** TEMP **/
     position: absolute;
     top: 75px;
     right: 0;
@@ -196,11 +204,12 @@ nav {
         line-height: 1.6;
         letter-spacing: 0.01em;
         background-image: linear-gradient(to right, #fff 50% , #E0E8E7 50%, #ecf0f0 55%);
+        padding: 64px 0;
     }
     
     h1 {
-        font-size: 52px;
-        margin-top: 4px;
+        font-size: 46px;
+        margin-top: 0;
         margin-left: -2px;
         position: relative;
         top: 0;
@@ -220,6 +229,13 @@ nav {
     
     h2 {
         font-size: 28px;
+        color: #000;
+        text-transform: none;
+        margin: 1em 0 0.5em 0;
+        border: none;
+        padding: none;
+        letter-spacing: 0;
+        font-weight: 500;
     }
     
     .intro {
@@ -229,6 +245,10 @@ nav {
     
     .mobile {
         display: none;
+    }
+    
+    .no-mobile {
+        display: block;
     }
     
     .half {
@@ -337,5 +357,6 @@ nav {
         position: absolute;
         top: 32px;
         right: 80px;
+        display: block;
     }
 }
