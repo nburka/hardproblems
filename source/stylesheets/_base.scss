@@ -21,7 +21,7 @@ body {
     font-size: 20px;
     font-style: normal;
     font-family: 'Cooper Hewitt', 'Barlow Semi Condensed', sans-serif;
-    padding: 100px 32px;
+    padding: 32px;
     border-top: 5px solid #FFE100;
 }
 
@@ -228,8 +228,8 @@ nav {
     font-weight: 700;
 }
 
-/* For devices larger than 550px */
-@media (min-width: 880px) {
+/* For devices larger than 900px */
+@media (min-width: 900px) {
     body {
         font-size: 18px;
         line-height: 1.6;
@@ -390,5 +390,17 @@ nav {
         top: 32px;
         right: 80px;
         display: block;
+    }
+}
+
+/* For devices larger than 900px */
+@media (max-width: 1300px) and (min-width: 900px) {
+    .half {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .feature {
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }
