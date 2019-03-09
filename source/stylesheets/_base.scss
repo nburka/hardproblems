@@ -115,6 +115,30 @@ h4 {
     color: #999;
 }
 
+.speaker-1,
+.speaker-2,
+.speaker-3 {
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 75%;
+    vertical-align: middle;
+    display: block;
+    margin-bottom: 0.2em;
+    letter-spacing: 0.05em;
+}
+
+.speaker-1 {
+    color: #9BC0BC;
+}
+
+.speaker-2 {
+    color: #9B9CC0;
+}
+
+.speaker-3 {
+    color: #E6BD3F;
+}
+
 p, li {
     margin-top: 0;
     line-height: 1.4;
@@ -170,7 +194,7 @@ footer a img {
     height: 30px;
     margin-right: 10px;
     transition: border-color 1s;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid #E9E3B3;
     border-radius: 100px;
     padding: 5px;
     background: #fff;
@@ -283,7 +307,6 @@ nav em {
     h1 {
         font-size: 46px;
         margin-top: 0;
-        margin-left: -2px;
         position: relative;
         top: 0;
         left: 0;
@@ -381,7 +404,7 @@ nav em {
         text-indent: -1000em;
         color: rgba(255,255,255,0);
         transition: border-color 1s;
-        border: 1px solid rgba(0,0,0,0.2);
+        border: 1px solid #E9E3B3;
     }
     
     .subscribe a.subscribe-google:before {
