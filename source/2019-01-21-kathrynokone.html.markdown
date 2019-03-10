@@ -1,6 +1,6 @@
 ---
 title: Kathryn Okone, RN MPH
-subtitle: John founded Acme Corp twenty years ago with the goal of improving cancer outcomes in low-income settings.
+subtitle: Kathryn is a fake person who has done remarkable things. She is an engineer who lives in a place by the sea.
 img: episode-002.jpg
 episode: 002
 date: 2019-01-21

@@ -1,6 +1,6 @@
 ---
 title: Sarah Jones
-subtitle: Sarah, a professor at Pine State, is an expert on conflict resolution. Most recently she worked on a Peace Accord.
+subtitle: Sarah, a manager at Fake Org, is an expert on micro-lending. Most recently she worked on a fake project in a fake place.
 img: episode-004.jpg
 episode: 004
 date: 2019-02-22

@@ -1,6 +1,6 @@
 ---
 title: Rajeev Patel, MD
-subtitle: John founded Acme Corp twenty years ago with the goal of improving cancer outcomes in low-income settings.
+subtitle: Rajeev founded Fake Corp twenty years ago with the goal of improving cancer outcomes in low-income settings.
 img: episode-003.jpg
 episode: 003
 date: 2019-02-21
