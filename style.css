@@ -1,0 +1,42 @@
+body {
+	font-family: sans-serif;
+	padding: 7rem 4rem 4rem 4rem;
+	background: rgb(42,49,46);
+	color: #fff;
+	font-size: 14px;
+	min-height: 100%;
+}
+
+h1 {
+	font-weight: 900;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+	max-width: 700px;
+	margin: 0 auto;
+	display: block;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+section {
+	position: relative;
+	max-width: 520px;
+	margin: 2rem auto;
+	border-top: 1px solid rgba(0,0,0,0.3);
+	padding: 0.5rem 0 1rem 180px;
+}
+
+section h2 {
+	position: absolute;
+	top: 0.85rem;
+	left: 0;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+	font-weight: bold;
+	font-size: 10px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+section p {
+	color: rgba(255,255,255,0.6);
+}
