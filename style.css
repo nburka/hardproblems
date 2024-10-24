@@ -65,7 +65,10 @@ section p {
 }
 
 .team div {
-	width: 80px;
-	height: 80px;
+	width: 100px;
+	height: 100px;
+	color: #333;
+	font-size: 11px;
+	padding: 8px;
 	background: #fff;
 }
