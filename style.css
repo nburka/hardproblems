@@ -1,6 +1,6 @@
 body {
 	font-family: sans-serif;
-	padding: 7rem 4rem 4rem 4rem;
+	padding: 3rem;
 	background: rgb(42,49,46);
 	color: #fff;
 	font-size: 16px;
@@ -38,13 +38,10 @@ section {
 	max-width: 520px;
 	margin: 2rem auto;
 	border-top: 1px solid rgba(0,0,0,0.3);
-	padding: 0.5rem 0 1rem 180px;
+	padding: 0.5rem 0 1rem 0;
 }
 
 section h2 {
-	position: absolute;
-	top: 1.2rem;
-	left: 0;
 	text-transform: uppercase;
 	letter-spacing: 0.2rem;
 	font-weight: bold;
@@ -71,4 +68,21 @@ section p {
 	font-size: 11px;
 	padding: 8px;
 	background: #fff;
+}
+
+@media only screen and (min-width: 800px) {
+	
+	body {
+		padding: 7rem 4rem 4rem 4rem;
+	}
+	
+	section {
+		padding-left: 180px;  
+	}
+	
+	section h2 {
+		position: absolute;
+		top: 1.2rem;
+		left: 0;
+	}
 }
