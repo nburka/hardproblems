@@ -7,12 +7,12 @@ body {
 	min-height: 100%;
 }
 
-a {
+a, a:visited {
 	color: #fff;
 	text-decoration: none;
 }
 
-a:hover {
+a:hover, a:focus {
 	color: #ddd;
 }
 
