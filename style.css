@@ -46,7 +46,7 @@ h2 {
 
 nav {
 	float: right;
-	margin-top: 56px;
+	margin: 56px 40px 0 0;
 }
 
 nav a {
@@ -112,7 +112,7 @@ p {
 	height: 100px;
 	color: #333;
 	font-size: 14px;
-	margin: 0 16px 36px 0;
+	margin: 0 0 36px 0;
 	text-align: center;
 }
 
