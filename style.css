@@ -27,7 +27,6 @@ blockquote {
 h1 {
 	font-weight: 700;
 	font-size: 36px;
-	margin: 42px;
 	letter-spacing: -0.06rem;
 	display: block;
 }
@@ -40,56 +39,23 @@ h1 a:visited {
 h2 {
 	font-weight: 900;
 	text-transform: uppercase;
-	font-size: 14px;
+	font-size: 12px;
 	letter-spacing: 0.1rem;
 }
 
-nav {
-	float: right;
-	margin: 56px 40px 0 0;
-}
-
 nav a {
-	margin: 0 10px;
+	margin: 0 10px 0 0;
 }
 
 p {
 	font-weight: 200;
 }
 
-.container {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.container section {
-	padding: 42px;
-	box-sizing: border-box;
-	position: relative;
-}
-
-.container section.left {
-	width: 60%;
-	padding-right: 100px;
-	border-top: 1px solid #333;
-	border-right: 1px solid #333;
-}
-
-.container section.left:before {
-	content: ".";
-	background: #333;
-	width: 1px;
-	height: 50px;
-	position: absolute;
-	right: -1px;
-	top: -20px;
-	overflow: hidden;
-	text-indent: -1000em;
-}
-
+.container section.left,
 .container section.right {
-	width: 40%;
-	border-top: 1px solid #333;
+	border-top: 1px solid #777;
+	padding-top: 24px;
+	margin-top: 42px;
 }
 
 
@@ -116,10 +82,65 @@ p {
 	text-align: center;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1000px) {
 	
-	body {
-		
+	.main {
+		max-width: 1400px;
+		margin: 0 auto;
 	}
 	
+	nav {
+		float: right;
+		margin: 16px 40px 0 0;
+	}
+	
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+	.container section {
+		padding: 42px;
+		box-sizing: border-box;
+		position: relative;
+	}
+	
+	.container section.right {
+		width: 40%;
+		border-top: 1px solid #777;
+		margin-top: 0;
+	}
+	
+	.container section.left {
+		width: 60%;
+		padding-right: 100px;
+		border-right: 1px solid #777;
+		margin-top: 0;
+	}
+	
+	.container section.left:before {
+		content: ".";
+		background: #333;
+		width: 1px;
+		height: 50px;
+		position: absolute;
+		right: -1px;
+		top: -20px;
+		overflow: hidden;
+		text-indent: -1000em;
+	}
+	
+	h1 {
+		margin: 42px;
+	}
+	
+	h2.team {
+		margin-top: 4rem;
+		border-top: 1px solid #777;
+		padding: 40px 40px 0 60px;
+		padding-top: 40px;
+		margin-left: -60px;
+		margin-right: -40px;
+	}
+
 }
