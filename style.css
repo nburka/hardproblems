@@ -9,12 +9,12 @@ body {
 }
 
 a, a:visited {
-	color: lightgreen;
+	color: darkorchid;
 	text-decoration: none;
 }
 
 a:hover, a:focus {
-	color: darkgreen;
+	color: purple;
 }
 
 blockquote {
@@ -44,6 +44,15 @@ h2 {
 	letter-spacing: 0.1rem;
 }
 
+nav {
+	float: right;
+	margin-top: 56px;
+}
+
+nav a {
+	margin: 0 10px;
+}
+
 p {
 	font-weight: 200;
 }
@@ -61,6 +70,7 @@ p {
 
 .container section.left {
 	width: 60%;
+	padding-right: 100px;
 	border-top: 1px solid #333;
 	border-right: 1px solid #333;
 }
@@ -102,7 +112,7 @@ p {
 	height: 100px;
 	color: #333;
 	font-size: 14px;
-	margin: 0 16px 52px 0;
+	margin: 0 16px 36px 0;
 	text-align: center;
 }
 
