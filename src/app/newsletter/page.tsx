@@ -19,7 +19,7 @@ export default function Page() {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
 
   const headers = {
-    Authorization: ''
+    Authorization: '' // API key goes here (need to make it an ENV var)
   };
 
   const publicationId = 'pub_b8e3a238-0b92-430d-8539-2e2e32ec213d';
