@@ -12,7 +12,7 @@ export function Footer() {
         </Link>{' '}
         in the UK in 2024.
       </p>
-      <p>All content is &copy; Copyright 2024</p>
+      <p>&copy; Copyright {new Date().getFullYear()} Hard Problems</p>
     </>
   );
 }
