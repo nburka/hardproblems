@@ -1,0 +1,26 @@
+.mapEmbed {
+    border: 0;
+}
+
+.team {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.team img {
+	width: 80px;
+	height: 80px;
+	border-radius: 1000px;
+	margin: 0 0 8px 0;
+}
+
+.team div {
+	width: 100px;
+	height: 100px;
+	color: #333;
+	font-size: 14px;
+	margin: 0 0 36px 0;
+	text-align: center;
+}
