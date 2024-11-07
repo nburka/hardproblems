@@ -19,8 +19,7 @@ export default function Page() {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
 
   const headers = {
-    Authorization:
-      '***REMOVED***'
+    Authorization: ''
   };
 
   const publicationId = 'pub_b8e3a238-0b92-430d-8539-2e2e32ec213d';
