@@ -1,3 +1,5 @@
+import { Footer } from '../../components/Footer';
+
 export default function Page() {
   return (
     <>
@@ -11,7 +13,9 @@ export default function Page() {
       <section className="left">
         <div>World</div>
       </section>
-      <section className="right"></section>
+      <section className="right">
+        <Footer />
+      </section>
     </>
   );
 }

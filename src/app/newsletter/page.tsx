@@ -1,59 +1,90 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Parser from 'rss-parser';
+import NewsletterSkeleton from './newsletterSkeleton';
+import NewsletterForm from '../../components/NewsletterForm';
+import { Footer } from '../../components/Footer';
+import styles from './page.module.scss';
 
 type Newsletter = {
-  id: number;
+  id: string;
   title: string;
-  thumbnail_url: string;
-  web_url: string;
-};
-
-type NewsletterResponse = {
-  data: Newsletter[];
+  content: string;
+  image: string;
+  url: string;
 };
 
 export default function Page() {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
-
-  const headers = {
-    Authorization: '' // API key goes here (need to make it an ENV var)
-  };
-
-  const publicationId = 'pub_b8e3a238-0b92-430d-8539-2e2e32ec213d';
-
+  const [newslettersLoaded, setNewslettersLoaded] = useState<boolean>(false);
+  const parser = new Parser();
   useEffect(() => {
-    fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts`, {
-      headers
-    })
-      .then((response) => response.json())
-      .then((data: NewsletterResponse) => {
-        setNewsletters(data.data);
+    parser
+      .parseURL('https://rss.beehiiv.com/feeds/wQIRuYfjAg.xml')
+      .then((feed) => {
+        setNewsletters(
+          feed.items.map((item) => {
+            return {
+              id: item.guid || '',
+              title: item.title || '',
+              content: item.content || '',
+              image: item.enclosure?.url || '',
+              url: item.link || ''
+            };
+          })
+        );
+        setNewslettersLoaded(true);
       });
   });
 
   return (
     <>
       <section className="left">
-        <h3>Newsletters</h3>
-        {newsletters &&
-          newsletters.map((newsletter) => {
-            return (
-              <div key={newsletter.id}>
-                <h3>
-                  <Link href={newsletter.web_url}>{newsletter.title}</Link>
-                </h3>
-                <Image
-                  src={newsletter.thumbnail_url}
-                  width="256"
-                  height="118"
-                  alt={newsletter.title}
-                />
-              </div>
-            );
-          })}
+        <h2>Newsletters</h2>
+        <div className={styles.newsletters}>
+          {!newslettersLoaded && (
+            <>
+              <NewsletterSkeleton />
+              <NewsletterSkeleton />
+              <NewsletterSkeleton />
+            </>
+          )}
+
+          {newslettersLoaded &&
+            newsletters &&
+            newsletters.map((newsletter) => {
+              return (
+                <div key={newsletter.id} className={styles.newsletter}>
+                  <h3>
+                    <Link href={newsletter.url} target="_blank">
+                      {newsletter.title}
+                    </Link>
+                  </h3>
+                  <p>{newsletter.content}</p>
+                  <div>
+                    <Link href={newsletter.url} target="_blank">
+                      <img
+                        src={newsletter.image}
+                        width="512"
+                        height="236"
+                        alt={newsletter.title}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </section>
+      <section className="right">
+        <h3>Subscribe to our new monthly newsletter</h3>
+        <NewsletterForm />
+      </section>
+      <section className="left"></section>
+      <section className="right">
+        <Footer />
       </section>
     </>
   );

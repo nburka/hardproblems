@@ -1,4 +1,4 @@
-// import { Footer } from '../../components/Footer';
+import { Footer } from '../../components/Footer';
 
 export default function Page() {
   return (
@@ -6,13 +6,11 @@ export default function Page() {
       <section className="left">
         <h3>Give</h3>
       </section>
-      <section className="right">
-        <div>Hello</div>
-      </section>
-      <section className="left">
-        <div>World</div>
-      </section>
       <section className="right"></section>
+      <section className="left"></section>
+      <section className="right">
+        <Footer />
+      </section>
     </>
   );
 }

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 // import styles from './TopBar.module.scss';
 
-export function TopBar() {
+export default function TopBar() {
   const pathname = usePathname();
   return (
     <nav>
