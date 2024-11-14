@@ -1,7 +1,13 @@
+.newsletter {
+    padding-top: 2rem;
+}
+
 .newsletterImage {
     display: inline-block;
-    width: 512px;
-    height: 236px;
+    min-width: 512px;
+    min-height: 236px;
+    width: 100%;
+    height: auto;
 }
 
 .newsletterContent {

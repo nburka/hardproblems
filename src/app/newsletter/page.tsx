@@ -14,6 +14,7 @@ type Newsletter = {
   content: string;
   image: string;
   url: string;
+  pubDate: Date;
 };
 
 export default function Page() {
@@ -31,7 +32,8 @@ export default function Page() {
               title: item.title || '',
               content: item.content || '',
               image: item.enclosure?.url || '',
-              url: item.link || ''
+              url: item.link || '',
+              pubDate: new Date(item.pubDate || '')
             };
           })
         );
@@ -39,10 +41,20 @@ export default function Page() {
       });
   });
 
+  const dateFormat: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+
   return (
     <>
       <section className="left">
-        <h2>Newsletters</h2>
+        <h2>Newsletter</h2>
+        <p>
+          The newsletter for technologists and designers who want to work on
+          hard problems.
+        </p>
         <div className={styles.newsletters}>
           {!newslettersLoaded && (
             <>
@@ -57,12 +69,6 @@ export default function Page() {
             newsletters.map((newsletter) => {
               return (
                 <div key={newsletter.id} className={styles.newsletter}>
-                  <h3>
-                    <Link href={newsletter.url} target="_blank">
-                      {newsletter.title}
-                    </Link>
-                  </h3>
-                  <p>{newsletter.content}</p>
                   <div>
                     <Link href={newsletter.url} target="_blank">
                       <img
@@ -70,9 +76,21 @@ export default function Page() {
                         width="512"
                         height="236"
                         alt={newsletter.title}
+                        className={styles.newsletterImage}
                       />
                     </Link>
                   </div>
+                  <div>
+                    <small>
+                      {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
+                    </small>
+                  </div>
+                  <h3>
+                    <Link href={newsletter.url} target="_blank">
+                      {newsletter.title}
+                    </Link>
+                  </h3>
+                  <p>{newsletter.content}</p>
                 </div>
               );
             })}

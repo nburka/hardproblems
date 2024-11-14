@@ -32,6 +32,12 @@ export default function TopBar() {
       <Link href="/give" className={`link ${pathname === '/' ? 'give' : ''}`}>
         Give
       </Link>
+      <Link
+        href="/contact"
+        className={`link ${pathname === '/' ? 'contact' : ''}`}
+      >
+        Contact
+      </Link>
     </nav>
   );
 }
