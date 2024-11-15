@@ -1,8 +1,8 @@
-import Image from 'next/image';
+import Link from 'next/link';
 import { Footer } from '../components/Footer';
 import NewsletterForm from '../components/NewsletterForm';
 import { Map } from '../components/Map';
-import styles from './page.module.scss';
+import { Team } from '../components/Team';
 
 export default function Home() {
   return (
@@ -58,13 +58,15 @@ export default function Home() {
             <NewsletterForm />
           </li>
           <li>
-            <b>Suggest podcast guests.</b> We are going to interview people who
-            already work on hard problems.{' '}
+            <b>
+              Suggest <Link href="/podcast">podcast guests</Link>.
+            </b>{' '}
+            We are going to interview people who already work on hard problems.{' '}
             <a href="#">Suggest a future guest?</a>
           </li>
           <li>
-            <b>Give financially.</b> <a href="#">Get in touch</a> to discuss how
-            you can contribute to Hard Problems.
+            <b>Give financially.</b> <Link href="/give">Get in touch</Link> to
+            discuss how you can contribute to Hard Problems.
           </li>
         </ol>
 
@@ -73,36 +75,7 @@ export default function Home() {
           We are an all-volunteer team. We are a global non-profit with a home
           base in London.
         </p>
-        <div className={styles.team}>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" /> Elyce
-            Cole
-          </div>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" />{' '}
-            Daniel Burka
-          </div>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" />{' '}
-            Person 3
-          </div>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" />{' '}
-            Person 4
-          </div>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" />{' '}
-            Person 5
-          </div>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" />{' '}
-            Person 6
-          </div>
-          <div>
-            <Image src="/images/user.png" width="80" height="80" alt="" />{' '}
-            Person 7
-          </div>
-        </div>
+        <Team />
       </section>
       <section className="left">
         <h3>Office</h3>

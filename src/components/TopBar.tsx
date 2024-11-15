@@ -8,7 +8,10 @@ export default function TopBar() {
   const pathname = usePathname();
   return (
     <nav>
-      <Link href="/" className={`link ${pathname === '/' ? 'active' : ''}`}>
+      <Link
+        href="/about"
+        className={`link ${pathname === '/' ? 'active' : ''}`}
+      >
         About
       </Link>
       <Link
@@ -31,12 +34,6 @@ export default function TopBar() {
       </Link>
       <Link href="/give" className={`link ${pathname === '/' ? 'give' : ''}`}>
         Give
-      </Link>
-      <Link
-        href="/contact"
-        className={`link ${pathname === '/' ? 'contact' : ''}`}
-      >
-        Contact
       </Link>
     </nav>
   );
