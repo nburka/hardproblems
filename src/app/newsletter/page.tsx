@@ -22,23 +22,21 @@ export default function Page() {
   const [newslettersLoaded, setNewslettersLoaded] = useState<boolean>(false);
   const parser = new Parser();
   useEffect(() => {
-    parser
-      .parseURL('https://rss.beehiiv.com/feeds/wQIRuYfjAg.xml')
-      .then((feed) => {
-        setNewsletters(
-          feed.items.map((item) => {
-            return {
-              id: item.guid || '',
-              title: item.title || '',
-              content: item.content || '',
-              image: item.enclosure?.url || '',
-              url: item.link || '',
-              pubDate: new Date(item.pubDate || '')
-            };
-          })
-        );
-        setNewslettersLoaded(true);
-      });
+    parser.parseURL('/api/newsletters').then((feed) => {
+      setNewsletters(
+        feed.items.map((item) => {
+          return {
+            id: item.guid || '',
+            title: item.title || '',
+            content: item.content || '',
+            image: item.enclosure?.url || '',
+            url: item.link || '',
+            pubDate: new Date(item.pubDate || '')
+          };
+        })
+      );
+      setNewslettersLoaded(true);
+    });
   });
 
   const dateFormat: Intl.DateTimeFormatOptions = {
