@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Parser from 'rss-parser';
 import NewsletterSkeleton from './newsletterSkeleton';
 import NewsletterForm from '../../components/NewsletterForm';
@@ -69,7 +70,7 @@ export default function Page() {
                 <div key={newsletter.id} className={styles.newsletter}>
                   <div>
                     <Link href={newsletter.url} target="_blank">
-                      <img
+                      <Image
                         src={newsletter.image}
                         width="512"
                         height="236"
