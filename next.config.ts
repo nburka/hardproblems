@@ -32,6 +32,12 @@ const nextConfig: NextConfig = {
         hostname: 'beehiiv-images-production.s3.amazonaws.com',
         port: '',
         pathname: '/uploads/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.beehiiv.com',
+        port: '',
+        pathname: '/cdn-cgi/**'
       }
     ]
   }
