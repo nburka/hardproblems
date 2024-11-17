@@ -4,14 +4,21 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Podcast() {
   return (
-    <div className={styles.newsletter}>
-      <h3>
-        <Skeleton />
-      </h3>
-      <p>
-        <Skeleton className={styles.newsletterContent} />
-      </p>
-      <Skeleton className={styles.newsletterImage} />
+    <div className={styles.newsletterSkeleton}>
+      <div className={styles.newsletter}>
+        <Skeleton className={styles.newsletterImage} />
+        <h3>
+          <Skeleton />
+        </h3>
+        <div>
+          <small>
+            <Skeleton />
+          </small>
+        </div>
+        <p>
+          <Skeleton className={styles.newsletterContent} />
+        </p>
+      </div>
     </div>
   );
 }
