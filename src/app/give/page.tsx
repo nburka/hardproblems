@@ -12,7 +12,7 @@ export default function Page() {
           benefit from your help.
         </p>
 
-        <p>Get in touch by emailing: <em>contact@hardproblems.com</em></p>
+        <p>Get in touch, email: <em>contact@hardproblems.com</em></p>
 
         <h3 className="margin-top">Co-working space in London</h3>
         <p>

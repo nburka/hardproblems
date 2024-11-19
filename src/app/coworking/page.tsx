@@ -14,7 +14,7 @@ export default function Page() {
         <h3>Can I work here?</h3>
         <p>
           If you work on a large-scale tech project related to climate change, public health, healthcare, education,
-          poverty, or other issues related to sustainable development goals, the answer could be "Yes!" We have a handful
+          poverty, or other issues related to sustainable development goals, the answer could be &#8216;Yes!&#8217; We have a handful
           of desks that we are offering for short-term (3-6 month) free use or, if you&#8216;re able to pay, we can likely arrange
           longer-term co-working with a fixed desk for ~£450/month.
         </p>
