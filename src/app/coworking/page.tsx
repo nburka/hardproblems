@@ -32,7 +32,13 @@ export default function Page() {
         <Image src="/images/illustration-cowork.svg" width="80" height="80" alt="Illustration of two people co-working" className="image-full" />
       </section>
       <section className="right">
-        Content...
+        <h3>Location</h3>
+        <p>
+          We are located in the Autograph Gallery building at 1 Rivington Place in the Shoreditch neighborhood. We are very central and are closest to Liverpool
+          Street Station with access to Underground and train services.
+        </p>
+        <h3 className="divider">Photos of our space</h3>
+        <p>Photos coming soon...</p>
       </section>
       <section className="left"></section>
       <section className="right">
