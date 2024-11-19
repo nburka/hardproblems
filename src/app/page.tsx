@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <section className="left">
         <div className="illustration-home">
-          <Image src="/images/illustration-directions.svg" width="80" height="80" alt="" />
+          <Image src="/images/illustration-directions.svg" width="80" height="80" alt="Illustration of a person considering which way their career might take." />
         </div>
         <h3>The challenge</h3>
         <blockquote>
