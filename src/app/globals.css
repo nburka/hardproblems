@@ -234,6 +234,10 @@ ol b {
     font-size: inherit;
   }
 
+  nav a{
+    margin-left: 8px;
+  }
+
   h1 {
     font-size: 36px;
   }
