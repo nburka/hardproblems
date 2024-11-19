@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import NewsletterForm from '../components/NewsletterForm';
+import Image from 'next/image';
 import { Footer } from '../components/Footer';
 import { Map } from '../components/Map';
 import { Team } from '../components/Team';
-import Image from 'next/image';
 
 export default function Home() {
   return (
