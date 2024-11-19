@@ -31,21 +31,21 @@ export default function Page() {
         <h3 className="margin-top">We plan to</h3>
         <ul>
           <li>
-            Help teams to set themselves up for success. Once teams are formed,
+            <b>Help teams to set themselves up for success.</b> Once teams are formed,
             there are many challenges to successfully getting off the ground. We
             will show, from our experience, how to form functional teams, move
             quickly to validate ideas, and how to deploy software in
             new/challenging environments.
           </li>
           <li>
-            Encourage long-term solutions. The tech world is notorious for
+            <b>Encourage long-term solutions.</b> The tech world is notorious for
             focusing on short-term thinking around shiny new technologies. Hard
             problems are, pretty much by definition, multi-decade problems
             without ‘silver bullet’ tech solutions. This is a cultural value in
             tech that needs to be shifted.
           </li>
           <li>
-            Develop sustainable funding models. This itself is a hard problem.
+            <b>Develop sustainable funding models.</b> This itself is a hard problem.
             Capitalism is obviously the crux of many of these challenges – tech
             people can make big money working on other challenges, and most
             teams working on hard problems are chronically underfunded.

@@ -1,6 +1,7 @@
 <svg width="520" height="520" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="520" height="520" fill="white"/>
 <circle cx="260" cy="260" r="249" fill="#EBF7F0"/>
+<path d="M151 405L148.5 398L155 385.5L159.5 392.5L176 378.5L182.5 363.5L216 376L221.5 370.5L236 351.5L246.5 321L252 283.5L263 262.5L272 277L285 266.5L295.5 252L312 246L325 250L348 262.5L378 292L405.5 325L434 377.5L442.5 404V422.5L427 435L397.5 448L352.5 458L332.5 462L329.5 449.5L339 446L349.5 454L342.5 435L329.5 422.5L256 411.5L246.5 416L225.5 429.5H196.5L168.5 416L151 405Z" fill="white"/>
 <mask id="mask0_383_2491" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="11" width="498" height="498">
 <circle cx="260" cy="260" r="249" fill="#EBF7F0"/>
 </mask>

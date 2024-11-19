@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <section className="left">
         <h2>Events</h2>
-        <p>We do global events online and in-person events in London.</p>
+        <p>We do global events online and in-person events in London. The best way to stay informed about upcoming events is to join our email newsletter.</p>
 
         <h3 className="margin-top">Upcoming events</h3>
 
@@ -33,7 +33,7 @@ export default function Page() {
       </section>
       <section className="right">
         <h3>Other people's events</h3>
-        <p>These are other people's events that we're tracking.</p>
+        <p>These are other people's events that we're tracking around the world.</p>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://dhis2.org/academy/annual-conference/">DHIS2 Annual Conference</Link></div>
