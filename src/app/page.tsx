@@ -63,10 +63,10 @@ export default function Home() {
           </li>
           <li>
             <b>
-              Suggest <Link href="/podcast">podcast guests</Link>.
+              Suggest podcast guests.
             </b>{' '}
             We are going to interview people who already work on hard problems.{' '}
-            <a href="#">Suggest a future guest?</a>
+            <Link href="/podcast">Suggest a future guest?</Link>
           </li>
           <li>
             <b>Give financially.</b> <Link href="/give">Get in touch</Link> to

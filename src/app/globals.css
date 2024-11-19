@@ -17,12 +17,12 @@ nav {
 }
 
 a, a:visited {
-  color: #2F8B53;
+  color: cornflowerblue;
   text-decoration: none;
 }
 
 a:hover, a:focus {
-  color: #0D4F27;
+  color: darkblue;
 }
 
 blockquote {
@@ -62,18 +62,43 @@ h3 {
   letter-spacing: 0.1rem;
 }
 
-nav a {
-  margin: 0 10px 0 0;
+h4 {
+  margin: 0.2em 0;
 }
 
-p, li {
+nav a, nav a:visited {
+  margin: 0 10px 0 0;
+  color: #2F8B53;
+}
+
+nav a:hover {
+  color: #0D4F27;
+}
+
+p, li, dd {
   font-weight: 300;
   line-height: 1.4;
 }
 
 p em {
   background: lemonchiffon;
+  font-weight: 400;
   padding: 0 2px;
+}
+
+p a, li a, dd a {
+  font-weight: 400;
+}
+
+dl dd {
+  margin: 0.2em 0 1em;
+}
+
+.none {
+  background: #eee;
+  padding: 200px 0;
+  text-align: center;
+  color: grey;
 }
 
 .margin-top {
@@ -84,8 +109,9 @@ ul li {
   margin: 0 0 1rem 0;
 }
 
-ol li iframe {
+iframe.newsletter-form {
   margin: 0.5em 0 0 0;
+  width: 100%;
 }
 
 ol {
@@ -134,6 +160,45 @@ ol b {
 .illustration-home img {
   width: 250px;
   height: auto;
+}
+
+.event {
+  position: relative;
+  padding: 3rem 0 3rem 0;
+}
+
+.event img {
+  width: 80%;
+  height: auto;
+  margin: 0 0 20px 20px;
+}
+
+.event p {
+  margin-top: 0.3em;
+}
+
+.event dt {
+  position: absolute;
+  left: 0;
+}
+
+.event dd {
+  padding-left: 5em;
+}
+
+.other-event {
+  margin: 2em 0;
+}
+
+.other-event-title {
+  font-weight: 700;
+  margin: 0 0 0.2em 0;
+}
+
+.other-event-date {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin: 0.4em 0 0 0;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -221,6 +286,11 @@ ol b {
 
   .illustration-home img {
     width: 100%;
+  }
+
+  .event img {
+    float: right;
+    width: 240px;
   }
 
 }
