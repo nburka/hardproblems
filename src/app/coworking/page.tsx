@@ -27,7 +27,9 @@ export default function Page() {
         </p>
 
         <h3>How to apply for a desk</h3>
-        <p></p>
+        <p>More...</p>
+
+        <Image src="/images/illustration-cowork.svg" width="80" height="80" alt="Illustration of two people co-working" className="image-full" />
       </section>
       <section className="right">
         Content...
