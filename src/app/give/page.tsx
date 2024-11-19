@@ -17,8 +17,8 @@ export default function Page() {
 
         <h3 className="margin-top">Co-working space in London</h3>
         <p>
-          We have a co-working space in London where we donate desks to people working on hard problems who live in London
-          or who are visiting London. Renting office space in London is expensive. You could donate a desk to a great
+          We have a co-working space in London where we donate desks to people working on hard problems who live here
+          or who are visiting the city. Renting office space in London is expensive. You could donate a desk to a great
           technologist by gifting £450 for a month. Or you could donate a smaller amount to help us outfit the office &#8212;
           even a gift to buy a bag of good coffee would be appreciated.
         </p>
@@ -28,7 +28,7 @@ export default function Page() {
           We will run events in 2025 with an audience of people who work on hard problems all over the world. If you or your
           company is interested in sponsoring an event, please get in touch.
         </p>
-        <Image src="/images/illustration-savings.svg" width="80" height="80" alt="Illustration of a person putting money in a piggy bank." className="image-full" />
+        <Image src="/images/illustration-savings.svg" width="80" height="80" alt="Illustration of a person putting money in a piggy bank." className="image-full margin-top" />
       </section>
       <section className="right">
         <h3>Thank you</h3>

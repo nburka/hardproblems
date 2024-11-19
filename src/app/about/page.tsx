@@ -67,9 +67,11 @@ export default function Page() {
       <section className="right">
         <h3>What do we do?</h3>
         <ul>
-          <li>Co-working space in London</li>
           <li>
-            <Link href="/events">Events</Link> in London and online
+            <Link href="/coworking">Co-working space in London</Link>
+          </li>
+          <li>
+            <Link href="/events">Events in London and online</Link>
           </li>
           <li>
             <Link href="/podcast">Podcast</Link>
@@ -77,13 +79,12 @@ export default function Page() {
           <li>
             <Link href="/newsletter">Email newsletter</Link>
           </li>
-          <li>Job board</li>
-          <li>Online community</li>
+          <li>Job board (soon...)</li>
+          <li>Online community (soon...)</li>
         </ul>
         <h3 className="divider">Funding</h3>
         <p>
-          We are a lean organization that is{' '}
-          <Link href="/give">primarily self-funded</Link>.
+          We are a lean organization that is primarily self-funded. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
         </p>
 
         <h3 className="divider">Team</h3>
