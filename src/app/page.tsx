@@ -3,11 +3,15 @@ import { Footer } from '../components/Footer';
 import NewsletterForm from '../components/NewsletterForm';
 import { Map } from '../components/Map';
 import { Team } from '../components/Team';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <>
       <section className="left">
+        <div className="illustration-home">
+          <Image src="/images/illustration-directions.svg" width="80" height="80" alt="Illustration of a person considering which way their career might take." />
+        </div>
         <h3>The challenge</h3>
         <blockquote>
           “The best minds of my generation are thinking about how to make people
