@@ -32,7 +32,7 @@ export default function Page() {
       </section>
       <section className="right">
         <h3>Thank you</h3>
-        <p>If you donate, we will add you to a "Thank you wall" here on the website.</p>
+        <p>If you donate, we will add you to a &#8216;Thank you wall&#8217; here on the website.</p>
         <Image src="/images/illustration-thanks.svg" width="120" height="120" alt="Illustration of hands in a heart shape." />
       </section>
       <section className="left"></section>

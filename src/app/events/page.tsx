@@ -32,8 +32,8 @@ export default function Page() {
         </div>
       </section>
       <section className="right">
-        <h3>Other people's events</h3>
-        <p>These are other people's events that we're tracking around the world.</p>
+        <h3>Other people&#8216;s events</h3>
+        <p>These are other people&#8216;s events that we&#8216;re tracking around the world.</p>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://dhis2.org/academy/annual-conference/">DHIS2 Annual Conference</Link></div>
