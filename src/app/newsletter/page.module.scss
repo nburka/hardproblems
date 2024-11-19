@@ -1,5 +1,5 @@
 .newsletter {
-    padding-top: 2rem;
+    padding: 2rem 0;
 }
 
 .newsletterImage {
@@ -15,4 +15,13 @@
 .newsletterContent {
     display: block;
     min-height: 2rem;
+}
+
+.newsletter small {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.newsletter p {
+  margin: 0.2rem 0;
 }

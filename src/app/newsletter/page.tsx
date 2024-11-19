@@ -51,9 +51,9 @@ export default function Page() {
   return (
     <>
       <section className="left">
-        <h2>Newsletter</h2>
+        <h2>Recent newsletters</h2>
         <p>
-          The newsletter for technologists and designers who want to work on
+          This is the email newsletter for technologists and designers who want to work on
           hard problems.
         </p>
         <div className={styles.newsletters}>
@@ -81,25 +81,32 @@ export default function Page() {
                       />
                     </Link>
                   </div>
+                  <h4>
+                    <Link href={newsletter.url} target="_blank">
+                      {newsletter.title}
+                    </Link>
+                  </h4>
                   <div>
+                    <p>{newsletter.content}</p>
                     <small>
                       {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
                     </small>
                   </div>
-                  <h3>
-                    <Link href={newsletter.url} target="_blank">
-                      {newsletter.title}
-                    </Link>
-                  </h3>
-                  <p>{newsletter.content}</p>
                 </div>
               );
             })}
         </div>
       </section>
       <section className="right">
-        <h3>Subscribe to our new monthly newsletter</h3>
+        <h3>Subscribe</h3>
         <NewsletterForm />
+        <h3 className="divider">About the newsletter</h3>
+        <ul>
+          <li>1-2 emails per month</li>
+          <li>No spam</li>
+          <li>We will never share our email list</li>
+          <li>Easy unsubscribe</li>
+        </ul>
       </section>
       <section className="left"></section>
       <section className="right">

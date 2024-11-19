@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { Footer } from '../components/Footer';
 import NewsletterForm from '../components/NewsletterForm';
+import Image from 'next/image';
+import { Footer } from '../components/Footer';
 import { Map } from '../components/Map';
 import { Team } from '../components/Team';
-import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -58,19 +58,19 @@ export default function Home() {
         <h3>Get involved</h3>
         <ol>
           <li>
-            <b>Subscribe</b> to our new monthly newsletter
+            <div><b>Subscribe to our newsletter</b></div>
             <NewsletterForm />
           </li>
           <li>
             <b>
-              Suggest <Link href="/podcast">podcast guests</Link>.
+              Suggest podcast guests.
             </b>{' '}
             We are going to interview people who already work on hard problems.{' '}
-            <a href="#">Suggest a future guest?</a>
+            <Link href="/podcast">Suggest a future guest?</Link>
           </li>
           <li>
-            <b>Give financially.</b> <Link href="/give">Get in touch</Link> to
-            discuss how you can contribute to Hard Problems.
+            <b>Give financially.</b> Want to
+            discuss how you can contribute to Hard Problems? <Link href="/give">Get in touch.</Link>
           </li>
         </ol>
 
