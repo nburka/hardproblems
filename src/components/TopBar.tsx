@@ -10,7 +10,7 @@ export default function TopBar() {
     <nav>
       <Link
         href="/about"
-        className={`link ${pathname === '/' ? 'active' : ''}`}
+        className={`link ${pathname === '/about' ? 'active' : ''}`}
       >
         About
       </Link>
@@ -28,11 +28,14 @@ export default function TopBar() {
       </Link>
       <Link
         href="/newsletter"
-        className={`link ${pathname === '/' ? 'newsletter' : ''}`}
+        className={`link ${pathname === '/newsletter' ? 'active' : ''}`}
       >
         Newsletter
       </Link>
-      <Link href="/give" className={`link ${pathname === '/' ? 'give' : ''}`}>
+      <Link
+        href="/give"
+        className={`link ${pathname === '/give' ? 'active' : ''}`}
+      >
         Give
       </Link>
     </nav>
