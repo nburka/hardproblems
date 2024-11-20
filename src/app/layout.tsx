@@ -6,7 +6,13 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Hard Problems',
   description:
-    'Helping tech people to work on the hard problems that matter in the world: problems like public health, climate change, poverty, and good government.'
+    'Helping tech people to work on the hard problems that matter in the world: problems like public health, climate change, poverty, and good government.',
+  openGraph: {
+    images: '/images/og-image.png',
+    title: 'Hard Problems',
+    description: 'A not-for-profit helping tech people to work on the hard problems that matter in the world.',
+    url: 'https://hardproblems.com'
+  }
 };
 
 export default function RootLayout({
