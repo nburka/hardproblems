@@ -52,9 +52,9 @@ export default function Page() {
     <>
       <section className="left">
         <h2>Recent newsletters</h2>
-        <p>
-          This is the email newsletter for technologists and designers who want to work on
-          hard problems.
+        <p className="intro">
+          This is the email newsletter for technologists, engineers, designers, product managers, and
+          others  who want to work on hard problems.
         </p>
         <div className={styles.newsletters}>
           {!newslettersLoaded && (
