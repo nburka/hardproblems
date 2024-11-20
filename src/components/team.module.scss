@@ -24,3 +24,11 @@
 .team a, .team a:visited {
   color: inherit;
 }
+
+.team a:hover {
+  color: cornflowerblue;
+}
+
+.team a:hover img {
+  transform: scale(1.1);
+}
