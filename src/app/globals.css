@@ -67,13 +67,23 @@ h4 {
   margin: 0.2em 0;
 }
 
+nav {
+  margin-bottom: 3em;
+}
+
 nav a, nav a:visited {
   margin: 0 10px 0 0;
+  padding: 4px 0;
   color: #2F8B53;
 }
 
 nav a:hover {
   color: #0D4F27;
+}
+
+nav a.active {
+  border-bottom: 4px solid #84D9A6;
+  color: #000;
 }
 
 p, li, dd {
@@ -250,6 +260,8 @@ ol b {
   }
 
   nav {
+    margin-top: 8px;
+    margin-bottom: 0;
     float: right;
     font-size: inherit;
   }
