@@ -7,7 +7,14 @@ export default function Page() {
     <>
       <section className="left">
         <h2>Events</h2>
-        <p>We do global events online and in-person events in London. The best way to stay informed about upcoming events is to join our email newsletter.</p>
+        <p className="intro">
+          We do global events online and in-person events in London. We will build community, host great speakers, and publish videos online.
+        </p>
+
+        <p>
+          The best way to stay informed about upcoming events is to join our <Link href="/newsletter">email newsletter</Link>. We hope to see you at an event soon. Please contact us at
+          contact@hardproblems.com if you have an event we should add to the ’other events’ list.
+        </p>
 
         <h3 className="space-top-large">Upcoming events</h3>
 
