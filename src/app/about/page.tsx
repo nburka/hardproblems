@@ -75,22 +75,23 @@ export default function Page() {
         </p>
       </section>
       <section className="right">
-        <h3>What do we do?</h3>
+        <h3>What do we do</h3>
         <ul>
           <li>
-            <Link href="/coworking">Co-working space in London</Link>
+            <Link href="/coworking"><b>Co-working space in London</b></Link>
           </li>
           <li>
-            <Link href="/events">Events in London and online</Link>
+            <Link href="/events"><b>Events in London and online</b></Link>
           </li>
           <li>
-            <Link href="/newsletter">Email newsletter</Link>
+            <Link href="/newsletter"><b>Email newsletter</b></Link>
           </li>
           <li>
-            <Link href="/podcast">Podcast</Link> (soon...)
+            <Link href="/podcast"><b>Podcast</b></Link> (soon...)
           </li>
-          <li>Job board (soon...)</li>
-          <li>Online community (soon...)</li>
+          <li><span className="disabled"><b>Job board</b> (soon...)</span></li>
+          <li><span className="disabled"><b>Online community</b> (soon...)</span></li>
+          <li><span className="disabled"><b>3-month workshops</b> (future...)</span></li>
         </ul>
         <h3 className="divider">Funding</h3>
         <p>
