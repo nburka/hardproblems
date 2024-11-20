@@ -118,6 +118,7 @@ export default function Page() {
         <Team />
       </section>
       <section className="left">
+        <h3>Office</h3>
         <Map />
       </section>
       <section className="right">
