@@ -44,11 +44,11 @@ export default function Page() {
             <b>Foster a community.</b> Tie into existing communities and create a bridge
             between the experts who are working on the world&lquo;s hard problems and tech
             people who can help them.
-            <ul>
-              <li>Email newsletter</li>
-              <li>Podcast</li>
-              <li>Slack community</li>
-            </ul>
+            <div className="tags">
+              <span className="tag">Email newsletter</span>
+              <span className="tag">Podcast</span>
+              <span className="tag">Slack community</span>
+            </div>
           </li>
           <li>
             <b>Help teams to set themselves up for success.</b> Once teams are formed,
@@ -56,12 +56,12 @@ export default function Page() {
             will show, from our experience, how to form functional teams, move
             quickly to validate ideas, and how to deploy software in
             new and challenging environments.
-            <ul>
-              <li>Job board</li>
-              <li>Cohort-based workshops</li>
-              <li>Org development consulting</li>
-              <li>Mentorship program</li>
-            </ul>
+            <div className="tags">
+              <span className="tag">Job board</span>
+              <span className="tag">Cohort-based workshops</span>
+              <span className="tag">Org development consulting</span>
+              <span className="tag">Mentorship program</span>
+            </div>
           </li>
           <li>
             <b>Encourage long-term solutions.</b> The tech world is notorious for
@@ -71,10 +71,10 @@ export default function Page() {
             challenges are going to be <i>solved</i> by technology &#8212; tech will
             be one part of a broader effort. These are cultural values in
             tech that needs to be shifted.
-            <ul>
-              <li>Podcast</li>
-              <li>TBD...</li>
-            </ul>
+            <div className="tags">
+              <span className="tag">Podcast</span>
+              <span className="tag">TBD...</span>
+            </div>
           </li>
         </ul>
         <h3 className="space-top-large">What success looks like</h3>
@@ -107,7 +107,7 @@ export default function Page() {
         </ul>
         <h3 className="divider">Funding</h3>
         <p>
-          We are a lean organization that is primarily self-funded. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
+          We are a lean organization that is primarily self-funded by our founding team. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
         </p>
 
         <h3 className="divider">Team</h3>
