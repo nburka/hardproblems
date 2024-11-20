@@ -27,6 +27,7 @@ export default function Page() {
       <section className="right">
         <h3>We need your help</h3>
         <p>Know someone who we should interview? Please fill out this Google Form and let us know. Thanks!</p>
+        <p><Link href="https://forms.gle/fK7LrCLNzckobynh7" className="button">Suggest a guest</Link></p>
 
         <h3 className="divider">What makes a good guest?</h3>
         <ul>

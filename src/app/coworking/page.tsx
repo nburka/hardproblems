@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Footer } from '../../components/Footer';
 
 export default function Page() {
@@ -16,20 +17,32 @@ export default function Page() {
         <h3 className="space-top-small">Can I work here?</h3>
         <p>
           If you work on a large-scale tech project related to climate change, public health, healthcare, education,
-          poverty, or other issues related to sustainable development goals, the answer could be &#8216;Yes!&#8217; We have a handful
-          of desks that we are offering for short-term (3-6 month) free use or, if you&#8216;re able to pay, we can likely arrange
-          longer-term co-working with a fixed desk for ~£450/month.
+          poverty, or other issues related to sustainable development goals, the answer could be &#8216;Yes!&#8217;
         </p>
+        <dl>
+          <dt>Drop-in use</dt>
+          <dd>
+            Need a desk for just a few days? If you work on a hard problem, apply and we could offer
+            you a free place to work.
+          </dd>
+          <dt>Longer-term use.</dt>
+          <dd>We have a handful of desks that we are offering for short-term (3-12 month) use. If you can pay,
+          a fixed desk is £450/month. If you cannot pay, get in touch and we might be able to work something out.
+          </dd>
+        </dl>
 
         <h3 className="space-top-small">Is it free?</h3>
         <p>
-          We offer free desks for a limited time (3-6 months) for not-for-profit tech people who are working on hard problenms.
+          We offer free desks for a limited time (3-6 months) for not-for-profit tech people who are working on hard problems.
           If you have budget to pay for co-working space, we would prefer if you paid, but if you are running on a shoestring (who
-          isn&#8216;t) please apply for a feee desk.
+          isn&#8216;t) please apply for a free desk.
         </p>
 
-        <h3 className="space-top-small">How to apply for a desk</h3>
-        <p>More...</p>
+        <h3 className="space-top-small">How to apply for a desk?</h3>
+        <p>Please complete this Google Form:</p>
+        <p>
+          <Link href="https://forms.gle/BFESE6iHh6pppUGXA" className="button">Apply for a desk</Link>
+        </p>
 
       </section>
       <section className="right">
