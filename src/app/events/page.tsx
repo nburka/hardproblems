@@ -45,6 +45,12 @@ export default function Page() {
         </div>
 
         <div className="other-event">
+          <div className="other-event-title"><Link href="https://skoll.org/skoll-world-forum/">Skoll World Forum</Link></div>
+          <div className="other-event-location">Oxford, UK, and online</div>
+          <div className="other-event-date">Apr 1-4, 2025</div>
+        </div>
+
+        <div className="other-event">
           <div className="other-event-title"><Link href="https://www.whatdesigncando.com/events/wdcd-live-delhi-2025/">What Design Can Do</Link></div>
           <div className="other-event-location">Delhi, India</div>
           <div className="other-event-date">Mar 8, 2025</div>
