@@ -41,28 +41,40 @@ export default function Page() {
         <h3 className="space-top-large">We plan to</h3>
         <ul>
           <li>
+            <b>Foster a community.</b> Tie into existing communities and create a bridge
+            between the experts who are working on the world&lquo;s hard problems and tech
+            people who can help them.
+            <div className="tags">
+              <span className="tag">Email newsletter</span>
+              <span className="tag">Podcast</span>
+              <span className="tag">Slack community</span>
+            </div>
+          </li>
+          <li>
             <b>Help teams to set themselves up for success.</b> Once teams are formed,
             there are many challenges to successfully getting off the ground. We
             will show, from our experience, how to form functional teams, move
             quickly to validate ideas, and how to deploy software in
-            new/challenging environments.
+            new and challenging environments.
+            <div className="tags">
+              <span className="tag">Job board</span>
+              <span className="tag">Cohort-based workshops</span>
+              <span className="tag">Org development consulting</span>
+              <span className="tag">Mentorship program</span>
+            </div>
           </li>
           <li>
             <b>Encourage long-term solutions.</b> The tech world is notorious for
             focusing on short-term thinking around shiny new technologies. Hard
             problems are, pretty much by definition, multi-decade problems
-            without ‘silver bullet’ tech solutions. This is a cultural value in
+            without ‘silver bullest’ tech solutions. Also, none of the truly hard
+            challenges are going to be <i>solved</i> by technology &#8212; tech will
+            be one part of a broader effort. These are cultural values in
             tech that needs to be shifted.
-          </li>
-          <li>
-            <b>Develop sustainable funding models.</b> This itself is a hard problem.
-            Capitalism is obviously the crux of many of these challenges – tech
-            people can make big money working on other challenges, and most
-            teams working on hard problems are chronically underfunded.
-            Ultimately, we will need to address this. We believe the solution is
-            unlikely to be impact investing, which intends to generate a
-            measurable, beneficial social or environmental impact alongside a
-            financial return.
+            <div className="tags">
+              <span className="tag">Podcast</span>
+              <span className="tag">TBD...</span>
+            </div>
           </li>
         </ul>
         <h3 className="space-top-large">What success looks like</h3>
@@ -73,6 +85,7 @@ export default function Page() {
           broader sense, our goals are to change the culture of tech to value
           people who work on hard problems.
         </p>
+        <Image src="/images/illustration-yes-hands.svg" width="80" height="80" alt="Hands saying YES!" className="image-full" />
       </section>
       <section className="right">
         <h3>What do we do</h3>
@@ -95,7 +108,7 @@ export default function Page() {
         </ul>
         <h3 className="divider">Funding</h3>
         <p>
-          We are a lean organization that is primarily self-funded. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
+          We are a lean organization that is primarily self-funded by our founding team. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
         </p>
 
         <h3 className="divider">Team</h3>

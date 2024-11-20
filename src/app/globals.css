@@ -43,6 +43,21 @@ p.intro {
   font-weight: 400;
 }
 
+.tags {
+  padding: 0.5em 0 2em 0;
+}
+
+.tag {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 2px 10px;
+  margin: 4px 4px 4px 0;
+  font-size: 0.9rem;
+  background: #CBEAD8;
+  color: green;
+  border-radius: 100px;
+}
+
 .disabled {
   color: darkgray;
 }
@@ -172,8 +187,8 @@ ol li:before {
    border-radius: 100%;
    color: white;
    width: 32px;
-   height: 28px;
-   padding-top: 4px;
+   height: 29px;
+   padding-top: 3px;
    text-align: center;
    display: inline-block;
    position: absolute;
