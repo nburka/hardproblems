@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Footer } from '../../components/Footer';
 import { Map } from '../../components/Map';
 import { Team } from '../../components/Team';
@@ -28,7 +29,11 @@ export default function Page() {
           We aim to solve this divide by bridging the gap and championing the
           importance of practical tech for good.
         </p>
-        <h3 className="margin-top">We plan to</h3>
+
+        <Image src="/images/illustration-bridge.svg" width="80" height="80" alt="Illustration of two hands shaking. One is a technologist and the other is a environmentalist, doctor, epidemiologist
+        climatologist who is working on hard problems " className="image-full space-top-small" />
+
+        <h3 className="space-top-large">We plan to</h3>
         <ul>
           <li>
             <b>Help teams to set themselves up for success.</b> Once teams are formed,
@@ -55,7 +60,7 @@ export default function Page() {
             financial return.
           </li>
         </ul>
-        <h3 className="margin-top">What success looks like</h3>
+        <h3 className="space-top-large">What success looks like</h3>
         <p>
           Thinking of this in terms of KPIs, we’d first think of measuring: the
           number of people we help make the leap from the traditional tech world
@@ -74,10 +79,10 @@ export default function Page() {
             <Link href="/events">Events in London and online</Link>
           </li>
           <li>
-            <Link href="/podcast">Podcast</Link>
+            <Link href="/newsletter">Email newsletter</Link>
           </li>
           <li>
-            <Link href="/newsletter">Email newsletter</Link>
+            <Link href="/podcast">Podcast</Link> (soon...)
           </li>
           <li>Job board (soon...)</li>
           <li>Online community (soon...)</li>
@@ -89,8 +94,7 @@ export default function Page() {
 
         <h3 className="divider">Team</h3>
         <p>
-          We are an all-volunteer team. We are a global non-profit with a home
-          base in London.
+          We are an all-volunteer team.
         </p>
         <Team />
       </section>
