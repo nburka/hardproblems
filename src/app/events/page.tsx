@@ -9,15 +9,18 @@ export default function Page() {
         <h2>Events</h2>
         <p>We do global events online and in-person events in London. The best way to stay informed about upcoming events is to join our email newsletter.</p>
 
-        <h3 className="margin-top">Upcoming events</h3>
+        <h3 className="space-top-large">Upcoming events</h3>
 
         <div className="event">
-          <Image src="/images/events/wine-event.svg" width="80" height="80" alt="Illustration of a person sipping wine." />
+          <div className="event-image">
+            <Image src="/images/events/wine-event.svg" width="80" height="80" alt="Illustration of a person sipping wine." />
+            <div className="event-image-date">Dec 11, 2024</div>
+          </div>
           <h4><Link href="https://lu.ma/3n56utd7">Wine &amp; chat at our new office</Link></h4>
           <p>Come to our new office in London for a casual wine, beverages, and snacks. Just come to say hello!</p>
           <dl className="event-details">
             <dt>When?</dt>
-            <dd>Wed, Dec 11, 2024</dd>
+            <dd>5-7pm on Wed, Dec 11, 2024</dd>
             <dt>Where?</dt>
             <dd>1 Rivington Place, London, EC2A 3BA</dd>
             <dt>RSVP</dt>
@@ -26,7 +29,7 @@ export default function Page() {
         </div>
 
 
-        <h3 className="margin-top">Past events</h3>
+        <h3 className="space-top-large">Past events</h3>
         <div className="none">
           No past events
         </div>
@@ -39,6 +42,12 @@ export default function Page() {
           <div className="other-event-title"><Link href="https://dhis2.org/academy/annual-conference/">DHIS2 Annual Conference</Link></div>
           <div className="other-event-location">Oslo, Norway</div>
           <div className="other-event-date">Jun 10-13, 2025</div>
+        </div>
+
+        <div className="other-event">
+          <div className="other-event-title"><Link href="https://www.whatdesigncando.com/events/wdcd-live-delhi-2025/">What Design Can Do</Link></div>
+          <div className="other-event-location">Delhi, India</div>
+          <div className="other-event-date">Mar 8, 2025</div>
         </div>
 
         <div className="other-event">

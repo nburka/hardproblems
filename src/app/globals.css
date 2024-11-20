@@ -106,8 +106,12 @@ dl dd {
   color: grey;
 }
 
-.margin-top {
+.space-top-large {
   margin-top: 4rem;
+}
+
+.space-top-small {
+  margin-top: 3rem;
 }
 
 ul li {
@@ -179,13 +183,29 @@ ol b {
 
 .event {
   position: relative;
-  padding: 3rem 0 3rem 0;
+  margin: 1em 0 5em 0;
 }
 
-.event img {
-  width: 80%;
-  height: auto;
-  margin: 0 0 20px 20px;
+.event-image {
+  background: #EBF7F0;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  margin: 0 0 0.8em 0;
+}
+
+.event-image-date {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.event-image img {
+  height: 260px;
+  width: auto;
 }
 
 .event p {
@@ -305,12 +325,6 @@ ol b {
 
   .illustration-home img {
     width: 100%;
-  }
-
-  .event img {
-    float: right;
-    width: 240px;
-    margin: 0 -40px 20px 20px;
   }
 
 }
