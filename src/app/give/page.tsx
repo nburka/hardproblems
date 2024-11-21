@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Footer } from '../../components/Footer';
 
 export default function Page() {
@@ -12,14 +13,16 @@ export default function Page() {
           benefit from your help.
         </p>
 
-        <p>Get in touch, email: <em>contact@hardproblems.com</em></p>
+        <p>Get in touch by email: <em>contact@hardproblems.com</em></p>
 
         <h3 className="space-top-large">Co-working space in London</h3>
         <p>
-          We have a co-working space in London where we donate desks to people working on hard problems who live here
-          or who are visiting the city. Renting office space in London is expensive. You could donate a desk to a great
-          technologist by gifting £450 for a month. Or you could donate a smaller amount to help us outfit the office &#8212;
-          even a gift to buy a bag of good coffee would be appreciated.
+          We have a <Link href="/coworking">co-working space</Link> in London where we donate desks to people that work on hard problems. Renting office space in London is expensive. You could donate a desk to a great
+          technologist by gifting £450 for a month.
+        </p>
+        <p>
+          Or you could donate a smaller amount to help us outfit the office &#8212;
+          buy a chair (£100) or even gift a bag of good coffee (£10) would be appreciated.
         </p>
 
         <h3 className="space-top-large">Sponsor an event</h3>
