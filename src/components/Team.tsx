@@ -31,9 +31,6 @@ export function Team() {
       <div>
         <Image src="/images/team/blank.svg" width="80" height="80" alt="" /> Coming soon...
       </div>
-      <div>
-        <Image src="/images/team/blank.svg" width="80" height="80" alt="" /> Coming soon...
-      </div>
     </div>
   );
 }

@@ -24,8 +24,33 @@ export default function Page() {
           And, we want to inspire people (you?) to make the jump to work on hard problems.
         </p>
 
-        <h3 className="space-top-large">Be informed</h3>
-        <p>Join our <Link href="/newsletter/">email newsletter</Link> so you don&#8216;t miss when we start the podcast.</p>
+        <h3 className="space-top-large">Episodes</h3>
+        <p>Episodes will be displayed here when we start. Join our <Link href="/newsletter/">email newsletter</Link> so you don&#8216;t miss when we start the podcast.</p>
+
+        <div className="episode">
+          <h3>Episode 1</h3>
+          <div>Coming soon...</div>
+        </div>
+
+        <div className="episode">
+          <h3>Episode 2</h3>
+          <div>Coming soon...</div>
+        </div>
+
+        <div className="episode">
+          <h3>Episode 3</h3>
+          <div>Coming soon...</div>
+        </div>
+
+        <div className="episode">
+          <h3>Episode 4</h3>
+          <div>Coming soon...</div>
+        </div>
+
+        <div className="episode">
+          <h3>Episode 5</h3>
+          <div>Coming soon...</div>
+        </div>
 
       </section>
       <section className="right">

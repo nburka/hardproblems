@@ -41,7 +41,7 @@ export default function Page() {
         <ul>
           <li>
             <b>Foster a community.</b> Tie into existing communities and create a bridge
-            between the experts who are working on the world&lquo;s hard problems and tech
+            between the experts who are working on the world’s hard problems and tech
             people who can help them.
             <div className="tags">
               <span className="tag">Email newsletter</span>
