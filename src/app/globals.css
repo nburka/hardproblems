@@ -282,6 +282,23 @@ ol li:before {
   margin-top: 0.3em;
 }
 
+.episode {
+  background: #EBF7F0;
+  padding: 24px;
+  position: relative;
+  margin: 2em 0 1em 0;
+}
+
+.episode h3 {
+  margin-top: 0;
+  font-size: 14px;
+  color: rgba(0,0,0,0.3);
+}
+
+.episode div {
+  color: rgba(0,0,0,0.3);
+}
+
 .other-event {
   margin: 2em 0;
 }

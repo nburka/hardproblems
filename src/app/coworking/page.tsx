@@ -12,7 +12,7 @@ export default function Page() {
           foster community for people working on hard problems.
         </p>
         <p>
-          Whether you live in London or are just visiting for a few days, this could be for you. Please get in touch with us if you are unsure.
+          Whether you live in London or are just visiting for a few days, this could be for you. Please get in touch with us if you are unsure.Page
         </p>
         <Image src="/images/illustration-cowork.svg" width="80" height="80" alt="Illustration of two people co-working" className="image-full" />
 
