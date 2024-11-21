@@ -16,6 +16,11 @@ nav {
   font-size: 14px;
 }
 
+nav .home,
+nav .home.link-home {
+  display: none;
+}
+
 a, a:visited {
   color: cornflowerblue;
   text-decoration: none;
@@ -314,6 +319,11 @@ ol li:before {
   margin: 0.4em 0 0 0;
 }
 
+.float-right {
+  float: right;
+  margin: 0 -20px 1em 1em;
+}
+
 @media only screen and (min-width: 1000px) {
 
   body {
@@ -391,15 +401,23 @@ ol li:before {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 4%;
+    gap: 2%;
   }
 
   .columns-2 .column {
-    width: 48%;
+    width: 49%;
   }
 
   h1 {
     margin: 42px;
+  }
+
+  .footer p {
+    font-size: 14px;
+  }
+
+  .footer h3 {
+    font-size: 12px;
   }
 
   h3.divider {

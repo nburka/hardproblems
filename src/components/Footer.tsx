@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
   return (
     <>
-      <section className="left">
+      <section className="left footer">
         <div className="columns-2">
           <div className="column">
             <h3>Office &amp; contact</h3>
@@ -12,6 +13,7 @@ export function Footer() {
             <p><Link href="mailto:contact@hardproblems.com">contact@hardproblems.com</Link></p>
           </div>
           <div className="column">
+            <Image src="/images/uk-government.svg" width="130" height="130" alt="UK Government Logo" className="float-right" />
             <h3>Registration</h3>
             <p>
               Hard Problems is a non-profit Company Limited by Guarantee registered
@@ -24,7 +26,7 @@ export function Footer() {
           </div>
         </div>
       </section>
-      <section className="right">
+      <section className="right footer">
         <h3>Legal &amp; Code of conduct</h3>
         <p><Link href="/conduct">Code of conduct</Link></p>
         <p><Link href="/privacy">Privacy notice</Link></p>

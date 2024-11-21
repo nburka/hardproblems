@@ -57,7 +57,7 @@ export default function Page() {
           others  who want to work on hard problems.
         </p>
 
-        <h3>Recent newsletters</h3>
+        <h3 className="space-top-large">Recent newsletters</h3>
         <div className={styles.newsletters}>
           {!newslettersLoaded && (
             <>
@@ -103,6 +103,7 @@ export default function Page() {
         <h3>Subscribe</h3>
         <NewsletterForm />
         <h3 className="divider">About the newsletter</h3>
+        <p>We share job opportunities, great books, relevant news, and events from around the world.</p>
         <ul>
           <li>1-2 emails per month</li>
           <li>No spam</li>
