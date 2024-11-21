@@ -54,10 +54,7 @@ export default function Page() {
         <h3 className="divider">Photos of our space</h3>
         <p>Photos coming soon...</p>
       </section>
-      <section className="left"></section>
-      <section className="right">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }

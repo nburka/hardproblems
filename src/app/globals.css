@@ -3,7 +3,7 @@ body {
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
   background: #fff;
   color: #231F20;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.3;
   min-height: 100%;
@@ -38,7 +38,7 @@ a.button {
 blockquote,
 p.intro {
   line-height: 1.3;
-  font-size: 20px;
+  font-size: 24px;
   margin: 1rem 0 3rem 0;
   font-weight: 400;
 }
@@ -89,7 +89,7 @@ h2 {
 h3 {
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.1rem;
 }
 
@@ -116,9 +116,17 @@ nav a.active {
   color: #000;
 }
 
+b {
+  font-weight: 500;
+}
+
 p, li, dd {
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.6;
+}
+
+p.indent {
+  padding-left: 2em;
 }
 
 p em {
@@ -137,6 +145,20 @@ p a, li a, dd a {
 
 dl dd {
   margin: 0.2em 0 1em;
+}
+
+dt {
+  position: absolute;
+  left: 40px;
+  padding-top: 2px;
+}
+
+dd {
+  padding-left: 5em;
+}
+
+.no-margin {
+  margin: 0;
 }
 
 .none {
@@ -188,16 +210,13 @@ ol li:before {
    border-radius: 100%;
    color: white;
    width: 32px;
-   height: 29px;
-   padding-top: 3px;
+   height: 28px;
+   padding-top: 4px;
    text-align: center;
    display: inline-block;
    position: absolute;
-   left: -2.5rem;;
-}
-
-ol b {
-  font-weight: 500;
+   left: -2.5rem;
+   font-size: 16px;
 }
 
 .container section.left,
@@ -221,9 +240,20 @@ ol b {
   height: auto;
 }
 
+.feature {
+  background: aliceblue;
+  padding: 36px;
+  border-radius: 10px;
+  margin: 2em 0;
+}
+
 .event {
   position: relative;
   margin: 1em 0 5em 0;
+}
+
+.event dt {
+  left: 0;
 }
 
 .event-image {
@@ -239,7 +269,7 @@ ol b {
   top: 20px;
   left: 20px;
   font-weight: bold;
-  font-size: 0.7rem;
+  font-size: 14px;
   text-transform: uppercase;
 }
 
@@ -250,15 +280,6 @@ ol b {
 
 .event p {
   margin-top: 0.3em;
-}
-
-.event dt {
-  position: absolute;
-  left: 0;
-}
-
-.event dd {
-  padding-left: 5em;
 }
 
 .other-event {
@@ -317,7 +338,7 @@ ol b {
   }
 
   .container section {
-    padding: 42px;
+    padding: 42px 42px 84px 42px;
     box-sizing: border-box;
     position: relative;
   }

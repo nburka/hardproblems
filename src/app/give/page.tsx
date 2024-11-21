@@ -37,10 +37,7 @@ export default function Page() {
         <p>If you donate, we will add you to a &#8216;Thank you wall&#8217; here on the website.</p>
         <Image src="/images/illustration-thanks.svg" width="120" height="120" alt="Illustration of hands in a heart shape." />
       </section>
-      <section className="left"></section>
-      <section className="right">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }

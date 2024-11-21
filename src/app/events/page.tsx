@@ -47,40 +47,38 @@ export default function Page() {
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://dhis2.org/academy/annual-conference/">DHIS2 Annual Conference</Link></div>
-          <div className="other-event-location">Oslo, Norway</div>
+          <p className="no-margin">Oslo, Norway</p>
           <div className="other-event-date">Jun 10-13, 2025</div>
         </div>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://skoll.org/skoll-world-forum/">Skoll World Forum</Link></div>
-          <div className="other-event-location">Oxford, UK, and online</div>
+          <p className="no-margin">Oxford, UK, and online</p>
           <div className="other-event-date">Apr 1-4, 2025</div>
         </div>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.whatdesigncando.com/events/wdcd-live-delhi-2025/">What Design Can Do</Link></div>
-          <div className="other-event-location">Delhi, India</div>
+          <p className="no-margin">Delhi, India</p>
           <div className="other-event-date">Mar 8, 2025</div>
         </div>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.gdhf.digital/abstracts">Global Digital Health Forum 2024</Link></div>
-          <div className="other-event-location">Nairobi, Kenya, and online</div>
+          <p className="no-margin">Nairobi, Kenya, and online</p>
           <div className="other-event-date">Dec 4-6, 2024</div>
         </div>
 
+        <h3 className="space-top-large">Past events</h3>
+
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.onehealthtech.com/events-1/oht-london-shift">Open Health Tech London: SHIFT</Link></div>
-          <div className="other-event-location">London, UK</div>
+          <p className="no-margin">London, UK</p>
           <div className="other-event-date">Nov 20, 2024</div>
         </div>
 
       </section>
-      <section className="left">
-      </section>
-      <section className="right">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }

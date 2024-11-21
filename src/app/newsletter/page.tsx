@@ -51,11 +51,13 @@ export default function Page() {
   return (
     <>
       <section className="left">
-        <h2>Recent newsletters</h2>
+        <h2>Newsletter</h2>
         <p className="intro">
           This is the email newsletter for technologists, engineers, designers, product managers, and
           others  who want to work on hard problems.
         </p>
+
+        <h3>Recent newsletters</h3>
         <div className={styles.newsletters}>
           {!newslettersLoaded && (
             <>
@@ -108,10 +110,7 @@ export default function Page() {
           <li>Easy unsubscribe</li>
         </ul>
       </section>
-      <section className="left"></section>
-      <section className="right">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }
