@@ -11,7 +11,9 @@ export default function Page() {
           We have a small co-working space in the Shoreditch neighborhood of London. This space is intended to
           foster community for people working on hard problems.
         </p>
-
+        <p>
+          Whether you live in London or are just visiting for a few days, this could be for you. Please get in touch with us if you are unsure.
+        </p>
         <Image src="/images/illustration-cowork.svg" width="80" height="80" alt="Illustration of two people co-working" className="image-full" />
 
         <h3 className="space-top-small">Can I work here?</h3>
@@ -20,12 +22,12 @@ export default function Page() {
           poverty, or other issues related to sustainable development goals, the answer could be &#8216;Yes!&#8217;
         </p>
         <dl>
-          <dt>Drop-in use</dt>
+          <dt>Drop-in</dt>
           <dd>
             Need a desk for just a few days? If you work on a hard problem, apply and we could offer
             you a free place to work.
           </dd>
-          <dt>Longer-term use.</dt>
+          <dt>Desks</dt>
           <dd>We have a handful of desks that we are offering for short-term (3-12 month) use. If you can pay,
           a fixed desk is £450/month. If you cannot pay, get in touch and we might be able to work something out.
           </dd>
