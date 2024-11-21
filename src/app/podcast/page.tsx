@@ -58,20 +58,22 @@ export default function Page() {
         <p>Know someone who we should interview? Please fill out this Google Form and let us know. Thanks!</p>
         <p><Link href="https://forms.gle/fK7LrCLNzckobynh7" className="button">Suggest a guest</Link></p>
 
-        <h3 className="divider">What makes a good guest?</h3>
+        <h3 className="divider">Who makes a good guest?</h3>
         <ul>
           <li>Not the usual suspects who do the podcast circuit.</li>
           <li>Not just a &#8216;thought leader.&#8217; Someone who actually works on real-world technologies.</li>
           <li>Has been working on &#8216;hard problems&#8217; for more than a year &#8212; ideally 5+ years. Hard problems are long-term problems.</li>
           <li>Takes a thoughtful and ethical approach to their work.</li>
           <li>Likely works on tech related to:
-              <div><span className="tag">Climate change</span></div>
-              <div><span className="tag">Public health</span></div>
-              <div><span className="tag">Healthcare</span></div>
-              <div><span className="tag">Government or civics</span></div>
-              <div><span className="tag">Education</span></div>
-              <div><span className="tag">Achieving a &#8216;Sustainable Development Goal&#8217;</span></div>
-              <div><span className="tag">Etc...</span></div>
+              <p>
+              <span className="tag">Climate change</span><br />
+              <span className="tag">Public health</span><br />
+              <span className="tag">Healthcare</span><br />
+              <span className="tag">Government or civics</span><br />
+              <span className="tag">Education</span><br />
+              <span className="tag">Sustainable Development Goals</span><br />
+              <span className="tag">Etc...</span>
+              </p>
           </li>
         </ul>
       </section>

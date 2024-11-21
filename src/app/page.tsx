@@ -19,7 +19,7 @@ export default function Home() {
         <h3>Our mission</h3>
         <p>
           We are a non-profit that helps tech people to work on the hard problems that matter in the
-          world: problems like <em>public health</em> and <em>climate change</em>, and <em>good government</em>.
+          world: problems like <em>public health</em>, <em>climate change</em>, and <em>good government</em>.
         </p>
         <p>While Silicon Valley is focused on AI, VR, crypto, SAAS, fin-tech, and ad-tech, many people in the real world are trying to tackle the hardest, thorniest problems.</p>
         <p>Programmers and designers know these issues matter but they wring their hands and stand by, unsure how to have any positive impact… choosing to focus on making big money and working on trendy new technologies.</p>
@@ -31,7 +31,7 @@ export default function Home() {
         <h3>Get involved</h3>
         <ol>
           <li>
-            <div><b>Subscribe to our newsletter.</b></div>
+            <p className="no-margin"><b>Subscribe to our newsletter.</b><br />We share job opportunities, great books, relevant news, and events.</p>
             <NewsletterForm />
           </li>
           <li>
