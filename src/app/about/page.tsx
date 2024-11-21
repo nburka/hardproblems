@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Footer } from '../../components/Footer';
-import { Map } from '../../components/Map';
 import { Team } from '../../components/Team';
 
 export default function Page() {
@@ -117,13 +116,7 @@ export default function Page() {
         </p>
         <Team />
       </section>
-      <section className="left">
-        <h3>Office</h3>
-        <Map />
-      </section>
-      <section className="right">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }

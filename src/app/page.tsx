@@ -2,7 +2,6 @@ import Link from 'next/link';
 import NewsletterForm from '../components/NewsletterForm';
 import Image from 'next/image';
 import { Footer } from '../components/Footer';
-import { Map } from '../components/Map';
 import { Team } from '../components/Team';
 
 export default function Home() {
@@ -19,46 +18,21 @@ export default function Home() {
         </blockquote>
         <h3>Our mission</h3>
         <p>
-          Helping tech people to work on the hard problems that matter in the
-          world: problems like <em>public health</em>, <em>climate change</em>,{' '}
-          <em>poverty</em>, and <em>good government</em>.
+          We are a non-profit that helps tech people to work on the hard problems that matter in the
+          world: problems like <em>public health</em> and <em>climate change</em>, and
+          <em>good government</em>.
         </p>
-        <p>
-          While Silicon Valley is focused on AI, VR, new subscription models,
-          and, yes, ads, many people in the real world are trying to tackle the
-          hard problems of climate change, public health, poverty, and other
-          issues that affect us all.
-        </p>
-        <p>
-          Programmers and designers know these issues matter but wring their
-          hands and standby, unsure how to have any positive impact... choosing
-          to focus on making big money and working on trendy new technologies.
-        </p>
-        <p>
-          It’s time to refocus the tech world on what matters most. It’s time to
-          build new relations between doctors, environmentalists, scientists,
-          not-for-profit leaders, public servants, and others tackling the
-          world’s hardest problems with technologists who can help make
-          practical tools to help solve them.
-        </p>
-        <p>
-          Made up of a multi-skilled team of very experienced tech veterans and
-          other subject-matter experts. Hard Problems is taking the lead in this
-          effort - whether it’s building teams to work on issues, solving
-          problems with robust long-term solutions, finding ways to fund tech
-          initiatives, and inspiring a new generation of tech workers to
-          champion the work on these fundamentally important problems.
-        </p>
-        <p>
-          We are in the earliest stages of forming Hard Problems. We don’t have
-          all of the answers, but we’ll start anyhow and learn along the way.
-        </p>
+        <p>While Silicon Valley is focused on AI, VR, crypto, SAAS, fin-tech, and ad-tech, many people in the real world are trying to tackle the hardest, thorniest problems.</p>
+        <p>Programmers and designers know these issues matter but they wring their hands and stand by, unsure how to have any positive impact… choosing to focus on making big money and working on trendy new technologies.</p>
+        <p>It’s time to refocus the tech world on what matters most. It’s time to build new relations between doctors, environmentalists, scientists, not-for-profit leaders, public servants, and others tackling the world’s hardest problems with technologists who can help make practical tools to help solve them.</p>
+        <p>We are a multi-skilled team of very experienced tech veterans and other subject-matter experts. We aim to push this effort &#8212; whether it’s by building teams to work on issues, creating bridges between ambitious experts and technologists, finding ways to fund tech initiatives, or inspiring a generation of tech people to work on these fundamentally important problems.</p>
+        <p>We are in the earliest stages of forming the Hard Problems non-profit. We don’t have all of the answers, but we’ll start anyhow and learn along the way.</p>
       </section>
       <section className="right">
         <h3>Get involved</h3>
         <ol>
           <li>
-            <div><b>Subscribe to our newsletter</b></div>
+            <div><b>Subscribe to our newsletter.</b></div>
             <NewsletterForm />
           </li>
           <li>
@@ -81,13 +55,7 @@ export default function Home() {
         </p>
         <Team />
       </section>
-      <section className="left">
-        <h3>Office</h3>
-        <Map />
-      </section>
-      <section className="right">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }
