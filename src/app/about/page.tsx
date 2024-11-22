@@ -7,6 +7,7 @@ export default function Page() {
   return (
     <>
       <section className="left">
+
         <h2>About</h2>
         <p className="intro">
           Hard Problems is a non-profit that helps tech people to make the shift to

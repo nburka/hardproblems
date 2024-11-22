@@ -56,6 +56,7 @@ export default function Page() {
           This is the email newsletter for technologists, engineers, designers, product managers, and
           others  who want to work on hard problems.
         </p>
+        <p>We share job opportunities, great books, relevant news, and events from around the world.</p>
 
         <h3 className="space-top-large">Recent newsletters</h3>
         <div className={styles.newsletters}>
@@ -103,13 +104,16 @@ export default function Page() {
         <h3>Subscribe</h3>
         <NewsletterForm />
         <h3 className="divider">About the newsletter</h3>
-        <p>We share job opportunities, great books, relevant news, and events from around the world.</p>
         <ul>
-          <li>1-2 emails per month</li>
+          <li>3-4 emails per month</li>
           <li>No spam</li>
           <li>We will never share our email list</li>
           <li>Easy unsubscribe</li>
         </ul>
+        <p>
+          Browse our previous newsletters on this page to get a flavor for what we post. We try to
+          focus on relevant news, upcoming events, and new job opportunities from around the world.
+        </p>
       </section>
       <Footer />
     </>
