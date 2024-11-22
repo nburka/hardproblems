@@ -49,7 +49,7 @@ export default function Home() {
 
         <h3 className="divider">Team</h3>
         <p>
-          We are an all-volunteer team. We are a global non-profit with a home
+          We are an all-volunteer team from around the world. Hard Problems is a global non-profit with a home
           base in London.
         </p>
         <Team />
