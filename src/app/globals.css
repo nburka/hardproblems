@@ -98,6 +98,12 @@ h3 {
   letter-spacing: 0.1rem;
 }
 
+h3.divider {
+  padding-top: 40px;
+  margin-top: 4rem;
+  border-top: 1px solid #84D9A6;
+}
+
 h4 {
   margin: 0.2em 0;
 }
@@ -119,6 +125,14 @@ nav a:hover {
 nav a.active {
   border-bottom: 4px solid #84D9A6;
   color: #000;
+}
+
+.footer p {
+  font-size: 14px;
+}
+
+.footer h3 {
+  font-size: 12px;
 }
 
 b {
@@ -319,6 +333,10 @@ ol li:before {
   margin: 0.4em 0 0 0;
 }
 
+.columns-2 .column {
+  margin-bottom: 2em;
+}
+
 .float-right {
   float: right;
   margin: 0 -20px 1em 1em;
@@ -412,19 +430,8 @@ ol li:before {
     margin: 42px;
   }
 
-  .footer p {
-    font-size: 14px;
-  }
-
-  .footer h3 {
-    font-size: 12px;
-  }
-
   h3.divider {
-    margin-top: 4rem;
-    border-top: 1px solid #84D9A6;
     padding: 40px 40px 0 60px;
-    padding-top: 40px;
     margin-left: -60px;
     margin-right: -40px;
   }
