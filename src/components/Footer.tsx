@@ -13,7 +13,7 @@ export function Footer() {
             <p><Link href="mailto:contact@hardproblems.com">contact@hardproblems.com</Link></p>
           </div>
           <div className="column">
-            <Image src="/images/uk-government.svg" width="130" height="130" alt="UK Government Logo" className="float-right" />
+            <Image src="/images/uk-government.svg" width="110" height="110" alt="UK Government Logo" className="float-right" />
             <h3>Registration</h3>
             <p>
               Hard Problems is a non-profit Company Limited by Guarantee registered
