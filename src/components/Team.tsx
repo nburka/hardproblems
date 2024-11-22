@@ -9,7 +9,7 @@ export function Team() {
       <div>
         <Link href="https://www.linkedin.com/in/elyce-cole-1380903a/">
           <Image src="/images/team/elyce.svg" width="80" height="80" alt="" />
-          ElyceCole
+          Elyce Cole
         </Link>
       </div>
 
