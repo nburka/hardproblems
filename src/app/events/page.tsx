@@ -69,7 +69,7 @@ export default function Page() {
           <div className="other-event-date">Dec 4-6, 2024</div>
         </div>
 
-        <h3 className="space-top-large">Past events</h3>
+        <h3 className="divider">Older events</h3>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.onehealthtech.com/events-1/oht-london-shift">Open Health Tech London: SHIFT</Link></div>

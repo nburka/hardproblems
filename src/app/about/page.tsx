@@ -112,7 +112,7 @@ export default function Page() {
 
         <h3 className="divider">Team</h3>
         <p>
-          We are an all-volunteer team.
+          We are an all-volunteer team from around the world.
         </p>
         <Team />
       </section>
