@@ -26,6 +26,66 @@ export default function Home() {
         <p>It’s time to refocus the tech world on what matters most. It’s time to build new relations between doctors, environmentalists, scientists, not-for-profit leaders, public servants, and others tackling the world’s hardest problems with technologists who can help make practical tools to help solve them.</p>
         <p>We are a multi-skilled team of very experienced tech veterans and other subject-matter experts. We aim to push this effort &#8212; whether it’s by building teams to work on issues, creating bridges between ambitious experts and technologists, finding ways to fund tech initiatives, or inspiring a generation of tech people to work on these fundamentally important problems.</p>
         <p>We are in the earliest stages of forming the Hard Problems non-profit. We don’t have all of the answers, but we’ll start anyhow and learn along the way.</p>
+
+        <h3 className="space-top-large">What we offer</h3>
+        <div className="grid-layout">
+
+          <Link href="/events" className="grid-cell">
+              <Image src="/images/icon-clap.svg" width="120" height="120" alt="Illustration of hands in a heart shape." />
+              <b className="grid-link">Events</b>
+              <p className="grid-detail">Online and in London</p>
+              <p>Speakers who work on hard problems share their knowledge.</p>
+          </Link>
+
+          <Link href="/newsletter" className="grid-cell">
+              <Image src="/images/icon-mailbox.svg" width="120" height="120" alt="Mailbox" />
+              <b className="grid-link">Email newsletter</b>
+              <p className="grid-detail">Sign up today</p>
+              <p>News, job opportunities, and events from around the world.</p>
+          </Link>
+
+          <Link href="/podcast" className="grid-cell">
+              <Image src="/images/icon-mic.svg" width="120" height="120" alt="Mic" />
+              <b className="grid-link">Podcast</b>
+              <p className="grid-detail">Coming soon...</p>
+              <p>Interview tech people who work on hard problems.</p>
+          </Link>
+
+          <Link href="/coworking" className="grid-cell">
+              <Image src="/images/icon-lamp.svg" width="120" height="120" alt="Work lamp." />
+              <b className="grid-link">Co-working space</b>
+              <p className="grid-detail">Apply for a desk in London</p>
+              <p>A space for people who work on hard problems to work and collaborate.</p>
+          </Link>
+
+          <div className="grid-cell">
+              <Image src="/images/icon-peace.svg" width="120" height="120" alt="Hand peace." />
+              <span className="disabled grid-link"><b>Job board</b></span>
+              <p className="grid-detail">Coming soon...</p>
+              <p>For engineers, designers, PMs, UX researchers, and others.</p>
+          </div>
+
+          <div className="grid-cell">
+              <Image src="/images/icon-conversation.svg" width="120" height="120" alt="Conversation" />
+              <span className="disabled grid-link"><b>Online community</b></span>
+              <p className="grid-detail">Coming soon...</p>
+              <p>A place to connect with others in your technical field.</p>
+          </div>
+
+          <div className="grid-cell">
+              <Image src="/images/icon-idea.svg" width="120" height="120" alt="Idea bulb" />
+              <span className="disabled grid-link"><b>3-month workshops</b></span>
+              <p className="grid-detail">In the future...</p>
+              <p>Cohorts of tech people with experts to prototype and start on the path to success.</p>
+          </div>
+
+          <div className="grid-cell">
+              <Image src="/images/icon-lego.svg" width="120" height="120" alt="Lego bricks" />
+              <span className="disabled grid-link"><b>TBD</b></span>
+              <p className="grid-detail">In the future...</p>
+              <p>We are just getting started and will adapt as we learn what people need.</p>
+          </div>
+        </div>
       </section>
       <section className="right">
         <h3>Get involved</h3>

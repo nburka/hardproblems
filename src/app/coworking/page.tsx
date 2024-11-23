@@ -12,9 +12,9 @@ export default function Page() {
           foster community for people working on hard problems.
         </p>
         <p>
-          Whether you live in London or are just visiting for a few days, this could be for you. Please get in touch with us if you are unsure.Page
+          Whether you live in London or are just visiting for a few days, this could be for you. Please get in touch with us (fill the form below) if you are unsure.
         </p>
-        <Image src="/images/illustration-cowork.svg" width="80" height="80" alt="Illustration of two people co-working" className="image-full" />
+        <Image src="/images/illustration-cowork.svg" width="80" height="80" alt="Illustration of two people co-working" className="image-full space-top-small" />
 
         <h3 className="space-top-small">Can I work here?</h3>
         <p>
@@ -49,6 +49,7 @@ export default function Page() {
       </section>
       <section className="right">
         <h3>Location</h3>
+        <p><Link href="https://maps.app.goo.gl/8SYY1vdDDcwwqGJy7">1 Rivington Pl, London EC2A 3BA</Link></p>
         <p>
           We are located in the Autograph Gallery building at 1 Rivington Place in the Shoreditch neighborhood. We are very central and are closest to Liverpool
           Street Station with access to Underground and train services.
