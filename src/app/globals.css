@@ -342,6 +342,39 @@ ol li:before {
   margin: 0 0 1em 1em;
 }
 
+.grid-layout {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 6%;
+}
+
+.grid-cell {
+  border: 1px solid #CDD9EC;
+  border-radius: 3px;
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.grid-link {
+  display: block;
+}
+
+.grid-cell p {
+  margin-top: 0.5em;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #231F20;
+}
+
+.grid-cell p.grid-detail {
+  font-weight: 500;
+  font-size: 14px;
+}
+
 @media only screen and (min-width: 1000px) {
 
   body {
@@ -397,7 +430,7 @@ ol li:before {
 
   .container section.left {
     width: 60%;
-    padding-right: 100px;
+    padding-right: 60px;
     padding-top: 40px;
     border-right: 1px solid #84D9A6;
     margin-top: 0;
@@ -426,6 +459,20 @@ ol li:before {
     width: 49%;
   }
 
+  .grid-cell {
+    width: 46%;
+  }
+
+  .grid-cell img {
+    width: 90px;
+    height: auto;
+    margin: 1em 0;
+  }
+
+  a.grid-cell:hover {
+    border-color: cornflowerblue;
+  }
+
   h1 {
     margin: 42px;
   }
@@ -438,7 +485,7 @@ ol li:before {
 
   .illustration-home {
     width: 50%;
-    margin: 2rem -60px 2rem 0.5rem;
+    margin: 2rem -20px 2rem 0.5rem;
     float: right;
   }
 
