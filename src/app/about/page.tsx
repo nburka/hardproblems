@@ -41,11 +41,12 @@ export default function Page() {
         <h3 className="space-top-large">We plan to</h3>
         <ul>
           <li>
-            <b>Foster a community.</b> Tie into existing communities and create a bridge
+            <b>Foster a community and build bridges.</b> Tie into existing communities and create a bridge
             between the experts who are working on the world’s hard problems and tech
             people who can help them.
             <div className="tags">
               <span className="tag">Email newsletter</span>
+              <span className="tag">Job board</span>
               <span className="tag">Podcast</span>
               <span className="tag">Slack community</span>
             </div>
@@ -67,12 +68,13 @@ export default function Page() {
             <b>Encourage long-term solutions.</b> The tech world is notorious for
             focusing on short-term thinking around shiny new technologies. Hard
             problems are, pretty much by definition, multi-decade problems
-            without ‘silver bullest’ tech solutions. Also, none of the truly hard
+            without ‘silver bullet’ tech solutions. Also, none of the truly hard
             challenges are going to be <i>solved</i> by technology &#8212; tech will
             be one part of a broader effort. These are cultural values in
             tech that needs to be shifted.
             <div className="tags">
               <span className="tag">Podcast</span>
+              <span className="tag">Cohort-based workshops</span>
               <span className="tag">TBD...</span>
             </div>
           </li>

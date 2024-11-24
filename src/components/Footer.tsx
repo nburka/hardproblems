@@ -7,9 +7,8 @@ export function Footer() {
       <section className="left footer">
         <div className="columns-2">
           <div className="column">
-            <h3>Office &amp; contact</h3>
+            <h3>Contact</h3>
             <p><Link href="https://maps.app.goo.gl/8SYY1vdDDcwwqGJy7">1 Rivington Pl, London EC2A 3BA</Link></p>
-            <p><Link href="/coworking">Apply for a co-working desk</Link></p>
             <p><Link href="mailto:contact@hardproblems.com">contact@hardproblems.com</Link></p>
           </div>
           <div className="column">

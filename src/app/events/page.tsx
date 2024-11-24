@@ -12,8 +12,7 @@ export default function Page() {
         </p>
 
         <p>
-          The best way to stay informed about upcoming events is to join our <Link href="/newsletter">email newsletter</Link>. We hope to see you at an event soon. Please contact us at
-          contact@hardproblems.com if you have an event we should add to the ’other events’ list.
+          The best way to stay informed about upcoming events is to join our <Link href="/newsletter">email newsletter</Link>. All in-person events follow our <Link href="/conduct">code of conduct</Link>. We hope to see you at an event soon.
         </p>
 
         <h3 className="space-top-large">Upcoming events</h3>
@@ -43,7 +42,8 @@ export default function Page() {
       </section>
       <section className="right">
         <h3>Other people&#8216;s events</h3>
-        <p>These are other people&#8216;s events that we&#8216;re tracking around the world.</p>
+        <p>These are other people&#8216;s events that we&#8216;re tracking around the world. Email
+          contact@hardproblems.com if you have an event we should add.</p>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://dhis2.org/academy/annual-conference/">DHIS2 Annual Conference</Link></div>

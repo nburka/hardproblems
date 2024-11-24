@@ -76,7 +76,7 @@ export default function Home() {
               <Image src="/images/icon-idea.svg" width="120" height="120" alt="Idea bulb" />
               <span className="disabled grid-link"><b>3-month workshops</b></span>
               <p className="grid-detail">In the future...</p>
-              <p>Cohorts of tech people with experts to prototype and start on the path to success.</p>
+              <p>Cohorts of tech people join experts to prototype and start on a path to success.</p>
           </div>
 
           <div className="grid-cell">
