@@ -252,10 +252,11 @@ ol li:before {
 
 .illustration-home {
   text-align: center;
+  margin-top: -20px;
 }
 
 .illustration-home img {
-  width: 250px;
+  width: 350px;
   height: auto;
 }
 
@@ -464,8 +465,8 @@ ol li:before {
   }
 
   .grid-cell img {
-    width: 90px;
-    height: auto;
+    width: auto;
+    height: 100px;
     margin: 1em 0;
   }
 
@@ -485,7 +486,7 @@ ol li:before {
 
   .illustration-home {
     width: 50%;
-    margin: 2rem -20px 2rem 0.5rem;
+    margin: 70px -20px 2rem 0.5rem;
     float: right;
   }
 

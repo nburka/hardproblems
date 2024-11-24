@@ -23,7 +23,7 @@ export default function Home() {
         </p>
         <p>While Silicon Valley is focused on AI, VR, SAAS, crypto, fin-tech, and ad-tech, many people in the real world are trying to tackle the hardest, thorniest problems.</p>
         <p>Programmers and designers know these issues matter but they wring their hands and stand by, unsure how to have any positive impact… choosing to focus on making big money and working on trendy new technologies.</p>
-        <p>It’s time to refocus the tech world on what matters most. It’s time to build new relations between doctors, environmentalists, scientists, not-for-profit leaders, public servants, and others tackling the world’s hardest problems with technologists who can help make practical tools to help solve them.</p>
+        <p>It’s time to refocus the tech world on what matters most. It’s time to build new relations between doctors, environmentalists, scientists, not-for-profit leaders, public servants, and others tackling the world’s hardest problems with technologists who can help make practical tools to help them succeed.</p>
         <p>We are a multi-skilled team of very experienced tech veterans and other subject-matter experts. We aim to push this effort &#8212; whether it’s by building teams to work on issues, creating bridges between ambitious experts and technologists, finding ways to fund tech initiatives, or inspiring a generation of tech people to work on these fundamentally important problems.</p>
         <p>We are in the earliest stages of forming the Hard Problems non-profit. We don’t have all of the answers, but we’ll start anyhow and learn along the way.</p>
 
