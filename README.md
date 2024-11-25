@@ -1,5 +1,5 @@
 # Hard Problems
-This is the home of hardproblems.com
+This is the home of [hardproblems.com](https://hardproblems.com)
 
 ## Get started
 1. `yarn install`
