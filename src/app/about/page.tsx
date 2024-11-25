@@ -38,6 +38,15 @@ export default function Page() {
         <Image src="/images/illustration-bridge.svg" width="80" height="80" alt="Illustration of two hands shaking. One is a technologist and the other is a environmentalist, doctor, epidemiologist
         climatologist who is working on hard problems " className="image-full space-top-small" />
 
+        <div className="captions desktop">
+          <p className="caption-right">
+            <b>Environmentalists</b>, <b>doctors</b>, <b>epidemiologists</b>, & others working on hard problems
+          </p>
+          <p className="caption-left">
+            <b>Tech people</b> who want to work on hard problems
+          </p>
+        </div>
+
         <h3 className="space-top-large">We plan to</h3>
         <ul>
           <li>
