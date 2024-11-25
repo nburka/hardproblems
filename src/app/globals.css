@@ -256,7 +256,8 @@ ol li:before {
 }
 
 .illustration-home img {
-  width: 350px;
+  width: 75%;
+  max-width: 400px;
   height: auto;
 }
 
