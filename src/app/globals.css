@@ -307,23 +307,6 @@ ol li:before {
   margin-top: 0.3em;
 }
 
-.episode {
-  background: #EBF7F0;
-  padding: 24px;
-  position: relative;
-  margin: 2em 0 1em 0;
-}
-
-.episode h3 {
-  margin-top: 0;
-  font-size: 14px;
-  color: rgba(0,0,0,0.3);
-}
-
-.episode div {
-  color: rgba(0,0,0,0.3);
-}
-
 .other-event {
   margin: 2em 0;
 }
@@ -337,6 +320,37 @@ ol li:before {
   font-size: 0.8rem;
   text-transform: uppercase;
   margin: 0.4em 0 0 0;
+}
+
+.episode {
+  background: #EBF7F0;
+  padding: 24px 140px 24px 24px;
+  position: relative;
+  margin: 2em 0 1em 0;
+  min-height: 160px;
+}
+
+.episode .podcast-image {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  width: 160px;
+  height: 160px;
+  border: 6px solid #CBEAD8;
+}
+
+.episode .podcast-player {
+  width: 60%;
+}
+
+.episode h3 {
+  margin-top: 0;
+  font-size: 14px;
+  color: rgba(0,0,0,0.3);
+}
+
+.episode div {
+  color: rgba(0,0,0,0.3);
 }
 
 .columns-2 .column {

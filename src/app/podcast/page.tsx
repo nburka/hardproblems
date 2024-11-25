@@ -28,28 +28,38 @@ export default function Page() {
         <p>Episodes will be displayed here when we start. Join our <Link href="/newsletter/">email newsletter</Link> so you don&#8216;t miss when we start the podcast.</p>
 
         <div className="episode">
+          <Image src="/images/podcast/episode-001.jpg" width="80" height="80" alt="Photo of the guest in Episode 1" className="podcast-image" />
           <h3>Episode 1</h3>
           <div>Coming soon...</div>
+          <p><Image src="/images/podcast/podcast-player-fake.svg" width="80" height="80" alt="Podcast player holding graphic" className="podcast-player" /></p>
         </div>
 
         <div className="episode">
+          <Image src="/images/podcast/episode-002.jpg" width="80" height="80" alt="Photo of the guest in Episode 2" className="podcast-image" />
           <h3>Episode 2</h3>
           <div>Coming soon...</div>
+          <p><Image src="/images/podcast/podcast-player-fake.svg" width="80" height="80" alt="Podcast player holding graphic" className="podcast-player" /></p>
         </div>
 
         <div className="episode">
+          <Image src="/images/podcast/episode-003.jpg" width="80" height="80" alt="Photo of the guest in Episode 3" className="podcast-image" />
           <h3>Episode 3</h3>
           <div>Coming soon...</div>
+          <p><Image src="/images/podcast/podcast-player-fake.svg" width="80" height="80" alt="Podcast player holding graphic" className="podcast-player" /></p>
         </div>
 
         <div className="episode">
+          <Image src="/images/podcast/episode-004.jpg" width="80" height="80" alt="Photo of the guest in Episode 4" className="podcast-image" />
           <h3>Episode 4</h3>
           <div>Coming soon...</div>
+          <p><Image src="/images/podcast/podcast-player-fake.svg" width="80" height="80" alt="Podcast player holding graphic" className="podcast-player" /></p>
         </div>
 
         <div className="episode">
+          <Image src="/images/podcast/episode-005.jpg" width="80" height="80" alt="Photo of the guest in Episode 5" className="podcast-image" />
           <h3>Episode 5</h3>
           <div>Coming soon...</div>
+          <p><Image src="/images/podcast/podcast-player-fake.svg" width="80" height="80" alt="Podcast player holding graphic" className="podcast-player" /></p>
         </div>
 
       </section>
