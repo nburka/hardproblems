@@ -176,6 +176,10 @@ dd {
   padding-left: 5em;
 }
 
+.desktop {
+  display: none;
+}
+
 .no-margin {
   margin: 0;
 }
@@ -377,6 +381,26 @@ ol li:before {
   font-size: 14px;
 }
 
+.captions {
+  color: green;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.caption-right {
+  float: right;
+  width: 45%;
+  text-align: right;
+  padding-right: 40px;
+  margin-top: -2em;
+}
+
+.caption-left {
+  width: 35%;
+  padding-left: 40px;
+  margin-top: 0;
+}
+
 @media only screen and (min-width: 1000px) {
 
   body {
@@ -483,6 +507,10 @@ ol li:before {
     padding: 40px 40px 0 60px;
     margin-left: -60px;
     margin-right: -40px;
+  }
+
+  .desktop {
+    display: block;
   }
 
   .illustration-home {
