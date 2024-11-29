@@ -15,20 +15,21 @@ export default function Page() {
 
         <p>Get in touch by email: <em>contact@hardproblems.com</em></p>
 
+        <h4 className="space-top-large">Ideas for gifting:</h4>
         <h3 className="space-top-large">Co-working space in London</h3>
         <p>
           We have a <Link href="/coworking">co-working space</Link> in London where we donate desks to people that work on hard problems. Renting office space in London is expensive. You could donate a desk to a great
-          technologist by gifting £450 for a month.
+          technologist by gifting £450 one-time or per month.
         </p>
         <p>
           Or you could donate a smaller amount to help us outfit the office &#8212;
-          buy a chair (£100) or even gift a bag of good coffee (£10) would be appreciated.
+          buy a chair (£100) or even gift a bag of good coffee (£10). Any gift would be appreciated.
         </p>
 
         <h3 className="space-top-large">Sponsor an event</h3>
         <p>
           We will run events in 2025 with an audience of people who work on hard problems all over the world. If you or your
-          company is interested in sponsoring an event, please get in touch.
+          company is interested in sponsoring an event, please get in touch. You will get a nice shout-out at the event.
         </p>
         <Image src="/images/illustration-savings.svg" width="80" height="80" alt="Illustration of a person putting money in a piggy bank." className="image-full space-top-large" />
       </section>
