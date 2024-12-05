@@ -8,8 +8,10 @@ export default function Page() {
       <section className="left">
         <h2>Events</h2>
         <p className="intro">
-          We do global events online and in-person events in London. We will build community, host great speakers, and publish videos online.
+          We host global events online and in-person events in London, featuring great speakers to build community.
         </p>
+
+        <p>If you’re unable to join live, watch this space as we will publish videos online too.</p>
 
         <p>
           The best way to stay informed about upcoming events is to join our <Link href="/newsletter">email newsletter</Link>. All in-person events follow our <Link href="/conduct">code of conduct</Link>. We hope to see you at an event soon.
@@ -23,10 +25,10 @@ export default function Page() {
             <div className="event-image-date">Dec 11, 2024</div>
           </div>
           <h4><Link href="https://lu.ma/3n56utd7">Wine &amp; chat at our new office</Link></h4>
-          <p>Come to our new office in London for a casual wine, beverages, and snacks. Just come to say hello!</p>
+          <p>Come to our new office in London for a casual wine, beverages, and snacks, or just to say hello!</p>
           <dl className="event-details">
             <dt>When?</dt>
-            <dd>5-7pm on Wed, Dec 11, 2024</dd>
+            <dd>5-7 pm on Wed, December 11, 2024</dd>
             <dt>Where?</dt>
             <dd>1 Rivington Place, London, EC2A 3BA</dd>
             <dt>RSVP</dt>
