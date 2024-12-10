@@ -25,7 +25,7 @@ export default function Page() {
             <div className="event-image-date">Dec 11, 2024</div>
           </div>
           <h4><Link href="https://lu.ma/3n56utd7">Wine &amp; chat at our new office</Link></h4>
-          <p>Come to our new office in London for a casual wine, beverages, and snacks, or just to say hello!</p>
+          <p>Come to our new office in London for casual wine, beverages, and snacks or just to say hello!</p>
           <dl className="event-details">
             <dt>When?</dt>
             <dd>5-7 pm on Wed, December 11, 2024</dd>
