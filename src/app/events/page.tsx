@@ -21,6 +21,26 @@ export default function Page() {
 
         <div className="event">
           <div className="event-image">
+            <Image src="/images/events/brian-event.svg" width="80" height="80" alt="Illustration of Brian O'Donnell." />
+            <div className="event-image-date">Mar 14, 2025</div>
+          </div>
+          <h4><Link href="https://lu.ma/bengeegp">Fireside chat with Brian O'Donnell from DHIS2.org</Link></h4>
+          <p>We are hosting tech architect Brian O'Donnell (Linkedin) for a fireside chat where we will discuss technology in global public health, careers in global health tech, and working in academia vs. gov vs. private sector. This will be a frank and open discussion. You will have the chance to ask Brian questions.</p>
+          <dl className="event-details">
+            <dt>When?</dt>
+            <dd>6-9 pm on Thur, March 14, 2025</dd>
+            <dt>Where?</dt>
+            <dd>1 Rivington Place, London, EC2A 3BA</dd>
+            <dt>RSVP</dt>
+            <dd><Link href="https://lu.ma/bengeegp">Please RSVP</Link></dd>
+          </dl>
+        </div>
+
+
+        <h3 className="space-top-large">Past events</h3>
+
+        <div className="event">
+          <div className="event-image">
             <Image src="/images/events/wine-event.svg" width="80" height="80" alt="Illustration of a person sipping wine." />
             <div className="event-image-date">Dec 11, 2024</div>
           </div>
@@ -36,11 +56,6 @@ export default function Page() {
           </dl>
         </div>
 
-
-        <h3 className="space-top-large">Past events</h3>
-        <div className="none">
-          No past events
-        </div>
       </section>
       <section className="right">
         <h3>Other people&#8216;s events</h3>
@@ -65,13 +80,13 @@ export default function Page() {
           <div className="other-event-date">Mar 8, 2025</div>
         </div>
 
+        <h3 className="divider">Older events</h3>
+
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.gdhf.digital/abstracts">Global Digital Health Forum 2024</Link></div>
           <p className="no-margin">Nairobi, Kenya, and online</p>
           <div className="other-event-date">Dec 4-6, 2024</div>
         </div>
-
-        <h3 className="divider">Older events</h3>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.onehealthtech.com/events-1/oht-london-shift">Open Health Tech London: SHIFT</Link></div>
