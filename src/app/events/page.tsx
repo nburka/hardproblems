@@ -24,8 +24,8 @@ export default function Page() {
             <Image src="/images/events/brian-event.svg" width="80" height="80" alt="Illustration of Brian O'Donnell." />
             <div className="event-image-date">Mar 14, 2025</div>
           </div>
-          <h4><Link href="https://lu.ma/bengeegp">Fireside chat with Brian O'Donnell from DHIS2.org</Link></h4>
-          <p>We are hosting tech architect Brian O'Donnell (Linkedin) for a fireside chat where we will discuss technology in global public health, careers in global health tech, and working in academia vs. gov vs. private sector. This will be a frank and open discussion. You will have the chance to ask Brian questions.</p>
+          <h4><Link href="https://lu.ma/bengeegp">Fireside chat with Brian O&#39;Donnell from DHIS2.org</Link></h4>
+          <p>We are hosting tech architect Brian O&#39;Donnell (Linkedin) for a fireside chat where we will discuss technology in global public health, careers in global health tech, and working in academia vs. gov vs. private sector. This will be a frank and open discussion. You will have the chance to ask Brian questions.</p>
           <dl className="event-details">
             <dt>When?</dt>
             <dd>6-9 pm on Thur, March 14, 2025</dd>
