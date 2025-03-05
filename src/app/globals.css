@@ -58,14 +58,15 @@ p.intro {
   padding: 2px 10px;
   margin: 4px 4px 4px 0;
   font-size: 0.8rem;
-  background: #CBEAD8;
-  color: green;
+  background: #D9EEE2;
+  color: #235337;
   border-radius: 100px;
   font-weight: 400;
 }
 
-.disabled {
-  color: darkgray;
+.disabled b {
+  font-weight: 100;
+  color: #444;
 }
 
 h1 {
