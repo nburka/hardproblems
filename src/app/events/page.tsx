@@ -25,7 +25,7 @@ export default function Page() {
             <div className="event-image-date">Mar 13, 2025</div>
           </div>
           <h4><Link href="https://lu.ma/bengeegp">Fireside chat with Brian O&#39;Donnell from DHIS2.org</Link></h4>
-          <p>We are hosting tech architect Brian O&#39;Donnell (Linkedin) for a fireside chat where we will discuss technology in global public health, careers in global health tech, and working in academia vs. gov vs. private sector. This will be a frank and open discussion. You will have the chance to ask Brian questions.</p>
+          <p>We are hosting tech architect, Brian O'Donnell (Linkedin), for a fireside chat where we will discuss what he does, how he ended up working on DHIS2.org, and the highs and lows of working at the intersection of academia, government, global public health, and tech. This will be an open discussion where you can ask Brian questions.</p>
           <dl className="event-details">
             <dt>When?</dt>
             <dd>6-9 pm on Thur, March 13, 2025</dd>
