@@ -36,6 +36,23 @@ export default function Page() {
           </dl>
         </div>
 
+        <div className="event">
+          <div className="event-image">
+            <Image src="/images/events/asquared-event.svg" width="80" height="80" alt="Illustration of ASquared." />
+            <div className="event-image-date">Apr 10, 2025</div>
+          </div>
+          <h4><Link href="https://lu.ma/kme2kbaa">Fireside chat with ASquared: Can a design agency do good in the world and run a viable business?</Link></h4>
+          <p>We will discuss with three of the leaders of ASquared about their agency's transition to a B-Corp that does half their work with organizations working on "Sustainable Development Goals." Is it possible to run a successful digital agency with an explicit aim to make the world better?</p>
+          <dl className="event-details">
+            <dt>When?</dt>
+            <dd>6-9 pm on Thur, April 10, 2025</dd>
+            <dt>Where?</dt>
+            <dd>1 Rivington Place, London, EC2A 3BA</dd>
+            <dt>RSVP</dt>
+            <dd><Link href="https://lu.ma/kme2kbaa">Please RSVP</Link></dd>
+          </dl>
+        </div>
+
 
         <h3 className="space-top-large">Past events</h3>
 
