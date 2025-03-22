@@ -80,6 +80,12 @@ export default function Page() {
           contact@hardproblems.com if you have an event we should add.</p>
 
         <div className="other-event">
+          <div className="other-event-title"><Link href="https://alltechishuman.org/all-tech-is-human-blog/responsible-tech-london-16-july">All Tech Is Human’s Responsible Tech London on AI</Link></div>
+          <p className="no-margin">London, UK</p>
+          <div className="other-event-date">July 16, 2025</div>
+        </div>
+
+        <div className="other-event">
           <div className="other-event-title"><Link href="https://dhis2.org/academy/annual-conference/">DHIS2 Annual Conference</Link></div>
           <p className="no-margin">Oslo, Norway</p>
           <div className="other-event-date">Jun 10-13, 2025</div>
@@ -91,13 +97,13 @@ export default function Page() {
           <div className="other-event-date">Apr 1-4, 2025</div>
         </div>
 
+        <h3 className="divider">Older events</h3>
+
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.whatdesigncando.com/events/wdcd-live-delhi-2025/">What Design Can Do</Link></div>
           <p className="no-margin">Delhi, India</p>
           <div className="other-event-date">Mar 8, 2025</div>
         </div>
-
-        <h3 className="divider">Older events</h3>
 
         <div className="other-event">
           <div className="other-event-title"><Link href="https://www.gdhf.digital/abstracts">Global Digital Health Forum 2024</Link></div>
