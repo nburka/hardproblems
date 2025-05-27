@@ -207,6 +207,10 @@ dd {
   color: grey;
 }
 
+.space-top-xlarge {
+  margin-top: 6rem;
+}
+
 .space-top-large {
   margin-top: 4rem;
 }
