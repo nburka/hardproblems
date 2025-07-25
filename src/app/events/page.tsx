@@ -25,6 +25,14 @@ export default function Page() {
         </p>
 
         <h3 className="space-top-large">Upcoming events</h3>
+        <p>
+          We’re busy working on the next event. Join our{' '}
+          <Link href="/newsletter">email newsletter</Link> to make sure you
+          don’t miss it.
+        </p>
+
+        <h3 className="space-top-large">Past events</h3>
+
         <div className="event">
           <div className="event-image">
             <Image
@@ -68,8 +76,6 @@ export default function Page() {
             </dd>
           </dl>
         </div>
-
-        <h3 className="space-top-large">Past events</h3>
 
         <div className="event">
           <div className="event-image">
