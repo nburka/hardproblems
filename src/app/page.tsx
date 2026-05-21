@@ -155,30 +155,10 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link href="https://idealist.org">Idealist</Link>
-          </li>
-          <li>
-            <Link href="https://80000hours.org">80,000 hours</Link>
-          </li>
-          <li>
             <Link href="https://techjobsforgood.com">Tech jobs for good</Link>
           </li>
           <li>
             <Link href="https://climatebase.org">Climate Base</Link>
-          </li>
-          <li>
-            <Link href="https://designwith.care/jobs">Healthcare UX jobs</Link>
-          </li>
-          <li>
-            <Link href="https://ict4djobs.com/jobs-opportunities">
-              ICT4D Jobs
-            </Link>
-          </li>
-          <li>
-            <Link href="https://escapethecity.org">Escape the City</Link>
-          </li>
-          <li>
-            <Link href="https://charityjob.co.uk">Charity Jobs (UK)</Link>
           </li>
           <li>
             <Link href="https://digitalrights.community/job-board">
