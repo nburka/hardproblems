@@ -109,6 +109,7 @@ export default async function Page() {
           <Link href="https://digitalrights.community/job-board">
             Digital Rights
           </Link>
+          .
         </p>
 
         {jobs.length === 0 ? (

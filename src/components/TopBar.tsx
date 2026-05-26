@@ -32,12 +32,6 @@ export default function TopBar() {
       >
         Newsletter
       </Link>
-      <Link
-        href="/give"
-        className={`link ${pathname === '/give' ? 'active' : ''}`}
-      >
-        Give
-      </Link>
     </nav>
   );
 }
