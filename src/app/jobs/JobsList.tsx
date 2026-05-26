@@ -319,7 +319,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                 <div className={styles.jobDescription} role="tooltip">
                   {job.company && (
                     <strong className={styles.jobDescriptionCompany}>
-                      {job.company}:
+                      {job.company} —
                     </strong>
                   )}
                   {job.company && ' '}
