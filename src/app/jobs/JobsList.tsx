@@ -262,7 +262,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={faviconUrl}
-                      alt=""
+                      alt={job.company ? `Icon of ${job.company}` : 'Company icon'}
                       width={16}
                       height={16}
                       className={styles.companyFavicon}
