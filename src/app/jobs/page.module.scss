@@ -1,0 +1,281 @@
+.board {
+  width: 100%;
+  border-top: 1px solid #84d9a6;
+  padding-top: 24px;
+  margin-top: 42px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .board {
+    padding-top: 40px;
+    margin-top: 0;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: center;
+  padding: 1rem 0;
+  margin: 1.5rem 0 0 0;
+  border-top: 1px solid #d9eee2;
+  border-bottom: 1px solid #d9eee2;
+}
+
+.filterField {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.filterLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #555;
+}
+
+.filterSelect {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 6px 28px 6px 10px;
+  border: 1px solid #cbead8;
+  border-radius: 4px;
+  background: #fff;
+  color: #231f20;
+  min-width: 180px;
+  cursor: pointer;
+}
+
+.filterSelect:focus {
+  outline: 2px solid #84d9a6;
+  outline-offset: 1px;
+}
+
+.filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.filterButton {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border: 1px solid #cbead8;
+  border-radius: 100px;
+  background: #fff;
+  color: #235337;
+  cursor: pointer;
+}
+
+.filterButton:hover {
+  border-color: #84d9a6;
+}
+
+.filterButtonActive {
+  background: #cbead8;
+  border-color: #cbead8;
+  font-weight: 500;
+}
+
+.filterCount {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.jobs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  margin: 0;
+  border-bottom: 1px solid #ebf7f0;
+}
+
+.jobDescription {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: max-content;
+  max-width: 468px;
+  background: #fff;
+  border: 1px solid #d9eee2;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  box-shadow: 0 6px 18px rgba(35, 83, 55, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s ease;
+}
+
+.job:hover .jobDescription {
+  opacity: 1;
+  visibility: visible;
+}
+
+.jobDescriptionCompany {
+  font-weight: 700;
+  color: #231f20;
+  margin-right: 0.25rem;
+}
+
+.jobIcon {
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 8px;
+  background: transparent;
+  border: 1px solid #d9eee2;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.job:hover {
+  background: #fafdfb;
+}
+
+.jobMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.jobTitle {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.jobTitle a,
+.jobTitle a:visited {
+  font-weight: 700;
+  color: #324bbc;
+}
+
+.jobTitle a:hover {
+  color: darkblue;
+}
+
+.jobMeta {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.jobCompany {
+  font-weight: 500;
+}
+
+.companyFavicon {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background: transparent;
+  display: block;
+}
+
+.jobSalary,
+.jobLocation {
+  color: #555;
+}
+
+.jobSector {
+  margin: 0;
+  vertical-align: baseline;
+}
+
+.jobSectorRow {
+  margin-top: 0.35rem;
+}
+
+.jobBullet {
+  color: #999;
+  user-select: none;
+}
+
+.jobAside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  text-align: right;
+  max-width: 35%;
+}
+
+.jobLocation {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.jobDate {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #777;
+  letter-spacing: 0.05em;
+}
+
+@media only screen and (max-width: 700px) {
+  .job {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .jobIcon {
+    display: none;
+  }
+
+  .jobMain {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    order: 2;
+  }
+
+  .jobAside {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    text-align: left;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    order: 1;
+  }
+
+  .filters {
+    gap: 0.8rem 1.2rem;
+  }
+
+  .filterCount {
+    margin-left: 0;
+    width: 100%;
+  }
+}

@@ -15,10 +15,10 @@ export default function TopBar() {
         About
       </Link>
       <Link
-        href="/events"
-        className={`link ${pathname === '/events' ? 'active' : ''}`}
+        href="/jobs"
+        className={`link ${pathname === '/jobs' ? 'active' : ''}`}
       >
-        Events
+        Jobs
       </Link>
       <Link
         href="/podcast"
