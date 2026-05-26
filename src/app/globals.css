@@ -57,6 +57,10 @@ p.intro {
   font-weight: 400;
 }
 
+p.intro {
+  line-height: 1.43;
+}
+
 .tags {
   padding: 0.5em 0 2em 0;
 }
@@ -456,7 +460,7 @@ ol li:before {
   }
 
   nav a {
-    margin-left: 8px;
+    margin-left: 24px;
     padding-bottom: 12px;
     padding-left: 1px;
     padding-right: 1px;

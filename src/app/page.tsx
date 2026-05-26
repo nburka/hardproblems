@@ -61,16 +61,18 @@ export default function Home() {
 
         <h3 className="space-top-large">What we offer</h3>
         <div className="grid-layout">
-          <Link href="/events" className="grid-cell">
+          <Link href="/jobs" className="grid-cell">
             <Image
-              src="/images/icon-clap.svg"
+              src="/images/icon-piggy-bank.svg"
               width="120"
               height="120"
-              alt="Illustration of hands in a heart shape."
+              alt="Illustration of a piggy bank."
             />
-            <b className="grid-link">Events</b>
-            <p className="grid-detail">Online and in London</p>
-            <p>Speakers who work on hard problems share their knowledge.</p>
+            <b className="grid-link">Job board</b>
+            <p className="grid-detail">Find your next full-time role</p>
+            <p>
+              Job listings from orgs working on climate change and health.
+            </p>
           </Link>
 
           <Link href="/newsletter" className="grid-cell">
@@ -106,10 +108,7 @@ export default function Home() {
             />
             <b className="grid-link">Co-working space</b>
             <p className="grid-detail">Apply for a desk in London</p>
-            <p>
-              A space for people who work on hard problems to work and
-              collaborate.
-            </p>
+            <p>A space for people who work on hard problems.</p>
           </Link>
         </div>
       </section>
