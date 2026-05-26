@@ -57,6 +57,10 @@ p.intro {
   font-weight: 400;
 }
 
+p.intro {
+  line-height: 1.43;
+}
+
 .tags {
   padding: 0.5em 0 2em 0;
 }

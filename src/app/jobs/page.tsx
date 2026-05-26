@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Footer } from '../../components/Footer';
 import JobsList, { SerializedJob } from './JobsList';
 import styles from './page.module.scss';
@@ -99,8 +100,15 @@ export default async function Page() {
       <section className={styles.board}>
         <h2>Jobs</h2>
         <p className="intro">
-          We search the web to find great jobs for designers who want to work
-          on hard problems like healthcare, public health, and climate change.
+          Jobs for designers who want to work on hard problems like healthcare,
+          public health, and climate change. Our favorite job sources are{' '}
+          <Link href="https://linkedin.come">LinkedIn</Link>,{' '}
+          <Link href="https://designgigsforgood.org">Design Gigs for Good</Link>
+          , <Link href="https://techjobsforgood.com">Tech Jobs for Good</Link>,{' '}
+          <Link href="https://climatebase.org">Climate Base</Link>, and{' '}
+          <Link href="https://digitalrights.community/job-board">
+            Digital Rights
+          </Link>
         </p>
 
         {jobs.length === 0 ? (
