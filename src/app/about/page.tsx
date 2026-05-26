@@ -105,17 +105,14 @@ export default function Page() {
             <Link href="/newsletter"><b>Email newsletter</b></Link>
           </li>
           <li>
-            <Link href="/events"><b>Events in London and online</b></Link>
+            <Link href="/coworking"><b>Co-working space in London</b></Link>
+          </li>
+          <li>
+            <Link href="/jobs"><b>Job board</b></Link>
           </li>
           <li>
             <Link href="/podcast"><b>Podcast</b></Link> (soon...)
           </li>
-          <li>
-            <Link href="/coworking"><b>Co-working space in London</b></Link>
-          </li>
-          <li><span className="disabled"><b>Job board</b> (soon...)</span></li>
-          <li><span className="disabled"><b>Online community</b> (soon...)</span></li>
-          <li><span className="disabled"><b>3-month workshops</b> (future...)</span></li>
         </ul>
         <h3 className="divider">Funding</h3>
         <p>
