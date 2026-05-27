@@ -161,6 +161,13 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
 
   return (
     <>
+      <p className={styles.betaNotice}>
+        <strong>Beta:</strong> Please contact us if you see any issues with the
+        job board.{' '}
+        <a href="mailto:contact@hardproblems.com">
+          contact@hardproblems.com
+        </a>
+      </p>
       <div className={styles.filters}>
         <label className={styles.filterField}>
           <span className={styles.filterLabel}>Country</span>

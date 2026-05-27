@@ -12,6 +12,26 @@
   }
 }
 
+.betaNotice {
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.betaNotice strong {
+  font-weight: 700;
+}
+
+.betaNotice a,
+.betaNotice a:visited {
+  color: #c0392b;
+  text-decoration: underline;
+}
+
+.betaNotice a:hover {
+  color: #872015;
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
