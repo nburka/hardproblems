@@ -3,8 +3,12 @@ import NewsletterForm from '../components/NewsletterForm';
 import Image from 'next/image';
 import { Footer } from '../components/Footer';
 import { Team } from '../components/Team';
+import { fetchJobs } from './jobs/fetchJobs';
+import JobsTeaser from './jobs/JobsTeaser';
 
-export default function Home() {
+export default async function Home() {
+  const jobs = await fetchJobs();
+  const recentJobs = jobs.slice(0, 5);
   return (
     <>
       <section className="left">
@@ -135,36 +139,18 @@ export default function Home() {
           </li>
         </ol>
 
+        <h3 className="divider">Job board</h3>
+        <p>
+          Recent listings from our <Link href="/jobs">job board</Link>.
+        </p>
+        <JobsTeaser jobs={recentJobs} />
+
         <h3 className="divider">Team</h3>
         <p>
           We are an all-volunteer team from around the world. Hard Problems is a
           global non-profit with a home base in London.
         </p>
         <Team />
-
-        <h3 className="divider">Job boards</h3>
-        <p>
-          We follow these job boards that feature careers for technologists
-          working on hard problems.
-        </p>
-        <ul>
-          <li>
-            <Link href="https://designgigsforgood.org">
-              Design Gigs for Good
-            </Link>
-          </li>
-          <li>
-            <Link href="https://techjobsforgood.com">Tech jobs for good</Link>
-          </li>
-          <li>
-            <Link href="https://climatebase.org">Climate Base</Link>
-          </li>
-          <li>
-            <Link href="https://digitalrights.community/job-board">
-              Digital Rights
-            </Link>
-          </li>
-        </ul>
       </section>
       <Footer />
     </>

@@ -96,6 +96,10 @@ h1 a:visited {
   color: #333;
 }
 
+h1 a span.hp-period {
+  color: #3aa36d;
+}
+
 h2 {
   font-weight: 700;
   line-height: 1;

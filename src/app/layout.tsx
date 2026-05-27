@@ -26,7 +26,9 @@ export default function RootLayout({
         <div className="main">
           <TopBar />
           <h1>
-            <Link href="/">Hard Problems.</Link>
+            <Link href="/">
+              Hard Problems<span className="hp-period">.</span>
+            </Link>
           </h1>
           <div className="container">{children}</div>
         </div>
