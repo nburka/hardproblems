@@ -20,12 +20,26 @@ export type SerializedJob = {
   description: string;
 };
 
-const dateFormat: Intl.DateTimeFormatOptions = {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-  timeZone: 'UTC'
-};
+function formatRelativeDate(date: Date): string {
+  const now = new Date();
+  const todayUTC = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate()
+  );
+  const jobUTC = Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate()
+  );
+  const diffDays = Math.round((todayUTC - jobUTC) / 86400000);
+
+  if (diffDays === 0) return 'Today';
+  if (diffDays === 1) return 'Yesterday';
+  if (diffDays > 1) return `${diffDays} days ago`;
+  if (diffDays === -1) return 'Tomorrow';
+  return `in ${-diffDays} days`;
+}
 
 type WorkStyle = 'all' | 'remote' | 'hybrid' | 'onsite';
 
@@ -336,7 +350,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
               <div className={styles.jobAside}>
                 {date && (
                   <small className={styles.jobDate}>
-                    {date.toLocaleDateString('en', dateFormat)}
+                    {formatRelativeDate(date)}
                   </small>
                 )}
               </div>
