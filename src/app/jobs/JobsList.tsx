@@ -2,23 +2,13 @@
 
 import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
+import type { SerializedJob } from './fetchJobs';
 import styles from './page.module.scss';
+
+export type { SerializedJob } from './fetchJobs';
 
 const BULLET_SEPARATOR = '  •  ';
 
-export type SerializedJob = {
-  date: string | null;
-  url: string;
-  title: string;
-  company: string;
-  companyUrl: string;
-  country: string;
-  city: string;
-  remote: string;
-  salary: string;
-  sector: string;
-  description: string;
-};
 
 function formatRelativeDate(date: Date): string {
   const now = new Date();
