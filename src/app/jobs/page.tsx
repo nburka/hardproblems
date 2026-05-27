@@ -50,12 +50,26 @@ function parseCSV(text: string): string[][] {
 function parseDate(s: string): Date | null {
   const trimmed = s.trim();
   if (!trimmed) return null;
+
+  // ISO format: YYYY-MM-DD
+  const isoMatch = trimmed.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (isoMatch) {
+    const year = parseInt(isoMatch[1], 10);
+    const month = parseInt(isoMatch[2], 10);
+    const day = parseInt(isoMatch[3], 10);
+    const d = new Date(Date.UTC(year, month - 1, day));
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  // DD/MM/YYYY format
   const parts = trimmed.split('/').map((p) => parseInt(p, 10));
-  if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) return null;
-  const [day, month, year] = parts;
-  const d = new Date(Date.UTC(year, month - 1, day));
-  if (Number.isNaN(d.getTime())) return null;
-  return d;
+  if (parts.length === 3 && !parts.some((n) => Number.isNaN(n))) {
+    const [day, month, year] = parts;
+    const d = new Date(Date.UTC(year, month - 1, day));
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  return null;
 }
 
 async function fetchJobs(): Promise<SerializedJob[]> {
