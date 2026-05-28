@@ -10,6 +10,10 @@
     padding-top: 40px;
     margin-top: 0;
   }
+
+  .filters {
+    padding-left: 24px;
+  }
 }
 
 .betaNotice {
@@ -51,6 +55,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.4rem;
+  padding: 16px 0;
 }
 
 .filterLabel {

@@ -193,15 +193,12 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   };
 
   const clearFilters = () => {
-    setCountry('all');
     setWorkStyleFilters([]);
     setOrgFilters([]);
   };
 
   const hasActiveFilters =
-    country !== 'all' ||
-    workStyleFilters.length > 0 ||
-    orgFilters.length > 0;
+    workStyleFilters.length > 0 || orgFilters.length > 0;
 
   return (
     <>
