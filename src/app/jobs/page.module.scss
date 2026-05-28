@@ -42,7 +42,6 @@
   align-items: flex-end;
   padding: 1rem 0;
   margin: 1.5rem 0 0 0;
-  border-top: 1px solid #d9eee2;
   border-bottom: 1px solid #d9eee2;
 }
 
@@ -51,6 +50,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.4rem;
+  margin-bottom: 1em;
 }
 
 .filterLabel {
@@ -64,42 +64,113 @@
 .checkboxes {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .checkbox {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 6px 0;
+  gap: 0.5rem;
+  padding: 8px 16px 8px 8px;
   font-size: 0.9rem;
-  color: #231f20;
+  color: #235337;
+  background: #fff;
+  border: 1px solid #cbead8;
+  border-radius: 100px;
   cursor: pointer;
   white-space: nowrap;
+  user-select: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.checkbox:hover {
+  border-color: #84d9a6;
+  background: #f6faf8;
+}
+
+.checkbox:focus-within {
+  box-shadow: 0 0 0 3px rgba(132, 217, 166, 0.5);
 }
 
 .checkbox input {
-  accent-color: #2f8b53;
-  cursor: pointer;
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
   margin: 0;
+}
+
+.checkboxBox {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border: 1.5px solid #aed8c1;
+  border-radius: 5px;
+  background: #fff;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.checkbox input:checked + .checkboxBox {
+  background: #2f8b53;
+  border-color: #2f8b53;
+}
+
+.checkbox input:checked + .checkboxBox::after {
+  content: '';
+  position: absolute;
+  left: 4.5px;
+  top: 1.5px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox:has(input:checked) {
+  background: #eaf6ef;
+  border-color: #84d9a6;
+  font-weight: 500;
 }
 
 .filterSelect {
   font: inherit;
-  font-size: 0.95rem;
-  padding: 6px 28px 6px 10px;
+  font-size: 0.9rem;
+  padding: 8px 38px 8px 16px;
   border: 1px solid #cbead8;
-  border-radius: 4px;
-  background: #fff;
-  color: #231f20;
+  border-radius: 100px;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23235337' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  color: #235337;
   min-width: 180px;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.filterSelect:hover {
+  border-color: #84d9a6;
+  background-color: #f6faf8;
 }
 
 .filterSelect:focus {
-  outline: 2px solid #84d9a6;
-  outline-offset: 1px;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(132, 217, 166, 0.5);
 }
 
 .filterButtons {
