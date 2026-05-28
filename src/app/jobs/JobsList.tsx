@@ -3,6 +3,12 @@
 import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
 import type { SerializedJob } from './fetchJobs';
+import {
+  ORG_TYPE_OPTIONS,
+  OrgCategory,
+  orgCategory,
+  orgTypeDisplay
+} from './orgType';
 import styles from './page.module.scss';
 
 export type { SerializedJob } from './fetchJobs';
@@ -31,7 +37,13 @@ function formatRelativeDate(date: Date): string {
   return `in ${-diffDays} days`;
 }
 
-type WorkStyle = 'all' | 'remote' | 'hybrid' | 'onsite';
+type WorkStyle = 'remote' | 'hybrid' | 'onsite';
+
+const WORK_STYLE_OPTIONS: { value: WorkStyle; label: string }[] = [
+  { value: 'remote', label: 'Remote' },
+  { value: 'hybrid', label: 'Hybrid' },
+  { value: 'onsite', label: 'On-site' }
+];
 
 function buildFaviconUrl(rawUrl: string): string | null {
   const trimmed = rawUrl.trim();
@@ -119,12 +131,11 @@ function matchesCountry(jobCountry: string, selected: string): boolean {
 }
 
 function matchesWorkStyle(remote: string, filter: WorkStyle): boolean {
-  if (filter === 'all') return true;
   const r = remote.toLowerCase();
   if (filter === 'remote') return r.includes('remote');
   if (filter === 'hybrid') return r.includes('hybrid');
   if (filter === 'onsite') return r.length === 0;
-  return true;
+  return false;
 }
 
 function formatLocation(job: SerializedJob): string {
@@ -136,7 +147,8 @@ function formatLocation(job: SerializedJob): string {
 
 export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   const [country, setCountry] = useState<string>('all');
-  const [workStyle, setWorkStyle] = useState<WorkStyle>('all');
+  const [workStyleFilters, setWorkStyleFilters] = useState<WorkStyle[]>([]);
+  const [orgFilters, setOrgFilters] = useState<OrgCategory[]>([]);
 
   const countries = useMemo(() => {
     const set = new Set<string>();
@@ -151,27 +163,48 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   const filtered = useMemo(() => {
     return jobs.filter((j) => {
       if (!matchesCountry(j.country, country)) return false;
-      if (!matchesWorkStyle(j.remote, workStyle)) return false;
+      if (
+        workStyleFilters.length > 0 &&
+        !workStyleFilters.some((w) => matchesWorkStyle(j.remote, w))
+      )
+        return false;
+      if (orgFilters.length > 0) {
+        const cat = orgCategory(j.typeOfOrg);
+        if (!cat || !orgFilters.includes(cat)) return false;
+      }
       return true;
     });
-  }, [jobs, country, workStyle]);
+  }, [jobs, country, workStyleFilters, orgFilters]);
 
-  const workStyles: { value: WorkStyle; label: string }[] = [
-    { value: 'all', label: 'All' },
-    { value: 'remote', label: 'Remote' },
-    { value: 'hybrid', label: 'Hybrid' },
-    { value: 'onsite', label: 'On-site' }
-  ];
+  const toggleWorkStyle = (value: WorkStyle) => {
+    setWorkStyleFilters((prev) =>
+      prev.includes(value)
+        ? prev.filter((v) => v !== value)
+        : [...prev, value]
+    );
+  };
+
+  const toggleOrgFilter = (value: OrgCategory) => {
+    setOrgFilters((prev) =>
+      prev.includes(value)
+        ? prev.filter((v) => v !== value)
+        : [...prev, value]
+    );
+  };
+
+  const clearFilters = () => {
+    setCountry('all');
+    setWorkStyleFilters([]);
+    setOrgFilters([]);
+  };
+
+  const hasActiveFilters =
+    country !== 'all' ||
+    workStyleFilters.length > 0 ||
+    orgFilters.length > 0;
 
   return (
     <>
-      <p className={styles.betaNotice}>
-        <strong>Beta:</strong> Please contact us if you see any issues with the
-        job board.{' '}
-        <a href="mailto:contact@hardproblems.com">
-          contact@hardproblems.com
-        </a>
-      </p>
       <div className={styles.filters}>
         <label className={styles.filterField}>
           <span className={styles.filterLabel}>Country</span>
@@ -191,18 +224,32 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
 
         <div className={styles.filterField}>
           <span className={styles.filterLabel}>Work style</span>
-          <div className={styles.filterButtons}>
-            {workStyles.map((w) => (
-              <button
-                key={w.value}
-                type="button"
-                onClick={() => setWorkStyle(w.value)}
-                className={`${styles.filterButton} ${
-                  workStyle === w.value ? styles.filterButtonActive : ''
-                }`}
-              >
-                {w.label}
-              </button>
+          <div className={styles.checkboxes}>
+            {WORK_STYLE_OPTIONS.map((opt) => (
+              <label key={opt.value} className={styles.checkbox}>
+                <input
+                  type="checkbox"
+                  checked={workStyleFilters.includes(opt.value)}
+                  onChange={() => toggleWorkStyle(opt.value)}
+                />
+                {opt.label}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.filterField}>
+          <span className={styles.filterLabel}>Org type</span>
+          <div className={styles.checkboxes}>
+            {ORG_TYPE_OPTIONS.map((opt) => (
+              <label key={opt.value} className={styles.checkbox}>
+                <input
+                  type="checkbox"
+                  checked={orgFilters.includes(opt.value)}
+                  onChange={() => toggleOrgFilter(opt.value)}
+                />
+                {opt.label}
+              </label>
             ))}
           </div>
         </div>
@@ -213,7 +260,37 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p>No jobs match these filters. Try widening your search.</p>
+        <div className={styles.noResults}>
+          <svg
+            className={styles.noResultsIcon}
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <line x1="21" y1="21" x2="16.5" y2="16.5" />
+          </svg>
+          <h3 className={styles.noResultsTitle}>No jobs found</h3>
+          <p className={styles.noResultsText}>
+            No jobs match your current filters. Try removing a filter or
+            widening your search.
+          </p>
+          {hasActiveFilters && (
+            <button
+              type="button"
+              className={styles.noResultsButton}
+              onClick={clearFilters}
+            >
+              Clear all filters
+            </button>
+          )}
+        </div>
       )}
 
       <ul className={styles.jobs}>
@@ -229,6 +306,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
               ? job.companyUrl
               : `https://${job.companyUrl}`
             : null;
+          const typeLabel = orgTypeDisplay(job.typeOfOrg);
           const metaItems: ReactNode[] = [];
           if (job.company) {
             metaItems.push(
@@ -318,11 +396,18 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     </Fragment>
                   ))}
                 </div>
-                {job.sector && (
+                {(job.sector || typeLabel) && (
                   <div className={styles.jobSectorRow}>
-                    <span className={`tag ${styles.jobSector}`}>
-                      {job.sector}
-                    </span>
+                    {job.sector && (
+                      <span className={`tag ${styles.jobSector}`}>
+                        {job.sector}
+                      </span>
+                    )}
+                    {typeLabel && (
+                      <span className={`tag ${styles.jobType}`}>
+                        {typeLabel}
+                      </span>
+                    )}
                   </div>
                 )}
               </div>

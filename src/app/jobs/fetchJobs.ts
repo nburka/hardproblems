@@ -3,6 +3,7 @@ export type SerializedJob = {
   url: string;
   title: string;
   company: string;
+  typeOfOrg: string;
   companyUrl: string;
   country: string;
   city: string;
@@ -96,13 +97,14 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
       url: (r[1] ?? '').trim(),
       title: (r[2] ?? '').trim(),
       company: (r[3] ?? '').trim(),
-      companyUrl: (r[4] ?? '').trim(),
-      country: (r[5] ?? '').trim(),
-      city: (r[6] ?? '').trim(),
-      remote: (r[7] ?? '').trim(),
-      salary: (r[8] ?? '').trim(),
-      sector: (r[9] ?? '').trim(),
-      description: (r[10] ?? '').trim()
+      typeOfOrg: (r[4] ?? '').trim(),
+      companyUrl: (r[5] ?? '').trim(),
+      country: (r[6] ?? '').trim(),
+      city: (r[7] ?? '').trim(),
+      remote: (r[8] ?? '').trim(),
+      salary: (r[9] ?? '').trim(),
+      sector: (r[10] ?? '').trim(),
+      description: (r[11] ?? '').trim()
     } satisfies SerializedJob;
   });
 
