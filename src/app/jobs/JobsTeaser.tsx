@@ -3,6 +3,7 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import type { SerializedJob } from './fetchJobs';
+import { orgTypeDisplay } from './orgType';
 import styles from './jobsTeaser.module.scss';
 
 function buildFaviconUrl(rawUrl: string): string | null {
@@ -47,11 +48,18 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
         const location = [job.city, job.country]
           .filter((s) => s.trim().length > 0)
           .join(', ');
+        const typeLabel = orgTypeDisplay(job.typeOfOrg);
         const metaParts: { key: string; node: React.ReactNode }[] = [];
         if (job.company) {
           metaParts.push({
             key: 'company',
             node: <span className={styles.company}>{job.company}</span>
+          });
+        }
+        if (typeLabel) {
+          metaParts.push({
+            key: 'type',
+            node: <span className={styles.type}>{typeLabel}</span>
           });
         }
         if (location) {

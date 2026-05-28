@@ -10,6 +10,13 @@ export default async function Page() {
   return (
     <>
       <section className={styles.board}>
+        <p className={styles.betaNotice}>
+          <strong>Beta:</strong> Please contact us if you see any issues with
+          the job board.{' '}
+          <a href="mailto:contact@hardproblems.com">
+            contact@hardproblems.com
+          </a>
+        </p>
         <h2>Jobs</h2>
         <p className="intro">
           Jobs for designers who want to work on hard problems like healthcare,

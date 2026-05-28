@@ -15,7 +15,10 @@
 .betaNotice {
   font-size: 0.85rem;
   color: #c0392b;
-  margin: 1rem 0 0.5rem 0;
+  background: #fdecea;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 0 0 calc(1.5rem + 32px) 0;
 }
 
 .betaNotice strong {
@@ -35,8 +38,8 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem 2rem;
-  align-items: center;
+  gap: 1.2rem 4rem;
+  align-items: flex-end;
   padding: 1rem 0;
   margin: 1.5rem 0 0 0;
   border-top: 1px solid #d9eee2;
@@ -45,8 +48,9 @@
 
 .filterField {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
 }
 
 .filterLabel {
@@ -55,6 +59,30 @@
   letter-spacing: 0.08em;
   font-weight: 700;
   color: #555;
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  align-items: center;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: #231f20;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.checkbox input {
+  accent-color: #2f8b53;
+  cursor: pointer;
+  margin: 0;
 }
 
 .filterSelect {
@@ -107,6 +135,50 @@
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.noResults {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  margin-top: 2rem;
+  background: #f6faf8;
+  border: 1px solid #d9eee2;
+  border-radius: 10px;
+}
+
+.noResultsIcon {
+  color: #84d9a6;
+  margin-bottom: 0.5rem;
+}
+
+.noResultsTitle {
+  font-size: 1.2rem;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0 0 0.5rem 0;
+  color: #235337;
+}
+
+.noResultsText {
+  margin: 0 auto 1.4rem auto;
+  max-width: 360px;
+  color: #555;
+}
+
+.noResultsButton {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  border: 1px solid #cbead8;
+  border-radius: 100px;
+  background: #cbead8;
+  color: #235337;
+  cursor: pointer;
+}
+
+.noResultsButton:hover {
+  background: #b8e0c9;
+  border-color: #b8e0c9;
 }
 
 .jobs {
@@ -233,6 +305,13 @@
 .jobSector {
   margin: 0;
   vertical-align: baseline;
+}
+
+.jobType {
+  margin: 0 0 0 0.4rem;
+  vertical-align: baseline;
+  background: #d6e4f7;
+  color: #1d4e89;
 }
 
 .jobSectorRow {
