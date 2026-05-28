@@ -232,6 +232,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   checked={workStyleFilters.includes(opt.value)}
                   onChange={() => toggleWorkStyle(opt.value)}
                 />
+                <span className={styles.checkboxBox} aria-hidden="true" />
                 {opt.label}
               </label>
             ))}
@@ -248,6 +249,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   checked={orgFilters.includes(opt.value)}
                   onChange={() => toggleOrgFilter(opt.value)}
                 />
+                <span className={styles.checkboxBox} aria-hidden="true" />
                 {opt.label}
               </label>
             ))}
