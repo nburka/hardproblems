@@ -2,7 +2,7 @@ export type OrgCategory = 'for-profit' | 'not-for-profit' | 'public-sector';
 
 export const ORG_TYPE_OPTIONS: { value: OrgCategory; label: string }[] = [
   { value: 'for-profit', label: 'Company' },
-  { value: 'not-for-profit', label: 'Not-for-profit' },
+  { value: 'not-for-profit', label: 'Non-profit' },
   { value: 'public-sector', label: 'Public sector' }
 ];
 
@@ -19,11 +19,11 @@ export function orgCategory(typeOfOrg: string): OrgCategory | null {
 
 // Returns the label to show as a tag, or null if it should be hidden
 // (For-profit is intentionally not displayed). Charities display as
-// "Not-for-profit". Unknown non-empty types fall back to their raw value.
+// "Non-profit". Unknown non-empty types fall back to their raw value.
 export function orgTypeDisplay(typeOfOrg: string): string | null {
   const cat = orgCategory(typeOfOrg);
   if (cat === 'for-profit') return null;
-  if (cat === 'not-for-profit') return 'Not-for-profit';
+  if (cat === 'not-for-profit') return 'Non-profit';
   if (cat === 'public-sector') return 'Public sector';
   const t = typeOfOrg.trim();
   return t || null;
