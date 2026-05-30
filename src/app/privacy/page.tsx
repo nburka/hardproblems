@@ -11,6 +11,8 @@ export default function Page() {
           <li><Link href="#contact">Contact details</Link></li>
           <li><Link href="#info">What information we collect, use, and why</Link></li>
           <li><Link href="#lawful">Lawful bases and data protection rights</Link></li>
+          <li><Link href="#cookies">Cookies and analytics</Link></li>
+          <li><Link href="#processors">Service providers and international transfers</Link></li>
           <li><Link href="#where">Where we get personal information from</Link></li>
           <li><Link href="#keep">How long we keep information</Link></li>
           <li><Link href="#complain">How to complain</Link></li>
@@ -66,6 +68,88 @@ export default function Page() {
           <p className="indent">Consent - we have permission from you after we gave you all the relevant information. All of your data protection rights may apply, except the right to object. To be clear, you do have the right to withdraw your consent at any time.</p>
         </div>
 
+        <h3 className="space-top-large" id="cookies">Cookies and analytics</h3>
+        <p>
+          When you visit hardproblems.com we may store information in your
+          browser. We use two kinds:
+        </p>
+        <h4>Strictly necessary</h4>
+        <p>
+          We save your cookie and analytics consent choice in your browser&rsquo;s
+          local storage so we do not re-ask on every page. This is required to
+          deliver the choice you make on our consent banner and does not require
+          separate consent.
+        </p>
+        <h4>Analytics (Google Analytics)</h4>
+        <p>
+          If you click <b>Accept</b> on our consent banner, we load Google
+          Analytics 4 (GA4) to understand how visitors use the site. GA4 sets
+          first-party cookies in your browser (typically named{' '}
+          <code>_ga</code> and <code>_ga_XXXXXXXXXX</code>) and collects an
+          anonymised view of your activity, including the pages you visit, an
+          approximate location based on your IP address, the device and browser
+          you use, and how you arrived at the site.
+        </p>
+        <p>
+          Our lawful basis for analytics is <b>your consent</b>. You can
+          withdraw it at any time by clicking <b>Manage tracking</b> in the
+          footer, which clears your saved choice and re-asks. We re-ask every
+          180 days even if you do nothing, so your consent stays current.
+        </p>
+        <p>
+          Analytics data is processed by Google LLC in the United States. We
+          have configured GA4 to anonymise IP addresses and to retain
+          event-level data for up to 14 months.
+        </p>
+        <p>
+          If you click <b>Reject</b>, or if you never make a choice, Google
+          Analytics is not loaded and no analytics cookies are set.
+        </p>
+
+        <h3 className="space-top-large" id="processors">Service providers and international transfers</h3>
+        <p>
+          We use the following third-party processors to operate the website
+          and our services. Some of them process data outside the UK and EEA;
+          where they do, we rely on the UK/EU&ndash;US Data Privacy Framework
+          where the provider is certified, and on Standard Contractual Clauses
+          as additional safeguards.
+        </p>
+        <dl>
+          <dt>Vercel</dt>
+          <dd>
+            Website hosting. Vercel processes server logs which include IP
+            addresses for the purpose of operating and securing the site.
+            Vercel Inc. is based in the United States.
+          </dd>
+          <dt>Cloudflare</dt>
+          <dd>
+            DNS and content delivery. Cloudflare processes IP addresses to
+            deliver the site and protect against abuse. Cloudflare, Inc. is
+            based in the United States.
+          </dd>
+          <dt>Google (Google Analytics)</dt>
+          <dd>
+            Analytics, only if you have given consent (see the{' '}
+            <Link href="#cookies">Cookies and analytics</Link> section above).
+            Google LLC is based in the United States.
+          </dd>
+          <dt>Beehiiv</dt>
+          <dd>
+            Email newsletter delivery. If you subscribe to our newsletter your
+            email address is stored by Beehiiv on our behalf. Beehiiv Inc. is
+            based in the United States.
+          </dd>
+          <dt>Luma</dt>
+          <dd>
+            Event RSVPs and attendee management. When you RSVP to one of our
+            events you do so on Luma&rsquo;s platform, where Luma processes
+            your name, email address, and other information you provide for
+            that event on our behalf. Luma also sets its own cookies and may
+            track usage of its platform. Luma AI, Inc. is based in the United
+            States.
+          </dd>
+        </dl>
+
         <h3 className="space-top-large" id="where">Where we get personal information from</h3>
         <p>Directly from you</p>
 
@@ -74,7 +158,7 @@ export default function Page() {
         <p>Contact information provided for the purpose of attending an event or applying for a service are removed after 3 months.</p>
 
         <h3 className="space-top-large">Last updated</h3>
-        <p>21 November 2024</p>
+        <p>30 May 2026</p>
       </section>
       <section className="right">
         <h3 id="complain">How to complain</h3>
