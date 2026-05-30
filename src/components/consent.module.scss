@@ -1,0 +1,76 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  border-top: 1px solid #84d9a6;
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08);
+  padding: 1rem 1.25rem;
+}
+
+.bannerContent {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bannerText {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #333;
+  margin: 0;
+  flex: 1;
+  font-weight: 400;
+}
+
+.bannerActions {
+  display: flex;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.button {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #fff;
+  color: #235337;
+  border: 1px solid #cbead8;
+  font-weight: 400;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  min-width: 100px;
+  text-align: center;
+}
+
+.button:hover,
+.button:focus {
+  border-color: #84d9a6;
+  background: #f6faf8;
+  outline: none;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+  /* Kept for semantic clarity in markup; both buttons render identically
+     to avoid nudging users toward Accept (GDPR equally-prominent principle). */
+}
+
+@media only screen and (min-width: 700px) {
+  .bannerContent {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .bannerActions {
+    margin-left: auto;
+  }
+}
