@@ -1,8 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer } from '../../components/Footer';
 import JobsList from './JobsList';
 import { fetchJobs } from './fetchJobs';
 import styles from './page.module.scss';
+
+export const metadata: Metadata = {
+  title: 'Jobs board for designers who want to work on hard problems'
+};
 
 export default async function Page() {
   const jobs = await fetchJobs();
@@ -11,13 +16,13 @@ export default async function Page() {
     <>
       <section className={styles.board}>
         <p className={styles.betaNotice}>
-          <strong>Beta:</strong> Please contact us if you see any issues with
-          the job board.{' '}
+          <strong>Beta:</strong> Contact us if you see issues with the job
+          board.{' '}
           <a href="mailto:contact@hardproblems.com">
             contact@hardproblems.com
           </a>
         </p>
-        <h2>Jobs</h2>
+        <h2>Jobs board</h2>
         <p className="intro">
           Jobs for designers who want to work on hard problems like healthcare,
           public health, and climate change. Our favorite job sources are{' '}
