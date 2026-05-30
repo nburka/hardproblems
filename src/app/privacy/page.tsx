@@ -82,19 +82,38 @@ export default function Page() {
         </p>
         <h4>Analytics (Google Analytics)</h4>
         <p>
-          If you click <b>Accept</b> on our consent banner, we load Google
-          Analytics 4 (GA4) to understand how visitors use the site. GA4 sets
-          first-party cookies in your browser (typically named{' '}
-          <code>_ga</code> and <code>_ga_XXXXXXXXXX</code>) and collects an
-          anonymised view of your activity, including the pages you visit, an
-          approximate location based on your IP address, the device and browser
-          you use, and how you arrived at the site.
+          With your consent we load Google Analytics 4 (GA4) to understand how
+          visitors use the site. GA4 sets first-party cookies in your browser
+          (typically named <code>_ga</code> and <code>_ga_XXXXXXXXXX</code>)
+          and collects an anonymised view of your activity, including the
+          pages you visit, an approximate location based on your IP address,
+          the device and browser you use, and how you arrived at the site.
         </p>
         <p>
-          Our lawful basis for analytics is <b>your consent</b>. You can
-          withdraw it at any time by clicking <b>Manage tracking</b> in the
-          footer, which clears your saved choice and re-asks. We re-ask every
-          180 days even if you do nothing, so your consent stays current.
+          <b>How we ask for consent depends on where you are visiting from:</b>
+        </p>
+        <ul>
+          <li>
+            If you are visiting from the UK, the EEA, Switzerland, Brazil,
+            Canada, or California, we show a consent banner and only load
+            Google Analytics if you click <b>Accept</b>.
+          </li>
+          <li>
+            From other regions we load Google Analytics by default, treating
+            it as implied consent based on your local privacy regime. You can
+            withdraw at any time using the link described below.
+          </li>
+          <li>
+            If we cannot determine where you are visiting from, we default to
+            showing the consent banner.
+          </li>
+        </ul>
+        <p>
+          Our lawful basis for analytics under UK GDPR is <b>your consent</b>.
+          You can withdraw it at any time by clicking{' '}
+          <b>Manage cookie tracking</b> in the footer, which clears your saved
+          choice and re-shows the consent banner. We re-ask every 180 days
+          even if you do nothing, so your consent stays current.
         </p>
         <p>
           Analytics data is processed by Google LLC in the United States. We
@@ -102,8 +121,8 @@ export default function Page() {
           event-level data for up to 14 months.
         </p>
         <p>
-          If you click <b>Reject</b>, or if you never make a choice, Google
-          Analytics is not loaded and no analytics cookies are set.
+          If you click <b>Reject</b> on the consent banner, Google Analytics
+          is not loaded and no analytics cookies are set.
         </p>
 
         <h3 className="space-top-large" id="processors">Service providers and international transfers</h3>
