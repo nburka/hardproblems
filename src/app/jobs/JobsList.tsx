@@ -45,6 +45,27 @@ const WORK_STYLE_OPTIONS: { value: WorkStyle; label: string }[] = [
   { value: 'onsite', label: 'On-site' }
 ];
 
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#8a9b94"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <ellipse cx="12" cy="12" rx="4" ry="10" />
+    </svg>
+  );
+}
+
 function buildFaviconUrl(rawUrl: string): string | null {
   const trimmed = rawUrl.trim();
   if (!trimmed) return null;
@@ -52,7 +73,7 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
+    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=128`;
   } catch {
     return null;
   }
@@ -337,6 +358,26 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
             );
           }
 
+          const iconContents = faviconUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={faviconUrl}
+              alt={
+                companyHref
+                  ? job.company
+                    ? `Icon of ${job.company}`
+                    : 'Company icon'
+                  : ''
+              }
+              width={16}
+              height={16}
+              className={styles.companyFavicon}
+              loading="lazy"
+            />
+          ) : (
+            <GlobeIcon className={styles.companyFavicon} />
+          );
+
           return (
             <li key={`${job.url}-${i}`} className={styles.job}>
               {companyHref ? (
@@ -349,32 +390,10 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   }
                   className={styles.jobIcon}
                 >
-                  {faviconUrl && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={faviconUrl}
-                      alt={job.company ? `Icon of ${job.company}` : 'Company icon'}
-                      width={16}
-                      height={16}
-                      className={styles.companyFavicon}
-                      loading="lazy"
-                    />
-                  )}
+                  {iconContents}
                 </Link>
               ) : (
-                <div className={styles.jobIcon}>
-                  {faviconUrl && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={faviconUrl}
-                      alt=""
-                      width={16}
-                      height={16}
-                      className={styles.companyFavicon}
-                      loading="lazy"
-                    />
-                  )}
-                </div>
+                <div className={styles.jobIcon}>{iconContents}</div>
               )}
               <div className={styles.jobMain}>
                 <h4 className={styles.jobTitle}>

@@ -13,10 +13,31 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
+    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=128`;
   } catch {
     return null;
   }
+}
+
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#8a9b94"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <ellipse cx="12" cy="12" rx="4" ry="10" />
+    </svg>
+  );
 }
 
 function formatRelativeDate(date: Date): string {
@@ -90,7 +111,9 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
             className={styles.favicon}
             loading="lazy"
           />
-        ) : null;
+        ) : (
+          <GlobeIcon className={styles.favicon} />
+        );
         return (
           <div key={`${job.url}-${i}`} className={styles.row}>
             {companyHref ? (
