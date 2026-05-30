@@ -1,51 +1,62 @@
-.banner {
+.backdrop {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 1000;
-  background: #fff;
-  border-top: 1px solid #84d9a6;
-  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08);
-  padding: 1rem 1.25rem;
-}
-
-.bannerContent {
-  max-width: 1100px;
-  margin: 0 auto;
+  background: rgba(35, 31, 32, 0.55);
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
 }
 
-.bannerText {
-  font-size: 0.9rem;
-  line-height: 1.4;
+.modal {
+  background: #fff;
+  border-radius: 3px;
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  border-top: 4px solid #84d9a6;
+  animation: slideUp 0.25s ease-out;
+}
+
+.modalTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem 0;
+  color: #235337;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modalText {
+  font-size: 1rem;
+  line-height: 1.5;
   color: #333;
-  margin: 0;
-  flex: 1;
+  margin: 0 0 1.5rem 0;
   font-weight: 400;
 }
 
-.bannerActions {
+.actions {
   display: flex;
   gap: 0.6rem;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .button {
   font: inherit;
   font-size: 0.9rem;
-  padding: 8px 20px;
+  padding: 10px 24px;
   border-radius: 100px;
   cursor: pointer;
-  white-space: nowrap;
   background: #fff;
   color: #235337;
   border: 1px solid #cbead8;
   font-weight: 400;
   transition: background 0.15s ease, border-color 0.15s ease;
-  min-width: 100px;
+  min-width: 110px;
   text-align: center;
 }
 
@@ -62,15 +73,36 @@
      to avoid nudging users toward Accept (GDPR equally-prominent principle). */
 }
 
-@media only screen and (min-width: 700px) {
-  .bannerContent {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal {
+    padding: 1.5rem;
   }
 
-  .bannerActions {
-    margin-left: auto;
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .button {
+    width: 100%;
   }
 }
