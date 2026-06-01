@@ -381,7 +381,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           aria-expanded={showMore}
           onClick={() => setShowMore((v) => !v)}
         >
-          {showMore ? 'Fewer filters' : 'More filters'}
+          {showMore ? 'Fewer filters' : 'More filters…'}
         </button>
 
         <div

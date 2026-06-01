@@ -209,27 +209,29 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 0.75rem 0;
+  padding-top: 1em;
 }
 
-// Mobile-only "More filters" toggle. Hidden at desktop in the @media block.
+// Mobile-only "More filters" toggle styled like an inline blue link.
+// Hidden at desktop in the @media block.
 .moreFiltersToggle {
   font: inherit;
-  font-size: 0.85rem;
-  background: #fff;
-  border: 1px solid #cbead8;
-  border-radius: 100px;
-  padding: 6px 14px;
-  color: #235337;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: cornflowerblue;
   cursor: pointer;
+  text-decoration: none;
   align-self: center;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  text-align: left;
 }
 
 .moreFiltersToggle:hover,
 .moreFiltersToggle:focus {
-  border-color: #84d9a6;
-  background: #f6faf8;
+  color: darkblue;
   outline: none;
+  text-decoration: none;
 }
 
 // Wraps the Work style + Role filters. Hidden by default on mobile; the
