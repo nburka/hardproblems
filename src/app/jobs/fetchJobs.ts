@@ -13,6 +13,7 @@ export type SerializedJob = {
   sector: string;
   description: string;
   goodForWorldExplanation: string;
+  role: string;
 };
 
 const SHEET_CSV_URL =
@@ -111,7 +112,8 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
       salary: (r[10] ?? '').trim(),
       sector: (r[11] ?? '').trim(),
       description: (r[12] ?? '').trim(),
-      goodForWorldExplanation: (r[13] ?? '').trim()
+      goodForWorldExplanation: (r[13] ?? '').trim(),
+      role: (r[14] ?? '').trim()
     } satisfies SerializedJob;
   });
 
