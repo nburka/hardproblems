@@ -69,6 +69,21 @@ const WORK_STYLE_OPTIONS: { value: WorkStyle; label: string }[] = [
   { value: 'onsite', label: 'On-site' }
 ];
 
+function StarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={12}
+      height={12}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M12 2.5l2.95 6.13 6.55.61-4.95 4.66 1.46 6.6L12 17.27 5.99 20.5l1.46-6.6L2.5 9.24l6.55-.61L12 2.5z" />
+    </svg>
+  );
+}
+
 function GlobeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -354,6 +369,9 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
               : `https://${job.companyUrl}`
             : null;
           const typeLabel = orgTypeDisplay(job.typeOfOrg);
+          const goodForWorldScore = parseFloat(job.goodForWorld);
+          const isStaffPick =
+            !Number.isNaN(goodForWorldScore) && goodForWorldScore > 8;
           const metaItems: ReactNode[] = [];
           if (job.company) {
             metaItems.push(
@@ -448,8 +466,14 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     </Fragment>
                   ))}
                 </div>
-                {(job.sector || typeLabel) && (
+                {(job.sector || typeLabel || isStaffPick) && (
                   <div className={styles.jobSectorRow}>
+                    {isStaffPick && (
+                      <span className={`tag ${styles.jobStaffPick}`}>
+                        <StarIcon className={styles.jobStaffPickStar} />
+                        Hard Problems Pick
+                      </span>
+                    )}
                     {job.sector && (
                       <span className={`tag ${styles.jobSector}`}>
                         {job.sector}
