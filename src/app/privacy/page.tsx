@@ -11,6 +11,7 @@ export default function Page() {
           <li><Link href="#contact">Contact details</Link></li>
           <li><Link href="#info">What information we collect, use, and why</Link></li>
           <li><Link href="#lawful">Lawful bases and data protection rights</Link></li>
+          <li><Link href="#cookies">Analytics</Link></li>
           <li><Link href="#processors">Service providers and international transfers</Link></li>
           <li><Link href="#where">Where we get personal information from</Link></li>
           <li><Link href="#keep">How long we keep information</Link></li>
@@ -67,6 +68,28 @@ export default function Page() {
           <p className="indent">Consent - we have permission from you after we gave you all the relevant information. All of your data protection rights may apply, except the right to object. To be clear, you do have the right to withdraw your consent at any time.</p>
         </div>
 
+        <h3 className="space-top-large" id="cookies">Analytics</h3>
+        <p>
+          We use <b>PostHog</b> to understand how visitors use the site. When
+          you visit hardproblems.com, PostHog runs in your browser and captures
+          an anonymised view of your activity, including the pages you visit,
+          interactions such as clicking on a job listing, an approximate
+          location derived from your IP address, the device and browser you
+          use, and how you arrived at the site.
+        </p>
+        <p>
+          <b>We run PostHog in cookieless mode.</b> PostHog does not set
+          cookies on hardproblems.com and does not write to your browser&rsquo;s
+          local storage. Sessions are reconstructed in memory for the duration
+          of a page load and discarded; nothing about your browser is
+          persisted between visits. Because we do not identify individual
+          users, most visitors remain anonymous.
+        </p>
+        <p>
+          Analytics data is processed by PostHog Inc. in the United States. We
+          use the US cloud region of PostHog.
+        </p>
+
         <h3 className="space-top-large" id="processors">Service providers and international transfers</h3>
         <p>
           We use the following third-party processors to operate the website
@@ -87,6 +110,13 @@ export default function Page() {
             DNS and content delivery. Cloudflare processes IP addresses to
             deliver the site and protect against abuse. Cloudflare, Inc. is
             based in the United States.
+          </dd>
+          <dt>PostHog</dt>
+          <dd>
+            Product analytics — captures anonymised page views and
+            interactions on the site (see the{' '}
+            <Link href="#cookies">Analytics</Link> section above). PostHog Inc.
+            is based in the United States.
           </dd>
           <dt>Beehiiv</dt>
           <dd>

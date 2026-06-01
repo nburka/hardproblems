@@ -2,6 +2,7 @@
 
 import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { usePostHog } from 'posthog-js/react';
 import type { SerializedJob } from './fetchJobs';
 import {
   ORG_TYPE_OPTIONS,
@@ -12,6 +13,8 @@ import {
 import styles from './page.module.scss';
 
 export type { SerializedJob } from './fetchJobs';
+
+type ClickSource = 'title' | 'company' | 'favicon';
 
 const BULLET_SEPARATOR = '  •  ';
 
@@ -185,6 +188,23 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   const [country, setCountry] = useState<string>('all');
   const [workStyleFilters, setWorkStyleFilters] = useState<WorkStyle[]>([]);
   const [orgFilters, setOrgFilters] = useState<OrgCategory[]>([]);
+  const posthog = usePostHog();
+
+  const trackJobClick = (job: SerializedJob, source: ClickSource) => {
+    if (!posthog) return;
+    posthog.capture('job_click', {
+      job_title: job.title,
+      company: job.company,
+      sector: job.sector,
+      type_of_org: job.typeOfOrg,
+      country: job.country,
+      city: job.city,
+      salary: job.salary,
+      remote: job.remote,
+      listing_url: job.url,
+      click_source: source
+    });
+  };
 
   const countries = useMemo(() => {
     const set = new Set<string>();
@@ -357,6 +377,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   target="_blank"
                   rel="noreferrer"
                   className={styles.jobCompany}
+                  onClick={() => trackJobClick(job, 'company')}
                 >
                   {job.company}
                 </Link>
@@ -407,6 +428,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     job.company ? `Visit ${job.company}` : 'Visit company'
                   }
                   className={styles.jobIcon}
+                  onClick={() => trackJobClick(job, 'favicon')}
                 >
                   {iconContents}
                 </Link>
@@ -420,6 +442,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                       href={job.url}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => trackJobClick(job, 'title')}
                     >
                       {job.title}
                     </Link>

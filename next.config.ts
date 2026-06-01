@@ -1,6 +1,31 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Required for the PostHog reverse-proxy rewrites below, so /ingest/decide
+  // (and any other unslashed PostHog endpoints) aren't redirected.
+  skipTrailingSlashRedirect: true,
+
+  // PostHog reverse proxy — routes analytics traffic through the same domain
+  // as the site so ad blockers don't see it. Configured for PostHog EU cloud.
+  // For US cloud swap the destination hosts to us.i.posthog.com and
+  // us-assets.i.posthog.com.
+  async rewrites() {
+    return [
+      {
+        source: '/ingest/static/:path*',
+        destination: 'https://eu-assets.i.posthog.com/static/:path*'
+      },
+      {
+        source: '/ingest/decide',
+        destination: 'https://eu.i.posthog.com/decide'
+      },
+      {
+        source: '/ingest/:path*',
+        destination: 'https://eu.i.posthog.com/:path*'
+      }
+    ];
+  },
+
   async headers() {
     return [
       {
