@@ -204,11 +204,43 @@
 }
 
 .filterCount {
-  margin-left: auto;
   font-size: 0.85rem;
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+}
+
+// Mobile-only "More filters" toggle. Hidden at desktop in the @media block.
+.moreFiltersToggle {
+  font: inherit;
+  font-size: 0.85rem;
+  background: #fff;
+  border: 1px solid #cbead8;
+  border-radius: 100px;
+  padding: 6px 14px;
+  color: #235337;
+  cursor: pointer;
+  align-self: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.moreFiltersToggle:hover,
+.moreFiltersToggle:focus {
+  border-color: #84d9a6;
+  background: #f6faf8;
+  outline: none;
+}
+
+// Wraps the Work style + Role filters. Hidden by default on mobile; the
+// `moreFiltersOpen` class (toggled via state) expands it. `display: contents`
+// keeps the inner filter fields as flex children of the .filters container.
+.moreFilters {
+  display: none;
+}
+
+.moreFiltersOpen {
+  display: contents;
 }
 
 .noResults {
@@ -503,11 +535,6 @@
   .filters {
     gap: 0.8rem 1.2rem;
   }
-
-  .filterCount {
-    margin-left: 0;
-    width: 100%;
-  }
 }
 
 // Desktop overrides — kept at the end of the file so they win the cascade
@@ -547,13 +574,6 @@
     border-bottom: none;
   }
 
-  // Pull the jobs-count up to the top of the filter column so the
-  // "X jobs" reads like a result header.
-  .filterCount {
-    order: -1;
-    margin: 0 0 1rem 0;
-  }
-
   // Stretch each filter (label + control) to the full width of the column
   // so the country dropdown is no longer narrower than the checkbox pills.
   // 2em top margin gives each filter group some breathing room above it.
@@ -581,5 +601,15 @@
   // default so it never appears on mobile/tablet, regardless of hover).
   .jobDescription {
     display: block;
+  }
+
+  // At desktop all filters are always visible; no "More filters" affordance.
+  .moreFiltersToggle {
+    display: none;
+  }
+
+  .moreFilters,
+  .moreFiltersOpen {
+    display: contents;
   }
 }
