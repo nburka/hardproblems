@@ -396,6 +396,22 @@
   color: #1d4e89;
 }
 
+.jobStaffPick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  margin: 0 0.4rem 0 0;
+  vertical-align: baseline;
+  background: #fff3c4;
+  color: #8a5a00;
+  font-weight: 500;
+}
+
+.jobStaffPickStar {
+  flex-shrink: 0;
+  color: #d97706;
+}
+
 .jobSectorRow {
   margin-top: 0.35rem;
 }
