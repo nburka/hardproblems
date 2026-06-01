@@ -1,7 +1,8 @@
 'use client';
 
-import { Fragment, ReactNode, useMemo, useState } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import type { SerializedJob } from './fetchJobs';
 import {
   ORG_TYPE_OPTIONS,
@@ -12,6 +13,28 @@ import {
 import styles from './page.module.scss';
 
 export type { SerializedJob } from './fetchJobs';
+
+function parseWorkStyleParam(value: string | null): WorkStyle[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .filter(
+      (v): v is WorkStyle =>
+        v === 'remote' || v === 'hybrid' || v === 'onsite'
+    );
+}
+
+function parseOrgParam(value: string | null): OrgCategory[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .filter(
+      (v): v is OrgCategory =>
+        v === 'for-profit' ||
+        v === 'not-for-profit' ||
+        v === 'public-sector'
+    );
+}
 
 const BULLET_SEPARATOR = '  •  ';
 
@@ -182,9 +205,38 @@ function formatLocation(job: SerializedJob): string {
 }
 
 export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
-  const [country, setCountry] = useState<string>('all');
-  const [workStyleFilters, setWorkStyleFilters] = useState<WorkStyle[]>([]);
-  const [orgFilters, setOrgFilters] = useState<OrgCategory[]>([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Filter state is derived from the URL so it's shareable and bookmarkable.
+  // Visiting /jobs?country=Germany&work=remote,hybrid&org=non-profit will
+  // restore those filters on load. All filter changes go through
+  // updateParams() below, which uses router.replace so each checkbox toggle
+  // doesn't push a separate history entry.
+  const country = searchParams.get('country') ?? 'all';
+  const workStyleFilters = useMemo(
+    () => parseWorkStyleParam(searchParams.get('work')),
+    [searchParams]
+  );
+  const orgFilters = useMemo(
+    () => parseOrgParam(searchParams.get('org')),
+    [searchParams]
+  );
+
+  const updateParams = (mutate: (params: URLSearchParams) => void) => {
+    const params = new URLSearchParams(searchParams.toString());
+    mutate(params);
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  };
+
+  const setCountry = (value: string) => {
+    updateParams((params) => {
+      if (value === 'all') params.delete('country');
+      else params.set('country', value);
+    });
+  };
 
   const countries = useMemo(() => {
     const set = new Set<string>();
@@ -213,25 +265,31 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   }, [jobs, country, workStyleFilters, orgFilters]);
 
   const toggleWorkStyle = (value: WorkStyle) => {
-    setWorkStyleFilters((prev) =>
-      prev.includes(value)
-        ? prev.filter((v) => v !== value)
-        : [...prev, value]
-    );
+    const next = workStyleFilters.includes(value)
+      ? workStyleFilters.filter((v) => v !== value)
+      : [...workStyleFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('work');
+      else params.set('work', next.join(','));
+    });
   };
 
   const toggleOrgFilter = (value: OrgCategory) => {
-    setOrgFilters((prev) =>
-      prev.includes(value)
-        ? prev.filter((v) => v !== value)
-        : [...prev, value]
-    );
+    const next = orgFilters.includes(value)
+      ? orgFilters.filter((v) => v !== value)
+      : [...orgFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('org');
+      else params.set('org', next.join(','));
+    });
   };
 
   const clearFilters = () => {
-    setCountry('all');
-    setWorkStyleFilters([]);
-    setOrgFilters([]);
+    updateParams((params) => {
+      params.delete('country');
+      params.delete('work');
+      params.delete('org');
+    });
   };
 
   const hasActiveFilters =

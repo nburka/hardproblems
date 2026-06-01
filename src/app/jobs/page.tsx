@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer } from '../../components/Footer';
@@ -46,7 +47,11 @@ export default async function Page() {
             check back soon.
           </p>
         ) : (
-          <JobsList jobs={jobs} />
+          // Suspense is required because JobsList reads useSearchParams.
+          // Without it Next.js would deopt the route from static rendering.
+          <Suspense fallback={null}>
+            <JobsList jobs={jobs} />
+          </Suspense>
         )}
       </section>
       <Footer />
