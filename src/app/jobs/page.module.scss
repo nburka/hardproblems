@@ -5,24 +5,6 @@
   margin-top: 42px;
 }
 
-@media only screen and (min-width: 1000px) {
-  .board {
-    padding-top: 40px;
-    margin-top: 0;
-  }
-
-  .betaNotice {
-    float: right;
-    position: relative;
-    top: 1em;
-    margin: 0 0 1rem 2rem;
-  }
-
-  .filters {
-    clear: both;
-  }
-}
-
 .betaNotice {
   font-size: 0.85rem;
   color: #c0392b;
@@ -44,6 +26,16 @@
 
 .betaNotice a:hover {
   color: #872015;
+}
+
+.layout {
+  // Mobile default: single column, filters stack above results.
+  display: block;
+}
+
+.results {
+  // Right-hand column at desktop; full width on mobile.
+  min-width: 0;
 }
 
 .filters {
@@ -280,27 +272,63 @@
   border-bottom: 1px solid #ebf7f0;
 }
 
+.job:first-child {
+  border-top: 1px solid #ebf7f0;
+}
+
 .jobDescription {
+  // Hidden by default — the tooltip only makes sense on desktop where the
+  // filter column exists for it to overlay. Re-enabled in the desktop
+  // @media block at the end of the file.
+  display: none;
   position: absolute;
   top: 50%;
-  right: 90px;
+  // Anchor to the LEFT of the row so the tooltip floats over the filter
+  // column. 12px gap leaves room for the arrow on the tooltip's right edge.
+  right: calc(100% + 12px);
   transform: translateY(-50%);
   z-index: 10;
-  width: max-content;
-  max-width: 468px;
-  background: #fff;
-  border: 1px solid #d9eee2;
+  width: 240px;
+  background: #fef9e7;
+  border: 1px solid #ebd2b3;
   border-radius: 6px;
   padding: 10px 14px;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.4;
   color: #333;
-  box-shadow: 0 6px 18px rgba(35, 83, 55, 0.12);
+  box-shadow: 0 6px 18px rgba(139, 105, 20, 0.18);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.12s ease, visibility 0.12s ease;
+}
+
+// Arrow on the right side of the tooltip pointing toward the job row.
+// Two layers: ::before is the border-coloured outer triangle, ::after is
+// the bg-coloured inner triangle (1px smaller). The 1px difference shows
+// as a clean border around the arrow.
+.jobDescription::before,
+.jobDescription::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.jobDescription::before {
+  margin-top: -8px;
+  border-style: solid;
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent #ebd2b3;
+}
+
+.jobDescription::after {
+  margin-top: -7px;
+  border-style: solid;
+  border-width: 7px 0 7px 7px;
+  border-color: transparent transparent transparent #fef9e7;
 }
 
 .job:hover .jobDescription {
@@ -454,10 +482,6 @@
     display: none;
   }
 
-  .jobDescription {
-    display: none;
-  }
-
   .jobMain {
     flex: 1 1 auto;
     min-width: 0;
@@ -483,5 +507,79 @@
   .filterCount {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+// Desktop overrides — kept at the end of the file so they win the cascade
+// against the base rules above (which have identical specificity).
+@media only screen and (min-width: 1000px) {
+  .board {
+    padding-top: 40px;
+    margin-top: 0;
+  }
+
+  .betaNotice {
+    float: right;
+    position: relative;
+    top: 1em;
+    margin: 0 0 1rem 2rem;
+  }
+
+  // Two-column layout: filters left, results right.
+  // `clear: both` keeps the grid below the floated beta notice.
+  .layout {
+    clear: both;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  // Filters become a vertical stack in the left column. Drop the
+  // horizontal-bar styling (border, large horizontal gap) and add 1em of
+  // top padding so the column doesn't start flush with the row above.
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 1em 0 0 0;
+    margin: 0;
+    border-bottom: none;
+  }
+
+  // Pull the jobs-count up to the top of the filter column so the
+  // "X jobs" reads like a result header.
+  .filterCount {
+    order: -1;
+    margin: 0 0 1rem 0;
+  }
+
+  // Stretch each filter (label + control) to the full width of the column
+  // so the country dropdown is no longer narrower than the checkbox pills.
+  // 2em top margin gives each filter group some breathing room above it.
+  .filterField {
+    align-items: stretch;
+    margin-top: 1.2em;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+
+  // One checkbox per row, full-width pill (replaces the horizontal wrap).
+  .checkboxes {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+  }
+
+  .checkbox {
+    display: flex;
+  }
+
+  // Re-enable the hover tooltip at desktop only (it's display:none by
+  // default so it never appears on mobile/tablet, regardless of hover).
+  .jobDescription {
+    display: block;
   }
 }

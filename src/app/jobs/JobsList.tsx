@@ -298,7 +298,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     orgFilters.length > 0;
 
   return (
-    <>
+    <div className={styles.layout}>
       <div className={styles.filters}>
         <label className={styles.filterField}>
           <span className={styles.filterLabel}>Country</span>
@@ -355,6 +355,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
         </div>
       </div>
 
+      <div className={styles.results}>
       {filtered.length === 0 && (
         <div className={styles.noResults}>
           <svg
@@ -540,6 +541,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           );
         })}
       </ul>
-    </>
+      </div>
+    </div>
   );
 }
