@@ -16,30 +16,6 @@ export type { SerializedJob } from './fetchJobs';
 const BULLET_SEPARATOR = '  •  ';
 
 
-type ClickSource = 'title' | 'company' | 'favicon';
-
-// Fires a GA4 `job_click` event with rich job attributes for slicing.
-// Safely no-ops when gtag isn't loaded (e.g. user has not given consent).
-function trackJobClick(job: SerializedJob, source: ClickSource) {
-  if (typeof window === 'undefined') return;
-  const gtag = (
-    window as unknown as { gtag?: (...args: unknown[]) => void }
-  ).gtag;
-  if (typeof gtag !== 'function') return;
-  gtag('event', 'job_click', {
-    job_title: job.title,
-    company: job.company,
-    sector: job.sector,
-    type_of_org: job.typeOfOrg,
-    country: job.country,
-    city: job.city,
-    salary: job.salary,
-    remote: job.remote,
-    listing_url: job.url,
-    click_source: source
-  });
-}
-
 function formatRelativeDate(date: Date): string {
   const now = new Date();
   const todayUTC = Date.UTC(
@@ -381,7 +357,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   target="_blank"
                   rel="noreferrer"
                   className={styles.jobCompany}
-                  onClick={() => trackJobClick(job, 'company')}
                 >
                   {job.company}
                 </Link>
@@ -432,7 +407,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     job.company ? `Visit ${job.company}` : 'Visit company'
                   }
                   className={styles.jobIcon}
-                  onClick={() => trackJobClick(job, 'favicon')}
                 >
                   {iconContents}
                 </Link>
@@ -446,7 +420,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                       href={job.url}
                       target="_blank"
                       rel="noreferrer"
-                      onClick={() => trackJobClick(job, 'title')}
                     >
                       {job.title}
                     </Link>

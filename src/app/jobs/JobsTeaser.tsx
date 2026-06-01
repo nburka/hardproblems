@@ -6,30 +6,6 @@ import type { SerializedJob } from './fetchJobs';
 import { orgTypeDisplay } from './orgType';
 import styles from './jobsTeaser.module.scss';
 
-type ClickSource = 'title' | 'company' | 'favicon';
-
-// Fires a GA4 `job_click` event with rich job attributes for slicing.
-// Safely no-ops when gtag isn't loaded (e.g. user has not given consent).
-function trackJobClick(job: SerializedJob, source: ClickSource) {
-  if (typeof window === 'undefined') return;
-  const gtag = (
-    window as unknown as { gtag?: (...args: unknown[]) => void }
-  ).gtag;
-  if (typeof gtag !== 'function') return;
-  gtag('event', 'job_click', {
-    job_title: job.title,
-    company: job.company,
-    sector: job.sector,
-    type_of_org: job.typeOfOrg,
-    country: job.country,
-    city: job.city,
-    salary: job.salary,
-    remote: job.remote,
-    listing_url: job.url,
-    click_source: source
-  });
-}
-
 function buildFaviconUrl(rawUrl: string): string | null {
   const trimmed = rawUrl.trim();
   if (!trimmed) return null;
@@ -149,7 +125,6 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
                   job.company ? `Visit ${job.company}` : 'Visit company'
                 }
                 className={styles.icon}
-                onClick={() => trackJobClick(job, 'favicon')}
               >
                 {iconContents}
               </Link>
@@ -167,7 +142,6 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
                   target="_blank"
                   rel="noreferrer"
                   className={styles.title}
-                  onClick={() => trackJobClick(job, 'title')}
                 >
                   {job.title}
                 </Link>

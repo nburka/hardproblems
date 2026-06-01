@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import ManageTrackingLink from './ManageTrackingLink';
 
 export function Footer() {
   return (
@@ -30,7 +29,6 @@ export function Footer() {
         <h3>Legal &amp; Code of conduct</h3>
         <p><Link href="/conduct">Code of conduct</Link></p>
         <p><Link href="/privacy">Privacy notice</Link></p>
-        <p><ManageTrackingLink /></p>
         <p>&copy; Copyright {new Date().getFullYear()} Hard Problems</p>
       </section>
     </>

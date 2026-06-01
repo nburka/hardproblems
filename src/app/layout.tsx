@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TopBar from '../components/TopBar';
-import ConsentManager from '../components/ConsentManager';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -33,7 +32,6 @@ export default function RootLayout({
           </h1>
           <div className="container">{children}</div>
         </div>
-        <ConsentManager />
       </body>
     </html>
   );
