@@ -44,6 +44,14 @@ function parseRoleParam(value: string | null): string[] {
     .filter((v) => v.length > 0);
 }
 
+// Pretty-print a role name for the UI. The internal value (used for filter
+// matching and URL params) stays as the raw sheet value so data lookups
+// still work.
+function displayRole(role: string): string {
+  if (role.toLowerCase() === 'copywriter') return 'Copywriting';
+  return role;
+}
+
 const BULLET_SEPARATOR = '  •  ';
 
 
@@ -418,7 +426,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                       onChange={() => toggleRoleFilter(role)}
                     />
                     <span className={styles.checkboxBox} aria-hidden="true" />
-                    {role}
+                    {displayRole(role)}
                   </label>
                 ))}
               </div>
