@@ -39,10 +39,12 @@
 }
 
 .filters {
+  // Filter groups always stack vertically (one per row) regardless of
+  // viewport. Spacing between groups is handled by .filterField's margin.
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem 4rem;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
   padding: 1rem 0;
   margin: 1.5rem 0 0 0;
   border-bottom: 1px solid #d9eee2;
@@ -51,7 +53,9 @@
 .filterField {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  // Stretch children to the full width of the field so the dropdown, the
+  // checkbox group, and individual checkbox pills are all the same width.
+  align-items: stretch;
   gap: 0.4rem;
   margin-bottom: 1em;
 }
@@ -65,14 +69,16 @@
 }
 
 .checkboxes {
+  // Checkboxes stack vertically at every viewport. Each pill stretches to
+  // the full width of its parent (the filter field).
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
 }
 
 .checkbox {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 8px 16px 8px 8px;
@@ -156,7 +162,8 @@
   background-position: right 16px center;
   background-size: 12px;
   color: #235337;
-  min-width: 180px;
+  // Match the checkbox pills' full-width behaviour at every viewport.
+  width: 100%;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
@@ -220,10 +227,11 @@
   background: none;
   border: none;
   padding: 0;
+  width: 100%;
+  margin-bottom: 2em;
   color: cornflowerblue;
   cursor: pointer;
   text-decoration: none;
-  align-self: center;
   text-align: left;
 }
 
@@ -534,9 +542,6 @@
     order: 1;
   }
 
-  .filters {
-    gap: 0.8rem 1.2rem;
-  }
 }
 
 // Desktop overrides — kept at the end of the file so they win the cascade
@@ -564,39 +569,20 @@
     align-items: start;
   }
 
-  // Filters become a vertical stack in the left column. Drop the
-  // horizontal-bar styling (border, large horizontal gap) and add 1em of
-  // top padding so the column doesn't start flush with the row above.
+  // At desktop the filter column doesn't need a bottom border (it's
+  // bounded by the grid column) and starts flush with the row above
+  // except for 1em of top padding.
   .filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
     padding: 1em 0 0 0;
     margin: 0;
     border-bottom: none;
   }
 
-  // Stretch each filter (label + control) to the full width of the column
-  // so the country dropdown is no longer narrower than the checkbox pills.
-  // 2em top margin gives each filter group some breathing room above it.
+  // 1.2em top margin gives each filter group some breathing room above it
+  // in the desktop column layout. (Stretching the children to full width
+  // is handled in the base .filterField rule and applies at all viewports.)
   .filterField {
-    align-items: stretch;
     margin-top: 1.2em;
-  }
-
-  .filterSelect {
-    width: 100%;
-  }
-
-  // One checkbox per row, full-width pill (replaces the horizontal wrap).
-  .checkboxes {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.4rem;
-  }
-
-  .checkbox {
-    display: flex;
   }
 
   // Re-enable the hover tooltip at desktop only (it's display:none by
