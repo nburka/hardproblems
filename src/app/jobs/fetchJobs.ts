@@ -13,10 +13,14 @@ export type SerializedJob = {
   sector: string;
   description: string;
   goodForWorldExplanation: string;
+  role: string;
 };
 
 const SHEET_CSV_URL =
   'https://docs.google.com/spreadsheets/d/1Vpvb3T_wVAdtvhxuYfg4YBYysE7_hE1qmP1qyiZWfk8/export?format=csv&gid=0';
+
+// Hide jobs once this many days have passed since their listed date.
+const MAX_AGE_DAYS = 31;
 
 function parseCSV(text: string): string[][] {
   const rows: string[][] = [];
@@ -108,7 +112,8 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
       salary: (r[10] ?? '').trim(),
       sector: (r[11] ?? '').trim(),
       description: (r[12] ?? '').trim(),
-      goodForWorldExplanation: (r[13] ?? '').trim()
+      goodForWorldExplanation: (r[13] ?? '').trim(),
+      role: (r[14] ?? '').trim()
     } satisfies SerializedJob;
   });
 
@@ -118,5 +123,27 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
     return bt - at;
   });
 
-  return jobs;
+  // Hide jobs older than MAX_AGE_DAYS. Comparison is done in UTC days so it
+  // matches the relative date labels ("Today", "Yesterday", "N days ago").
+  // Jobs without a parseable date are kept so a missing value doesn't
+  // silently drop a listing.
+  const now = new Date();
+  const todayUTC = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate()
+  );
+  const recentJobs = jobs.filter((j) => {
+    if (!j.date) return true;
+    const d = new Date(j.date);
+    const jobUTC = Date.UTC(
+      d.getUTCFullYear(),
+      d.getUTCMonth(),
+      d.getUTCDate()
+    );
+    const days = Math.round((todayUTC - jobUTC) / 86400000);
+    return days < MAX_AGE_DAYS;
+  });
+
+  return recentJobs;
 }

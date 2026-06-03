@@ -2,6 +2,7 @@
 
 import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import type { SerializedJob } from './fetchJobs';
 import {
@@ -15,6 +16,44 @@ import styles from './page.module.scss';
 export type { SerializedJob } from './fetchJobs';
 
 type ClickSource = 'title' | 'company' | 'favicon';
+
+function parseWorkStyleParam(value: string | null): WorkStyle[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .filter(
+      (v): v is WorkStyle =>
+        v === 'remote' || v === 'hybrid' || v === 'onsite'
+    );
+}
+
+function parseOrgParam(value: string | null): OrgCategory[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .filter(
+      (v): v is OrgCategory =>
+        v === 'for-profit' ||
+        v === 'not-for-profit' ||
+        v === 'public-sector'
+    );
+}
+
+function parseRoleParam(value: string | null): string[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .map((v) => v.trim())
+    .filter((v) => v.length > 0);
+}
+
+// Pretty-print a role name for the UI. The internal value (used for filter
+// matching and URL params) stays as the raw sheet value so data lookups
+// still work.
+function displayRole(role: string): string {
+  if (role.toLowerCase() === 'copywriter') return 'Copywriting';
+  return role;
+}
 
 const BULLET_SEPARATOR = '  •  ';
 
@@ -185,11 +224,14 @@ function formatLocation(job: SerializedJob): string {
 }
 
 export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
-  const [country, setCountry] = useState<string>('all');
-  const [workStyleFilters, setWorkStyleFilters] = useState<WorkStyle[]>([]);
-  const [orgFilters, setOrgFilters] = useState<OrgCategory[]>([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const posthog = usePostHog();
 
+  // Fires a GA-style `job_click` event in PostHog with rich job attributes
+  // for slicing. No-ops cleanly when PostHog isn't initialised (e.g. env
+  // vars missing).
   const trackJobClick = (job: SerializedJob, source: ClickSource) => {
     if (!posthog) return;
     posthog.capture('job_click', {
@@ -206,12 +248,60 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     });
   };
 
+  // Mobile-only UI state for the "More filters" toggle. The Work style and
+  // Role filters are hidden until this is true. Ignored at desktop — CSS
+  // unconditionally shows everything in the column layout.
+  const [showMore, setShowMore] = useState(false);
+
+  // Filter state is derived from the URL so it's shareable and bookmarkable.
+  // Visiting /jobs?country=Germany&work=remote,hybrid&org=non-profit will
+  // restore those filters on load. All filter changes go through
+  // updateParams() below, which uses router.replace so each checkbox toggle
+  // doesn't push a separate history entry.
+  const country = searchParams.get('country') ?? 'all';
+  const workStyleFilters = useMemo(
+    () => parseWorkStyleParam(searchParams.get('work')),
+    [searchParams]
+  );
+  const orgFilters = useMemo(
+    () => parseOrgParam(searchParams.get('org')),
+    [searchParams]
+  );
+  const roleFilters = useMemo(
+    () => parseRoleParam(searchParams.get('role')),
+    [searchParams]
+  );
+
+  const updateParams = (mutate: (params: URLSearchParams) => void) => {
+    const params = new URLSearchParams(searchParams.toString());
+    mutate(params);
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  };
+
+  const setCountry = (value: string) => {
+    updateParams((params) => {
+      if (value === 'all') params.delete('country');
+      else params.set('country', value);
+    });
+  };
+
   const countries = useMemo(() => {
     const set = new Set<string>();
     for (const j of jobs) {
       for (const c of splitCountries(j.country)) {
         set.add(c);
       }
+    }
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [jobs]);
+
+  // Distinct role-type values from the data, excluding "Other" and blanks.
+  const roles = useMemo(() => {
+    const set = new Set<string>();
+    for (const j of jobs) {
+      const r = j.role.trim();
+      if (r && r.toLowerCase() !== 'other') set.add(r);
     }
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [jobs]);
@@ -228,39 +318,60 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
         const cat = orgCategory(j.typeOfOrg);
         if (!cat || !orgFilters.includes(cat)) return false;
       }
+      if (roleFilters.length > 0 && !roleFilters.includes(j.role)) {
+        return false;
+      }
       return true;
     });
-  }, [jobs, country, workStyleFilters, orgFilters]);
+  }, [jobs, country, workStyleFilters, orgFilters, roleFilters]);
 
   const toggleWorkStyle = (value: WorkStyle) => {
-    setWorkStyleFilters((prev) =>
-      prev.includes(value)
-        ? prev.filter((v) => v !== value)
-        : [...prev, value]
-    );
+    const next = workStyleFilters.includes(value)
+      ? workStyleFilters.filter((v) => v !== value)
+      : [...workStyleFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('work');
+      else params.set('work', next.join(','));
+    });
   };
 
   const toggleOrgFilter = (value: OrgCategory) => {
-    setOrgFilters((prev) =>
-      prev.includes(value)
-        ? prev.filter((v) => v !== value)
-        : [...prev, value]
-    );
+    const next = orgFilters.includes(value)
+      ? orgFilters.filter((v) => v !== value)
+      : [...orgFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('org');
+      else params.set('org', next.join(','));
+    });
+  };
+
+  const toggleRoleFilter = (value: string) => {
+    const next = roleFilters.includes(value)
+      ? roleFilters.filter((v) => v !== value)
+      : [...roleFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('role');
+      else params.set('role', next.join(','));
+    });
   };
 
   const clearFilters = () => {
-    setCountry('all');
-    setWorkStyleFilters([]);
-    setOrgFilters([]);
+    updateParams((params) => {
+      params.delete('country');
+      params.delete('work');
+      params.delete('org');
+      params.delete('role');
+    });
   };
 
   const hasActiveFilters =
     country !== 'all' ||
     workStyleFilters.length > 0 ||
-    orgFilters.length > 0;
+    orgFilters.length > 0 ||
+    roleFilters.length > 0;
 
   return (
-    <>
+    <div className={styles.layout}>
       <div className={styles.filters}>
         <label className={styles.filterField}>
           <span className={styles.filterLabel}>Country</span>
@@ -279,23 +390,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
         </label>
 
         <div className={styles.filterField}>
-          <span className={styles.filterLabel}>Work style</span>
-          <div className={styles.checkboxes}>
-            {WORK_STYLE_OPTIONS.map((opt) => (
-              <label key={opt.value} className={styles.checkbox}>
-                <input
-                  type="checkbox"
-                  checked={workStyleFilters.includes(opt.value)}
-                  onChange={() => toggleWorkStyle(opt.value)}
-                />
-                <span className={styles.checkboxBox} aria-hidden="true" />
-                {opt.label}
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.filterField}>
           <span className={styles.filterLabel}>Org type</span>
           <div className={styles.checkboxes}>
             {ORG_TYPE_OPTIONS.map((opt) => (
@@ -312,11 +406,63 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           </div>
         </div>
 
-        <div className={styles.filterCount}>
-          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
+        <button
+          type="button"
+          className={styles.moreFiltersToggle}
+          aria-expanded={showMore}
+          onClick={() => setShowMore((v) => !v)}
+        >
+          {showMore ? 'Fewer filters' : 'More filters…'}
+        </button>
+
+        <div
+          className={`${styles.moreFilters} ${
+            showMore ? styles.moreFiltersOpen : ''
+          }`}
+        >
+          <div className={styles.filterField}>
+            <span className={styles.filterLabel}>Work style</span>
+            <div className={styles.checkboxes}>
+              {WORK_STYLE_OPTIONS.map((opt) => (
+                <label key={opt.value} className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    checked={workStyleFilters.includes(opt.value)}
+                    onChange={() => toggleWorkStyle(opt.value)}
+                  />
+                  <span className={styles.checkboxBox} aria-hidden="true" />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {roles.length > 0 && (
+            <div className={styles.filterField}>
+              <span className={styles.filterLabel}>Role</span>
+              <div className={styles.checkboxes}>
+                {roles.map((role) => (
+                  <label key={role} className={styles.checkbox}>
+                    <input
+                      type="checkbox"
+                      checked={roleFilters.includes(role)}
+                      onChange={() => toggleRoleFilter(role)}
+                    />
+                    <span className={styles.checkboxBox} aria-hidden="true" />
+                    {displayRole(role)}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
+
       </div>
 
+      <div className={styles.results}>
+      <div className={styles.filterCount}>
+        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
+      </div>
       {filtered.length === 0 && (
         <div className={styles.noResults}>
           <svg
@@ -505,6 +651,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           );
         })}
       </ul>
-    </>
+      </div>
+    </div>
   );
 }
