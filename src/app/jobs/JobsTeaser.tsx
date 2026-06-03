@@ -2,9 +2,12 @@
 
 import { Fragment } from 'react';
 import Link from 'next/link';
+import { usePostHog } from 'posthog-js/react';
 import type { SerializedJob } from './fetchJobs';
 import { orgTypeDisplay } from './orgType';
 import styles from './jobsTeaser.module.scss';
+
+type ClickSource = 'title' | 'company' | 'favicon';
 
 function buildFaviconUrl(rawUrl: string): string | null {
   const trimmed = rawUrl.trim();
@@ -62,6 +65,24 @@ function formatRelativeDate(date: Date): string {
 }
 
 export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
+  const posthog = usePostHog();
+
+  const trackJobClick = (job: SerializedJob, source: ClickSource) => {
+    if (!posthog) return;
+    posthog.capture('job_click', {
+      job_title: job.title,
+      company: job.company,
+      sector: job.sector,
+      type_of_org: job.typeOfOrg,
+      country: job.country,
+      city: job.city,
+      salary: job.salary,
+      remote: job.remote,
+      listing_url: job.url,
+      click_source: source
+    });
+  };
+
   return (
     <div className={styles.teaser}>
       {jobs.map((job, i) => {
@@ -125,6 +146,7 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
                   job.company ? `Visit ${job.company}` : 'Visit company'
                 }
                 className={styles.icon}
+                onClick={() => trackJobClick(job, 'favicon')}
               >
                 {iconContents}
               </Link>
@@ -142,6 +164,7 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
                   target="_blank"
                   rel="noreferrer"
                   className={styles.title}
+                  onClick={() => trackJobClick(job, 'title')}
                 >
                   {job.title}
                 </Link>

@@ -3,6 +3,7 @@
 import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePostHog } from 'posthog-js/react';
 import type { SerializedJob } from './fetchJobs';
 import {
   ORG_TYPE_OPTIONS,
@@ -13,6 +14,8 @@ import {
 import styles from './page.module.scss';
 
 export type { SerializedJob } from './fetchJobs';
+
+type ClickSource = 'title' | 'company' | 'favicon';
 
 function parseWorkStyleParam(value: string | null): WorkStyle[] {
   if (!value) return [];
@@ -224,6 +227,26 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const posthog = usePostHog();
+
+  // Fires a GA-style `job_click` event in PostHog with rich job attributes
+  // for slicing. No-ops cleanly when PostHog isn't initialised (e.g. env
+  // vars missing).
+  const trackJobClick = (job: SerializedJob, source: ClickSource) => {
+    if (!posthog) return;
+    posthog.capture('job_click', {
+      job_title: job.title,
+      company: job.company,
+      sector: job.sector,
+      type_of_org: job.typeOfOrg,
+      country: job.country,
+      city: job.city,
+      salary: job.salary,
+      remote: job.remote,
+      listing_url: job.url,
+      click_source: source
+    });
+  };
 
   // Mobile-only UI state for the "More filters" toggle. The Work style and
   // Role filters are hidden until this is true. Ignored at desktop — CSS
@@ -500,6 +523,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   target="_blank"
                   rel="noreferrer"
                   className={styles.jobCompany}
+                  onClick={() => trackJobClick(job, 'company')}
                 >
                   {job.company}
                 </Link>
@@ -550,6 +574,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     job.company ? `Visit ${job.company}` : 'Visit company'
                   }
                   className={styles.jobIcon}
+                  onClick={() => trackJobClick(job, 'favicon')}
                 >
                   {iconContents}
                 </Link>
@@ -563,6 +588,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                       href={job.url}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => trackJobClick(job, 'title')}
                     >
                       {job.title}
                     </Link>
