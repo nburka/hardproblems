@@ -460,8 +460,17 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
       </div>
 
       <div className={styles.results}>
-      <div className={styles.filterCount}>
-        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
+      <div className={styles.resultsHeader}>
+        <div className={styles.filterCount}>
+          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
+        </div>
+        <p className={styles.betaNotice}>
+          <strong>Beta:</strong> Contact us if you see issues with the job
+          board.{' '}
+          <a href="mailto:contact@hardproblems.com">
+            contact@hardproblems.com
+          </a>
+        </p>
       </div>
       {filtered.length === 0 && (
         <div className={styles.noResults}>

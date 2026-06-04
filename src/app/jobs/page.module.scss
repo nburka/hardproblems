@@ -8,10 +8,7 @@
 .betaNotice {
   font-size: 0.85rem;
   color: #c0392b;
-  background: #fdecea;
-  padding: 10px 14px;
-  border-radius: 4px;
-  margin: 0 0 calc(1.5rem + 32px) 0;
+  margin: 0;
 }
 
 .betaNotice strong {
@@ -210,13 +207,24 @@
   font-weight: 500;
 }
 
+// Top row of the results column: jobs count on the left, beta notice on
+// the right (wraps below the count on narrow widths).
+.resultsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2.5em;
+  margin-bottom: 0.75rem;
+}
+
 .filterCount {
   font-size: 0.85rem;
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0 0 0.75rem 0;
-  padding-top: 2.5em;
+  margin: 0;
 }
 
 // Mobile-only "More filters" toggle styled like an inline blue link.
@@ -552,12 +560,6 @@
     margin-top: 0;
   }
 
-  .betaNotice {
-    float: right;
-    position: relative;
-    top: 1em;
-    margin: 0 0 1rem 2rem;
-  }
 
   // Two-column layout: filters left, results right.
   // `clear: both` keeps the grid below the floated beta notice.
@@ -583,6 +585,14 @@
   // is handled in the base .filterField rule and applies at all viewports.)
   .filterField {
     margin-top: 1.2em;
+  }
+
+  // Align the results header (jobs count + beta) vertically with the
+  // Country filter label in the left column. The Country label sits at
+  // 1em (filters padding-top) + 1.2em (first filterField margin-top) = 2.2em
+  // from the top of the left column.
+  .resultsHeader {
+    padding-top: 2.2em;
   }
 
   // Re-enable the hover tooltip at desktop only (it's display:none by
