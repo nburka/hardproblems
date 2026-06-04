@@ -3,6 +3,7 @@
 }
 
 .row {
+  position: relative;
   padding: calc(0.7rem + 8px) 0;
   border-bottom: 1px solid #ebf7f0;
 }
@@ -106,4 +107,69 @@
 .seeAll {
   margin: 0.8rem 0 0 0;
   font-size: 0.9rem;
+}
+
+// Hover tooltip with the company description, mirroring the /jobs page.
+// Hidden by default — only enabled at desktop where there's space to its
+// left to overlay.
+.description {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 12px);
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 240px;
+  background: #fef9e7;
+  border: 1px solid #ebd2b3;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  box-shadow: 0 6px 18px rgba(139, 105, 20, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s ease;
+}
+
+.description::before,
+.description::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.description::before {
+  margin-top: -8px;
+  border-style: solid;
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent #ebd2b3;
+}
+
+.description::after {
+  margin-top: -7px;
+  border-style: solid;
+  border-width: 7px 0 7px 7px;
+  border-color: transparent transparent transparent #fef9e7;
+}
+
+.descriptionCompany {
+  font-weight: 700;
+  color: #231f20;
+  margin-right: 0.25rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .description {
+    display: block;
+  }
+  .row:hover .description {
+    opacity: 1;
+    visibility: visible;
+  }
 }
