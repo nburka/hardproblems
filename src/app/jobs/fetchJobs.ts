@@ -95,7 +95,11 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
   const rows = parseCSV(text).filter((r) => r.some((c) => c.trim().length > 0));
   if (rows.length < 2) return [];
 
-  const dataRows = rows.slice(1);
+  // Column Q (index 16) is the "Job Deleted" flag. Any row with "1" there
+  // is excluded from the board entirely.
+  const dataRows = rows
+    .slice(1)
+    .filter((r) => (r[16] ?? '').trim() !== '1');
   const jobs = dataRows.map((r) => {
     const date = parseDate(r[0] ?? '');
     return {
