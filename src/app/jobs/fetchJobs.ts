@@ -20,7 +20,7 @@ const SHEET_CSV_URL =
   'https://docs.google.com/spreadsheets/d/1Vpvb3T_wVAdtvhxuYfg4YBYysE7_hE1qmP1qyiZWfk8/export?format=csv&gid=0';
 
 // Hide jobs once this many days have passed since their listed date.
-const MAX_AGE_DAYS = 31;
+const MAX_AGE_DAYS = 45;
 
 function parseCSV(text: string): string[][] {
   const rows: string[][] = [];
