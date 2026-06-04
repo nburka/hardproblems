@@ -14,6 +14,7 @@ export type SerializedJob = {
   description: string;
   goodForWorldExplanation: string;
   role: string;
+  dateCreated: string | null;
 };
 
 const SHEET_CSV_URL =
@@ -63,6 +64,21 @@ function parseCSV(text: string): string[][] {
   return rows;
 }
 
+// Parses Column P ("Date created") values formatted as "YYYY-MM-DD HH:MM:SS".
+// We treat the time as UTC since the sheet doesn't carry a timezone — this
+// only matters as a tiebreaker for the sort order, so being consistent
+// matters more than the exact wall-clock interpretation.
+function parseDateTime(s: string): Date | null {
+  const m = s.trim().match(
+    /^(\d{4})-(\d{1,2})-(\d{1,2})\s+(\d{1,2}):(\d{1,2}):(\d{1,2})$/
+  );
+  if (!m) return null;
+  const d = new Date(
+    Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6])
+  );
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
 function parseDate(s: string): Date | null {
   const trimmed = s.trim();
   if (!trimmed) return null;
@@ -102,6 +118,7 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
     .filter((r) => (r[16] ?? '').trim() !== '1');
   const jobs = dataRows.map((r) => {
     const date = parseDate(r[0] ?? '');
+    const dateCreated = parseDateTime(r[15] ?? '');
     return {
       date: date ? date.toISOString() : null,
       url: (r[1] ?? '').trim(),
@@ -117,14 +134,26 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
       sector: (r[11] ?? '').trim(),
       description: (r[12] ?? '').trim(),
       goodForWorldExplanation: (r[13] ?? '').trim(),
-      role: (r[14] ?? '').trim()
+      role: (r[14] ?? '').trim(),
+      dateCreated: dateCreated ? dateCreated.toISOString() : null
     } satisfies SerializedJob;
   });
 
+  // Primary sort: Job listed date (Column A), newest first.
+  // Tiebreaker: Date created (Column P) — most recently added to the sheet
+  // first — so two jobs with the same listed date are ordered by when they
+  // were added.
   jobs.sort((a, b) => {
     const at = a.date ? new Date(a.date).getTime() : -Infinity;
     const bt = b.date ? new Date(b.date).getTime() : -Infinity;
-    return bt - at;
+    if (bt !== at) return bt - at;
+    const ac = a.dateCreated
+      ? new Date(a.dateCreated).getTime()
+      : -Infinity;
+    const bc = b.dateCreated
+      ? new Date(b.dateCreated).getTime()
+      : -Infinity;
+    return bc - ac;
   });
 
   // Hide jobs older than MAX_AGE_DAYS. Comparison is done in UTC days so it
