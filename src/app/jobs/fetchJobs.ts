@@ -89,7 +89,7 @@ function parseDate(s: string): Date | null {
 }
 
 export async function fetchJobs(): Promise<SerializedJob[]> {
-  const res = await fetch(SHEET_CSV_URL, { next: { revalidate: 3600 } });
+  const res = await fetch(SHEET_CSV_URL, { next: { revalidate: 600 } });
   if (!res.ok) return [];
   const text = await res.text();
   const rows = parseCSV(text).filter((r) => r.some((c) => c.trim().length > 0));
