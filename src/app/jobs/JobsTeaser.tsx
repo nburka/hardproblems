@@ -183,6 +183,17 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
               ))}
             </div>
             </div>
+            {job.description && (
+              <div className={styles.description} role="tooltip">
+                {job.company && (
+                  <strong className={styles.descriptionCompany}>
+                    {job.company} —
+                  </strong>
+                )}
+                {job.company && ' '}
+                {job.description}
+              </div>
+            )}
           </div>
         );
       })}

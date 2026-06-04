@@ -117,27 +117,12 @@ export default async function Home() {
         </div>
       </section>
       <section className="right">
-        <h3>Get involved</h3>
-        <ol>
-          <li>
-            <p className="no-margin">
-              <b>Subscribe to our newsletter.</b>
-              <br />
-              We share job opportunities, great books, relevant news, and
-              events.
-            </p>
-            <NewsletterForm />
-          </li>
-          <li>
-            <b>Suggest podcast guests.</b> We are going to interview people who
-            already work on hard problems.{' '}
-            <Link href="/podcast">Suggest a future guest?</Link>
-          </li>
-          <li>
-            <b>Give financially.</b> Want to discuss how you can contribute to
-            Hard Problems? <Link href="/give">Get in touch.</Link>
-          </li>
-        </ol>
+        <h3>Subscribe to our newsletter</h3>
+        <p className="no-margin">
+          We share job opportunities, great books, relevant news, and
+          events.
+        </p>
+        <NewsletterForm />
 
         <h3 className="divider">Job board</h3>
         <p>
