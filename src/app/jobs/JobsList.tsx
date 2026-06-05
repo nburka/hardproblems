@@ -47,6 +47,47 @@ function parseRoleParam(value: string | null): string[] {
     .filter((v) => v.length > 0);
 }
 
+type SectorCategory = 'climate' | 'health' | 'public-services' | 'education';
+
+const SECTOR_OPTIONS: {
+  value: SectorCategory;
+  label: string;
+  keywords: string[];
+}[] = [
+  {
+    value: 'climate',
+    label: 'Climate change',
+    keywords: ['climate', 'clean energy']
+  },
+  { value: 'health', label: 'Health', keywords: ['health'] },
+  {
+    value: 'public-services',
+    label: 'Public services',
+    keywords: ['public service', 'government']
+  },
+  { value: 'education', label: 'Education', keywords: ['education'] }
+];
+
+function parseSectorParam(value: string | null): SectorCategory[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .filter(
+      (v): v is SectorCategory =>
+        v === 'climate' ||
+        v === 'health' ||
+        v === 'public-services' ||
+        v === 'education'
+    );
+}
+
+function matchesSector(jobSector: string, category: SectorCategory): boolean {
+  const opt = SECTOR_OPTIONS.find((o) => o.value === category);
+  if (!opt) return false;
+  const lower = jobSector.toLowerCase();
+  return opt.keywords.some((k) => lower.includes(k));
+}
+
 // Pretty-print a role name for the UI. The internal value (used for filter
 // matching and URL params) stays as the raw sheet value so data lookups
 // still work.
@@ -267,6 +308,10 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     () => parseOrgParam(searchParams.get('org')),
     [searchParams]
   );
+  const sectorFilters = useMemo(
+    () => parseSectorParam(searchParams.get('sector')),
+    [searchParams]
+  );
   const roleFilters = useMemo(
     () => parseRoleParam(searchParams.get('role')),
     [searchParams]
@@ -318,12 +363,18 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
         const cat = orgCategory(j.typeOfOrg);
         if (!cat || !orgFilters.includes(cat)) return false;
       }
+      if (
+        sectorFilters.length > 0 &&
+        !sectorFilters.some((s) => matchesSector(j.sector, s))
+      ) {
+        return false;
+      }
       if (roleFilters.length > 0 && !roleFilters.includes(j.role)) {
         return false;
       }
       return true;
     });
-  }, [jobs, country, workStyleFilters, orgFilters, roleFilters]);
+  }, [jobs, country, workStyleFilters, orgFilters, sectorFilters, roleFilters]);
 
   const toggleWorkStyle = (value: WorkStyle) => {
     const next = workStyleFilters.includes(value)
@@ -345,6 +396,16 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     });
   };
 
+  const toggleSectorFilter = (value: SectorCategory) => {
+    const next = sectorFilters.includes(value)
+      ? sectorFilters.filter((v) => v !== value)
+      : [...sectorFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('sector');
+      else params.set('sector', next.join(','));
+    });
+  };
+
   const toggleRoleFilter = (value: string) => {
     const next = roleFilters.includes(value)
       ? roleFilters.filter((v) => v !== value)
@@ -360,6 +421,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
       params.delete('country');
       params.delete('work');
       params.delete('org');
+      params.delete('sector');
       params.delete('role');
     });
   };
@@ -368,6 +430,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     country !== 'all' ||
     workStyleFilters.length > 0 ||
     orgFilters.length > 0 ||
+    sectorFilters.length > 0 ||
     roleFilters.length > 0;
 
   return (
@@ -420,6 +483,23 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
             showMore ? styles.moreFiltersOpen : ''
           }`}
         >
+          <div className={styles.filterField}>
+            <span className={styles.filterLabel}>Sector</span>
+            <div className={styles.checkboxes}>
+              {SECTOR_OPTIONS.map((opt) => (
+                <label key={opt.value} className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    checked={sectorFilters.includes(opt.value)}
+                    onChange={() => toggleSectorFilter(opt.value)}
+                  />
+                  <span className={styles.checkboxBox} aria-hidden="true" />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
           <div className={styles.filterField}>
             <span className={styles.filterLabel}>Work style</span>
             <div className={styles.checkboxes}>
