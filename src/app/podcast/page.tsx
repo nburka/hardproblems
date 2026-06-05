@@ -16,8 +16,8 @@ export default function Page() {
         <p><em>Podcast coming soon!</em></p>
 
         <h3 className="space-top-large">What will the podcast be about?</h3>
-        <p>We plan to interview the tech people in the trenches doing the work on &#8216;hard problems.&#8217;
-          We want to find out what works and what doesn&#8216;t work for tech people who are working on the world&#8216;s
+        <p>We plan to interview the designers in the trenches doing the work on &#8216;hard problems.&#8217;
+          We want to find out what works and what doesn&#8216;t work for designers who are working on the world&#8216;s
           challenges.
         </p>
         <p>

@@ -8,6 +8,6 @@ export default async function Image() {
   return createOGImage({
     title: 'Podcast',
     subtitle:
-      'Interviews with the tech people doing the work on hard problems.'
+      'Interviews with the designers doing the work on hard problems.'
   });
 }

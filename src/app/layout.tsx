@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://hardproblems.com'),
   title: 'Hard Problems',
   description:
-    'Helping tech people to work on the hard problems that matter in the world: problems like public health, climate change, poverty, and good government.',
+    'Helping designers to work on the hard problems that matter in the world: problems like public health, climate change, poverty, and good government.',
   openGraph: {
     title: 'Hard Problems',
     description:
-      'A not-for-profit helping tech people to work on the hard problems that matter in the world.',
+      'A not-for-profit helping designers to work on the hard problems that matter in the world.',
     url: 'https://hardproblems.com',
     siteName: 'Hard Problems',
     type: 'website'
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Hard Problems',
     description:
-      'A not-for-profit helping tech people to work on the hard problems that matter in the world.'
+      'A not-for-profit helping designers to work on the hard problems that matter in the world.'
     // twitter:image is auto-populated by Next.js from each route's
     // opengraph-image.tsx, so no need to specify it here.
   }

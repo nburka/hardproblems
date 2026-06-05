@@ -8,6 +8,6 @@ export default async function Image() {
   return createOGImage({
     title: 'About',
     subtitle:
-      "We help tech people work on the hard problems that matter — public health, climate change, and good government."
+      'We help designers to work on the hard problems that matter — public health, healthcare, climate change, and good government.'
   });
 }

@@ -51,6 +51,12 @@ const teams: Team[] = [
     image: '/images/coworking/grene.jpg'
   },
   {
+    name: 'Health Data Avatar',
+    href: 'https://www.healthdataavatar.com/',
+    description: 'All your health data in one platform.',
+    image: '/images/coworking/health-data-avatar.jpg'
+  },
+  {
     name: 'Joey',
     href: 'https://www.askjoeynow.com/',
     description: "Your child's GP on Whatsapp.",
