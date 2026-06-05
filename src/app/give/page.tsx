@@ -30,7 +30,7 @@ export default function Page() {
           We have a <Link href="/coworking">co-working space</Link> in London
           where we donate desks to people that work on hard problems. Renting
           office space in London is expensive. You could donate a desk to a
-          great technologist by gifting £450 one-time or per month.
+          great designer by gifting £450 one-time or per month.
         </p>
         <p>
           Or you could donate a smaller amount to help us outfit the office

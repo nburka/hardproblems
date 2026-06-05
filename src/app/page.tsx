@@ -27,7 +27,7 @@ export default async function Home() {
         </blockquote>
         <h3>Our mission</h3>
         <p>
-          We are a non-profit that helps tech people to work on the hard
+          We are a non-profit that helps designers to work on the hard
           problems that matter in the world: problems like{' '}
           <em>public health</em>, <em>climate change</em>, and{' '}
           <em>good government</em>.
@@ -46,15 +46,15 @@ export default async function Home() {
           It’s time to refocus the tech world on what matters most. It’s time to
           build new relationships between doctors, environmentalists,
           scientists, not-for-profit leaders, public servants, and others
-          tackling the world’s hardest problems with technologists who can help
+          tackling the world’s hardest problems with designers who can help
           make practical tools to help them succeed.
         </p>
         <p>
           We are a multi-skilled team of very experienced tech veterans and
           other subject-matter experts. We aim to push this effort &#8212;
           whether it’s by building teams to work on issues, creating bridges
-          between ambitious experts and technologists, finding ways to fund tech
-          initiatives, or inspiring a generation of tech people to work on these
+          between ambitious experts and designers, finding ways to fund tech
+          initiatives, or inspiring a generation of designers to work on these
           fundamentally important problems.
         </p>
         <p>
@@ -100,7 +100,7 @@ export default async function Home() {
             />
             <b className="grid-link">Podcast</b>
             <p className="grid-detail">Coming soon...</p>
-            <p>Interview tech people who work on hard problems.</p>
+            <p>Interview designers who work on hard problems.</p>
           </Link>
 
           <Link href="/coworking" className="grid-cell">

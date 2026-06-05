@@ -8,6 +8,6 @@ export default async function Image() {
   return createOGImage({
     title: 'Give',
     subtitle:
-      "Support our non-profit work helping tech people tackle the world's hard problems."
+      "Support our non-profit work helping designers tackle the world's hard problems."
   });
 }
