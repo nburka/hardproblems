@@ -137,9 +137,9 @@ export default function Page() {
           </dd>
           <dt>Desks</dt>
           <dd>
-            We have a handful of desks that we are offering for short-term (3-12
-            month) use. If you can pay, a fixed desk is £450/month. If you
-            cannot pay, get in touch and we might be able to work something out.
+            If you can pay, a fixed desk is £450/month and a drop-in desk is
+            £200/month. If that is too much, get in touch and we might be able
+            to work something out.
           </dd>
         </dl>
 
