@@ -28,6 +28,11 @@
   height: auto;
   border-radius: 8px;
   border: 1px solid #ebf7f0;
+  transition: border-color 0.15s ease;
+}
+
+.teamTileImage:hover {
+  border-color: #84d9a6;
 }
 
 // Placeholder for teams that don't yet have a logo. Same aspect ratio so
