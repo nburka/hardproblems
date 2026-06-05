@@ -5,3 +5,53 @@
     height: 450px;
     max-width: 660px;
 }
+
+.teamsGrid {
+  list-style: none;
+  padding: 0;
+  margin: 1.5em 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 3rem 1.25rem;
+}
+
+.teamTile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.teamTileImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ebf7f0;
+}
+
+// Placeholder for teams that don't yet have a logo. Same aspect ratio so
+// every tile in the grid lines up.
+.teamTilePlaceholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 512 / 410;
+  border-radius: 8px;
+  background: #f4f7f5;
+  border: 1px solid #ebf7f0;
+}
+
+.teamTileName {
+  font-weight: 500;
+  line-height: 1.1em;
+  margin: 0.2rem 0 0 0;
+  padding-left: 8px;
+}
+
+.teamTileDescription {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: #555;
+  margin: 0;
+  padding-left: 8px;
+}
