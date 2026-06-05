@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+# typescript incremental build cache
+*.tsbuildinfo
+next-env.d.ts
+
 # production
 /build
 
