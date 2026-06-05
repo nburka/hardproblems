@@ -7,6 +7,7 @@ export const contentType = 'image/png';
 export default async function Image() {
   return createOGImage({
     title: 'Co-working space',
-    subtitle: 'A London-based space for people who work on hard problems.'
+    subtitle:
+      'We have a small co-working space in London for people working on hard problems.'
   });
 }
