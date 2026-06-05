@@ -1,6 +1,97 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Footer } from '../../components/Footer';
+import styles from './page.module.scss';
+
+type Team = {
+  name: string;
+  href: string;
+  description: string;
+  image?: string; // path under /public, e.g. "/images/coworking/wellvrse.png"
+};
+
+const teams: Team[] = [
+  {
+    name: 'Joey',
+    href: 'https://www.askjoeynow.com/',
+    description: "Your child's GP on Whatsapp.",
+    image: '/images/coworking/joey.jpg'
+  },
+  {
+    name: 'Grene',
+    href: 'https://grene.co.uk/',
+    description:
+      'A new operating layer for domiciliary and supported living services.',
+    image: '/images/coworking/grene.jpg'
+  },
+  {
+    name: 'Coolit Labs',
+    href: 'https://www.coolitlabs.com/',
+    description:
+      'Transforming medical devices into beautiful lifestyle objects.',
+    image: '/images/coworking/coolit.jpg'
+  },
+  {
+    name: 'Vayla Health',
+    href: 'https://vaylahealth.ai/',
+    description:
+      'Augments discharge teams with follow-up for patients at risk of readmission.',
+    image: '/images/coworking/vayla.jpg'
+  },
+  {
+    name: 'Elyfia',
+    href: 'https://www.elyfia.com/how-it-works',
+    description:
+      'Personalised coaching to Fibromyalgia patients through an app.',
+    image: '/images/coworking/elyfia.jpg'
+  },
+  {
+    name: 'Prime Radiant Studio',
+    href: 'https://primeradiantstudio.webflow.io/',
+    description:
+      'Using quantitative data to understand the trajectory of society.',
+    image: '/images/coworking/cortex.jpg'
+  },
+  {
+    name: 'Wellvrse',
+    href: 'https://www.wellvrse.com/',
+    description:
+      'A new paradigm for health, centring creativity, community and technology.',
+    image: '/images/coworking/wellvrse.jpg'
+  },
+  {
+    name: 'Scrub the Stigma',
+    href: 'https://www.scrubthestigma.com/',
+    description:
+      'Dismantling barriers and challenging the stigma impacting women’s health.',
+    image: '/images/coworking/scrub-the-stigma.jpg'
+  },
+  {
+    name: 'Abuela',
+    href: 'https://tryabuela.com/',
+    description: 'Turning senior living facilities into clinical trial sites.',
+    image: '/images/coworking/abuela.jpg'
+  },
+  {
+    name: 'Resolve to Save Lives',
+    href: 'https://rtsl.org/',
+    description:
+      "A global public health non-profit working on the world's largest threats.",
+    image: '/images/coworking/resolve-to-save-lives.jpg'
+  },
+  {
+    name: 'Blute',
+    href: 'https://www.blute.co.uk/',
+    description: 'Giving healthcare students a voice on clinical placements.',
+    image: '/images/coworking/blute.jpg'
+  },
+  {
+    name: 'Minimum Viable Narrative',
+    href: 'https://find-and-update.company-information.service.gov.uk/company/17106346',
+    description: 'Storytelling for a better future.',
+    image: '/images/coworking/minimum-viable-narrative.jpg'
+  }
+];
 
 export default function Page() {
   return (
@@ -17,13 +108,6 @@ export default function Page() {
           could be for you. Please get in touch with us (fill the form below) if
           you are unsure.
         </p>
-        <Image
-          src="/images/illustration-cowork.svg"
-          width="80"
-          height="80"
-          alt="Illustration of two people co-working"
-          className="image-full space-top-small"
-        />
 
         <h3 className="space-top-small">Can I work here?</h3>
         <p>
@@ -51,8 +135,7 @@ export default function Page() {
           We offer free desks for a limited time (3-6 months) for not-for-profit
           tech people who are working on hard problems. If you have budget to
           pay for co-working space, we would prefer if you paid, but if you are
-          running on a shoestring (who isn&#8216;t) please apply for a free
-          desk.
+          running on a shoestring, please apply for a free desk.
         </p>
 
         <h3 className="space-top-small">How to apply for a desk?</h3>
@@ -62,6 +145,40 @@ export default function Page() {
             Apply for a desk
           </Link>
         </p>
+
+        <h3 className="space-top-large">Teams</h3>
+        <p>People from these organizations use the co-working space:</p>
+        <ul className={styles.teamsGrid}>
+          {teams.map((team) => (
+            <li key={team.name} className={styles.teamTile}>
+              {team.image ? (
+                <Link
+                  href={team.href}
+                  aria-label={`Visit ${team.name}`}
+                >
+                  <Image
+                    src={team.image}
+                    width={512}
+                    height={410}
+                    alt={`${team.name} logo`}
+                    className={styles.teamTileImage}
+                  />
+                </Link>
+              ) : (
+                <div
+                  className={styles.teamTilePlaceholder}
+                  aria-hidden="true"
+                />
+              )}
+              <div className={styles.teamTileName}>
+                <Link href={team.href}>{team.name}</Link>
+              </div>
+              {team.description && (
+                <p className={styles.teamTileDescription}>{team.description}</p>
+              )}
+            </li>
+          ))}
+        </ul>
       </section>
       <section className="right">
         <h3>Location</h3>
@@ -72,9 +189,13 @@ export default function Page() {
         </p>
         <p>
           We are located in the Autograph Gallery building at 1 Rivington Place
-          in the Shoreditch neighborhood. We are very central and are closest to
-          Liverpool Street Station with access to Underground and train
-          services.
+          in the Shoreditch neighborhood.
+        </p>
+        <h3 className="space-top-small">Getting here</h3>
+        <p>
+          Liverpool Street Station and Old Street Station are closest
+          Underground stops. There is secure bicycle parking at the office by
+          request.
         </p>
         <h3 className="divider">Photos</h3>
         <p>
