@@ -5,26 +5,6 @@
   margin-top: 42px;
 }
 
-.betaNotice {
-  font-size: 0.85rem;
-  color: #c0392b;
-  margin: 0;
-}
-
-.betaNotice strong {
-  font-weight: 700;
-}
-
-.betaNotice a,
-.betaNotice a:visited {
-  color: #c0392b;
-  text-decoration: underline;
-}
-
-.betaNotice a:hover {
-  color: #872015;
-}
-
 .layout {
   // Mobile default: single column, filters stack above results.
   display: block;
@@ -206,24 +186,13 @@
   font-weight: 500;
 }
 
-// Top row of the results column: jobs count on the left, beta notice on
-// the right (wraps below the count on narrow widths).
-.resultsHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-top: 2.5em;
-  margin-bottom: 0.75rem;
-}
-
 .filterCount {
   font-size: 0.85rem;
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0;
+  margin: 0 0 0.75rem;
+  padding-top: 2.5em;
 }
 
 // Mobile-only "More filters" toggle styled like an inline blue link.
@@ -586,11 +555,10 @@
     margin-top: 1.2em;
   }
 
-  // Align the results header (jobs count + beta) vertically with the
-  // Country filter label in the left column. The Country label sits at
-  // 1em (filters padding-top) + 1.2em (first filterField margin-top) = 2.2em
-  // from the top of the left column.
-  .resultsHeader {
+  // Align the jobs count vertically with the Country filter label in the
+  // left column. The Country label sits at 1em (filters padding-top) + 1.2em
+  // (first filterField margin-top) = 2.2em from the top of the left column.
+  .filterCount {
     padding-top: 2.2em;
   }
 
