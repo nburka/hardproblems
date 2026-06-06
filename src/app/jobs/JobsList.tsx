@@ -452,23 +452,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           </select>
         </label>
 
-        <div className={styles.filterField}>
-          <span className={styles.filterLabel}>Org type</span>
-          <div className={styles.checkboxes}>
-            {ORG_TYPE_OPTIONS.map((opt) => (
-              <label key={opt.value} className={styles.checkbox}>
-                <input
-                  type="checkbox"
-                  checked={orgFilters.includes(opt.value)}
-                  onChange={() => toggleOrgFilter(opt.value)}
-                />
-                <span className={styles.checkboxBox} aria-hidden="true" />
-                {opt.label}
-              </label>
-            ))}
-          </div>
-        </div>
-
         <button
           type="button"
           className={styles.moreFiltersToggle}
@@ -483,6 +466,23 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
             showMore ? styles.moreFiltersOpen : ''
           }`}
         >
+          <div className={styles.filterField}>
+            <span className={styles.filterLabel}>Org type</span>
+            <div className={styles.checkboxes}>
+              {ORG_TYPE_OPTIONS.map((opt) => (
+                <label key={opt.value} className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    checked={orgFilters.includes(opt.value)}
+                    onChange={() => toggleOrgFilter(opt.value)}
+                  />
+                  <span className={styles.checkboxBox} aria-hidden="true" />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
           <div className={styles.filterField}>
             <span className={styles.filterLabel}>Sector</span>
             <div className={styles.checkboxes}>
@@ -540,17 +540,8 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
       </div>
 
       <div className={styles.results}>
-      <div className={styles.resultsHeader}>
-        <div className={styles.filterCount}>
-          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
-        </div>
-        <p className={styles.betaNotice}>
-          <strong>Beta:</strong> Contact us if you see issues with the job
-          board.{' '}
-          <a href="mailto:contact@hardproblems.com">
-            contact@hardproblems.com
-          </a>
-        </p>
+      <div className={styles.filterCount}>
+        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
       </div>
       {filtered.length === 0 && (
         <div className={styles.noResults}>
