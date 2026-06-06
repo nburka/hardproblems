@@ -192,7 +192,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 0.75rem;
-  padding-top: 2.5em;
+  padding-top: 0;
 }
 
 // Mobile-only "More filters" toggle styled like an inline blue link.
@@ -208,7 +208,7 @@
   color: cornflowerblue;
   cursor: pointer;
   text-decoration: none;
-  text-align: left;
+  text-align: right;
 }
 
 .moreFiltersToggle:hover,
