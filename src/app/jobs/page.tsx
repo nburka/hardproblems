@@ -7,7 +7,15 @@ import { fetchJobs } from './fetchJobs';
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
-  title: 'Jobs board for designers who want to work on hard problems'
+  title: 'Jobs board for designers who want to work on hard problems',
+  // Auto-discovery for RSS readers. The "raw" feed has every job; users can
+  // also subscribe to filtered feeds by appending filter query params to
+  // /jobs/feed.xml (e.g. /jobs/feed.xml?sector=climate&work=remote).
+  alternates: {
+    types: {
+      'application/rss+xml': '/jobs/feed.xml'
+    }
+  }
 };
 
 export default async function Page() {
