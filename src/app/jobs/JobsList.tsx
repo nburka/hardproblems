@@ -8,85 +8,26 @@ import type { SerializedJob } from './fetchJobs';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
-  orgCategory,
   orgTypeDisplay
 } from './orgType';
+import {
+  FILTER_PARAM_KEYS,
+  SECTOR_OPTIONS,
+  SectorCategory,
+  WORK_STYLE_OPTIONS,
+  WorkStyle,
+  filterJobs,
+  parseOrgParam,
+  parseRoleParam,
+  parseSectorParam,
+  parseWorkStyleParam,
+  splitCountries
+} from './filters';
 import styles from './page.module.scss';
 
 export type { SerializedJob } from './fetchJobs';
 
 type ClickSource = 'title' | 'company' | 'favicon';
-
-function parseWorkStyleParam(value: string | null): WorkStyle[] {
-  if (!value) return [];
-  return value
-    .split(',')
-    .filter(
-      (v): v is WorkStyle =>
-        v === 'remote' || v === 'hybrid' || v === 'onsite'
-    );
-}
-
-function parseOrgParam(value: string | null): OrgCategory[] {
-  if (!value) return [];
-  return value
-    .split(',')
-    .filter(
-      (v): v is OrgCategory =>
-        v === 'for-profit' ||
-        v === 'not-for-profit' ||
-        v === 'public-sector'
-    );
-}
-
-function parseRoleParam(value: string | null): string[] {
-  if (!value) return [];
-  return value
-    .split(',')
-    .map((v) => v.trim())
-    .filter((v) => v.length > 0);
-}
-
-type SectorCategory = 'climate' | 'health' | 'public-services' | 'education';
-
-const SECTOR_OPTIONS: {
-  value: SectorCategory;
-  label: string;
-  keywords: string[];
-}[] = [
-  {
-    value: 'climate',
-    label: 'Climate change',
-    keywords: ['climate', 'clean energy']
-  },
-  { value: 'health', label: 'Health', keywords: ['health'] },
-  {
-    value: 'public-services',
-    label: 'Public services',
-    keywords: ['public service', 'government']
-  },
-  { value: 'education', label: 'Education', keywords: ['education'] }
-];
-
-function parseSectorParam(value: string | null): SectorCategory[] {
-  if (!value) return [];
-  return value
-    .split(',')
-    .filter(
-      (v): v is SectorCategory =>
-        v === 'climate' ||
-        v === 'health' ||
-        v === 'public-services' ||
-        v === 'education'
-    );
-}
-
-function matchesSector(jobSector: string, category: SectorCategory): boolean {
-  const opt = SECTOR_OPTIONS.find((o) => o.value === category);
-  if (!opt) return false;
-  const lower = jobSector.toLowerCase();
-  return opt.keywords.some((k) => lower.includes(k));
-}
 
 // Pretty-print a role name for the UI. The internal value (used for filter
 // matching and URL params) stays as the raw sheet value so data lookups
@@ -119,14 +60,6 @@ function formatRelativeDate(date: Date): string {
   if (diffDays === -1) return 'Tomorrow';
   return `in ${-diffDays} days`;
 }
-
-type WorkStyle = 'remote' | 'hybrid' | 'onsite';
-
-const WORK_STYLE_OPTIONS: { value: WorkStyle; label: string }[] = [
-  { value: 'remote', label: 'Remote' },
-  { value: 'hybrid', label: 'Hybrid' },
-  { value: 'onsite', label: 'On-site' }
-];
 
 function StarIcon({ className }: { className?: string }) {
   return (
@@ -175,86 +108,6 @@ function buildFaviconUrl(rawUrl: string): string | null {
   } catch {
     return null;
   }
-}
-
-function splitCountries(s: string): string[] {
-  return s
-    .split(/\s+(?:or|and)\s+|\s*[,&/]\s*/i)
-    .map((t) => t.trim())
-    .filter((t) => t.length > 0);
-}
-
-function escapeRegex(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-const EUROPEAN_COUNTRIES = [
-  'Europe',
-  'EU',
-  'UK',
-  'United Kingdom',
-  'England',
-  'Scotland',
-  'Wales',
-  'Northern Ireland',
-  'Ireland',
-  'France',
-  'Germany',
-  'Spain',
-  'Italy',
-  'Portugal',
-  'Netherlands',
-  'Belgium',
-  'Luxembourg',
-  'Denmark',
-  'Sweden',
-  'Norway',
-  'Finland',
-  'Iceland',
-  'Austria',
-  'Switzerland',
-  'Poland',
-  'Czech Republic',
-  'Czechia',
-  'Slovakia',
-  'Hungary',
-  'Romania',
-  'Bulgaria',
-  'Greece',
-  'Slovenia',
-  'Croatia',
-  'Serbia',
-  'Bosnia',
-  'Herzegovina',
-  'Montenegro',
-  'North Macedonia',
-  'Albania',
-  'Estonia',
-  'Latvia',
-  'Lithuania',
-  'Ukraine',
-  'Moldova',
-  'Malta',
-  'Cyprus'
-];
-
-function matchesCountry(jobCountry: string, selected: string): boolean {
-  if (selected === 'all') return true;
-  if (selected === 'Europe') {
-    return EUROPEAN_COUNTRIES.some((name) =>
-      new RegExp(`\\b${escapeRegex(name)}\\b`, 'i').test(jobCountry)
-    );
-  }
-  const re = new RegExp(`\\b${escapeRegex(selected)}\\b`, 'i');
-  return re.test(jobCountry);
-}
-
-function matchesWorkStyle(remote: string, filter: WorkStyle): boolean {
-  const r = remote.toLowerCase();
-  if (filter === 'remote') return r.includes('remote');
-  if (filter === 'hybrid') return r.includes('hybrid');
-  if (filter === 'onsite') return r.length === 0;
-  return false;
 }
 
 function formatLocation(job: SerializedJob): string {
@@ -351,30 +204,17 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [jobs]);
 
-  const filtered = useMemo(() => {
-    return jobs.filter((j) => {
-      if (!matchesCountry(j.country, country)) return false;
-      if (
-        workStyleFilters.length > 0 &&
-        !workStyleFilters.some((w) => matchesWorkStyle(j.remote, w))
-      )
-        return false;
-      if (orgFilters.length > 0) {
-        const cat = orgCategory(j.typeOfOrg);
-        if (!cat || !orgFilters.includes(cat)) return false;
-      }
-      if (
-        sectorFilters.length > 0 &&
-        !sectorFilters.some((s) => matchesSector(j.sector, s))
-      ) {
-        return false;
-      }
-      if (roleFilters.length > 0 && !roleFilters.includes(j.role)) {
-        return false;
-      }
-      return true;
-    });
-  }, [jobs, country, workStyleFilters, orgFilters, sectorFilters, roleFilters]);
+  const filtered = useMemo(
+    () =>
+      filterJobs(jobs, {
+        country,
+        workStyles: workStyleFilters,
+        orgs: orgFilters,
+        sectors: sectorFilters,
+        roles: roleFilters
+      }),
+    [jobs, country, workStyleFilters, orgFilters, sectorFilters, roleFilters]
+  );
 
   const toggleWorkStyle = (value: WorkStyle) => {
     const next = workStyleFilters.includes(value)
@@ -432,6 +272,20 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     orgFilters.length > 0 ||
     sectorFilters.length > 0 ||
     roleFilters.length > 0;
+
+  // RSS feed URL mirrors the current filter state so subscribing while
+  // looking at e.g. "Climate + Remote" lands you on the equivalent feed.
+  // Only forward known filter keys (FILTER_PARAM_KEYS) — arbitrary params
+  // would otherwise leak into the feed URL.
+  const feedHref = useMemo(() => {
+    const out = new URLSearchParams();
+    for (const key of FILTER_PARAM_KEYS) {
+      const value = searchParams.get(key);
+      if (value) out.set(key, value);
+    }
+    const qs = out.toString();
+    return qs ? `/jobs/feed.xml?${qs}` : '/jobs/feed.xml';
+  }, [searchParams]);
 
   return (
     <div className={styles.layout}>
@@ -540,8 +394,31 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
       </div>
 
       <div className={styles.results}>
-      <div className={styles.filterCount}>
-        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
+      <div className={styles.countRow}>
+        <div className={styles.filterCount}>
+          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
+        </div>
+        <a
+          href={feedHref}
+          className={styles.rssLink}
+          aria-label={
+            hasActiveFilters
+              ? 'Subscribe to RSS feed for these filters'
+              : 'Subscribe to RSS feed'
+          }
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            className={styles.rssIcon}
+          >
+            <path d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM4 4.44v3.04A12.52 12.52 0 0 1 16.52 20h3.04A15.56 15.56 0 0 0 4 4.44zM4 10.36v3.05A6.6 6.6 0 0 1 10.59 20h3.05A9.64 9.64 0 0 0 4 10.36z" />
+          </svg>
+          RSS feed{hasActiveFilters ? ' for these filters' : ''}
+        </a>
       </div>
       {filtered.length === 0 && (
         <div className={styles.noResults}>

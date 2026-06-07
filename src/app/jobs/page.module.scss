@@ -186,13 +186,46 @@
   font-weight: 500;
 }
 
+// Wrapper holding the "N jobs" count on the left and the RSS subscribe
+// link on the right. Wraps on narrow widths so the link can drop below.
+.countRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0 0 0.75rem;
+  padding-top: 0;
+}
+
 .filterCount {
   font-size: 0.85rem;
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0 0 0.75rem;
-  padding-top: 0;
+  margin: 0;
+}
+
+.rssLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f0932b;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.rssLink:hover,
+.rssLink:focus {
+  color: #c0701b;
+  text-decoration: underline;
+  outline: none;
+}
+
+.rssIcon {
+  flex-shrink: 0;
 }
 
 // Mobile-only "More filters" toggle styled like an inline blue link.
@@ -555,10 +588,11 @@
     margin-top: 1.2em;
   }
 
-  // Align the jobs count vertically with the Country filter label in the
-  // left column. The Country label sits at 1em (filters padding-top) + 1.2em
-  // (first filterField margin-top) = 2.2em from the top of the left column.
-  .filterCount {
+  // Align the jobs count row vertically with the Country filter label in
+  // the left column. The Country label sits at 1em (filters padding-top) +
+  // 1.2em (first filterField margin-top) = 2.2em from the top of the left
+  // column.
+  .countRow {
     padding-top: 2.2em;
   }
 
