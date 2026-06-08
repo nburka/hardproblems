@@ -18,7 +18,7 @@ export default function TopBar() {
         href="/jobs"
         className={`link ${pathname === '/jobs' ? 'active' : ''}`}
       >
-        Jobs
+        Jobs board
       </Link>
       <Link
         href="/podcast"
