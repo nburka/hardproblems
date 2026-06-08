@@ -102,6 +102,9 @@ export function splitCountries(s: string): string[] {
 
 export function matchesCountry(jobCountry: string, selected: string): boolean {
   if (selected === 'all') return true;
+  // "Global" roles are location-agnostic — they should appear in every
+  // country filter so a user looking at e.g. Germany still sees them.
+  if (/\bGlobal\b/i.test(jobCountry)) return true;
   if (selected === 'Europe') {
     return EUROPEAN_COUNTRIES.some((name) =>
       new RegExp(`\\b${escapeRegex(name)}\\b`, 'i').test(jobCountry)
