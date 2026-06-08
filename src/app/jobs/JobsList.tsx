@@ -102,6 +102,108 @@ function formatLocation(job: SerializedJob): string {
   return place || job.remote;
 }
 
+// Country-name → ISO 3166-1 alpha-2 code, used to derive a flag emoji from
+// regional indicator letters. Covers every value currently in the sheet plus
+// common aliases and likely future additions so the dropdown degrades
+// gracefully as new countries appear. Unknown values render with no emoji.
+const COUNTRY_ISO_CODES: Record<string, string> = {
+  Australia: 'AU',
+  Austria: 'AT',
+  Bangladesh: 'BD',
+  Belgium: 'BE',
+  Brazil: 'BR',
+  Bulgaria: 'BG',
+  Canada: 'CA',
+  Chile: 'CL',
+  China: 'CN',
+  Colombia: 'CO',
+  Croatia: 'HR',
+  Cyprus: 'CY',
+  Czechia: 'CZ',
+  'Czech Republic': 'CZ',
+  Denmark: 'DK',
+  Egypt: 'EG',
+  England: 'GB',
+  Estonia: 'EE',
+  Finland: 'FI',
+  France: 'FR',
+  Germany: 'DE',
+  Greece: 'GR',
+  Hungary: 'HU',
+  Iceland: 'IS',
+  India: 'IN',
+  Indonesia: 'ID',
+  Ireland: 'IE',
+  Israel: 'IL',
+  Italy: 'IT',
+  Japan: 'JP',
+  Kenya: 'KE',
+  Latvia: 'LV',
+  Lithuania: 'LT',
+  Luxembourg: 'LU',
+  Malaysia: 'MY',
+  Malta: 'MT',
+  Mexico: 'MX',
+  Moldova: 'MD',
+  Netherlands: 'NL',
+  'New Zealand': 'NZ',
+  Nigeria: 'NG',
+  'Northern Ireland': 'GB',
+  Norway: 'NO',
+  Pakistan: 'PK',
+  Philippines: 'PH',
+  Poland: 'PL',
+  Portugal: 'PT',
+  Romania: 'RO',
+  Russia: 'RU',
+  'Saudi Arabia': 'SA',
+  Scotland: 'GB',
+  Serbia: 'RS',
+  Singapore: 'SG',
+  Slovakia: 'SK',
+  Slovenia: 'SI',
+  'South Africa': 'ZA',
+  'South Korea': 'KR',
+  Spain: 'ES',
+  'Sri Lanka': 'LK',
+  Sweden: 'SE',
+  Switzerland: 'CH',
+  Thailand: 'TH',
+  UAE: 'AE',
+  UK: 'GB',
+  Ukraine: 'UA',
+  'United Arab Emirates': 'AE',
+  'United Kingdom': 'GB',
+  'United States': 'US',
+  USA: 'US',
+  US: 'US',
+  Vietnam: 'VN',
+  Wales: 'GB'
+};
+
+// Special-case overrides for dropdown options that don't map to a single
+// country. "all" is the literal value of the "All countries" option;
+// "Europe" is a synthetic value the user can select to broaden the search.
+const SPECIAL_COUNTRY_FLAGS: Record<string, string> = {
+  all: '🌍', // globe centered on Europe-Africa
+  Europe: '🇪🇺'
+};
+
+function isoToFlagEmoji(iso: string): string {
+  if (iso.length !== 2) return '';
+  const REGIONAL_A = 0x1f1e6;
+  const c1 = iso.toUpperCase().charCodeAt(0) - 0x41;
+  const c2 = iso.toUpperCase().charCodeAt(1) - 0x41;
+  if (c1 < 0 || c1 > 25 || c2 < 0 || c2 > 25) return '';
+  return String.fromCodePoint(REGIONAL_A + c1, REGIONAL_A + c2);
+}
+
+function countryFlag(name: string): string {
+  if (SPECIAL_COUNTRY_FLAGS[name]) return SPECIAL_COUNTRY_FLAGS[name];
+  const iso = COUNTRY_ISO_CODES[name];
+  return iso ? isoToFlagEmoji(iso) : '';
+}
+
 export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -173,6 +275,10 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     const set = new Set<string>();
     for (const j of jobs) {
       for (const c of splitCountries(j.country)) {
+        // "Global" isn't a country — it's a flag on the job meaning
+        // location-agnostic. matchesCountry() makes those jobs appear in
+        // every filter, so we hide the value from the dropdown itself.
+        if (c.toLowerCase() === 'global') continue;
         set.add(c);
       }
     }
@@ -282,12 +388,15 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
             onChange={(e) => setCountry(e.target.value)}
             className={styles.filterSelect}
           >
-            <option value="all">All countries</option>
-            {countries.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
+            <option value="all">{countryFlag('all')}{'  '}All countries</option>
+            {countries.map((c) => {
+              const flag = countryFlag(c);
+              return (
+                <option key={c} value={c}>
+                  {flag ? `${flag}  ${c}` : c}
+                </option>
+              );
+            })}
           </select>
         </label>
 
