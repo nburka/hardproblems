@@ -607,6 +607,12 @@
     display: inline-flex;
   }
 
+  // Indent the relative-date label from the right edge of the row on
+  // desktop so it doesn't sit flush against the column boundary.
+  .jobAside {
+    padding-right: 16px;
+  }
+
   // Re-enable the hover tooltip at desktop only (it's display:none by
   // default so it never appears on mobile/tablet, regardless of hover).
   .jobDescription {
