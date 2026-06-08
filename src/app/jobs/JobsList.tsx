@@ -61,21 +61,6 @@ function formatRelativeDate(date: Date): string {
   return `in ${-diffDays} days`;
 }
 
-function StarIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width={12}
-      height={12}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M12 2.5l2.95 6.13 6.55.61-4.95 4.66 1.46 6.6L12 17.27 5.99 20.5l1.46-6.6L2.5 9.24l6.55-.61L12 2.5z" />
-    </svg>
-  );
-}
-
 function GlobeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -391,13 +376,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           )}
         </div>
 
-      </div>
-
-      <div className={styles.results}>
-      <div className={styles.countRow}>
-        <div className={styles.filterCount}>
-          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
-        </div>
         <a
           href={feedHref}
           className={styles.rssLink}
@@ -419,6 +397,12 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           </svg>
           RSS feed{hasActiveFilters ? ' for these filters' : ''}
         </a>
+
+      </div>
+
+      <div className={styles.results}>
+      <div className={styles.filterCount}>
+        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
       </div>
       {filtered.length === 0 && (
         <div className={styles.noResults}>
@@ -569,7 +553,12 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                   <div className={styles.jobSectorRow}>
                     {isStaffPick && (
                       <span className={`tag ${styles.jobStaffPick}`}>
-                        <StarIcon className={styles.jobStaffPickStar} />
+                        <span
+                          className={styles.jobStaffPickStar}
+                          aria-hidden="true"
+                        >
+                          ⭐
+                        </span>
                         Hard Problems Pick
                       </span>
                     )}
@@ -598,11 +587,28 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                 </div>
               )}
               <div className={styles.jobAside}>
-                {date && (
-                  <small className={styles.jobDate}>
-                    {formatRelativeDate(date)}
-                  </small>
-                )}
+                {date &&
+                  (() => {
+                    const relativeLabel = formatRelativeDate(date);
+                    const isNewToday = relativeLabel === 'Today';
+                    return (
+                      <small
+                        className={`${styles.jobDate} ${
+                          isNewToday ? styles.jobDateToday : ''
+                        }`}
+                      >
+                        {isNewToday && (
+                          <span
+                            className={styles.jobDateIcon}
+                            aria-hidden="true"
+                          >
+                            ✨
+                          </span>
+                        )}
+                        {relativeLabel}
+                      </small>
+                    );
+                  })()}
               </div>
             </li>
           );

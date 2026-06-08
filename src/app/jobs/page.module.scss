@@ -186,30 +186,23 @@
   font-weight: 500;
 }
 
-// Wrapper holding the "N jobs" count on the left and the RSS subscribe
-// link on the right. Wraps on narrow widths so the link can drop below.
-.countRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  margin: 0 0 0.75rem;
-  padding-top: 0;
-}
-
 .filterCount {
   font-size: 0.85rem;
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0;
+  margin: 0 0 0.75rem;
+  padding-top: 0;
 }
 
+// RSS subscribe link lives at the bottom of the filters column. Hidden on
+// mobile (filters are space-constrained there); re-enabled at desktop via
+// the @media block at the end of the file.
 .rssLink {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 0.4rem;
+  margin-top: 1.5em;
   font-size: 0.85rem;
   font-weight: 700;
   color: #f0932b;
@@ -488,7 +481,6 @@
 
 .jobStaffPickStar {
   flex-shrink: 0;
-  color: #d97706;
 }
 
 .jobSectorRow {
@@ -518,8 +510,22 @@
 .jobDate {
   font-size: 0.75rem;
   text-transform: uppercase;
-  color: #777;
+  color: #231f20;
   letter-spacing: 0.05em;
+}
+
+// "Today" gets a brighter, bolder treatment + a sparkle icon to draw the
+// eye to freshly listed roles.
+.jobDateToday {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  color: #b8860b;
+  font-weight: 700;
+}
+
+.jobDateIcon {
+  flex-shrink: 0;
 }
 
 @media only screen and (max-width: 700px) {
@@ -588,12 +594,17 @@
     margin-top: 1.2em;
   }
 
-  // Align the jobs count row vertically with the Country filter label in
-  // the left column. The Country label sits at 1em (filters padding-top) +
-  // 1.2em (first filterField margin-top) = 2.2em from the top of the left
-  // column.
-  .countRow {
+  // Align the jobs count vertically with the Country filter label in the
+  // left column. The Country label sits at 1em (filters padding-top) + 1.2em
+  // (first filterField margin-top) = 2.2em from the top of the left column.
+  .filterCount {
     padding-top: 2.2em;
+  }
+
+  // RSS subscribe link is hidden on mobile; surface it under the filters
+  // column on desktop.
+  .rssLink {
+    display: inline-flex;
   }
 
   // Re-enable the hover tooltip at desktop only (it's display:none by
