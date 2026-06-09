@@ -27,27 +27,26 @@ export default async function Home() {
         </blockquote>
         <h3>Our mission</h3>
         <p>
-          We are a non-profit that helps designers to work on the hard
-          problems that matter in the world: problems like{' '}
-          <em>public health</em>, <em>climate change</em>, and{' '}
-          <em>good government</em>.
+          We are a non-profit that helps designers to work on the hard problems
+          that matter in the world: problems like <em>public health</em>,{' '}
+          <em>climate change</em>, and <em>good government</em>.
         </p>
         <p>
-          While the loudest part of the tech world is focused on AI, VR, crypto,
+          While the loudest part of the tech world is focused on AI, crypto,
           fin-tech, and advertising, other people are trying to tackle the
           hardest, thorniest problems.
         </p>
         <p>
-          Programmers, designers, and product managers know that these hard
-          problems matter but they often wring their hands and stand by, unsure
-          how to have any positive impact.
+          Designers, product managers, user researchers, copywriters, and others
+          know that these hard problems matter but they often wring their hands
+          and stand by, unsure how to have any positive impact.
         </p>
         <p>
           It’s time to refocus the tech world on what matters most. It’s time to
           build new relationships between doctors, environmentalists,
           scientists, not-for-profit leaders, public servants, and others
-          tackling the world’s hardest problems with designers who can help
-          make practical tools to help them succeed.
+          tackling the world’s hardest problems with designers who can help make
+          practical tools to help them succeed.
         </p>
         <p>
           We are a multi-skilled team of very experienced tech veterans and
@@ -74,9 +73,7 @@ export default async function Home() {
             />
             <b className="grid-link">Job board</b>
             <p className="grid-detail">Find your next full-time role</p>
-            <p>
-              Job listings from orgs working on climate change and health.
-            </p>
+            <p>Job listings from orgs working on climate change and health.</p>
           </Link>
 
           <Link href="/newsletter" className="grid-cell">
@@ -119,8 +116,7 @@ export default async function Home() {
       <section className="right">
         <h3>Subscribe to our newsletter</h3>
         <p className="no-margin">
-          We share job opportunities, great books, relevant news, and
-          events.
+          We share job opportunities, great books, relevant news, and events.
         </p>
         <NewsletterForm />
 
