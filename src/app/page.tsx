@@ -122,7 +122,8 @@ export default async function Home() {
 
         <h3 className="divider">Job board</h3>
         <p>
-          Recent listings from our <Link href="/jobs">job board</Link>.
+          We follow job boards that feature careers for designers working on
+          hard problems.
         </p>
         <JobsTeaser jobs={recentJobs} />
 
