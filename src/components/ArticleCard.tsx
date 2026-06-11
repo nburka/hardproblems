@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { type Article, formatPublishedDate } from '../lib/articles';
+import { type Article } from '../lib/articles';
 import styles from '../app/articles/page.module.scss';
 
 // Shared card used by both /articles (full listing) and
@@ -33,23 +33,6 @@ export default function ArticleCard({ article }: { article: Article }) {
           {article.excerpt && (
             <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
           )}
-          <div className={styles.articleCardMeta}>
-            {article.author && <span>{article.author}</span>}
-            {article.author && article.publishedAt && (
-              <span aria-hidden="true">·</span>
-            )}
-            {article.publishedAt && (
-              <time dateTime={article.publishedAt}>
-                {formatPublishedDate(article.publishedAt)}
-              </time>
-            )}
-            {article.readingTime && (
-              <>
-                <span aria-hidden="true">·</span>
-                <span>{article.readingTime} min read</span>
-              </>
-            )}
-          </div>
         </div>
       </Link>
     </li>

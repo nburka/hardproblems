@@ -119,7 +119,7 @@
   // so the title sits flush at the top of the body.
   h1 {
     font-size: 2.5rem;
-    line-height: 1.15;
+    line-height: 1;
     font-weight: 700;
     text-transform: none;
     letter-spacing: 0;
@@ -340,6 +340,49 @@
     margin: 1.5rem 0;
   }
 
+  // Embeds — Google Maps, YouTube, Vimeo, etc. Stretches to fill the
+  // column width and inherits a subtle rounded corner so the embed reads
+  // as part of the article rather than a raw browser chrome panel.
+  iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 1.5rem 0;
+    border: 0;
+    border-radius: 8px;
+  }
+
+  // Brick / mosaic photo layout. Wrap 5 <img> tags in
+  // `<div class="image-bricks">` and the first image becomes a tall hero
+  // on the left with the four others stacked into a 2×2 grid on the
+  // right — the whole composite takes up roughly the same vertical space
+  // as a single landscape image.
+  :global(.image-bricks) {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    aspect-ratio: 2 / 1;
+    gap: 8px;
+    margin: 1.5rem 0;
+    width: 100%;
+  }
+
+  :global(.image-bricks) > img {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    border-radius: 0;
+    transform: none;
+    margin-left: 0;
+  }
+
+  // First image is the hero — spans both grid rows in the left column.
+  :global(.image-bricks) > img:first-child {
+    grid-row: span 2;
+  }
+
   // {.float-right} on images in markdown (handled by markdown-it-attrs)
   // floats the image to the right of the next paragraph. Drops to a
   // full-width block on narrow screens.
@@ -443,6 +486,47 @@
 @media only screen and (min-width: 1500px) {
   .body img:not(:global(.float-right)) {
     max-width: calc(100% + 480px);
+  }
+}
+
+// Same desktop bleed for the brick layout container so the composite
+// extends into the side margins, just like a single full-width image
+// would. The img-level bleed rules are explicitly disabled inside the
+// container (above) so only the container itself bleeds — not each cell.
+@media only screen and (min-width: 1000px) {
+  .body :global(.image-bricks) {
+    max-width: calc(100% + 160px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .body :global(.image-bricks) {
+    max-width: calc(100% + 320px);
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .body :global(.image-bricks) {
+    max-width: calc(100% + 480px);
+  }
+}
+
+// Stack the bricks on narrow screens — the asymmetric grid breaks down
+// below ~600px wide.
+@media only screen and (max-width: 600px) {
+  .body :global(.image-bricks) {
+    display: block;
+    aspect-ratio: auto;
+  }
+  .body :global(.image-bricks) > img {
+    margin: 0.75rem 0;
+    width: 100%;
+    height: auto;
+  }
+  .body :global(.image-bricks) > img:first-child {
+    grid-row: auto;
   }
 }
 
