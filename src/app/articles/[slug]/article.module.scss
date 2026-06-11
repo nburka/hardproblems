@@ -142,7 +142,7 @@
     text-transform: none;
     letter-spacing: 0;
     font-weight: 700;
-    color: #231f20;
+    color: #2f8b53;
     margin: 2rem 0 0.2rem 0;
   }
 
@@ -220,6 +220,46 @@
   pre:has(code:global(.wrap-text)) {
     white-space: pre-wrap;
     word-wrap: break-word;
+  }
+
+  // Inline highlight for distinguishing key tokens inside a code block.
+  // Used by authors who write raw HTML (`<span class="code-highlight">…
+  // </span>`) inside a fenced block — the Copy button still copies the
+  // plain text contents.
+  :global(.code-highlight) {
+    background: #cbead8;
+    color: #235337;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  // Two-column content grid. Authors wrap several
+  // `<div class="content-cell">` blocks inside `<div class="content-grid">`
+  // (with blank lines around each so markdown still parses inside) to lay
+  // them out side-by-side on desktop. Stacks to a single column on mobile.
+  // Reusable for tips, comparisons, FAQs, or any grouped pairs of cells.
+  :global(.content-grid) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem 2rem;
+    margin: 1.5rem 0;
+  }
+
+  @media only screen and (min-width: 1000px) {
+    :global(.content-grid) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  // Inside each cell, suppress the leading h3's top margin and the
+  // trailing paragraph's bottom margin so each cell is tightly self-
+  // contained instead of inheriting the article's outer spacing.
+  :global(.content-cell) > *:first-child {
+    margin-top: 0;
+  }
+
+  :global(.content-cell) > *:last-child {
+    margin-bottom: 0;
   }
 
   // Inline `code` — small pill style for prose mentions of identifiers,
