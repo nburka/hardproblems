@@ -1,5 +1,5 @@
 ---
-title: 'Tricks to Find a Meaningful Job on LinkedIn'
+title: 'Tricks to find a meaningful job on LinkedIn'
 slug: 'tricks-find-meaningful-job-linkedin'
 
 excerpt: 'LinkedIn is still the best place to find jobs in many regions — but its sheer scale makes meaningful roles hard to surface. A few simple search tricks help you cut through the noise.'
@@ -33,13 +33,13 @@ featured: false
 image: '/images/content/tricks-find-meaningful-job-linkedin.jpg'
 imageAlt: 'LinkedIn search bar showing an AI-powered job query'
 
-seoTitle: 'Tricks to Find a Meaningful Job on LinkedIn'
+seoTitle: 'Tricks to find a meaningful job on LinkedIn'
 seoDescription: "Practical search techniques for using LinkedIn's AI job search to find impact-driven design, UX, and research roles at organizations doing meaningful work."
 
 canonicalUrl: ''
 ---
 
-# Tricks to Find a Meaningful Job on LinkedIn {#tricks-to-find-a-meaningful-job-on-linkedin}
+# Tricks to find a meaningful job on LinkedIn {#tricks-to-find-a-meaningful-job-on-linkedin}
 
 _How we use LinkedIn to search for jobs at organizations that make a positive impact in the world_{.intro}
 
