@@ -151,6 +151,44 @@ export function pluralize(label: string): string {
   return label + 's';
 }
 
+// Friendly subtitles for the topic / type OG cards. Kept in this single
+// place so we can re-use them anywhere we want a one-line description of
+// a topic or article type. Unmapped slugs fall back to no subtitle.
+const TOPIC_SUBTITLES: Record<string, string> = {
+  careers: 'Building a career around the problems that matter.',
+  'social-impact':
+    'Writing on impact-driven work and the people doing it.',
+  'job-search':
+    'Practical advice for finding meaningful roles at orgs doing meaningful work.',
+  design: 'How designers can apply themselves to hard problems.',
+  'decision-making':
+    'Approaches for making big career decisions with more clarity.',
+  frameworks:
+    'Tools and rubrics for approaching hard problems.',
+  'tech-for-good': 'Using technology to make a positive difference.'
+};
+
+export function topicSubtitle(topic: string): string | undefined {
+  return TOPIC_SUBTITLES[topic];
+}
+
+const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
+  article:
+    'Reflections and writing about hard problems and impact-driven careers.',
+  'book-review':
+    'Books we’ve read on impact-driven careers and the work that matters.',
+  framework:
+    'Practical tools and rubrics for thinking through impact-driven work.',
+  podcast:
+    'Conversations with designers working on hard problems.'
+};
+
+export function articleTypeSubtitle(
+  typeSlug: string
+): string | undefined {
+  return ARTICLE_TYPE_SUBTITLES[typeSlug];
+}
+
 // Helper used by the article page header.
 export function formatPublishedDate(iso: string): string {
   if (!iso) return '';
