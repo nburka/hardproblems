@@ -2,7 +2,7 @@
 title: 'Welcome to the Hard Problems co-working space'
 slug: 'hard-problems-coworking-space'
 
-excerpt: 'Situated in East London, our intimate co-working space at 1 Rivington Place is open to teams tackling climate, public health, education, poverty, and other urgent global challenges.'
+excerpt: 'Our intimate co-working space at in London is open to teams tackling climate change, public health, education, and other urgent global challenges.'
 
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
@@ -40,7 +40,7 @@ image: '/images/content/hard-problems-co-working-space.jpg'
 imageAlt: 'Hard Problems co-working space at 1 Rivington Place, East London'
 
 seoTitle: 'The Hard Problems Co-Working Space in East London'
-seoDescription: 'Our intimate co-working space at 1 Rivington Place in Shoreditch is open to teams working on climate, public health, education, poverty, and other urgent challenges.'
+seoDescription: 'Our co-working space at 1 Rivington Place in Shoreditch is open to teams working on climate, public health, education, poverty, and other urgent challenges.'
 
 canonicalUrl: ''
 ---

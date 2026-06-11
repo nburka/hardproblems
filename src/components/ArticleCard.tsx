@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { type Article } from '../lib/articles';
 import styles from '../app/articles/page.module.scss';
 
 // Shared card used by both /articles (full listing) and
