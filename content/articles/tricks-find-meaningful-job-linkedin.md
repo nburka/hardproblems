@@ -1,18 +1,18 @@
 ---
-title: "Tricks to Find a Meaningful Job on LinkedIn"
-slug: "tricks-find-meaningful-job-linkedin"
+title: 'Tricks to Find a Meaningful Job on LinkedIn'
+slug: 'tricks-find-meaningful-job-linkedin'
 
-excerpt: "LinkedIn is still the best place to find jobs in many regions — but its sheer scale makes meaningful roles hard to surface. A few simple search tricks help you cut through the noise."
+excerpt: 'LinkedIn is still the best place to find jobs in many regions — but its sheer scale makes meaningful roles hard to surface. A few simple search tricks help you cut through the noise.'
 
-author: "Daniel Burka"
-authorSlug: "daniel-burka"
+author: 'Daniel Burka'
+authorSlug: 'daniel-burka'
 
-publishedAt: "2026-06-10"
-updatedAt: "2026-06-10"
+publishedAt: '2026-06-10'
+updatedAt: '2026-06-10'
 
-status: "published" # draft | review | published
+status: 'published' # draft | review | published
 
-articleType: "Article" # Article | Book Review | Podcast
+articleType: 'Article' # Article | Book Review | Podcast
 
 topics:
   - careers
@@ -30,35 +30,34 @@ readingTime: 3
 
 featured: false
 
-image: "/images/content/tricks-find-meaningful-job-linkedin.jpg"
-imageAlt: "LinkedIn search bar showing an AI-powered job query"
+image: '/images/content/tricks-find-meaningful-job-linkedin.jpg'
+imageAlt: 'LinkedIn search bar showing an AI-powered job query'
 
-seoTitle: "Tricks to Find a Meaningful Job on LinkedIn"
+seoTitle: 'Tricks to Find a Meaningful Job on LinkedIn'
 seoDescription: "Practical search techniques for using LinkedIn's AI job search to find impact-driven design, UX, and research roles at organizations doing meaningful work."
 
-canonicalUrl: ""
-
+canonicalUrl: ''
 ---
 
 # Tricks to Find a Meaningful Job on LinkedIn {#tricks-to-find-a-meaningful-job-on-linkedin}
 
-*How we use LinkedIn to search for jobs at organizations that make a positive impact in the world*{.intro}
+_How we use LinkedIn to search for jobs at organizations that make a positive impact in the world_{.intro}
 
 In many countries, LinkedIn is still the best place to find job listings. But it's a swamp. There are millions of jobs listed and it can be hard to find a job that actually stands a chance of making a difference in the world. With a few simple tricks, you can find a job to be proud of.
 
 ## AI Search on LinkedIn {#ai-search-on-linkedin}
 
-LinkedIn has a new AI-powered jobs search engine that is quite good! We use this search query to populate the [Hard Problems jobs board](https://www.hardproblems.com/jobs) with relevant roles:
+LinkedIn has a new AI-powered [jobs search engine](https://www.linkedin.com/help/linkedin/answer/a6889044) that is quite good! We use this search query to populate the [Hard Problems jobs board](https://www.hardproblems.com/jobs) with relevant roles:
 
 <pre class="wrap-text"><code><span class="code-highlight">product design</span> or <span class="code-highlight">copywriting</span> or <span class="code-highlight">ux design</span> or <span class="code-highlight">user research</span> roles in the sector <span class="code-highlight">climate change</span> or <span class="code-highlight">public health</span> or <span class="code-highlight">healthcare</span> posted in the past 24 hours</code></pre>
 
-Link: [LinkedIn AI Jobs Search](https://www.linkedin.com/help/linkedin/answer/a6889044)
-
 ![LinkedIn AI-powered jobs search interface showing the query in action](/images/content/linkedin-job-search-screenshot.jpg)
 
-- **Seniority:** "Senior" filters out more junior roles
+## Why these search terms? {#tips-tricks-terms}
+
 - **Job titles:** "UX" "Product design" "Service design" "Graphic Design" filters for design roles. If you just use "Design" the results will include too broad of a spectrum of design (e.g. architectural design or program design roles)
 - **Sector:** "climate change" "healthcare" and "public health" filters are useful. LinkedIn still includes a lot of adjacent roles, but this works ok. You might want to include words like "Government" "Civics" "Education" etc. depending on the sectors that you're passionate about.
+- **Seniority:** Add words like "Senior" to filter out more junior roles
 
 ## Tips & tricks for searching {#tips-tricks-for-searching}
 
