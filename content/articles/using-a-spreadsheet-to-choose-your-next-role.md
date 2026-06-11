@@ -57,7 +57,7 @@ I've been there three times in my career:
 
 When the stakes are high, I turn to a simple framework: a weighted scoring spreadsheet. This approach forces you to stop and define your internal metrics before you evaluate each option, which helps you make a more objective decision. By setting your criteria up front, you can evaluate each opportunity according to a common set of priorities instead of getting overexcited about any one option.
 
-## Using the Job Rank template {#using-the-job-rank-template}
+## Using the "Job Rank" template {#using-the-job-rank-template}
 
 The idea is simple: Create a rubric of what matters to you right now, assign a weight to each metric, and then score any potential job (or even your made-up dream job) against it.
 
@@ -65,7 +65,7 @@ The idea is simple: Create a rubric of what matters to you right now, assign a w
 
 [![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/edit?gid=0#gid=0)
 
-Here's a quick-start guide to the framework.
+Here's a quick-start guide to the "Job Rank" template:
 
 ## Step 1: Choose your values (The Metrics) {#step-1-choose-your-values}
 
@@ -103,4 +103,4 @@ Now, take every role you're considering and score each value. You'll have to mak
 
 **Action:**{.highlight} The role with the highest total weighted score is the one most aligned with your current life priorities.
 
-In an industry defined by moving fast and breaking things, this framework is your anchor. It gives you an objective metric for a deeply subjective life decision. Use it to choose your next chapter wisely.
+In an industry defined by moving fast and breaking things, the "Job Rank" framework is your anchor. It gives you an objective metric for a deeply subjective life decision. Use it to choose your next chapter wisely.
