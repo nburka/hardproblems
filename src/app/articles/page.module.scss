@@ -8,7 +8,7 @@
 .articleList {
   list-style: none;
   padding: 0;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 5em 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
@@ -30,9 +30,9 @@
     color: darkblue;
   }
 
-  &:hover .articleCardImage,
-  &:focus .articleCardImage {
-    border-color: #84d9a6;
+  &:hover .articleCardImageWrap::after,
+  &:focus .articleCardImageWrap::after {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -41,13 +41,27 @@
   position: relative;
 }
 
+// Inner stroke effect — a 1px semi-transparent dark line drawn just
+// inside the image edge via an absolutely-positioned ::after. Because
+// it's translucent black, it visually reads as a slightly darker version
+// of whatever's at the image's edge, so the frame feels like part of the
+// image rather than a fixed-color border. Drawn on the wrapper (not the
+// <img>) so border-radius rounds the stroke cleanly across all browsers.
+.articleCardImageWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  transition: box-shadow 0.15s ease;
+}
+
 .articleCardImage {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 8px;
-  border: 1px solid #ebf7f0;
-  transition: border-color 0.15s ease;
 }
 
 .articleCardBody {
@@ -83,12 +97,12 @@
 
 .articleCardTitle {
   margin: 0.2rem 0 0 0;
-  font-size: 1.3rem;
-  line-height: 1.25;
+  font-size: 1.05rem;
+  line-height: 1.3;
   font-weight: 700;
   text-transform: none;
   letter-spacing: 0;
-  color: #324bbc;
+  color: cornflowerblue;
   transition: color 0.15s ease;
 }
 
@@ -119,7 +133,7 @@
   }
 
   .articleList {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
   }
 }
