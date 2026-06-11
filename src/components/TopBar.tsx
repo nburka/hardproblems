@@ -20,6 +20,16 @@ export default function TopBar() {
       >
         Job board
       </Link>
+      {/* Temporarily hidden from the main nav while the Articles section
+          is in active development. Restore when ready to launch. */}
+      {/* <Link
+        href="/articles"
+        className={`link ${
+          pathname.startsWith('/articles') ? 'active' : ''
+        }`}
+      >
+        Articles
+      </Link> */}
       <Link
         href="/podcast"
         className={`link ${pathname === '/podcast' ? 'active' : ''}`}

@@ -170,10 +170,57 @@ p.indent {
   padding-left: 2em;
 }
 
-p em {
+p em.highlight {
   background: lemonchiffon;
   font-weight: 400;
   padding: 0 2px;
+}
+
+/* Copy-to-clipboard button injected as the next sibling of every <pre> by
+   the CodeBlockCopyButtons client component. Sits in normal block flow
+   below the code block, right-aligned within the column. */
+
+/* Small 0.5em gap between the <pre> and its copy button so they read as
+   a connected unit without touching. */
+pre:has(+ .code-copy-button) {
+  margin-bottom: 0.5em;
+}
+
+.code-copy-button {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  margin: 0 0 1.5rem auto;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
+  background: #231f20;
+  color: #fff;
+  border: 1px solid #231f20;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.code-copy-button:hover,
+.code-copy-button:focus {
+  background: #000;
+  border-color: #000;
+  outline: none;
+}
+
+.code-copy-button.copied {
+  background: #2f8b53;
+  border-color: #2f8b53;
+}
+
+.code-copy-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 p b,

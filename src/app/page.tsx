@@ -28,8 +28,10 @@ export default async function Home() {
         <h3>Our mission</h3>
         <p>
           We are a non-profit that helps designers to work on the hard problems
-          that matter in the world: problems like <em>public health</em>,{' '}
-          <em>climate change</em>, and <em>good government</em>.
+          that matter in the world: problems like{' '}
+          <em className="highlight">public health</em>,{' '}
+          <em className="highlight">climate change</em>, and{' '}
+          <em className="highlight">good government</em>.
         </p>
         <p>
           While the loudest part of the tech world is focused on AI, crypto,

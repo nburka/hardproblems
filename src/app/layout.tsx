@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TopBar from '../components/TopBar';
+import CodeBlockCopyButtons from '../components/CodeBlockCopyButtons';
 import PostHogProvider from '../components/PostHogProvider';
 import './globals.css';
 
@@ -47,6 +48,7 @@ export default function RootLayout({
             </h1>
             <div className="container">{children}</div>
           </div>
+          <CodeBlockCopyButtons />
         </PostHogProvider>
       </body>
     </html>
