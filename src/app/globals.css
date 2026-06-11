@@ -176,6 +176,17 @@ p em.highlight {
   padding: 0 2px;
 }
 
+/* General highlight class — works on any inline element (strong, b, span,
+   etc.) inside a paragraph. Adds the same lemonchiffon background as the
+   em.highlight rule above without forcing a font-weight change, so bold
+   highlighted text stays bold. */
+p strong.highlight,
+p b.highlight,
+p span.highlight {
+  background: lemonchiffon;
+  padding: 0 2px;
+}
+
 /* Copy-to-clipboard button injected as the next sibling of every <pre> by
    the CodeBlockCopyButtons client component. Sits in normal block flow
    below the code block, right-aligned within the column. */
@@ -200,7 +211,7 @@ pre:has(+ .code-copy-button) {
   background: #231f20;
   color: #fff;
   border: 1px solid #231f20;
-  border-radius: 6px;
+  border-radius: 100px;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
@@ -224,8 +235,14 @@ pre:has(+ .code-copy-button) {
 }
 
 p b,
-li b {
-  font-weight: 500;
+p strong,
+li b,
+li strong {
+  font-weight: 600;
+}
+
+ol > li {
+  margin: 0.75em 0;
 }
 
 p a,

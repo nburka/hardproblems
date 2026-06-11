@@ -150,14 +150,7 @@
     margin: 0 0 1.2rem 0;
   }
 
-  // Browser default for <strong>/<b> is `bold` (700). Bump it heavier
-  // here so emphasised words pop more against the body text.
-  strong,
-  b {
-    font-weight: 800;
-  }
-
-  // Match the site-wide link styling (cornflowerblue, no underline,
+// Match the site-wide link styling (cornflowerblue, no underline,
   // darkblue on hover) instead of the underlined deep-blue used elsewhere
   // in this stylesheet.
   a,
@@ -171,14 +164,47 @@
     color: darkblue;
   }
 
+  // Reusable black pill-button styling — same look as the code-block
+  // "Copy" button and the homepage "See all jobs" button. Add `{.black-button}`
+  // to a markdown link to apply: `[Click me](https://...){.black-button}`.
+  // Explicit :visited and `a` selectors override the link-color rules above.
+  a:global(.black-button),
+  a:global(.black-button):visited {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1;
+    background: #231f20;
+    color: #fff;
+    border: 1px solid #231f20;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  a:global(.black-button):hover,
+  a:global(.black-button):focus {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+  }
+
   ul,
   ol {
     margin: 0 0 1.2rem 0;
     padding-left: 1.5rem;
+  }
 
-    li {
-      margin: 0.3rem 0;
-    }
+  ul > li {
+    margin: 0.3rem 0;
+  }
+
+  ol > li {
+    margin: 0.75em 0;
   }
 
   blockquote {
@@ -337,7 +363,7 @@
     display: block;
     max-width: 100%;
     height: auto;
-    margin: 1.5rem 0;
+    margin: 2em 0;
   }
 
   // {.float-right} on images in markdown (handled by markdown-it-attrs)

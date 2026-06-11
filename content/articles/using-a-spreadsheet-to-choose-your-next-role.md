@@ -61,7 +61,7 @@ When the stakes are high, I turn to a simple framework: a weighted scoring sprea
 
 The idea is simple: Create a rubric of what matters to you right now, assign a weight to each metric, and then score any potential job (or even your made-up dream job) against it.
 
-Get our free ["Job Rank" Template](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/edit?gid=0#gid=0)
+<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/edit?gid=0#gid=0">Get the free "Job Rank" template <span aria-hidden="true">→</span></a>
 
 [![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/edit?gid=0#gid=0)
 
@@ -73,7 +73,7 @@ This is the hardest part. You need to diagnose what genuinely brings you fulfill
 
 Try to be thoughtful about your values, but also don't agonize over them. You can always change them while you're scoring job opportunities if you find the scores don't align with your gut feelings.
 
-- **Action:** Spend time journaling or talking with trusted friends. Look back at past jobs—what made you happiest to go to work?
+**Action:**{.highlight} Spend time journaling or talking with trusted friends. Look back at past jobs—what made you happiest to go to work?
 
 The template has a suggested list, but your values will be unique. Here are some common ones:
 
@@ -95,12 +95,12 @@ The template has a suggested list, but your values will be unique. Here are some
 
 Not all values are equal. In different chapters of my life, the importance of _Money_ shifted dramatically. Maybe today, _Commute Time_ is critical (5/5), while _Working on Interesting Technology_ is just a nice-to-have (3/5).
 
-**Action:** Use a 1 to 5 scale, where 5 is the most important value. This multiplier is what gives the framework its power.
+**Action:**{.highlight} Use a 1 to 5 scale, where 5 is the most important value. This multiplier is what gives the framework its power.
 
 ## Step 3: Score the roles (The Data) {#step-3-score-the-roles}
 
 Now, take every role you're considering and score each value. You'll have to make educated guesses for some scores. The spreadsheet does the math: (Score × Weight) = Weighted Score out of 100
 
-**Action:** The role with the highest total weighted score is the one most aligned with your current life priorities.
+**Action:**{.highlight} The role with the highest total weighted score is the one most aligned with your current life priorities.
 
 In an industry defined by moving fast and breaking things, this framework is your anchor. It gives you an objective metric for a deeply subjective life decision. Use it to choose your next chapter wisely.

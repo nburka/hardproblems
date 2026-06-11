@@ -105,8 +105,36 @@
 }
 
 .seeAll {
-  margin: 0.8rem 0 0 0;
-  font-size: 0.9rem;
+  margin: 1rem 0 0 0;
+  text-align: right;
+}
+
+// Black pill button matching the code-block "Copy" button styling. The
+// anchor is the actual button — the wrapping <p> only controls layout
+// spacing above it.
+.seeAll a,
+.seeAll a:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
+  background: #231f20;
+  color: #fff;
+  border: 1px solid #231f20;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.seeAll a:hover,
+.seeAll a:focus {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  text-decoration: none;
 }
 
 // Hover tooltip with the company description, mirroring the /jobs page.
