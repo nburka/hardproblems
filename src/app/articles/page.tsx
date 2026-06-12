@@ -23,7 +23,7 @@ export default async function ArticlesPage() {
   const remainingArticles = articles.slice(1);
 
   const jobs = await fetchJobs();
-  const recentJobs = jobs.slice(0, 6);
+  const recentJobs = jobs.slice(0, 5);
 
   return (
     <>

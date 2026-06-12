@@ -66,6 +66,19 @@
   margin-bottom: 0.2rem;
 }
 
+// Small uppercase kicker label above the title showing the job's sector
+// (e.g. "Healthcare", "Public health"). Sets the category for the role
+// before the reader scans the title and meta line.
+.sectorKicker {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: #2f8b53;
+  margin-bottom: 0.2rem;
+}
+
 .titleLine {
   margin: 0 0 0.15rem 0;
 }
@@ -107,8 +120,23 @@
 }
 
 .seeAll {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin: 1rem 0 0 0;
-  text-align: left;
+  flex-wrap: wrap;
+}
+
+// Description text sitting to the left of the "See all jobs" button.
+// flex: 1 lets it take the remaining row width; min-width: 0 prevents
+// long words from pushing the button off the edge.
+.seeAllText {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #555;
 }
 
 // Black pill button matching the code-block "Copy" button styling. The
