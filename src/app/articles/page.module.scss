@@ -164,7 +164,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem 2rem;
   }
+}
 
+@media only screen and (min-width: 1000px) {
   .heroJobs {
     display: block;
     padding-top: 1em;
