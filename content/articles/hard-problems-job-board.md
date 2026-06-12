@@ -51,12 +51,12 @@ _We created a job board with hundreds of design jobs related to climate change, 
 
 ![Ikigai diagram showing the four overlapping qualities of an ideal job](/images/content/hard-problems-job-board-ikigai.png){.float-right}
 
-In the classic Japanese [Ikigai framework](https://imagine.jhu.edu/resources/ikigai/), the ideal job must possess at least four key qualities — it should be:
+In the classic Japanese [Ikigai framework](https://imagine.jhu.edu/resources/ikigai/), the ideal job must possess at least four key qualities:
 
-- Fits your passions
-- Stretches your skills
-- Economically viable
-- <mark>Positively impacts the world</mark>
+- Fit your passions
+- Stretch your skills
+- Pay well
+- <mark>Positively impact the world</mark>
 
 As might already be blindingly obvious to you, finding even a single opportunity that ticks all of these boxes can be a tall order. That's why, earlier this month, we launched the [Hard Problems job board](https://www.hardproblems.com/jobs).
 
