@@ -7,8 +7,8 @@ excerpt: 'We launched a curated job board with hundreds of design, product, rese
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
 
-publishedAt: '2026-06-11'
-updatedAt: '2026-06-11'
+publishedAt: '2026-06-12'
+updatedAt: '2026-06-12'
 
 status: 'published' # draft | review | published
 
