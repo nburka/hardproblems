@@ -179,6 +179,8 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
     'Books we’ve read on impact-driven careers and the work that matters.',
   framework:
     'Practical tools and rubrics for thinking through impact-driven work.',
+  opinion:
+    'Personal takes on careers, design, and the work that matters.',
   podcast:
     'Conversations with designers working on hard problems.'
 };
