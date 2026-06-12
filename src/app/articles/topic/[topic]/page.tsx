@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ArticleCard from '../../../../components/ArticleCard';
-import { Footer } from '../../../../components/Footer';
-import { getAllArticles, topicDisplay } from '../../../../lib/articles';
-import styles from '../../page.module.scss';
+import ArticleListSection from '../../../../components/ArticleListSection';
+import {
+  getAllArticles,
+  topicDisplay
+} from '../../../../lib/articles';
 
 type Props = { params: Promise<{ topic: string }> };
 
@@ -37,20 +38,14 @@ export default async function TopicPage({ params }: Props) {
   const label = topicDisplay(topic);
 
   return (
-    <>
-      <section className={styles.articles}>
-        <h2>{label}</h2>
-        <p className="intro">
+    <ArticleListSection
+      heading={label}
+      intro={
+        <>
           Articles tagged <strong>{label}</strong>.
-        </p>
-
-        <ul className={styles.articleList}>
-          {articles.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
-          ))}
-        </ul>
-      </section>
-      <Footer />
-    </>
+        </>
+      }
+      articles={articles}
+    />
   );
 }

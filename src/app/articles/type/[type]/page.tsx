@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ArticleCard from '../../../../components/ArticleCard';
-import { Footer } from '../../../../components/Footer';
+import ArticleListSection from '../../../../components/ArticleListSection';
 import {
   articleTypeSlug,
   getAllArticles,
   pluralize
 } from '../../../../lib/articles';
-import styles from '../../page.module.scss';
 
 type Props = { params: Promise<{ type: string }> };
 
@@ -50,20 +48,14 @@ export default async function TypePage({ params }: Props) {
   const label = pluralize(articles[0].articleType);
 
   return (
-    <>
-      <section className={styles.articles}>
-        <h2>{label}</h2>
-        <p className="intro">
+    <ArticleListSection
+      heading={label}
+      intro={
+        <>
           All <strong>{label.toLowerCase()}</strong> from Hard Problems.
-        </p>
-
-        <ul className={styles.articleList}>
-          {articles.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
-          ))}
-        </ul>
-      </section>
-      <Footer />
-    </>
+        </>
+      }
+      articles={articles}
+    />
   );
 }

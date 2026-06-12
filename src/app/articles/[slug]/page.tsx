@@ -88,44 +88,7 @@ export default async function ArticlePage({ params }: Props) {
                 </>
               )}
           </p>
-          <p className={styles.byline}>
-            {article.author &&
-              (() => {
-                const authorUrl = getAuthorUrl(article.author);
-                const name = <strong>{article.author}</strong>;
-                return (
-                  <>
-                    By{' '}
-                    {authorUrl ? (
-                      <Link
-                        href={authorUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={styles.authorLink}
-                      >
-                        {name}
-                      </Link>
-                    ) : (
-                      name
-                    )}
-                  </>
-                );
-              })()}
-            {article.author && article.publishedAt && (
-              <span aria-hidden="true"> · </span>
-            )}
-            {article.publishedAt && (
-              <time dateTime={article.publishedAt}>
-                {formatPublishedDate(article.publishedAt)}
-              </time>
-            )}
-            {article.readingTime ? (
-              <>
-                <span aria-hidden="true"> · </span>
-                <span>{article.readingTime} min read</span>
-              </>
-            ) : null}
-          </p>
+          <ArticleByline article={article} />
         </div>
 
         <article className={styles.article}>
@@ -160,5 +123,60 @@ export default async function ArticlePage({ params }: Props) {
       </section>
       <Footer />
     </>
+  );
+}
+
+// Byline row shown in the article's top bar: "By <Author> · <Date> · N min read".
+// Each piece is conditional, so the dot separators only appear between pieces
+// that are actually rendered. Author becomes a link when we have a URL for them.
+function ArticleByline({
+  article
+}: {
+  article: ReturnType<typeof getArticleBySlug>;
+}) {
+  if (!article) return null;
+  const authorUrl = article.author ? getAuthorUrl(article.author) : null;
+  const parts: React.ReactNode[] = [];
+
+  if (article.author) {
+    const name = <strong>{article.author}</strong>;
+    parts.push(
+      <span key="author">
+        By{' '}
+        {authorUrl ? (
+          <Link
+            href={authorUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.authorLink}
+          >
+            {name}
+          </Link>
+        ) : (
+          name
+        )}
+      </span>
+    );
+  }
+  if (article.publishedAt) {
+    parts.push(
+      <time key="date" dateTime={article.publishedAt}>
+        {formatPublishedDate(article.publishedAt)}
+      </time>
+    );
+  }
+  if (article.readingTime) {
+    parts.push(<span key="read">{article.readingTime} min read</span>);
+  }
+
+  return (
+    <p className={styles.byline}>
+      {parts.map((part, i) => (
+        <span key={i}>
+          {i > 0 && <span aria-hidden="true"> · </span>}
+          {part}
+        </span>
+      ))}
+    </p>
   );
 }
