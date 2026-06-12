@@ -72,6 +72,8 @@ Today, the board comprises hundreds of full-time design, product, user research,
 
 We use a scoring algorithm to rank each organization according to how well it aligns with the values of our community. This scoring is based on frameworks like the [Effective Altruism framework](https://80000hours.org/articles/problem-framework/) for comparing global problems in terms of expected impact and is weighted towards non-profits, the public sector, and companies with explicit goals to make the world better. The ranking also takes into account the World Health Organization's [Sustainable Development Goals](https://sdgs.un.org/goals).
 
+<img src="/images/content/hard-problems-pick.png" alt="Hard Problems Pick badge" width="180" style="margin-left: 0; transform: none;" />
+
 Jobs that score highest are labeled with a "Hard Problems Pick" badge. Typically, these are roles at charities and government agencies (or government-adjacent organizations) that we respect. For-good, for-profit companies like [Cradle](https://www.cradle.bio) (healthcare), [Watershed](https://watershed.com/en-GB) (climate change), and [Scale to Win](https://www.scaletowin.com) (good government) also feature.
 
 We've built this board to reduce the time it takes for you to find an exciting opportunity that combines good work with positive social outcomes.
