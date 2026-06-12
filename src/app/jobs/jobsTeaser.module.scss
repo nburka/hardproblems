@@ -4,8 +4,14 @@
 
 .row {
   position: relative;
-  padding: calc(0.7rem + 8px) 0;
-  border-bottom: 1px solid #ebf7f0;
+  padding: calc(0.5rem + 6px) 0;
+  border-top: 1px solid #d9eee2;
+}
+
+// Closes off the bottom of the last row so every job sits between two
+// visible lines.
+.row:last-of-type {
+  border-bottom: 1px solid #d9eee2;
 }
 
 .icon {
@@ -49,10 +55,6 @@
     background: transparent;
     display: block;
   }
-}
-
-.row:last-of-type {
-  border-bottom: none;
 }
 
 .date {
@@ -106,7 +108,7 @@
 
 .seeAll {
   margin: 1rem 0 0 0;
-  text-align: right;
+  text-align: left;
 }
 
 // Black pill button matching the code-block "Copy" button styling. The

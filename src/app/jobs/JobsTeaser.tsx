@@ -64,7 +64,16 @@ function formatRelativeDate(date: Date): string {
   return `in ${-diffDays} days`;
 }
 
-export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
+export default function JobsTeaser({
+  jobs,
+  totalCount
+}: {
+  jobs: SerializedJob[];
+  // Total number of visible jobs across the whole board. When provided,
+  // the "See all jobs" button reads "See all N jobs" instead. Optional so
+  // existing callers that don't pass it keep their current button text.
+  totalCount?: number;
+}) {
   const posthog = usePostHog();
 
   const trackJobClick = (job: SerializedJob, source: ClickSource) => {
@@ -199,7 +208,10 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
       })}
       <p className={styles.seeAll}>
         <Link href="/jobs">
-          See all jobs <span aria-hidden="true">&rarr;</span>
+          {typeof totalCount === 'number'
+            ? `See all ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
+            : 'See all jobs'}{' '}
+          <span aria-hidden="true">&rarr;</span>
         </Link>
       </p>
     </div>
