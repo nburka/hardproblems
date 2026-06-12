@@ -1,18 +1,18 @@
 ---
-title: "The missing piece in your design career"
-slug: "missing-piece-design-career"
+title: 'The missing piece in your design career'
+slug: 'missing-piece-design-career'
 
 excerpt: "Many senior technologists feel unfulfilled despite great pay and interesting work. The Ikigai framework points to what's missing — and to a way back to meaningful work."
 
-author: "Daniel Burka"
-authorSlug: "daniel-burka"
+author: 'Daniel Burka'
+authorSlug: 'daniel-burka'
 
-publishedAt: "2026-06-11"
-updatedAt: "2026-06-11"
+publishedAt: '2026-06-11'
+updatedAt: '2026-06-11'
 
-status: "published" # draft | review | published
+status: 'published' # draft | review | published
 
-articleType: "Opinion" # Article | Book Review | Podcast | Opinion
+articleType: 'Opinion' # Article | Book Review | Podcast | Opinion
 
 topics:
   - careers
@@ -30,25 +30,24 @@ readingTime: 3
 
 featured: false
 
-image: "/images/content/thumb-daniel-burka-piece.jpg"
-imageAlt: "Ikigai Venn diagram showing the four overlapping circles of a fulfilling career"
+image: '/images/content/thumb-daniel-burka-piece.jpg'
+imageAlt: 'Ikigai Venn diagram showing the four overlapping circles of a fulfilling career'
 
-seoTitle: "The Missing Piece in Your Design Career"
-seoDescription: "Many senior designers and technologists feel burned out despite great salaries. The Japanese concept of ikigai reveals why — and what to do about it."
+seoTitle: 'The Missing Piece in Your Design Career'
+seoDescription: 'Many senior designers and technologists feel burned out despite great salaries. The Japanese concept of ikigai reveals why — and what to do about it.'
 
-canonicalUrl: ""
-
+canonicalUrl: ''
 ---
 
 # The missing piece in your design career {#missing-piece-design-career}
 
-*Why passion, skill, and money aren't enough.*{.intro}
+_Why passion, skill, and money aren't enough._{.intro}
 
 Every few months, someone in my LinkedIn network proudly announces they've left the tech world behind. They're excited about a new life as a potter, or they plan to surf in Costa Rica for the next few years.
 
 Don't get me wrong, part of me is genuinely happy for them. But I also feel a twinge of disappointment. Another highly skilled person, someone who benefited from decades of strong tech salaries and opportunities, is checking out of the field for good. They often express relief at leaving the corporate grind.
 
-It may be a bit cliché, but the Japanese concept of ikigai — often translated as "reason for being" — helps explain why so many senior technologists feel unfulfilled and burned out, despite all the objectively great parts of a tech career.
+It may be a bit cliché, but the Japanese concept of [ikigai](https://en.wikipedia.org/wiki/Ikigai) — often translated as "reason for being" — helps explain why so many senior technologists feel unfulfilled and burned out, despite all the objectively great parts of a tech career.
 
 ![Ikigai Venn diagram showing the four overlapping circles: what you love, what you are good at, what you can be paid for, and what the world needs](/images/content/daniel-burka-ikigai.png)
 
@@ -66,4 +65,8 @@ If you're looking for your next career move, maybe we can help. At Hard Problems
 - ["Job Rank" framework](https://www.hardproblems.com/articles/use-a-spreadsheet-to-choose-your-next-role) you might find useful for choosing your next career move
 - [Tips for using LinkedIn](https://www.hardproblems.com/articles/tricks-find-meaningful-job-linkedin) to find your next role
 
-*Daniel Burka, Co-founder of Hard Problems*
+I can also recommend a few books. I think [Moral Ambition](/articles/moral-ambition-rutger-bregman) makes a strong case for why you should dedicate your life to a larger purpose. [80,000 Hours](https://80000hours.org/career-guide/) will give you a good framework for deciding where to apply your skills (though don't get too drawn in by some of their arguments about money), and [Geek Heresy](https://geekheresy.org/) provides a sensible foundation for thinking what tech can and can't do to make the world better.
+
+I truly hope you make the jump.
+
+_Daniel Burka, Co-founder of Hard Problems_

@@ -8,7 +8,7 @@ import JobsTeaser from './jobs/JobsTeaser';
 
 export default async function Home() {
   const jobs = await fetchJobs();
-  const recentJobs = jobs.slice(0, 5);
+  const recentJobs = jobs.slice(0, 6);
   return (
     <>
       <section className="left">
@@ -127,7 +127,7 @@ export default async function Home() {
           We follow job boards that feature careers for designers working on
           hard problems.
         </p>
-        <JobsTeaser jobs={recentJobs} />
+        <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
 
         <h3 className="divider">Team</h3>
         <p>

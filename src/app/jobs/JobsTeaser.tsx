@@ -43,28 +43,17 @@ function GlobeIcon({ className }: { className?: string }) {
   );
 }
 
-function formatRelativeDate(date: Date): string {
-  const now = new Date();
-  const todayUTC = Date.UTC(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDate()
-  );
-  const jobUTC = Date.UTC(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate()
-  );
-  const diffDays = Math.round((todayUTC - jobUTC) / 86400000);
 
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
-  if (diffDays > 1) return `${diffDays} days ago`;
-  if (diffDays === -1) return 'Tomorrow';
-  return `in ${-diffDays} days`;
-}
-
-export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
+export default function JobsTeaser({
+  jobs,
+  totalCount
+}: {
+  jobs: SerializedJob[];
+  // Total number of visible jobs across the whole board. When provided,
+  // the "See all jobs" button reads "See all N jobs" instead. Optional so
+  // existing callers that don't pass it keep their current button text.
+  totalCount?: number;
+}) {
   const posthog = usePostHog();
 
   const trackJobClick = (job: SerializedJob, source: ClickSource) => {
@@ -86,7 +75,6 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
   return (
     <div className={styles.teaser}>
       {jobs.map((job, i) => {
-        const date = job.date ? new Date(job.date) : null;
         const location = [job.city, job.country]
           .filter((s) => s.trim().length > 0)
           .join(', ');
@@ -154,9 +142,6 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
               <div className={styles.icon}>{iconContents}</div>
             )}
             <div className={styles.content}>
-            {date && (
-              <small className={styles.date}>{formatRelativeDate(date)}</small>
-            )}
             <div className={styles.titleLine}>
               {job.url ? (
                 <Link
@@ -199,7 +184,10 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
       })}
       <p className={styles.seeAll}>
         <Link href="/jobs">
-          See all jobs <span aria-hidden="true">&rarr;</span>
+          {typeof totalCount === 'number'
+            ? `See all ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
+            : 'See all jobs'}{' '}
+          <span aria-hidden="true">&rarr;</span>
         </Link>
       </p>
     </div>

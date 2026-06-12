@@ -93,9 +93,11 @@ export default async function ArticlePage({ params }: Props) {
 
         <article className={styles.article}>
         <header className={styles.header}>
-          {article.articleType?.toLowerCase() === 'book review' && (
-            <p className={styles.preTitleLabel}>Book Review</p>
-          )}
+          {article.articleType &&
+            (article.articleType.toLowerCase() === 'book review' ||
+              article.articleType.toLowerCase() === 'opinion') && (
+              <p className={styles.preTitleLabel}>{article.articleType}</p>
+            )}
         </header>
 
         <div
