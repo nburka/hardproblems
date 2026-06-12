@@ -27,7 +27,7 @@ readingTime: 2
 
 featured: false
 
-image: "/images/content/moral-ambition-bregman.jpg"
+image: "/images/content/thumb-moral-ambition-bregman.jpg"
 imageAlt: "Placeholder image"
 
 seoTitle: ""
@@ -77,7 +77,7 @@ This is the first sentence inside a fenced code block. This is the second senten
 
 The next image has no `{.float-right}` class, so it should sit inline at full width inside the article column:
 
-![Placeholder inline image](/images/content/moral-ambition-bregman.jpg)
+![Placeholder inline image](/images/content/thumb-moral-ambition-bregman.jpg)
 
 After the image, normal paragraph flow continues. This paragraph follows directly after the inline image.
 

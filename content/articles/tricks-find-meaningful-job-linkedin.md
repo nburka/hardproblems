@@ -30,7 +30,7 @@ readingTime: 3
 
 featured: false
 
-image: '/images/content/tricks-find-meaningful-job-linkedin.jpg'
+image: '/images/content/thumb-tricks-find-meaningful-job-linkedin.jpg'
 imageAlt: 'LinkedIn search bar showing an AI-powered job query'
 
 seoTitle: 'Tricks to find a meaningful job on LinkedIn'

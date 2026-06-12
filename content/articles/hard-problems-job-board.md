@@ -36,7 +36,7 @@ readingTime: 4
 
 featured: false
 
-image: '/images/content/hard-problems-job-board.jpg'
+image: '/images/content/thumb-hard-problems-job-board.jpg'
 imageAlt: 'Screenshot of the Hard Problems job board for designers'
 
 seoTitle: 'Hard Problems Now Has a Job Board'

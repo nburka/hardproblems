@@ -32,7 +32,7 @@ readingTime: 5
 
 featured: false
 
-image: "/images/content/moral-ambition-bregman.jpg"
+image: "/images/content/thumb-moral-ambition-bregman.jpg"
 imageAlt: "Cover of Moral Ambition by Rutger Bregman"
 
 seoTitle: "Moral Ambition by Rutger Bregman — A Book Review"

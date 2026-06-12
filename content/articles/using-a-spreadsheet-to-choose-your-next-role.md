@@ -34,7 +34,7 @@ readingTime: 4
 
 featured: false
 
-image: '/images/content/job-rank-spreadsheet.jpg'
+image: '/images/content/thumb-job-rank-spreadsheet.jpg'
 imageAlt: 'A weighted-scoring spreadsheet comparing job offers against personal values'
 
 seoTitle: 'Use a Spreadsheet to Choose Your Next Role — The Job Rank Framework'

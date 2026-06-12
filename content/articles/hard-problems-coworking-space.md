@@ -36,7 +36,7 @@ readingTime: 4
 
 featured: false
 
-image: '/images/content/hard-problems-co-working-space.jpg'
+image: '/images/content/thumb-hard-problems-co-working-space.jpg'
 imageAlt: 'Hard Problems co-working space at 1 Rivington Place, East London'
 
 seoTitle: 'The Hard Problems Co-Working Space in East London'

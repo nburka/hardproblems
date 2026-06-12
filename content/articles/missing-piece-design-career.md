@@ -30,7 +30,7 @@ readingTime: 3
 
 featured: false
 
-image: "/images/content/daniel-burka-piece.jpg"
+image: "/images/content/thumb-daniel-burka-piece.jpg"
 imageAlt: "Ikigai Venn diagram showing the four overlapping circles of a fulfilling career"
 
 seoTitle: "The Missing Piece in Your Design Career"
