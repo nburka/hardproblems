@@ -37,6 +37,24 @@ function displayRole(role: string): string {
   return role;
 }
 
+// Pretty-print the sector tag shown on each job row. The raw sheet value
+// is kept for filter matching, analytics, and the sector-keyword matcher
+// in filters.ts — this only affects what the user sees on the tag.
+//   - "Health (Healthcare)"     → "Healthcare"
+//   - "Health (Public Health)"  → "Public health"
+//   - "Health (Personal Health)" → "Personal health"
+//   - "Good Government"         → "Good gov"
+function displaySector(sector: string): string {
+  const trimmed = sector.trim();
+  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
+  if (healthMatch) {
+    const inner = healthMatch[1].trim();
+    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
+  }
+  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
+  return trimmed;
+}
+
 const BULLET_SEPARATOR = '  •  ';
 
 
@@ -673,7 +691,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
                     )}
                     {job.sector && (
                       <span className={`tag ${styles.jobSector}`}>
-                        {job.sector}
+                        {displaySector(job.sector)}
                       </span>
                     )}
                     {typeLabel && (

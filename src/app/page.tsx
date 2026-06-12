@@ -8,7 +8,7 @@ import JobsTeaser from './jobs/JobsTeaser';
 
 export default async function Home() {
   const jobs = await fetchJobs();
-  const recentJobs = jobs.slice(0, 6);
+  const recentJobs = jobs.slice(0, 5);
   return (
     <>
       <section className="left">
@@ -122,11 +122,7 @@ export default async function Home() {
         </p>
         <NewsletterForm />
 
-        <h3 className="divider">Job board</h3>
-        <p>
-          We follow job boards that feature careers for designers working on
-          hard problems.
-        </p>
+        <h3 className="divider">New jobs</h3>
         <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
 
         <h3 className="divider">Team</h3>

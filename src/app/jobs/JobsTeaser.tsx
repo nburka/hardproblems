@@ -22,6 +22,20 @@ function buildFaviconUrl(rawUrl: string): string | null {
   }
 }
 
+// Pretty-print the sector for display. Mirrors the helper in JobsList.tsx
+// so the homepage and /articles previews simplify the same way the full
+// board does (e.g. "Health (Public Health)" → "Public health").
+function displaySector(sector: string): string {
+  const trimmed = sector.trim();
+  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
+  if (healthMatch) {
+    const inner = healthMatch[1].trim();
+    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
+  }
+  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
+  return trimmed;
+}
+
 function GlobeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -98,12 +112,6 @@ export default function JobsTeaser({
             node: <span className={styles.location}>{location}</span>
           });
         }
-        if (job.sector) {
-          metaParts.push({
-            key: 'sector',
-            node: <span className={styles.sector}>{job.sector}</span>
-          });
-        }
         const faviconUrl = buildFaviconUrl(job.companyUrl);
         const companyHref = job.companyUrl
           ? job.companyUrl.startsWith('http')
@@ -142,6 +150,11 @@ export default function JobsTeaser({
               <div className={styles.icon}>{iconContents}</div>
             )}
             <div className={styles.content}>
+            {job.sector && (
+              <div className={styles.sectorKicker}>
+                {displaySector(job.sector)}
+              </div>
+            )}
             <div className={styles.titleLine}>
               {job.url ? (
                 <Link
@@ -182,14 +195,18 @@ export default function JobsTeaser({
           </div>
         );
       })}
-      <p className={styles.seeAll}>
+      <div className={styles.seeAll}>
+        <p className={styles.seeAllText}>
+          We follow job boards that feature roles for senior designers
+          working on hard problems.
+        </p>
         <Link href="/jobs">
           {typeof totalCount === 'number'
             ? `See all ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
             : 'See all jobs'}{' '}
           <span aria-hidden="true">&rarr;</span>
         </Link>
-      </p>
+      </div>
     </div>
   );
 }
