@@ -182,15 +182,32 @@
     border: 1px solid #231f20;
     border-radius: 100px;
     text-decoration: none;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  // Arrow/icon inside the button (any inline child) slides right on hover.
+  a:global(.black-button) > span {
+    transition: transform 0.2s ease;
   }
 
   a:global(.black-button):hover,
   a:global(.black-button):focus {
-    background: #000;
+    background: #235337;
     color: #fff;
-    border-color: #000;
+    border-color: #235337;
+    box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+    transform: translateY(-1px);
     text-decoration: none;
+    outline: none;
+  }
+
+  a:global(.black-button):hover > span,
+  a:global(.black-button):focus > span {
+    transform: translateX(3px);
   }
 
   ul,

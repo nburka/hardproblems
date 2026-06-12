@@ -187,6 +187,16 @@ p span.highlight {
   padding: 0 2px;
 }
 
+/* Standard HTML <mark> element — matches the highlight style above so
+   `<mark>text</mark>` in markdown produces the same yellow-highlighted
+   token treatment. Lets authors highlight outside of <p> too (e.g. in
+   list items, headings, etc.). */
+mark {
+  background: lemonchiffon;
+  color: inherit;
+  padding: 0 2px;
+}
+
 /* Copy-to-clipboard button injected as the next sibling of every <pre> by
    the CodeBlockCopyButtons client component. Sits in normal block flow
    below the code block, right-aligned within the column. */
@@ -213,13 +223,19 @@ pre:has(+ .code-copy-button) {
   border: 1px solid #231f20;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .code-copy-button:hover,
 .code-copy-button:focus {
-  background: #000;
-  border-color: #000;
+  background: #235337;
+  border-color: #235337;
+  box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+  transform: translateY(-1px);
   outline: none;
 }
 

@@ -61,9 +61,9 @@ When the stakes are high, I turn to a simple framework: a weighted scoring sprea
 
 The idea is simple: Create a rubric of what matters to you right now, assign a weight to each metric, and then score any potential job (or even your made-up dream job) against it.
 
-<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/edit?gid=0#gid=0">Get the free "Job Rank" template <span aria-hidden="true">→</span></a>
+<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get the free "Job Rank" template <span aria-hidden="true">→</span></a>
 
-[![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/edit?gid=0#gid=0)
+[![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy)
 
 Here's a quick-start guide to the "Job Rank" template:
 

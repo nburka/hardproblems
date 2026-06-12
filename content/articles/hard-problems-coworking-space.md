@@ -47,7 +47,7 @@ canonicalUrl: ''
 
 # Welcome to the Hard Problems co-working space {#welcome-to-the-hard-problems-coworking-space}
 
-_Situated in East London, our co-working space is open to anybody working on the world's most pressing challenges._{.intro}
+_Situated in East London, our [co-working space](/coworking) is open to anybody working on the world's most pressing challenges._{.intro}
 
 ![Illustration that says JOIN US](/images/content/hard-problems-co-working-space-join.png){.float-right}
 
@@ -58,6 +58,8 @@ In 2010, then-Prime Minister [David Cameron](https://en.wikipedia.org/wiki/David
 Tucked inside the building at [1 Rivington Place](https://maps.app.goo.gl/hY6Po1WZ7VYq6Vot7), our intimate co-working space has already welcomed a range of ambitious teams solving big, complex challenges. We also use the space to facilitate events and workshops for the wider Hard Problems community. For example, we celebrated _International Women's Day_ in March with a dinner that brought together 20 exceptional women working to make the world more equitable. (You can learn more about the events we've recently organized at the bottom of this page.)
 
 The space itself is filled with natural light and kitted out with private meeting pods, desks, and a big communal table. Top-notch coffee is a given, and you'll find on our bookshelf a collection of works that have helped inform our collective worldview. If you're working on an urgent issue related to climate change, public health, health care, education, or poverty, or are addressing any of the United Nations' [Sustainable Development Goals](https://sdgs.un.org/goals) through your work, [get in touch](https://www.hardproblems.com/coworking).
+
+<a class="black-button" href="https://www.hardproblems.com/coworking">See pricing and criteria… <span aria-hidden="true">→</span></a>
 
 ## The intersection of technology, community, and impact {#intersection-of-technology-community-and-impact}
 

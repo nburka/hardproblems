@@ -198,7 +198,9 @@ export default function JobsTeaser({ jobs }: { jobs: SerializedJob[] }) {
         );
       })}
       <p className={styles.seeAll}>
-        <Link href="/jobs">See all jobs &rarr;</Link>
+        <Link href="/jobs">
+          See all jobs <span aria-hidden="true">&rarr;</span>
+        </Link>
       </p>
     </div>
   );
