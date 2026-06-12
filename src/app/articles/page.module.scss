@@ -136,39 +136,57 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem 2rem;
   }
+}
 
-  // Hero treatment for the newest article (which is first in the list
-  // since getAllArticles() sorts newest-first). Spans all three grid
-  // columns and switches to a horizontal image-left / content-right
-  // layout with larger title and excerpt text.
-  .articleCard:first-child {
-    grid-column: 1 / -1;
-    margin-bottom: 1.5rem;
+// Hero row at the top of /articles — newest article on the left, a
+// compact job-board teaser on the right. Stacks vertically on mobile,
+// becomes a 2-column grid at desktop with the hero card taking more
+// horizontal space.
+.heroRow {
+  margin-bottom: 3rem;
+}
+
+.heroList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.heroList > .articleCard {
+  margin: 0;
+}
+
+// Hide the entire Newest jobs panel on mobile — it eats too much vertical
+// space below the hero article. Re-enabled at desktop in the @media block.
+.heroJobs {
+  display: none;
+}
+
+.heroJobs h3 {
+  margin: 0 0 1rem 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  .heroJobs {
+    display: block;
   }
 
-  .articleCard:first-child .articleCardLink {
-    grid-template-columns: 1.4fr 1fr;
-    align-items: center;
-    gap: 2.5rem;
+  .heroRow {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
   }
 
-  // Constrain the hero text column to 80% of its allotted width so the
-  // title and excerpt feel deliberately compact rather than filling every
-  // pixel of the column. The remaining 20% becomes intentional breathing
-  // room on the right.
-  .articleCard:first-child .articleCardBody {
-    max-width: 80%;
-  }
-
-  .articleCard:first-child .articleCardTitle {
-    font-size: 2rem;
+  // Slightly larger title and excerpt on the hero card so it reads with
+  // proper weight against the jobs panel on its right.
+  .heroList .articleCardTitle {
+    font-size: 1.6rem;
     line-height: 1.2;
-    margin-top: 0.4rem;
   }
 
-  .articleCard:first-child .articleCardExcerpt {
-    font-size: 1.15rem;
+  .heroList .articleCardExcerpt {
+    font-size: 1.1rem;
     line-height: 1.45;
-    margin-top: 0.2rem;
   }
 }

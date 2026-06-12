@@ -127,7 +127,7 @@ export default async function Home() {
           We follow job boards that feature careers for designers working on
           hard problems.
         </p>
-        <JobsTeaser jobs={recentJobs} />
+        <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
 
         <h3 className="divider">Team</h3>
         <p>
