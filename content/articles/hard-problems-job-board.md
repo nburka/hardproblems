@@ -53,10 +53,14 @@ _We created a job board with hundreds of design jobs related to climate change, 
 
 In the classic Japanese [Ikigai framework](https://imagine.jhu.edu/resources/ikigai/), the ideal job must possess at least four key qualities:
 
+<div class="hand-drawn-checklist">
+
 - Fit your passions
-- Stretch your skills
+- Fit (and stretch) your skills
 - Pay well
 - <mark>Positively impact the world</mark>
+
+</div>
 
 As might already be blindingly obvious to you, finding even a single opportunity that ticks all of these boxes can be a tall order. That's why, earlier this month, we launched the [Hard Problems job board](https://www.hardproblems.com/jobs).
 
@@ -72,7 +76,7 @@ Jobs that score highest are labeled with a "Hard Problems Pick" badge. Typically
 
 We've built this board to reduce the time it takes for you to find an exciting opportunity that combines good work with positive social outcomes.
 
-> "This board feels trustworthy and is well curated," says Naomi, a product specialist based in London, UK.
+> "This board feels trustworthy and is well curated," says [Naomi Owolabi](https://www.linkedin.com/in/owolabinaomi/), a product specialist based in London
 
 ## More full-time, senior roles {#more-full-time-senior-roles}
 
