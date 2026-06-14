@@ -53,6 +53,8 @@ H2 headings should render at 1.3rem with generous top margin (`calc(2.5rem + 1em
 
 A second paragraph after the H2 to verify spacing. The intro paragraph above uses the `{.intro}` class, which gets the 22px body-style intro treatment — no italics, no yellow background.
 
+> “If I Had More Time, I Would Have Written a Shorter Letter” — Blaise Pascal
+
 ## A second H2 with an inline list
 
 Below is an unordered list to verify list styling:
