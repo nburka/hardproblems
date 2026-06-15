@@ -52,14 +52,18 @@ canonicalUrl: ''
 
 _Can't dedicate yourself full-time to working on a hard problem? Consider joining a charity as a volunteer in a strategic position._{.intro}
 
-> **Note:** The advice in this article is particularly for very senior designers. But if you're a junior designer, it's good to keep an eye on where you could be in 10–15 years.
+<div class="note">
+
+**Note:** The advice in this article is particularly for very senior designers. But if you're a junior designer, it's good to keep an eye on where you could be in 10–15 years.
+
+</div>
 
 In 2016, as a senior design leader in Silicon Valley, I had founded companies and led design at several startups before becoming a design partner at [Google Ventures](https://gv.com). Despite a rewarding career and salary, I felt a growing desire to contribute more to the tech and design community. I wasn't ready to leave Google, but I wanted to find a way to do something meaningful alongside my full-time role.
 
 During a vacation in Peru, I met several local designers, including [Jordi Tambillo](https://nl.linkedin.com/in/jorditambillo). Over a dinner of anticuchos, I asked Jordi and his friends about exciting local tech projects. They enthusiastically recommended a nonprofit called [Laboratoria](https://laboratoria.la) and its founder, [Mariana Costa Checa](https://en.wikipedia.org/wiki/Mariana_Costa_Checa). Laboratoria empowers women from underserved backgrounds in Latin America by training them for tech careers and securing long-term employment, thereby driving upward economic mobility. Even then, the organization was already achieving significant success.
 
 [![Laboratoria founder and CEO Mariana Costa Checa on stage with President Barack Obama and Mark Zuckerberg in 2016](/images/content/board-and-advisory-roles-laboratoria.jpg)](https://ylai.state.gov/her-cameo-with-obama-and-zuckerberg-makes-a-whole-country-proud-video/)
-_Laboratoria founder Mariana Costa Checa [on stage](https://ylai.state.gov/her-cameo-with-obama-and-zuckerberg-makes-a-whole-country-proud-video/) with President Barack Obama and Mark Zuckerberg in 2016_{.caption}
+_Laboratoria founder Mariana Costa Checa [on stage](https://ylai.state.gov/her-cameo-with-obama-and-zuckerberg-makes-a-whole-country-proud-video/) with President Obama and Mark Zuckerberg in 2016_{.caption}
 
 Jordi introduced me to Mariana and her co-founder, Herman. I soon visited the Laboratoria campus in Lima to meet the founding team and a class of young women learning front-end development. During our subsequent conversation about Laboratoria's goals, I was particularly impressed by their success criteria. They didn't just track graduation rates; they carefully monitored the placement rate of women in high-earning tech roles, as well as their long-term pay growth. Unlike many nonprofits, they weren't content with merely doing "some good." They were maximizing their impact to actively reshape the technology sector across Latin America.
 

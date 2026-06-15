@@ -132,13 +132,8 @@
     text-align: center;
     color: #666;
     font-style: italic;
-  }
-
-  // Pull the caption tight against the image above, and give it extra
-  // breathing room below before the next paragraph.
-  p:has(> em:global(.caption):only-child) {
     margin-top: -1.4rem;
-    margin-bottom: calc(1.2rem + 2em);
+    margin-bottom: 3rem;
   }
 
   // The article's title is now the body's H1 (so authors can use inline
@@ -177,7 +172,7 @@
     margin: 0 0 1.2rem 0;
   }
 
-// Match the site-wide link styling (cornflowerblue, no underline,
+  // Match the site-wide link styling (cornflowerblue, no underline,
   // darkblue on hover) instead of the underlined deep-blue used elsewhere
   // in this stylesheet.
   a,
@@ -260,6 +255,41 @@
     border-left: 3px solid #84d9a6;
     color: #444;
     font-style: italic;
+  }
+
+  // Note banner — yellow background with a lightbulb icon. Use by wrapping
+  // the content in `<div class="note">…</div>` in the markdown source.
+  :global(.note) {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    background: lemonchiffon;
+    border-left: 1px solid #e8c200;
+    padding: 1rem 1.25rem;
+    margin: 2em 0;
+    color: #231f20;
+    font-size: 0.95em;
+    line-height: 1.5;
+
+    // Lightbulb icon (feather-style outline) rendered as a background-image
+    // on a ::before pseudo-element so it scales with the banner.
+    &::before {
+      content: '';
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      margin-top: 0.1em;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23231f20' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14'/%3E%3C/svg%3E")
+        center / contain no-repeat;
+    }
+
+    // Reset margins on direct children so the banner stays a single tight block.
+    > p:first-child {
+      margin-top: 0;
+    }
+    > p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   // GFM tables (supported natively by markdown-it).
@@ -530,7 +560,7 @@
 }
 
 // Topic links inside .topics — keep the pill background from the global
-// `.tag` class but inherit its color instead of cornflowerblue, and lift
+// `.tag` class but inherit its colour instead of cornflowerblue, and lift
 // the underline so they read as tags rather than ordinary links.
 .topicTag,
 .topicTag:visited {
