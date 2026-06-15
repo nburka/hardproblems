@@ -2,7 +2,7 @@
 title: 'How to join a nonprofit board or advisory group'
 slug: 'join-nonprofit-board-or-advisory-group'
 
-excerpt: "Can't dedicate yourself full-time to a hard problem? A nonprofit board seat or advisory role is a way to contribute strategic skills alongside your day job — and, often, a stepping stone to full-time mission-driven work."
+excerpt: 'Can’t dedicate yourself full-time to working on a hard problem? Consider joining a charity as a volunteer in a strategic position.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
