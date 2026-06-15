@@ -67,7 +67,7 @@ LinkedIn has a new AI-powered [jobs search engine](https://www.linkedin.com/help
 
 ### Filter by recency {#filter-by-recency}
 
-By default, LinkedIn will include many stale roles. You will be more successful by finding roles that are <3 weeks old. In some cases, you'll also increase your odds of landing the role (many organisations hire on a rolling basis and review applications as they come in).
+By default, LinkedIn will include many stale roles. You will be more successful by finding roles that are <3 weeks old. In some cases, you'll also increase your odds of landing the role (many organizations hire on a rolling basis and review applications as they come in).
 
 </div>
 

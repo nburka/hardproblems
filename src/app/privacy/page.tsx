@@ -28,7 +28,7 @@ export default function Page() {
 
         <h3 className="space-top-large" id="info">What information we collect, use, and why</h3>
         <p>
-          We collect or use the following information to receive donations or funding and organise fundraising activities:
+          We collect or use the following information to receive donations or funding and organize fundraising activities:
           <br /><span className="tag">Names and contact details</span>
         </p>
         <p>
@@ -51,7 +51,7 @@ export default function Page() {
           <li><b>Your right to erasure</b> - You have the right to ask us to delete your personal information. You can read more about this right here.</li>
           <li><b>Your right to restriction of processing</b> - You have the right to ask us to limit how we can use your personal information. You can read more about this right here.</li>
           <li><b>Your right to object to processing</b> - You have the right to object to the processing of your personal data. You can read more about this right here.</li>
-          <li><b>Your right to data portability</b> - You have the right to ask that we transfer the personal information you gave us to another organisation, or to you. You can read more about this right here.</li>
+          <li><b>Your right to data portability</b> - You have the right to ask that we transfer the personal information you gave us to another organization, or to you. You can read more about this right here.</li>
           <li><b>Your right to withdraw consent</b> – When we use consent as our lawful basis you have the right to withdraw your consent at any time. You can read more about this right here.</li>
         </ul>
         <p>If you make a request, we must respond to you without undue delay and in any event within one month.</p>
@@ -60,7 +60,7 @@ export default function Page() {
         <div className="feature">
           <h3>Our lawful bases for the collection and use of your data</h3>
 
-          <p>Our lawful bases for collecting or using personal information to <b>receive funding and organise fundraising activities</b> are:</p>
+          <p>Our lawful bases for collecting or using personal information to <b>receive funding and organize fundraising activities</b> are:</p>
           <p className="indent">Consent - we have permission from you after we gave you all the relevant information. All of your data protection rights may apply, except the right to object. To be clear, you do have the right to withdraw your consent at any time.</p>
           <p>Our lawful bases for collecting or using personal information for <b>service updates or marketing purposes</b> are:</p>
           <p className="indent">Consent - we have permission from you after we gave you all the relevant information. All of your data protection rights may apply, except the right to object. To be clear, you do have the right to withdraw your consent at any time.</p>
@@ -72,7 +72,7 @@ export default function Page() {
         <p>
           We use <b>PostHog</b> to understand how visitors use the site. When
           you visit hardproblems.com, PostHog runs in your browser and captures
-          an anonymised view of your activity, including the pages you visit,
+          an anonymized view of your activity, including the pages you visit,
           interactions such as clicking on a job listing, an approximate
           location derived from your IP address, the device and browser you
           use, and how you arrived at the site.
@@ -113,7 +113,7 @@ export default function Page() {
           </dd>
           <dt>PostHog</dt>
           <dd>
-            Product analytics — captures anonymised page views and
+            Product analytics — captures anonymized page views and
             interactions on the site (see the{' '}
             <Link href="#cookies">Analytics</Link> section above). PostHog Inc.
             is based in the United States.

@@ -27,7 +27,7 @@ export default async function Home() {
         </blockquote>
         <h3>Our mission</h3>
         <p>
-          We are a non-profit that helps designers to work on the hard problems
+          We are a nonprofit that helps designers to work on the hard problems
           that matter in the world: problems like{' '}
           <em className="highlight">public health</em>,{' '}
           <em className="highlight">climate change</em>, and{' '}
@@ -59,7 +59,7 @@ export default async function Home() {
           fundamentally important problems.
         </p>
         <p>
-          We are in the earliest stages of forming the Hard Problems non-profit.
+          We are in the earliest stages of forming the Hard Problems nonprofit.
           We don’t have all of the answers, but we’ll start anyhow and learn
           along the way.
         </p>
@@ -128,7 +128,7 @@ export default async function Home() {
         <h3 className="divider">Team</h3>
         <p>
           We are an all-volunteer team from around the world. Hard Problems is a
-          global non-profit with a home base in London.
+          global nonprofit with a home base in London.
         </p>
         <Team />
       </section>

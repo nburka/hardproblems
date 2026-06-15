@@ -40,7 +40,7 @@ const teams: Team[] = [
     name: 'Elyfia',
     href: 'https://www.elyfia.com/how-it-works',
     description:
-      'Personalised coaching to Fibromyalgia patients through an app.',
+      'Personalized coaching to Fibromyalgia patients through an app.',
     image: '/images/coworking/elyfia.jpg'
   },
   {
@@ -86,7 +86,7 @@ const teams: Team[] = [
     name: 'Resolve to Save Lives',
     href: 'https://rtsl.org/',
     description:
-      "A global public health non-profit working on the world's largest threats.",
+      "A global public health nonprofit working on the world's largest threats.",
     image: '/images/coworking/resolve-to-save-lives.jpg'
   },
   {
@@ -107,7 +107,7 @@ const teams: Team[] = [
     name: 'Wellvrse',
     href: 'https://www.wellvrse.com/',
     description:
-      'A new paradigm for health, centring creativity, community and technology.',
+      'A new paradigm for health, centering creativity, community and technology.',
     image: '/images/coworking/wellvrse.jpg'
   }
 ];

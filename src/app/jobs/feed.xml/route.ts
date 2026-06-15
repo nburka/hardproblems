@@ -8,7 +8,7 @@ export const revalidate = 600;
 
 const FEED_TITLE = 'Hard Problems — Job board';
 const FEED_DESCRIPTION =
-  'Jobs at organisations working on the hard problems: climate change, health, public services, and education.';
+  'Jobs at organizations working on the hard problems: climate change, health, public services, and education.';
 const ORIGIN_FALLBACK = 'https://hardproblems.com';
 
 function escapeXml(value: string): string {

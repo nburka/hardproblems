@@ -8,7 +8,7 @@ export default function Page() {
       <section className="left">
         <h2>Give</h2>
         <p className="intro">
-          Hard Problems is a non-profit that is primarily funded by the founding
+          Hard Problems is a nonprofit that is primarily funded by the founding
           team. We aim to keep our expenses low, which will allow us to run
           sustainably for a long time. That said, we could benefit from your
           help.

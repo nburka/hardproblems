@@ -70,7 +70,7 @@ As might already be blindingly obvious to you, finding even a single opportunity
 
 Today, the board comprises hundreds of full-time design, product, user research, and copywriting roles at organizations that are solving the world's most pressing issues. We aggregate vacancies from a wide range of sources (you can find a full list on [this page](https://www.hardproblems.com/jobs)), including corners of the internet that are easy to overlook.
 
-We use a scoring algorithm to rank each organization according to how well it aligns with the values of our community. This scoring is based on frameworks like the [Effective Altruism framework](https://80000hours.org/articles/problem-framework/) for comparing global problems in terms of expected impact and is weighted towards non-profits, the public sector, and companies with explicit goals to make the world better. The ranking also takes into account the United Nations' [Sustainable Development Goals](https://sdgs.un.org/goals).
+We use a scoring algorithm to rank each organization according to how well it aligns with the values of our community. This scoring is based on frameworks like the [Effective Altruism framework](https://80000hours.org/articles/problem-framework/) for comparing global problems in terms of expected impact and is weighted toward nonprofits, the public sector, and companies with explicit goals to make the world better. The ranking also takes into account the United Nations' [Sustainable Development Goals](https://sdgs.un.org/goals).
 
 <img src="/images/content/hard-problems-pick.png" alt="Hard Problems Pick badge" width="180" style="margin-left: 0; transform: none;" />
 

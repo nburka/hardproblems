@@ -10,7 +10,7 @@ export default function Page() {
 
         <h2>About</h2>
         <p className="intro">
-          Hard Problems is a non-profit that helps tech people to make the shift to
+          Hard Problems is a nonprofit that helps tech people to make the shift to
           working full-time on the world’s hard problems &#8212; problems like climate
           change and public health.
         </p>

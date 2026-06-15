@@ -33,7 +33,7 @@ export default function NotFound() {
 
         <h3 className="divider">Hard Problems</h3>
         <p>
-          A non-profit helping designers to work on the hard problems
+          A nonprofit helping designers to work on the hard problems
           that matter in the world: problems like{' '}
           <em className="highlight">public health</em>,{' '}
           <em className="highlight">climate change</em>, and{' '}
