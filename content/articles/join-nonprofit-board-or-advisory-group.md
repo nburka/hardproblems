@@ -7,8 +7,8 @@ excerpt: 'Can’t dedicate yourself full-time to working on a hard problem? Cons
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-11'
-updatedAt: '2026-06-11'
+publishedAt: '2026-06-15'
+updatedAt: '2026-06-15'
 
 status: 'published' # draft | review | published
 
