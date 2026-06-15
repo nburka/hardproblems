@@ -123,6 +123,24 @@
     margin: 0 0 3rem 0;
   }
 
+  // Image caption — `_caption text_{.caption}` on its own line under an image.
+  em:global(.caption),
+  :global(.caption) {
+    display: block;
+    font-size: 0.85em;
+    line-height: 1.4;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+  }
+
+  // Pull the caption tight against the image above, and give it extra
+  // breathing room below before the next paragraph.
+  p:has(> em:global(.caption):only-child) {
+    margin-top: -1.4rem;
+    margin-bottom: calc(1.2rem + 2em);
+  }
+
   // The article's title is now the body's H1 (so authors can use inline
   // markdown like *italics* in it). Spacing above is provided by `.header`
   // so the title sits flush at the top of the body.
