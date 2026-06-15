@@ -73,11 +73,18 @@ export default async function ArticlePage({ params }: Props) {
       <section className={styles.articleWrap}>
         <div className={styles.topBar}>
           <p className={styles.breadcrumb}>
-            <Link href="/articles">Articles</Link>
+            <Link href="/articles">
+              <span aria-hidden="true">←</span> Articles
+            </Link>
             {article.articleType &&
               article.articleType.toLowerCase() !== 'article' && (
                 <>
-                  <span aria-hidden="true"> / </span>
+                  <span
+                    aria-hidden="true"
+                    className={styles.breadcrumbSep}
+                  >
+                    {' / '}
+                  </span>
                   <Link
                     href={`/articles/type/${articleTypeSlug(
                       article.articleType

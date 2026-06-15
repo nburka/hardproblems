@@ -426,7 +426,7 @@
 .jobTitle a,
 .jobTitle a:visited {
   font-weight: 700;
-  color: #324bbc;
+  color: cornflowerblue;
 }
 
 .jobTitle a:hover {
@@ -439,8 +439,15 @@
   line-height: 1.5;
 }
 
-.jobCompany {
+.jobCompany,
+.jobCompany:visited {
   font-weight: 500;
+  color: #231f20;
+}
+
+.jobCompany:hover,
+.jobCompany:focus {
+  color: darkblue;
 }
 
 .companyFavicon {

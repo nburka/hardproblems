@@ -89,9 +89,7 @@ export default function JobsTeaser({
   return (
     <div className={styles.teaser}>
       {jobs.map((job, i) => {
-        const location = [job.city, job.country]
-          .filter((s) => s.trim().length > 0)
-          .join(', ');
+        const location = job.country.trim();
         const typeLabel = orgTypeDisplay(job.typeOfOrg);
         const metaParts: { key: string; node: React.ReactNode }[] = [];
         if (job.company) {

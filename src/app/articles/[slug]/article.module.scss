@@ -47,6 +47,15 @@
   }
 }
 
+// Lighter green separator between breadcrumb segments. The text either
+// side stays at the darker brand green; only the slash lightens. The
+// padding adds extra breathing room around the slash on top of the NBSPs
+// baked into the JSX.
+.breadcrumbSep {
+  color: #84d9a6;
+  padding: 0 0.4em;
+}
+
 .header {
   // 5em of breathing room above the frontmatter (between the top bar and
   // the title block).
