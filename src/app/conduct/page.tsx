@@ -27,7 +27,7 @@ export default function Page() {
           <li>Being respectful of differing viewpoints and experiences</li>
           <li>Gracefully accepting constructive criticism</li>
           <li>Focusing on what is best for the community</li>
-          <li>Showing empathy towards other community members</li>
+          <li>Showing empathy toward other community members</li>
         </ul>
         <p className="space-top-small">Examples of unacceptable behavior by participants include:</p>
         <ul>

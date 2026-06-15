@@ -8,6 +8,6 @@ export default async function Image() {
   return createOGImage({
     title: 'We help designers to work on hard problems',
     subtitle:
-      'A non-profit focused on healthcare, climate change, and good government.'
+      'A nonprofit focused on healthcare, climate change, and good government.'
   });
 }

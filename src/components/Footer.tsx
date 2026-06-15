@@ -15,7 +15,7 @@ export function Footer() {
             <Image src="/images/uk-government.svg" width="110" height="110" alt="UK Government Logo" className="float-right" />
             <h3>Registration</h3>
             <p>
-              Hard Problems is a non-profit Company Limited by Guarantee registered
+              Hard Problems is a nonprofit Company Limited by Guarantee registered
               with{' '}
               <Link href="https://find-and-update.company-information.service.gov.uk/company/16028166">
                 Companies House
