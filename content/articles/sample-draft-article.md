@@ -55,6 +55,12 @@ A second paragraph after the H2 to verify spacing. The intro paragraph above use
 
 > “If I Had More Time, I Would Have Written a Shorter Letter” — Blaise Pascal
 
+<div class="note">
+
+**Note:** This is an important thing that I think users should be aware of.
+
+</div>
+
 ## A second H2 with an inline list
 
 Below is an unordered list to verify list styling:

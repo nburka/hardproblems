@@ -94,7 +94,7 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 
 ## What is an advisory group? {#what-is-an-advisory-group}
 
-Joining an advisory group is another excellent way to contribute. For instance, I currently serve on a tech advisory board for Our Future Health, a major genomics project in the UK. I met the CTO, Marko, through a mutual friend, and we bonded over public health technology. Once a quarter, I join a diverse group of technologists and ethicists to discuss the project's current priorities. As the only user experience designer, I provide guidance on product direction, user research, and methodology. I even assisted in interviewing candidates for their Chief Product Officer role.
+Joining an advisory group is another excellent way to contribute. For instance, I currently serve on a tech advisory board for [Our Future Health](https://ourfuturehealth.org.uk/), a major genomics project in the UK. I met the CTO, Marko, through a mutual friend, and we bonded over public health technology. Once a quarter, I join a diverse group of technologists and ethicists to discuss the project's current priorities. As the only user experience designer, I provide guidance on product direction, user research, and methodology. I even assisted in interviewing candidates for their Chief Product Officer role.
 
 Advisory boards typically have a lower barrier to entry and fewer formal responsibilities than a full board seat. These groups are often subject-specific, and a nonprofit may manage several of them. You will likely meet on a regular cadence — such as quarterly — and may occasionally be asked to consult on specific projects or assist with strategic hiring.
 
@@ -106,6 +106,6 @@ Just like a board, there often isn't a clear pathway to joining an advisory grou
 
 A board seat is a powerful way to give back from a strategic level. However, I always recognized that the nonprofit's internal team owns the bulk of the execution. It was fun and meaningful to be on Laboratoria's board, but their own team deserved 99.99% of the credit for their successes.
 
-For me, the board seat at Laboratoria was the beginning of a path toward full-time mission-driven work. After three years on the Laboratoria board, I left my main job at Google Ventures to join the public health nonprofit Resolve to Save Lives, where I co-led their technology initiatives for eight years.
+For me, the board seat at Laboratoria was the beginning of a path toward full-time mission-driven work. After three years on the Laboratoria board, I left my main job at Google Ventures to join the public health nonprofit [Resolve to Save Lives](https://rtsl.org), where I co-led their technology initiatives for eight years.
 
 I hope you find a way to contribute through a board or advisory role. When the time is right, perhaps you too can transition full-time into solving the world's most important challenges.
