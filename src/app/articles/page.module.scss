@@ -114,16 +114,6 @@
   line-height: 1.45;
 }
 
-.articleCardMeta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.3rem;
-  font-size: 0.85rem;
-  color: #666;
-}
-
 // Hero row at the top of /articles — newest article on the left, a
 // compact job-board teaser on the right. Stacks vertically on mobile,
 // becomes a 2-column grid at desktop with the hero card taking more

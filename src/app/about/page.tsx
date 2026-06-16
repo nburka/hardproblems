@@ -30,7 +30,8 @@ export default function Page() {
         <p>
           While the loudest part of the tech world is focused on AI, crypto,
           fin-tech, and advertising, other people are trying to tackle the
-          hardest, thorniest problems.
+          hardest, thorniest problems. Problems like climate change, public
+          health, healthcare, and good government.
         </p>
         <p>
           Designers, product managers, user researchers, copywriters, and others
@@ -140,7 +141,6 @@ export default function Page() {
           broader sense, our goals are to change the culture of tech to value
           people who work on hard problems.
         </p>
-        <Image src="/images/illustration-yes-hands.svg" width="80" height="80" alt="Hands saying YES!" className="image-full" />
       </section>
       <section className="right">
         <h3>What we offer</h3>
@@ -153,8 +153,6 @@ export default function Page() {
               alt="Illustration of a piggy bank."
             />
             <b className="grid-link">Job board</b>
-            <p className="grid-detail">Find your next full-time role</p>
-            <p>Job listings from orgs working on climate change and health.</p>
           </Link>
 
           <Link href="/newsletter" className="grid-cell">
@@ -165,8 +163,6 @@ export default function Page() {
               alt="Mailbox"
             />
             <b className="grid-link">Email newsletter</b>
-            <p className="grid-detail">Sign up today</p>
-            <p>News, job opportunities, and events from around the world.</p>
           </Link>
 
           <Link href="/podcast" className="grid-cell">
@@ -177,8 +173,6 @@ export default function Page() {
               alt="Mic"
             />
             <b className="grid-link">Podcast</b>
-            <p className="grid-detail">Coming soon...</p>
-            <p>Interview designers who work on hard problems.</p>
           </Link>
 
           <Link href="/coworking" className="grid-cell">
@@ -189,8 +183,6 @@ export default function Page() {
               alt="Work lamp."
             />
             <b className="grid-link">Co-working space</b>
-            <p className="grid-detail">Apply for a desk in London</p>
-            <p>A space for people who work on hard problems.</p>
           </Link>
         </div>
         <h3 className="divider">Funding</h3>

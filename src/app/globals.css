@@ -22,11 +22,6 @@ nav {
   font-size: 14px;
 }
 
-nav .home,
-nav .home.link-home {
-  display: none;
-}
-
 a,
 a:visited {
   color: #4a7bd4;
@@ -78,11 +73,6 @@ p.intro {
   color: #235337;
   border-radius: 100px;
   font-weight: 400;
-}
-
-.disabled b {
-  font-weight: 100;
-  color: #444;
 }
 
 h1 {
@@ -389,10 +379,6 @@ dd {
   display: none;
 }
 
-.no-margin {
-  margin: 0;
-}
-
 .none {
   background: #eee;
   padding: 200px 0;
@@ -501,27 +487,13 @@ iframe.newsletter-form {
   margin-top: 0.3em;
 }
 
-.other-event {
-  margin: 2em 0;
-}
-
-.other-event-title {
-  font-weight: 700;
-  margin: 0 0 0.2em 0;
-}
-
-.other-event-date {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  margin: 0.4em 0 0 0;
-}
-
 .episode {
   background: #ebf7f0;
   padding: 24px 140px 24px 24px;
   position: relative;
   margin: 2em 0 1em 0;
   min-height: 160px;
+  clear: both;
 }
 
 .episode .podcast-image {
@@ -533,13 +505,50 @@ iframe.newsletter-form {
   border: 6px solid #cbead8;
 }
 
+/* Each episode gets its own hue — background plus a matching, slightly
+   darker image border. */
+.episode--1 {
+  background: #ebf7f0;
+}
+.episode--1 .podcast-image {
+  border-color: #cbead8;
+}
+
+.episode--2 {
+  background: #e7f0fb;
+}
+.episode--2 .podcast-image {
+  border-color: #c3d8f0;
+}
+
+.episode--3 {
+  background: #fdf3e3;
+}
+.episode--3 .podcast-image {
+  border-color: #f2dcb4;
+}
+
+.episode--4 {
+  background: #fbe9ef;
+}
+.episode--4 .podcast-image {
+  border-color: #f2c6d6;
+}
+
+.episode--5 {
+  background: #f0eafb;
+}
+.episode--5 .podcast-image {
+  border-color: #d6c6f0;
+}
+
 .episode .podcast-player {
   width: 60%;
 }
 
 .episode h3 {
   margin-top: 0;
-  font-size: 18px;
+  font-size: 28px;
   color: rgba(0, 0, 0, 0.3);
 }
 
@@ -547,33 +556,30 @@ iframe.newsletter-form {
   color: rgba(0, 0, 0, 0.3);
 }
 
-.columns-2 .column {
-  margin-bottom: 2em;
-}
-
 .float-right {
   float: right;
   margin: 0 0 1em 1em;
 }
 
-.grid-layout {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap: 6%;
-}
-
-/* Vertical stack of offering cards (used on /about right column).
-   Reuses the .grid-cell visual treatment but forces each card to its
-   own row at every breakpoint (overrides the desktop 46% width). */
+/* Grid of offering cards (used on /about right column). Reuses the
+   .grid-cell visual treatment. Single column on mobile, 2x2 grid on
+   desktop (overrides the desktop 46% width). */
 .offer-stack {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .offer-stack .grid-cell {
   width: 100%;
+  margin-top: 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  .offer-stack {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .grid-cell {
@@ -588,18 +594,6 @@ iframe.newsletter-form {
 
 .grid-link {
   display: block;
-}
-
-.grid-cell p {
-  margin-top: 0.5em;
-  font-size: inherit;
-  line-height: 1.3;
-  color: #231f20;
-}
-
-.grid-cell p.grid-detail {
-  font-weight: 500;
-  font-size: 14px;
 }
 
 .captions {
@@ -734,17 +728,6 @@ iframe.newsletter-form {
     padding-right: 60px;
     padding-top: 40px;
     margin-top: 0;
-  }
-
-  .columns-2 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2%;
-  }
-
-  .columns-2 .column {
-    width: 49%;
   }
 
   .grid-cell {
