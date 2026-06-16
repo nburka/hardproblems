@@ -21,18 +21,18 @@ export default function TopBar() {
         Podcast
       </Link>
       <Link
-        href="/about"
-        className={`link ${pathname === '/about' ? 'active' : ''}`}
-      >
-        About us
-      </Link>
-      <Link
         href="/newsletter"
         className={`link nav-newsletter ${
           pathname === '/newsletter' ? 'active' : ''
         }`}
       >
         Newsletter
+      </Link>
+      <Link
+        href="/about"
+        className={`link ${pathname === '/about' ? 'active' : ''}`}
+      >
+        About us
       </Link>
     </nav>
   );
