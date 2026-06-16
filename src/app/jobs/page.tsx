@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Footer } from '../../components/Footer';
 import JobsList from './JobsList';
 import { fetchJobs } from './fetchJobs';
 import styles from './page.module.scss';
@@ -55,7 +54,6 @@ export default async function Page() {
           </Suspense>
         )}
       </section>
-      <Footer />
     </>
   );
 }

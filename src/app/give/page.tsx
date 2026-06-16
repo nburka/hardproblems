@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Footer } from '../../components/Footer';
 
 export default function Page() {
   return (
@@ -76,7 +75,6 @@ export default function Page() {
           alt="Illustration of hands in a heart shape."
         />
       </section>
-      <Footer />
     </>
   );
 }

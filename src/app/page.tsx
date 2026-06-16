@@ -1,138 +1,43 @@
-import Link from 'next/link';
-import NewsletterForm from '../components/NewsletterForm';
-import Image from 'next/image';
-import { Footer } from '../components/Footer';
-import { Team } from '../components/Team';
+import ArticleCard from '../components/ArticleCard';
+import { getAllArticles } from '../lib/articles';
 import { fetchJobs } from './jobs/fetchJobs';
 import JobsTeaser from './jobs/JobsTeaser';
+import styles from './articles/page.module.scss';
 
+// Homepage doubles as the articles index. At desktop, the newest article
+// renders as a large hero on the left with a compact job-board teaser to
+// its right; below, the remaining articles fall into a regular 3-up grid.
 export default async function Home() {
+  const articles = getAllArticles();
+  const heroArticle = articles[0];
+  const remainingArticles = articles.slice(1);
+
   const jobs = await fetchJobs();
   const recentJobs = jobs.slice(0, 5);
+
   return (
     <>
-      <section className="left">
-        <div className="illustration-home">
-          <Image
-            src="/images/illustration-directions.svg"
-            width="80"
-            height="80"
-            alt="Illustration of a person considering which way their career might take."
-          />
-        </div>
-        <h3>The challenge</h3>
-        <blockquote>
-          “The best minds of my generation are thinking about how to make people
-          click ads. That sucks.” &#8212; Jeff Hammerbacher, 2011
-        </blockquote>
-        <h3>Our mission</h3>
-        <p>
-          We are a nonprofit that helps designers to work on the hard problems
-          that matter in the world: problems like{' '}
-          <em className="highlight">public health</em>,{' '}
-          <em className="highlight">climate change</em>, and{' '}
-          <em className="highlight">good government</em>.
-        </p>
-        <p>
-          While the loudest part of the tech world is focused on AI, crypto,
-          fin-tech, and advertising, other people are trying to tackle the
-          hardest, thorniest problems.
-        </p>
-        <p>
-          Designers, product managers, user researchers, copywriters, and others
-          know that these hard problems matter but they often wring their hands
-          and stand by, unsure how to have any positive impact.
-        </p>
-        <p>
-          It’s time to refocus the tech world on what matters most. It’s time to
-          build new relationships between doctors, environmentalists,
-          scientists, not-for-profit leaders, public servants, and others
-          tackling the world’s hardest problems with designers who can help make
-          practical tools to help them succeed.
-        </p>
-        <p>
-          We are a multi-skilled team of very experienced tech veterans and
-          other subject-matter experts. We aim to push this effort &#8212;
-          whether it’s by building teams to work on issues, creating bridges
-          between ambitious experts and designers, finding ways to fund tech
-          initiatives, or inspiring a generation of designers to work on these
-          fundamentally important problems.
-        </p>
-        <p>
-          We are in the earliest stages of forming the Hard Problems nonprofit.
-          We don’t have all of the answers, but we’ll start anyhow and learn
-          along the way.
-        </p>
+      <section className={styles.articles}>
+        {heroArticle && (
+          <div className={styles.heroRow}>
+            <ul className={styles.heroList}>
+              <ArticleCard article={heroArticle} />
+            </ul>
+            <aside className={styles.heroJobs}>
+              <h3>Newest jobs</h3>
+              <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
+            </aside>
+          </div>
+        )}
 
-        <h3 className="space-top-large">What we offer</h3>
-        <div className="grid-layout">
-          <Link href="/jobs" className="grid-cell">
-            <Image
-              src="/images/icon-piggy-bank.svg"
-              width="120"
-              height="120"
-              alt="Illustration of a piggy bank."
-            />
-            <b className="grid-link">Job board</b>
-            <p className="grid-detail">Find your next full-time role</p>
-            <p>Job listings from orgs working on climate change and health.</p>
-          </Link>
-
-          <Link href="/newsletter" className="grid-cell">
-            <Image
-              src="/images/icon-mailbox.svg"
-              width="120"
-              height="120"
-              alt="Mailbox"
-            />
-            <b className="grid-link">Email newsletter</b>
-            <p className="grid-detail">Sign up today</p>
-            <p>News, job opportunities, and events from around the world.</p>
-          </Link>
-
-          <Link href="/podcast" className="grid-cell">
-            <Image
-              src="/images/icon-mic.svg"
-              width="120"
-              height="120"
-              alt="Mic"
-            />
-            <b className="grid-link">Podcast</b>
-            <p className="grid-detail">Coming soon...</p>
-            <p>Interview designers who work on hard problems.</p>
-          </Link>
-
-          <Link href="/coworking" className="grid-cell">
-            <Image
-              src="/images/icon-lamp.svg"
-              width="120"
-              height="120"
-              alt="Work lamp."
-            />
-            <b className="grid-link">Co-working space</b>
-            <p className="grid-detail">Apply for a desk in London</p>
-            <p>A space for people who work on hard problems.</p>
-          </Link>
-        </div>
+        {remainingArticles.length > 0 && (
+          <ul className={styles.articleList}>
+            {remainingArticles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </ul>
+        )}
       </section>
-      <section className="right">
-        <h3>Subscribe to our newsletter</h3>
-        <p className="no-margin">
-          We share job opportunities, great books, relevant news, and events.
-        </p>
-        <NewsletterForm />
-
-        <h3 className="divider">New jobs</h3>
-        <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
-
-        <h3 className="divider">Team</h3>
-        <p>
-          We are an all-volunteer team from around the world. Hard Problems is a
-          global nonprofit with a home base in London.
-        </p>
-        <Team />
-      </section>
-      <Footer />
     </>
   );
 }

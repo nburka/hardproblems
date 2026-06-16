@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Footer } from '../components/Footer';
 
 export const metadata: Metadata = {
   title: 'Page not found — Hard Problems',
@@ -40,7 +39,6 @@ export default function NotFound() {
           <em className="highlight">good government</em>.
         </p>
       </section>
-      <Footer />
     </>
   );
 }

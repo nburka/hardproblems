@@ -3,7 +3,6 @@
 // narrower reading column for legible body text.
 .articleWrap {
   width: 100%;
-  border-top: 1px solid #84d9a6;
   padding-top: 24px;
   margin-top: 42px;
 }
@@ -27,10 +26,12 @@
 }
 
 .breadcrumb {
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-weight: 700;
+  font-weight: 400;
   color: #235337;
   margin: 0;
 
@@ -63,24 +64,29 @@
   margin-bottom: 0.75rem;
 }
 
-// Pre-title label for typed articles (e.g. "Book Review"). Sized at 50%
-// of the title's font-size so it scales together when the title grows on
-// desktop. Same dark body color as the title; spacing only.
+// Pre-title label for typed articles (e.g. "Book Review"). Small fixed-
+// width, dark-green kicker that sits above the serif title.
 .preTitleLabel {
-  font-size: 1rem; // 50% of .title's 2rem
-  font-weight: 700;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
   line-height: 1.2;
-  text-transform: none;
-  letter-spacing: 0;
-  margin: 0 0 0.4rem 0;
-  color: #231f20;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 3em 0;
+  color: #235337;
+  text-align: center;
 }
 
 .byline {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 0;
-  text-align: right;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #235337;
+  margin: 0 0 5em 0;
+  text-align: center;
+  text-transform: none;
 }
 
 // Author byline link — keeps the byline's gray color (the wrapping
@@ -101,8 +107,6 @@
 // can't apply CSS module class names to the descendant tags, so we scope
 // styles via the wrapper class and use plain element selectors inside.
 .body {
-  // Inherits the site-wide body font-size (18px) — explicit `1rem` here
-  // would drop to 16px (root) which doesn't match other pages.
   font-size: inherit;
   line-height: 1.6;
   color: #231f20;
@@ -114,13 +118,16 @@
   :global(.intro),
   em:global(.intro) {
     display: block;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
-    line-height: 1.43;
+    font-size: 28px;
+    line-height: 1.35;
     color: #231f20;
     background: transparent;
-    margin: 0 0 3rem 0;
+    margin: 0 0 2rem 0;
+    text-align: center;
+    text-wrap: balance;
   }
 
   // Image caption — `_caption text_{.caption}` on its own line under an image.
@@ -140,19 +147,23 @@
   // markdown like *italics* in it). Spacing above is provided by `.header`
   // so the title sits flush at the top of the body.
   h1 {
-    font-size: 2.5rem;
-    line-height: 1;
-    font-weight: 700;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    font-size: 3rem;
+    line-height: 1.05;
+    font-weight: 400;
     text-transform: none;
     letter-spacing: 0;
     color: #231f20;
     margin: 0 0 1rem 0;
+    text-align: center;
+    text-wrap: balance;
   }
 
   h2 {
-    font-size: 1.3rem;
-    line-height: 1.25;
-    font-weight: 700;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    font-size: 2.25rem;
+    line-height: 1.15;
+    font-weight: 400;
     text-transform: none;
     letter-spacing: 0;
     color: #231f20;
@@ -160,10 +171,12 @@
   }
 
   h3 {
-    font-size: 1em;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    font-size: 1.4rem;
+    line-height: 1.2;
     text-transform: none;
     letter-spacing: 0;
-    font-weight: 700;
+    font-weight: 400;
     color: #2f8b53;
     margin: 2rem 0 0.2rem 0;
   }
@@ -172,12 +185,18 @@
     margin: 0 0 1.2rem 0;
   }
 
-  // Match the site-wide link styling (cornflowerblue, no underline,
-  // darkblue on hover) instead of the underlined deep-blue used elsewhere
-  // in this stylesheet.
+  // Byline lives inside .body now (injected after the intro). Bump
+  // specificity to .body .byline so its bottom margin wins over the
+  // generic `.body p` rule above.
+  .byline {
+    margin: 0 0 10em 0;
+  }
+
+  // Match the site-wide link styling (no underline, darkblue on hover)
+  // instead of the underlined deep-blue used elsewhere in this stylesheet.
   a,
   a:visited {
-    color: cornflowerblue;
+    color: #4a7bd4;
     text-decoration: none;
   }
 
@@ -248,11 +267,7 @@
 
   blockquote {
     margin: 2.5em 0;
-    // Top padding is intentionally larger than bottom: the body line-height
-    // (1.6) adds half-leading + descender space below the last line, so a
-    // matching bottom padding would visually look heavier than the top.
-    padding: 0.3rem 0 0 1.2rem;
-    border-left: 3px solid #84d9a6;
+    padding: 0;
     color: #444;
     font-style: italic;
   }
@@ -560,8 +575,8 @@
 }
 
 // Topic links inside .topics — keep the pill background from the global
-// `.tag` class but inherit its colour instead of cornflowerblue, and lift
-// the underline so they read as tags rather than ordinary links.
+// `.tag` class but use the tag's dark-green colour instead of the link
+// blue, and lift the underline so they read as tags rather than links.
 .topicTag,
 .topicTag:visited {
   color: #235337;
@@ -583,12 +598,22 @@
   }
 
   .body h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
-  // Keep the pre-title label at 50% of the title's responsive size.
+  // Pre-title label keeps its small fixed-width treatment on desktop.
   .preTitleLabel {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  // Title + intro bleed out past the 760px reading column to match the
+  // wide-image bleed (calc(100% + 160px) on the image rules below). 80px
+  // each side = 160px total wider than the column.
+  .body h1,
+  .body :global(.intro),
+  .body em:global(.intro) {
+    margin-left: -80px;
+    margin-right: -80px;
   }
 }
 
@@ -599,12 +624,30 @@
   .body img:global(.float-right) {
     margin-right: -240px;
   }
+
+  // 160px each side = 320px total wider — matches the image bleed at this
+  // breakpoint.
+  .body h1,
+  .body :global(.intro),
+  .body em:global(.intro) {
+    margin-left: -160px;
+    margin-right: -160px;
+  }
 }
 
 // Even more bleed once there's enough viewport room.
 @media only screen and (min-width: 1500px) {
   .body img:global(.float-right) {
     margin-right: -320px;
+  }
+
+  // 240px each side = 480px total wider — matches the image bleed at this
+  // breakpoint.
+  .body h1,
+  .body :global(.intro),
+  .body em:global(.intro) {
+    margin-left: -240px;
+    margin-right: -240px;
   }
 }
 

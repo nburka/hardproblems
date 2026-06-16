@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Footer } from '../../components/Footer';
 import styles from './page.module.scss';
 
 type Team = {
@@ -270,7 +269,6 @@ export default function Page() {
           </Link>
         </p>
       </section>
-      <Footer />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Footer } from '../../components/Footer';
 
 export default function Page() {
   return (
@@ -116,7 +115,6 @@ export default function Page() {
           <Link href="https://www.contributor-covenant.org/faq">this FAQ</Link>.
         </p>
       </section>
-      <Footer />
     </>
   );
 }

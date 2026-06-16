@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import ArticleCard from './ArticleCard';
-import { Footer } from './Footer';
 import { type Article } from '../lib/articles';
 import styles from '../app/articles/page.module.scss';
 
@@ -34,7 +33,6 @@ export default function ArticleListSection({
           </ul>
         )}
       </section>
-      <Footer />
     </>
   );
 }

@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Parser from 'rss-parser';
 import NewsletterSkeleton from './newsletterSkeleton';
 import NewsletterForm from '../../components/NewsletterForm';
-import { Footer } from '../../components/Footer';
 import styles from './page.module.scss';
 
 type Newsletter = {
@@ -115,7 +114,6 @@ export default function Page() {
           focus on relevant news, upcoming events, and new job opportunities from around the world.
         </p>
       </section>
-      <Footer />
     </>
   );
 }

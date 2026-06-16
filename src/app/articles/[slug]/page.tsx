@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { Footer } from '../../../components/Footer';
 import {
   articleTypeSlug,
   formatPublishedDate,
@@ -13,6 +12,27 @@ import { getAuthorUrl } from '../../../lib/authors';
 import styles from './article.module.scss';
 
 type Props = { params: Promise<{ slug: string }> };
+
+// Split the article HTML at the boundary where the byline should be
+// inserted. Preferred boundary is the end of the `.intro` paragraph (the
+// lede); if there's no intro, fall back to the end of the H1 (title) so
+// the byline still sits between the title and the body copy.
+function splitForByline(html: string): { before: string; after: string } {
+  const introIdx = html.search(/class=["']intro["']/i);
+  if (introIdx !== -1) {
+    const close = html.indexOf('</p>', introIdx);
+    if (close !== -1) {
+      const end = close + '</p>'.length;
+      return { before: html.slice(0, end), after: html.slice(end) };
+    }
+  }
+  const h1 = /<\/h1>/i.exec(html);
+  if (h1) {
+    const end = h1.index + h1[0].length;
+    return { before: html.slice(0, end), after: html.slice(end) };
+  }
+  return { before: '', after: html };
+}
 
 // Pre-render every published article at build time. New articles ship by
 // adding a .md file under content/articles/.
@@ -68,13 +88,15 @@ export default async function ArticlePage({ params }: Props) {
   )
     notFound();
 
+  const { before, after } = splitForByline(article.contentHtml);
+
   return (
     <>
       <section className={styles.articleWrap}>
         <div className={styles.topBar}>
           <p className={styles.breadcrumb}>
-            <Link href="/articles">
-              <span aria-hidden="true">←</span> Articles
+            <Link href="/">
+              <span aria-hidden="true">←</span> Home
             </Link>
             {article.articleType &&
               article.articleType.toLowerCase() !== 'article' && (
@@ -95,7 +117,6 @@ export default async function ArticlePage({ params }: Props) {
                 </>
               )}
           </p>
-          <ArticleByline article={article} />
         </div>
 
         <article className={styles.article}>
@@ -107,10 +128,11 @@ export default async function ArticlePage({ params }: Props) {
             )}
         </header>
 
-        <div
-          className={styles.body}
-          dangerouslySetInnerHTML={{ __html: article.contentHtml }}
-        />
+        <div className={styles.body}>
+          <div dangerouslySetInnerHTML={{ __html: before }} />
+          <ArticleByline article={article} />
+          <div dangerouslySetInnerHTML={{ __html: after }} />
+        </div>
 
         {article.topics.length > 0 && (
           <>
@@ -130,7 +152,6 @@ export default async function ArticlePage({ params }: Props) {
         )}
         </article>
       </section>
-      <Footer />
     </>
   );
 }

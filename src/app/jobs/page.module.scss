@@ -1,6 +1,5 @@
 .board {
   width: 100%;
-  border-top: 1px solid #84d9a6;
   padding-top: 24px;
   margin-top: 42px;
 }
@@ -231,7 +230,7 @@
   padding: 0;
   width: 100%;
   margin-bottom: 2em;
-  color: cornflowerblue;
+  color: #4a7bd4;
   cursor: pointer;
   text-decoration: none;
   text-align: right;
@@ -426,7 +425,7 @@
 .jobTitle a,
 .jobTitle a:visited {
   font-weight: 700;
-  color: cornflowerblue;
+  color: #4a7bd4;
 }
 
 .jobTitle a:hover {

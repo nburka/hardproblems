@@ -1,9 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Instrument_Serif } from 'next/font/google';
 import TopBar from '../components/TopBar';
 import CodeBlockCopyButtons from '../components/CodeBlockCopyButtons';
+import NewsletterForm from '../components/NewsletterForm';
 import PostHogProvider from '../components/PostHogProvider';
+import { Footer } from '../components/Footer';
 import './globals.css';
+
+// Used for article titles (listing cards and the article H1). Exposed as a
+// CSS variable so SCSS modules can reference it via var(...).
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://hardproblems.com'),
@@ -36,18 +49,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={instrumentSerif.variable}>
       <body>
         <PostHogProvider>
           <div className="main">
-            <TopBar />
-            <h1>
-              <Link href="/">
-                Hard Problems<span className="hp-period">.</span>
-              </Link>
-            </h1>
+            <p className="site-tagline">
+              We are a nonprofit that helps designers transition to
+              full-time careers focused on urgent global challenges
+            </p>
+            <header className="site-header">
+              <div className="site-header-nav">
+                <TopBar />
+              </div>
+              <h1>
+                <Link href="/">
+                  Hard Problems<span className="hp-period">.</span>
+                </Link>
+              </h1>
+              <div className="site-header-newsletter">
+                <span className="site-header-newsletter-label">
+                  Join our <Link href="/newsletter">newsletter</Link>:
+                </span>
+                <NewsletterForm />
+              </div>
+            </header>
             <div className="container">{children}</div>
           </div>
+          <footer className="site-footer">
+            <div className="main">
+              <Footer />
+            </div>
+          </footer>
           <CodeBlockCopyButtons />
         </PostHogProvider>
       </body>
