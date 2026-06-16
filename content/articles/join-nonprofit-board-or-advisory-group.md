@@ -12,7 +12,7 @@ updatedAt: '2026-06-15'
 
 status: 'published' # draft | review | published
 
-articleType: 'Article' # Article | Book Review | Podcast | Opinion
+articleType: 'Advice' # Article | Book Review | Podcast | Opinion | Advice
 
 topics:
   - careers
@@ -78,6 +78,8 @@ There isn't a perfect framework for finding a nonprofit that will take you as a 
 3. **Demonstrate immediate value.** The most direct path to a board seat is proving your utility. Identify organizations you admire, inquire about their current strategic objectives, and offer specific expertise to help them reach those goals.
 4. **Open the dialogue.** Board seats are rarely offered immediately. View your initial outreach as the start of a long-term relationship that may lead to a formal role over time.
 5. **Be direct.** Don't be afraid to state your interest. Clearly saying, "I'd love to be considered for a board position," can be the catalyst needed to move the conversation forward.
+
+> "I never got a role until I started pointing out to people that I was open for board roles." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
 ## What is it like on a nonprofit board? {#what-is-it-like-on-a-nonprofit-board}
 

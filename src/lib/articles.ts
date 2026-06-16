@@ -175,6 +175,8 @@ export function topicSubtitle(topic: string): string | undefined {
 const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
   article:
     'Reflections and writing about hard problems and impact-driven careers.',
+  advice:
+    'Practical guidance for navigating impact-driven careers and the work that matters.',
   'book-review':
     'Books we’ve read on impact-driven careers and the work that matters.',
   framework:

@@ -12,7 +12,7 @@ updatedAt: '2026-06-10'
 
 status: 'published' # draft | review | published
 
-articleType: 'Article' # Article | Book Review | Podcast
+articleType: 'Advice' # Article | Book Review | Podcast | Opinion | Advice
 
 topics:
   - careers

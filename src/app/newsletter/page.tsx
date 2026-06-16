@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Parser from 'rss-parser';
 import NewsletterSkeleton from './newsletterSkeleton';
-import NewsletterForm from '../../components/NewsletterForm';
 import styles from './page.module.scss';
 
 type Newsletter = {
@@ -55,7 +54,6 @@ export default function Page() {
           This is the email newsletter for technologists, engineers, designers, product managers, and
           others  who want to work on hard problems.
         </p>
-        <p>We share job opportunities, great books, relevant news, and events from around the world.</p>
 
         <h3 className="space-top-large">Recent newsletters</h3>
         <div className={styles.newsletters}>
@@ -72,8 +70,12 @@ export default function Page() {
             newsletters.map((newsletter) => {
               return (
                 <div key={newsletter.id} className={styles.newsletter}>
-                  <div>
-                    <Link href={newsletter.url} target="_blank">
+                  <Link
+                    href={newsletter.url}
+                    target="_blank"
+                    className={styles.newsletterLink}
+                  >
+                    <div className={styles.newsletterImageWrap}>
                       <Image
                         src={newsletter.image}
                         width="512"
@@ -81,30 +83,28 @@ export default function Page() {
                         alt={newsletter.title}
                         className={styles.newsletterImage}
                       />
-                    </Link>
-                  </div>
-                  <h4>
-                    <Link href={newsletter.url} target="_blank">
-                      {newsletter.title}
-                    </Link>
-                  </h4>
-                  <div>
-                    <p>{newsletter.content}</p>
-                    <small>
-                      {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
-                    </small>
-                  </div>
+                    </div>
+                    <div className={styles.newsletterBody}>
+                      <h4 className={styles.newsletterTitle}>
+                        {newsletter.title}
+                      </h4>
+                      <p className={styles.newsletterExcerpt}>
+                        {newsletter.content}
+                      </p>
+                      <small className={styles.newsletterMeta}>
+                        {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
+                      </small>
+                    </div>
+                  </Link>
                 </div>
               );
             })}
         </div>
       </section>
       <section className="right">
-        <h3>Subscribe</h3>
-        <NewsletterForm />
-        <h3 className="divider">About the newsletter</h3>
+        <h3>About the newsletter</h3>
         <ul>
-          <li>3-4 emails per month</li>
+          <li>1-2 emails per month</li>
           <li>No spam</li>
           <li>We will never share our email list</li>
           <li>Easy unsubscribe</li>

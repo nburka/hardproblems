@@ -50,9 +50,11 @@ a.button {
 
 blockquote {
   line-height: 1.5;
-  font-size: inherit;
+  font-size: 20px;
   margin: 1rem 0 3rem 0;
   font-weight: 400;
+  border-left: 2px solid #84d9a6;
+  padding-left: 1.2rem;
 }
 
 p.intro {
@@ -107,7 +109,7 @@ h1 {
 .site-footer {
   background: #ebf7f0;
   margin: 2rem -1.5rem -1.5rem -1.5rem;
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  padding: 1.5rem 1.5rem 5rem 1.5rem;
 }
 
 /* Footer columns: stack on mobile, switch to a 3-up grid on desktop
@@ -149,18 +151,8 @@ h1 {
      Re-enabled at the desktop breakpoint below. */
   display: none;
   width: 100%;
-  max-width: 440px;
+  max-width: 400px;
   margin: 0 auto;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.site-header-newsletter-label {
-  flex-shrink: 0;
-  font-size: 0.8rem;
-  color: #2f8b53;
-  line-height: 1.2;
-  white-space: nowrap;
 }
 
 h1 a:link,
@@ -247,6 +239,18 @@ nav a.active {
 .site-footer a:focus {
   color: #0d4f27;
   text-decoration: underline;
+}
+
+/* Contact links with a leading icon — keep the icon vertically centred
+   with the first line of text and give it a little breathing room. */
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.footer-contact-icon {
+  flex-shrink: 0;
 }
 
 b {
@@ -353,6 +357,12 @@ li strong {
 
 ol > li {
   margin: 0.75em 0;
+  padding-left: 0.5em;
+}
+
+ol > li::marker {
+  color: #235337;
+  font-weight: 500;
 }
 
 p a,
@@ -628,7 +638,7 @@ iframe.newsletter-form {
      re-applies the 1400px max-width so the content stays aligned. */
   .site-footer {
     margin: 3rem -3rem -3rem -3rem;
-    padding: 3rem 3rem 2rem 3rem;
+    padding: 3rem 3rem 5rem 3rem;
   }
 
   /* Match the article-card list at this breakpoint: three equal
@@ -690,17 +700,12 @@ iframe.newsletter-form {
   }
 
   .site-header-newsletter {
-    display: flex;
+    display: block;
     justify-self: end;
     margin: 0;
-    max-width: 420px;
+    max-width: 400px;
   }
 
-  /* The Newsletter nav link only exists for mobile, where the header
-     form is hidden. Hide it on desktop. */
-  nav a.nav-newsletter {
-    display: none;
-  }
 
   h1 {
     font-size: 30px;

@@ -1,27 +1,107 @@
+// Recent-newsletters list, styled to match the article thumbnails on
+// /articles (see app/articles/page.module.scss). Single column on mobile,
+// two-up grid at desktop.
+.newsletters {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 5em 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
 .newsletter {
-    padding: 2rem 0;
+  margin: 0;
+}
+
+.newsletterLink {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .newsletterTitle,
+  &:focus .newsletterTitle {
+    color: darkblue;
+  }
+
+  &:hover .newsletterImageWrap::after,
+  &:focus .newsletterImageWrap::after {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.newsletterImageWrap {
+  display: block;
+  position: relative;
+}
+
+// Inner stroke frame drawn just inside the image edge — matches the
+// article cards so the two surfaces read identically.
+.newsletterImageWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  transition: box-shadow 0.15s ease;
 }
 
 .newsletterImage {
-    display: inline-block;
-    width: 100%;
-    height: auto;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .newsletterSkeleton .newsletterImage {
-    min-height: 236px;
+  min-height: 236px;
 }
 
 .newsletterContent {
-    display: block;
-    min-height: 2rem;
+  display: block;
+  min-height: 2rem;
 }
 
-.newsletter small {
-  font-size: 0.8rem;
+.newsletterBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.newsletterTitle {
+  margin: 0.2rem 0 0 0;
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #4a7bd4;
+  transition: color 0.15s ease;
+  text-wrap: balance;
+}
+
+.newsletterExcerpt {
+  margin: 0;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.newsletterMeta {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
 }
 
-.newsletter p {
-  margin: 0.2rem 0;
+// Desktop: two-up grid so the newsletters sit like a compact card row
+// within the left column.
+@media only screen and (min-width: 1000px) {
+  .newsletters {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2rem;
+  }
 }

@@ -67,9 +67,6 @@ export default function RootLayout({
                 </Link>
               </h1>
               <div className="site-header-newsletter">
-                <span className="site-header-newsletter-label">
-                  Join our <Link href="/newsletter">newsletter</Link>:
-                </span>
                 <NewsletterForm />
               </div>
             </header>
