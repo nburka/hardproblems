@@ -238,6 +238,17 @@ nav a.active {
   margin-bottom: 1em;
 }
 
+.site-footer a,
+.site-footer a:visited {
+  color: #235337;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #0d4f27;
+  text-decoration: underline;
+}
+
 b {
   font-weight: 500;
 }
