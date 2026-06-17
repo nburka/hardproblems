@@ -146,8 +146,8 @@ export default function Page() {
           and let us know. Thanks!
         </p>
         <p>
-          <Link href="https://forms.gle/fK7LrCLNzckobynh7" className="button">
-            Suggest a guest
+          <Link href="https://forms.gle/fK7LrCLNzckobynh7" className="black-button">
+            Suggest a guest <span aria-hidden="true">→</span>
           </Link>
         </p>
 

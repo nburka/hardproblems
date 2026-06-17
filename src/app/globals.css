@@ -43,6 +43,50 @@ a.button {
   margin: 1em 0;
 }
 
+/* Black pill button — same look as the one used inside articles. Explicit
+   :visited and `a` selectors override the site link-color rules above. */
+a.black-button,
+a.black-button:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
+  background: #231f20;
+  color: #fff;
+  border: 1px solid #231f20;
+  border-radius: 100px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Arrow/icon inside the button (any inline child) slides right on hover. */
+a.black-button > span {
+  transition: transform 0.2s ease;
+}
+
+a.black-button:hover,
+a.black-button:focus {
+  background: #235337;
+  color: #fff;
+  border-color: #235337;
+  box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+  transform: translateY(-1px);
+  text-decoration: none;
+  outline: none;
+}
+
+a.black-button:hover > span,
+a.black-button:focus > span {
+  transform: translateX(3px);
+}
+
 blockquote {
   line-height: 1.5;
   font-size: 20px;
