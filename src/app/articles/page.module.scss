@@ -62,6 +62,18 @@
   height: auto;
 }
 
+// Looping background video used in place of the static thumbnail on
+// video articles. Fills the same box as .articleCardImage; object-fit
+// keeps it covered regardless of the card's aspect ratio.
+.articleCardVideo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  background: #000;
+}
+
 .articleCardBody {
   display: flex;
   flex-direction: column;
