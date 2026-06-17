@@ -296,6 +296,9 @@ li,
 dd {
   font-weight: 300;
   line-height: 1.6;
+  /* Reduce orphans — the browser avoids leaving a single short word
+     on the last line. Falls back gracefully on older browsers. */
+  text-wrap: pretty;
 }
 
 p.indent {

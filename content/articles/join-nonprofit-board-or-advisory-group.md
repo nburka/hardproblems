@@ -94,6 +94,10 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 - **Support and evaluate the CEO.** Leadership is challenging. The board holds the CEO accountable while simultaneously supporting their success through prudent advice and being available.
 - **~~Design or product.~~** You might be surprised, but your core skills as a designer or product manager aren't the key to being a great board member. I sit on a corporate board and was on the Laboratoria board for six years, and I rarely brought my craft skills to bear directly. What mattered was strategic judgment.
 
+> "In my current capacities, I support financial management, planning, funding, facility construction of a new school, executive hiring, and I focus on scholastic AI policy." [Geoff Barnes](https://www.linkedin.com/in/geoffbarnes/), Head of Design at [Tavus](https://tavus.io)
+
+> "It might be surprising given my current design role but I'm often engaging with the executives around budgeting, roadmaps, and forecasting." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
+
 ## What is an advisory group? {#what-is-an-advisory-group}
 
 Joining an advisory group is another excellent way to contribute. For instance, I currently serve on a tech advisory board for [Our Future Health](https://ourfuturehealth.org.uk/), a major genomics project in the UK. I met the CTO, Marko, through a mutual friend, and we bonded over public health technology. Once a quarter, I join a diverse group of technologists and ethicists to discuss the project's current priorities. As the only user experience designer, I provide guidance on product direction, user research, and methodology. I even assisted in interviewing candidates for their Chief Product Officer role.
@@ -111,3 +115,7 @@ A board seat is a powerful way to give back from a strategic level. However, I a
 For me, the board seat at Laboratoria was the beginning of a path toward full-time mission-driven work. After three years on the Laboratoria board, I left my main job at Google Ventures to join the public health nonprofit [Resolve to Save Lives](https://rtsl.org), where I co-led their technology initiatives for eight years.
 
 I hope you find a way to contribute through a board or advisory role. When the time is right, perhaps you too can transition full-time into solving the world's most important challenges.
+
+## Advice for new board members? {#advice-for-new-board-members}
+
+[Jeff Barnes](https://www.linkedin.com/in/texburgher/), Head of Design at [Tavus](https://www.tavus.io), and ex-[Googler](https://google.com) says: "Make sure you understand the nature and requirements of the work up-front. Talk to other board members before you sign up. Board service can be incredibly gratifying but also emotionally taxing and time-consuming. As with any significant undertaking, due diligence is your friend. Once you commit, serve with joy and intensity. And maybe most importantly, establish success metrics, exit criteria, and succession planning intentions as early as you can. Too many servants let their noble commitments become albatrosses simply because they never planned to pass the baton."

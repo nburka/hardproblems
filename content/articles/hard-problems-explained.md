@@ -1,5 +1,5 @@
 ---
-title: 'Hard Problems, explained'
+title: 'What is Hard Problems all about?'
 slug: 'hard-problems-explained'
 
 excerpt: 'A 10 minute video introduction to Hard Problems and our goals.'
@@ -28,18 +28,18 @@ imageAlt: 'Daniel Burka and Mahima Chandak speaking at TalkUX 2025 in Brighton, 
 thumbnailVideo: '/videos/daniel-burka-explainer.mp4'
 thumbnailVideoWebm: '/videos/daniel-burka-explainer.webm'
 
-seoTitle: 'Hard Problems, explained'
+seoTitle: 'What is Hard Problems all about?'
 seoDescription: 'A 10 minute video introduction to Hard Problems and our goals.'
 
 canonicalUrl: ''
 ---
 
-# Hard Problems, explained {#hard-problems-explained}
+# What is Hard Problems all about? {#hard-problems-explained}
 
 _A 10 minute video introduction to Hard Problems and our goals._{.intro}
 
 <div class="video-embed">
-<iframe src="https://www.youtube-nocookie.com/embed/Hp-H9QU4Ymg?start=8" title="Hard Problems, explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube-nocookie.com/embed/Hp-H9QU4Ymg?start=8" title="What is Hard Problems all about?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 Hard Problems is a nonprofit that helps tech people to make the shift to working full-time on the world’s hard problems — problems like climate change and public health.

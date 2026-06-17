@@ -100,6 +100,25 @@ function DocumentIcon() {
   );
 }
 
+function HeartIcon() {
+  return (
+    <svg
+      className="footer-contact-icon"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 20.5 4.3 12.8a4.6 4.6 0 0 1 6.5-6.5l1.2 1.2 1.2-1.2a4.6 4.6 0 0 1 6.5 6.5z" />
+    </svg>
+  );
+}
+
 function CopyrightIcon() {
   return (
     <svg
@@ -172,7 +191,7 @@ export function Footer() {
         <h3>Legal &amp; code of conduct</h3>
         <p>
           <Link href="/conduct" className="footer-contact-link">
-            <DocumentIcon />
+            <HeartIcon />
             Code of conduct
           </Link>
         </p>
