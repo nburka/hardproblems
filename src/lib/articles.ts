@@ -37,6 +37,10 @@ export type Article = {
   featured: boolean;
   image?: string; // path under /public, used as thumbnail + OG image
   imageAlt?: string;
+  // Optional looping video shown in the listing thumbnail box. `image`
+  // is still used as the poster/fallback and as the OG/social image.
+  thumbnailVideo?: string; // path under /public (mp4); webm sibling auto-used
+  thumbnailVideoWebm?: string;
   seoTitle?: string;
   seoDescription?: string;
   canonicalUrl?: string;
@@ -85,6 +89,8 @@ function readArticleFile(filename: string): Article | null {
     featured: data.featured === true,
     image: data.image,
     imageAlt: data.imageAlt,
+    thumbnailVideo: data.thumbnailVideo,
+    thumbnailVideoWebm: data.thumbnailVideoWebm,
     seoTitle: data.seoTitle,
     seoDescription: data.seoDescription,
     canonicalUrl: data.canonicalUrl,
@@ -182,7 +188,9 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
   opinion:
     'Personal takes on careers, design, and the work that matters.',
   podcast:
-    'Conversations with designers working on hard problems.'
+    'Conversations with designers working on hard problems.',
+  video:
+    'Talks, conference sessions, and videos on design and the hard problems that matter.'
 };
 
 export function articleTypeSubtitle(

@@ -102,7 +102,8 @@ export default async function ArticlePage({ params }: Props) {
         <header className={styles.header}>
           {article.articleType &&
             (article.articleType.toLowerCase() === 'book review' ||
-              article.articleType.toLowerCase() === 'opinion') && (
+              article.articleType.toLowerCase() === 'opinion' ||
+              article.articleType.toLowerCase() === 'video') && (
               <p className={styles.preTitleLabel}>{article.articleType}</p>
             )}
         </header>
