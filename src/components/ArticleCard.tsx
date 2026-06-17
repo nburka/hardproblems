@@ -13,15 +13,35 @@ export default function ArticleCard({ article }: { article: Article }) {
         href={`/articles/${article.slug}`}
         className={styles.articleCardLink}
       >
-        {article.image && (
+        {(article.image || article.thumbnailVideo) && (
           <div className={styles.articleCardImageWrap}>
-            <Image
-              src={article.image}
-              alt={article.imageAlt ?? ''}
-              width={1200}
-              height={800}
-              className={styles.articleCardImage}
-            />
+            {article.thumbnailVideo ? (
+              <video
+                className={styles.articleCardVideo}
+                poster={article.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={article.imageAlt ?? article.title}
+              >
+                {article.thumbnailVideoWebm && (
+                  <source src={article.thumbnailVideoWebm} type="video/webm" />
+                )}
+                <source src={article.thumbnailVideo} type="video/mp4" />
+              </video>
+            ) : (
+              article.image && (
+                <Image
+                  src={article.image}
+                  alt={article.imageAlt ?? ''}
+                  width={1200}
+                  height={800}
+                  className={styles.articleCardImage}
+                />
+              )
+            )}
             <span className={styles.articleType}>{article.articleType}</span>
           </div>
         )}
