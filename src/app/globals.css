@@ -379,6 +379,12 @@ dd {
   display: none;
 }
 
+/* Shown on mobile, hidden at the desktop breakpoint (inverse of
+   .desktop). */
+.mobile-only {
+  display: block;
+}
+
 .none {
   background: #eee;
   padding: 200px 0;
@@ -410,9 +416,14 @@ ul ul li {
 iframe.newsletter-form {
   margin: 0.4em 0 0 0;
   width: 100%;
-  scale: 90%;
   position: relative;
   top: -2px;
+}
+
+/* Only shrink the form to fit the compact header column — at full size
+   everywhere else (e.g. the mobile newsletter page). */
+.site-header-newsletter iframe.newsletter-form {
+  scale: 90%;
 }
 
 .container section.left,
@@ -752,6 +763,10 @@ iframe.newsletter-form {
 
   .desktop {
     display: block;
+  }
+
+  .mobile-only {
+    display: none;
   }
 
   .illustration-home {

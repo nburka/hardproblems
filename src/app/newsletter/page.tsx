@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Parser from 'rss-parser';
 import NewsletterSkeleton from './newsletterSkeleton';
+import NewsletterForm from '../../components/NewsletterForm';
 import styles from './page.module.scss';
 
 type Newsletter = {
@@ -55,6 +56,10 @@ export default function Page() {
           others  who want to work on hard problems.
         </p>
 
+        <div className="mobile-only">
+          <NewsletterForm />
+        </div>
+
         <h3 className="space-top-large">Recent newsletters</h3>
         <div className={styles.newsletters}>
           {!newslettersLoaded && (
@@ -103,7 +108,7 @@ export default function Page() {
       </section>
       <section className="right">
         <h3>About the newsletter</h3>
-        <ul>
+        <ul className={styles.checklist}>
           <li>1-2 emails per month</li>
           <li>No spam</li>
           <li>We will never share our email list</li>
