@@ -88,6 +88,9 @@ export default function Page() {
                         alt={newsletter.title}
                         className={styles.newsletterImage}
                       />
+                      <span className={styles.newsletterDate}>
+                        {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
+                      </span>
                     </div>
                     <div className={styles.newsletterBody}>
                       <h4 className={styles.newsletterTitle}>
@@ -96,9 +99,6 @@ export default function Page() {
                       <p className={styles.newsletterExcerpt}>
                         {newsletter.content}
                       </p>
-                      <small className={styles.newsletterMeta}>
-                        {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
-                      </small>
                     </div>
                   </Link>
                 </div>
@@ -107,6 +107,21 @@ export default function Page() {
         </div>
       </section>
       <section className="right">
+        <div className={styles.joinSection}>
+          <Image
+            src="/images/arrow-up.svg"
+            width="80"
+            height="80"
+            alt=""
+            className={styles.newsletterArrow}
+          />
+          <h3>Join the newsletter</h3>
+          <p>
+            Enter your email to get the newsletter in your inbox. You can
+            unsubscribe at any time.
+          </p>
+        </div>
+
         <h3>About the newsletter</h3>
         <ul className={styles.checklist}>
           <li>1-2 emails per month</li>

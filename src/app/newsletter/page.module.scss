@@ -97,6 +97,47 @@
   color: #666;
 }
 
+// "Join the newsletter" CTA pointing at the header form. Hidden on
+// mobile (the header form isn't there) and the arrow floats to the
+// right of the h3 so the heading text flows around it.
+.joinSection {
+  display: none;
+}
+
+@media only screen and (min-width: 1000px) {
+  .joinSection {
+    display: block;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.newsletterArrow {
+  float: right;
+  width: 80px;
+  height: auto;
+  margin: -5rem 0 0.5rem 0.75rem;
+}
+
+// Date pill overlaying the thumbnail — mirrors the .articleType pill on
+// /articles. White pill, small monospace dark-green text, bottom-left
+// of the image with a light shadow so it stays legible over any image.
+.newsletterDate {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: #235337;
+  background: #fff;
+  padding: 4px 12px;
+  border-radius: 100px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
 // Hand-drawn checkbox list — matches the .hand-drawn-checklist style
 // used inside articles (see articles/[slug]/article.module.scss). Each
 // item renders with a sketchy ticked checkbox instead of a bullet.
