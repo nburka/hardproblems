@@ -69,7 +69,7 @@ Here's a quick-start guide to the "Job Rank" template:
 
 ## Step 1: Choose your values (The Metrics) {#step-1-choose-your-values}
 
-This is the hardest part. You need to diagnose what genuinely brings you fulfillment. For me, that meant things like _Commute Time_, _Working on Interesting Technology_, _Working with Inspiring People_, _Allowing me to try new things_, and, most recently, heavily weighting _Doing Good for the World_.
+This is the hardest part. You need to diagnose what genuinely brings you fulfillment. For me, that meant things like `Commute Time`, `Work on Cool Tech`, `Work with Inspiring People`, `Allow me to try new things`, and, most recently, heavily weighting `Doing Good for the World`.
 
 Try to be thoughtful about your values, but also don't agonize over them. You can always change them while you're scoring job opportunities if you find the scores don't align with your gut feelings.
 
@@ -93,13 +93,13 @@ The template has a suggested list, but your values will be unique. Here are some
 
 ## Step 2: Assign weights (The Multiplier) {#step-2-assign-weights}
 
-Not all values are equal. In different chapters of my life, the importance of _Money_ shifted dramatically. Maybe today, _Commute Time_ is critical (5/5), while _Working on Interesting Technology_ is just a nice-to-have (3/5).
+Not all values are equal. In different chapters of my life, the importance of `Money` shifted dramatically. Maybe today, `Commute Time` is critical (5/5), while `Work on Cool Tech` is just a nice-to-have (3/5).
 
 **Action:**{.highlight} Use a 1 to 5 scale, where 5 is the most important value. This multiplier is what gives the framework its power.
 
 ## Step 3: Score the roles (The Data) {#step-3-score-the-roles}
 
-Now, take every role you're considering and score each value. You'll have to make educated guesses for some scores. The spreadsheet does the math: (Score × Weight) = Weighted Score out of 100
+Now, take every role you're considering and score each value. You'll have to make educated guesses for some scores. The spreadsheet does the math: `(Score × Weight) = Weighted Score out of 100`
 
 **Action:**{.highlight} The role with the highest total weighted score is the one most aligned with your current life priorities.
 

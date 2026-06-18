@@ -109,7 +109,7 @@
 .articleCardTitle {
   margin: 0.2rem 0 0 0;
   font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1.15;
   font-weight: 400;
   text-transform: none;
@@ -122,8 +122,8 @@
 .articleCardExcerpt {
   margin: 0;
   color: #444;
-  font-size: 1rem;
-  line-height: 1.45;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 // Hero row at the top of /articles — newest article on the left, a
@@ -189,7 +189,7 @@
   }
 
   .heroList .articleCardExcerpt {
-    font-size: 1.1rem;
-    line-height: 1.45;
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 }
