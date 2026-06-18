@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import ArticleCard from '../../../components/ArticleCard';
 import {
   articleTypeSlug,
   formatPublishedDate,
@@ -10,6 +11,14 @@ import {
 } from '../../../lib/articles';
 import { getAuthorUrl } from '../../../lib/authors';
 import styles from './article.module.scss';
+
+// Hand-picked slugs shown in the "Top articles" rail at the bottom of
+// every article page. Order here is the order they render.
+const TOP_ARTICLE_SLUGS = [
+  'hard-problems-explained',
+  'use-a-spreadsheet-to-choose-your-next-role',
+  'join-nonprofit-board-or-advisory-group'
+];
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -90,6 +99,16 @@ export default async function ArticlePage({ params }: Props) {
 
   const { before, after } = splitForByline(article.contentHtml);
 
+  // Build the "Top articles" rail. Filter out the current article so a
+  // post never recommends itself, and skip any slug that doesn't resolve
+  // to a published article (so a typo in the list above degrades
+  // gracefully rather than crashing the page).
+  const topArticles = TOP_ARTICLE_SLUGS.map((s) => getArticleBySlug(s))
+    .filter(
+      (a): a is NonNullable<typeof a> =>
+        a != null && a.status === 'published' && a.slug !== article.slug
+    );
+
   return (
     <>
       <section className={styles.articleWrap}>
@@ -153,6 +172,17 @@ export default async function ArticlePage({ params }: Props) {
           </>
         )}
         </article>
+
+        {topArticles.length > 0 && (
+          <aside className={styles.topArticles}>
+            <h2 className={styles.topArticlesHeading}>Top articles</h2>
+            <ul className={styles.topArticlesList}>
+              {topArticles.map((a) => (
+                <ArticleCard key={a.slug} article={a} />
+              ))}
+            </ul>
+          </aside>
+        )}
       </section>
     </>
   );

@@ -46,7 +46,7 @@ export default function ArticleCard({ article }: { article: Article }) {
           </div>
         )}
         <div className={styles.articleCardBody}>
-          {!article.image && (
+          {!article.image && !article.thumbnailVideo && (
             <span className={styles.articleType}>{article.articleType}</span>
           )}
           <h3 className={styles.articleCardTitle}>{article.title}</h3>

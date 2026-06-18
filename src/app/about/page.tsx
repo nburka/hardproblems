@@ -153,6 +153,7 @@ export default function Page() {
               alt="Illustration of a piggy bank."
             />
             <b className="grid-link">Job board</b>
+            <p className="grid-detail">For designers</p>
           </Link>
 
           <Link href="/newsletter" className="grid-cell">
@@ -163,6 +164,7 @@ export default function Page() {
               alt="Mailbox"
             />
             <b className="grid-link">Email newsletter</b>
+            <p className="grid-detail">To keep up-to-date</p>
           </Link>
 
           <Link href="/podcast" className="grid-cell">
@@ -173,6 +175,7 @@ export default function Page() {
               alt="Mic"
             />
             <b className="grid-link">Podcast</b>
+            <p className="grid-detail">(coming soon)</p>
           </Link>
 
           <Link href="/coworking" className="grid-cell">
@@ -183,18 +186,30 @@ export default function Page() {
               alt="Work lamp."
             />
             <b className="grid-link">Co-working space</b>
+            <p className="grid-detail">In London, UK</p>
+          </Link>
+
+          <Link href="/" className="grid-cell">
+            <Image
+              src="/images/icon-conversation.svg"
+              width="120"
+              height="120"
+              alt="Speech bubbles."
+            />
+            <b className="grid-link">Articles &amp; advice</b>
+            <p className="grid-detail">Book reviews and advice</p>
           </Link>
         </div>
-        <h3 className="divider">Funding</h3>
-        <p>
-          We are a lean organization that is primarily self-funded by our founding team. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
-        </p>
-
         <h3 className="divider">Team</h3>
         <p>
           We are an all-volunteer team from around the world.
         </p>
         <Team />
+
+        <h3 className="divider">Funding</h3>
+        <p>
+          We are a lean organization that is primarily self-funded by our founding team. But, we could use help. Learn how you could <Link href="/give">support our work</Link>.
+        </p>
       </section>
     </>
   );
