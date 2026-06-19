@@ -185,8 +185,8 @@ h1 {
   align-items: center;
   margin: 0 0 2rem 0;
   padding: 1.25rem 0;
-  border-top: 1px solid #84d9a6;
-  border-bottom: 1px solid #84d9a6;
+  border-top: 1px solid rgba(59, 79, 94, 0.5);
+  border-bottom: 1px solid rgba(59, 79, 94, 0.5);
 }
 
 .site-header-nav {
@@ -257,16 +257,16 @@ nav a:visited {
   margin: 0;
   padding: 4px 12px;
   border-radius: 100px;
-  color: #2f8b53;
+  color: #231f20;
 }
 
 nav a:hover {
-  color: #0d4f27;
+  color: #000;
 }
 
 nav a.active {
-  background: #d9eee2;
-  color: #235337;
+  background: transparent;
+  color: #3aa36d;
 }
 
 .site-footer p {

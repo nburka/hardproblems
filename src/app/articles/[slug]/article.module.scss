@@ -141,21 +141,20 @@
   line-height: 1.6;
   color: #231f20;
 
-  // Lede paragraph treatment matches the site-wide `p.intro` style used on
-  // /about, /jobs, etc. Override font-style so the `<em>` wrapper from the
-  // markdown source (`*text*{.intro}`) doesn't render italic, and clear
-  // any inherited background.
+  // Lede paragraph — matches the site-wide `p.intro` style used on
+  // /about, /jobs, etc. The `<em>` wrapper from markdown source
+  // (`*text*{.intro}`) is overridden so it doesn't render italic, and
+  // any inherited background is cleared.
   :global(.intro),
   em:global(.intro) {
     display: block;
-    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 28px;
-    line-height: 1.35;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.5;
     color: #231f20;
     background: transparent;
-    margin: 0 0 2rem 0;
+    margin: 2.5rem 0 3rem 0;
     text-align: center;
     text-wrap: balance;
   }
@@ -658,9 +657,9 @@
     font-size: 0.8rem;
   }
 
-  // Title + intro bleed out past the 760px reading column to match the
-  // wide-image bleed (calc(100% + 160px) on the image rules below). 80px
-  // each side = 160px total wider than the column.
+  // Title + intro + video bleed out past the 760px reading column to
+  // match the wide-image bleed (calc(100% + 160px) on the image rules
+  // below). 80px each side = 160px total wider than the column.
   .body h1,
   .body :global(.intro),
   .body em:global(.intro),

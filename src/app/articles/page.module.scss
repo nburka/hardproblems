@@ -79,9 +79,11 @@
   gap: 0.4rem;
 }
 
+// Article-type kicker sitting above the thumbnail (e.g. "OPINION",
+// "VIDEO", "BOOK REVIEW"). Plain text, no pill background — matches
+// the .preTitleLabel treatment used on the article page itself.
 .articleType {
-  display: inline-block;
-  align-self: flex-start;
+  display: block;
   font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
   font-size: 0.7rem;
@@ -89,21 +91,10 @@
   letter-spacing: 0.08em;
   font-weight: 400;
   color: #235337;
-  background: #d9eee2;
-  padding: 2px 10px;
-  border-radius: 100px;
-}
-
-// When the type tag lives inside the image wrap, overlay it at the
-// bottom-left corner of the thumbnail. White pill on a small shadow so it
-// stays legible regardless of what's behind it in the image.
-.articleCardImageWrap .articleType {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  background: #fff;
-  padding: 4px 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  /* Negative bottom margin pulls the image up so the kicker sits
+     directly above it (tighter than the .articleCardLink grid's 1rem
+     gap). */
+  margin: 0 0 -0.7rem 0;
 }
 
 .articleCardTitle {
@@ -142,6 +133,13 @@
 
 .heroList > .articleCard {
   margin: 0;
+}
+
+// Hide the article-type kicker on the hero card — the bigger card
+// already reads as the lead piece, and the kicker adds noise above
+// the larger title.
+.heroList .articleType {
+  display: none;
 }
 
 // Hide the entire Newest jobs panel on mobile — it eats too much vertical

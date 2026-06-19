@@ -25,6 +25,34 @@
   margin: 1.5rem 0 0 0;
 }
 
+// Heading + intro that /jobs passes in via JobsList's `filterHeader`
+// prop. Sits at the top of the filters column above the Country select.
+.filterHeader {
+  margin: 0 0 1.5rem 0;
+}
+
+.filterHeader h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.filterHeader p {
+  margin: 0.75em 0 0 0;
+}
+
+// Sources paragraph below the RSS link. Hidden on mobile (the filters
+// column collapses there and this content would clutter the top of the
+// jobs list). Shown on desktop via the @media block.
+.filterFooter {
+  display: none;
+}
+
+.filterFooter p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #555;
+  margin: 0;
+}
+
 .filterField {
   display: flex;
   flex-direction: column;
@@ -579,9 +607,15 @@
   .layout {
     clear: both;
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 2.5rem;
     align-items: start;
+  }
+
+  // Source paragraph below RSS — desktop-only.
+  .filterFooter {
+    display: block;
+    margin-top: 2rem;
   }
 
   // At desktop the filter column doesn't need a bottom border (it's

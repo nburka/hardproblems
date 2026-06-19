@@ -399,7 +399,20 @@ function countryFlag(name: string): string {
   return iso ? isoToFlagEmoji(iso) : '';
 }
 
-export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
+export default function JobsList({
+  jobs,
+  filterHeader,
+  filterFooter
+}: {
+  jobs: SerializedJob[];
+  // Optional content rendered at the top of the filters column on
+  // desktop (and above the filters on mobile). Used by /jobs to pull
+  // the page heading and intro into the filters rail.
+  filterHeader?: ReactNode;
+  // Optional content rendered at the bottom of the filters column,
+  // below the RSS link. Desktop-only (hidden on mobile).
+  filterFooter?: ReactNode;
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -576,6 +589,9 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   return (
     <div className={styles.layout}>
       <div className={styles.filters}>
+        {filterHeader && (
+          <div className={styles.filterHeader}>{filterHeader}</div>
+        )}
         <label className={styles.filterField}>
           <span className={styles.filterLabel}>Country</span>
           <select
@@ -701,6 +717,10 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           </svg>
           RSS feed{hasActiveFilters ? ' for these filters' : ''}
         </a>
+
+        {filterFooter && (
+          <div className={styles.filterFooter}>{filterFooter}</div>
+        )}
 
       </div>
 

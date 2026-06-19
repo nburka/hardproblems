@@ -20,27 +20,34 @@ export const metadata: Metadata = {
 export default async function Page() {
   const jobs = await fetchJobs();
 
+  const filterHeader = (
+    <>
+      <h2>Job board</h2>
+      <p>
+        Jobs for designers who want to work on hard problems like healthcare,
+        public health, and climate change.
+      </p>
+    </>
+  );
+
+  const filterFooter = (
+    <p>
+      Our favorite job sources are{' '}
+      <Link href="https://linkedin.come">LinkedIn</Link>,{' '}
+      <Link href="https://designgigsforgood.org">Design Gigs for Good</Link>,{' '}
+      <Link href="https://techjobsforgood.com">Tech Jobs for Good</Link>,{' '}
+      <Link href="https://climatebase.org">Climate Base</Link>,{' '}
+      <Link href="https://digitalrights.community/job-board">
+        Digital Rights
+      </Link>
+      , and{' '}
+      <Link href="https://jobs.womenintech.co.uk/jobs/">Women in Tech</Link>.
+    </p>
+  );
+
   return (
     <>
       <section className={styles.board}>
-        <h2>Job board</h2>
-        <p className="intro">
-          Jobs for designers who want to work on hard problems like healthcare,
-          public health, and climate change. Our favorite job sources are{' '}
-          <Link href="https://linkedin.come">LinkedIn</Link>,{' '}
-          <Link href="https://designgigsforgood.org">Design Gigs for Good</Link>
-          , <Link href="https://techjobsforgood.com">Tech Jobs for Good</Link>,{' '}
-          <Link href="https://climatebase.org">Climate Base</Link>,{' '}
-          <Link href="https://digitalrights.community/job-board">
-            Digital Rights
-          </Link>
-          , and{' '}
-          <Link href="https://jobs.womenintech.co.uk/jobs/">
-            Women in Tech
-          </Link>
-          .
-        </p>
-
         {jobs.length === 0 ? (
           <p>
             We&rsquo;re having trouble loading the job board right now. Please
@@ -50,7 +57,11 @@ export default async function Page() {
           // Suspense is required because JobsList reads useSearchParams.
           // Without it Next.js would deopt the route from static rendering.
           <Suspense fallback={null}>
-            <JobsList jobs={jobs} />
+            <JobsList
+              jobs={jobs}
+              filterHeader={filterHeader}
+              filterFooter={filterFooter}
+            />
           </Suspense>
         )}
       </section>

@@ -13,6 +13,7 @@ export default function ArticleCard({ article }: { article: Article }) {
         href={`/articles/${article.slug}`}
         className={styles.articleCardLink}
       >
+        <span className={styles.articleType}>{article.articleType}</span>
         {(article.image || article.thumbnailVideo) && (
           <div className={styles.articleCardImageWrap}>
             {article.thumbnailVideo ? (
@@ -42,13 +43,9 @@ export default function ArticleCard({ article }: { article: Article }) {
                 />
               )
             )}
-            <span className={styles.articleType}>{article.articleType}</span>
           </div>
         )}
         <div className={styles.articleCardBody}>
-          {!article.image && !article.thumbnailVideo && (
-            <span className={styles.articleType}>{article.articleType}</span>
-          )}
           <h3 className={styles.articleCardTitle}>{article.title}</h3>
           {article.excerpt && (
             <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
