@@ -50,6 +50,12 @@ export default function ArticleCard({ article }: { article: Article }) {
           {article.excerpt && (
             <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
           )}
+          {article.readingTime &&
+          article.articleType?.toLowerCase() !== 'video' ? (
+            <p className={styles.articleCardReadingTime}>
+              {article.readingTime} min read
+            </p>
+          ) : null}
         </div>
       </Link>
     </li>

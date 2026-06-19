@@ -117,6 +117,14 @@
   line-height: 1.4;
 }
 
+// Small "N min read" line under the card excerpt — grey-blue tint to
+// keep it quiet against the dark excerpt text.
+.articleCardReadingTime {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.8rem;
+  color: #6b7d8c;
+}
+
 // Hero row at the top of /articles — newest article on the left, a
 // compact job-board teaser on the right. Stacks vertically on mobile,
 // becomes a 2-column grid at desktop with the hero card taking more
