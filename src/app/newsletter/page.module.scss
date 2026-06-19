@@ -7,7 +7,7 @@
   margin: 2rem 0 5em 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 4rem;
 }
 
 .newsletter {
@@ -171,6 +171,6 @@
 @media only screen and (min-width: 1000px) {
   .newsletters {
     grid-template-columns: repeat(2, 1fr);
-    gap: 3rem 2rem;
+    gap: 5rem 2rem;
   }
 }

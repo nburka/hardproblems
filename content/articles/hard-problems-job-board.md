@@ -1,8 +1,8 @@
 ---
-title: 'Hard Problems now has a job board for designers'
+title: 'We now have a job board for designers'
 slug: 'hard-problems-job-board'
 
-excerpt: 'We launched a curated job board with hundreds of design, product, research, and copywriting roles at organizations solving climate, healthcare, education, and public-service challenges.'
+excerpt: 'We have a curated job board with design, product, research, and copywriting roles at orgs solving hard problems.'
 
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
@@ -45,7 +45,7 @@ seoDescription: 'A curated job board with hundreds of design, product, research,
 canonicalUrl: ''
 ---
 
-# Hard Problems now has a job board for designers {#hard-problems-now-has-a-job-board}
+# We now have a job board for designers {#hard-problems-now-has-a-job-board}
 
 _We created a job board with hundreds of design jobs related to climate change, healthcare, education, and public services._{.intro}
 

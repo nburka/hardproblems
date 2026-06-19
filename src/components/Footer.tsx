@@ -170,7 +170,7 @@ export function Footer() {
         </p>
       </div>
       <div className="footer-col">
-        <h3>Registration</h3>
+        <h3>We are a nonprofit</h3>
         <p>
           Hard Problems is a nonprofit Company Limited by Guarantee registered
           with{' '}
@@ -201,9 +201,11 @@ export function Footer() {
             Privacy notice
           </Link>
         </p>
-        <p className="footer-contact-link">
-          <CopyrightIcon />
-          Copyright {new Date().getFullYear()} Hard Problems
+        <p>
+          <span className="footer-contact-link">
+            <CopyrightIcon />
+            Copyright {new Date().getFullYear()} Hard Problems
+          </span>
         </p>
       </div>
     </div>

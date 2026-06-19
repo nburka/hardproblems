@@ -2,7 +2,7 @@
 title: 'The missing piece in your design career'
 slug: 'missing-piece-design-career'
 
-excerpt: 'Many senior designers and technologists feel burned out despite great salaries. The concept of ikigai reveals why — and what to do about it.'
+excerpt: 'Many senior designers feel burned out despite great salaries. The concept of ikigai reveals what to do about it.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'

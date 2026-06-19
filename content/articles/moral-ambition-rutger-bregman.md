@@ -2,7 +2,7 @@
 title: "Moral Ambition by Rutger Bregman"
 slug: "moral-ambition-rutger-bregman"
 
-excerpt: "A timely provocation for those of us seeking to center our professional lives on problems that matter — and a clarion call to channel disillusionment into impact."
+excerpt: "A timely provocation for those of us seeking to center our professional lives on problems that matter."
 
 author: "Kane Lincoln"
 authorSlug: "kane-lincoln"

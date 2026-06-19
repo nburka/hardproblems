@@ -71,7 +71,8 @@ export default function Page() {
           </p>
         </div>
 
-        <p className="space-top-large">
+        <h3 className="space-top-large">Building bridges</h3>
+        <p>
           Many of the world’s smartest and most dedicated teams tackling hard
           problems struggle to get help from (or hire) experienced designers
           who are integral to designing and implementing important solutions.
@@ -93,17 +94,11 @@ export default function Page() {
         </p>
 
         <h3 className="space-top-large">We plan to</h3>
-        <ul>
+        <ul className="hand-drawn-checklist">
           <li>
             <b>Foster a community and build bridges.</b> Tie into existing communities and create a bridge
             between the experts who are working on the world’s hard problems and tech
             people who can help them.
-            <div className="tags">
-              <span className="tag">Email newsletter</span>
-              <span className="tag">Job board</span>
-              <span className="tag">Podcast</span>
-              <span className="tag">Slack community</span>
-            </div>
           </li>
           <li>
             <b>Help teams to set themselves up for success.</b> Once teams are formed,
@@ -111,12 +106,6 @@ export default function Page() {
             will show, from our experience, how to form functional teams, move
             quickly to validate ideas, and how to deploy software in
             new and challenging environments.
-            <div className="tags">
-              <span className="tag">Job board</span>
-              <span className="tag">Cohort-based workshops</span>
-              <span className="tag">Org development consulting</span>
-              <span className="tag">Mentorship program</span>
-            </div>
           </li>
           <li>
             <b>Encourage long-term solutions.</b> The tech world is notorious for
@@ -126,20 +115,17 @@ export default function Page() {
             challenges are going to be <i>solved</i> by technology &#8212; tech will
             be one part of a broader effort. These are cultural values in
             tech that needs to be shifted.
-            <div className="tags">
-              <span className="tag">Podcast</span>
-              <span className="tag">Cohort-based workshops</span>
-              <span className="tag">TBD...</span>
-            </div>
           </li>
         </ul>
         <h3 className="space-top-large">What success looks like</h3>
         <p>
           Thinking of this in terms of KPIs, we’d first think of measuring: the
           number of people we help make the leap from the traditional tech world
-          to organizations that work on the world’s hard problems. In the
-          broader sense, our goals are to change the culture of tech to value
-          people who work on hard problems.
+          to organizations that work on the world’s hard problems.
+        </p>
+        <p>
+          In the broader sense, our goals are to change the culture of tech to
+          value people who work on hard problems.
         </p>
       </section>
       <section className="right">

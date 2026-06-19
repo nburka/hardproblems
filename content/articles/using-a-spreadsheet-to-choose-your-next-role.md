@@ -2,7 +2,7 @@
 title: 'Use a spreadsheet to choose your next role'
 slug: 'use-a-spreadsheet-to-choose-your-next-role'
 
-excerpt: '"Job Rank" is a simple weighted-scoring framework that helps you score competing offers against the values that matter most to you right now.'
+excerpt: '"Job Rank" is a simple scoring framework that helps you score competing offers against your values.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'

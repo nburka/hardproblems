@@ -2,7 +2,7 @@
 title: 'Tricks to find a meaningful job on LinkedIn'
 slug: 'tricks-find-meaningful-job-linkedin'
 
-excerpt: 'LinkedIn is still the best place to find jobs in many regions — but meaningful roles are hard to surface. A few simple tricks help you cut through the noise.'
+excerpt: 'Meaningful roles can be hard to surface. A few simple tricks help you cut through the noise.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'

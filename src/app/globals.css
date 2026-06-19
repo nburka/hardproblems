@@ -161,6 +161,20 @@ h1 {
   margin-top: 0;
 }
 
+/* Lay out each footer column as a flex stack with an explicit gap.
+   This avoids the margin-collapse / inline-flex quirks that made the
+   copyright line sit further from the row above than the link rows did. */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-col p {
+  margin: 0;
+}
+
+
 /* Three-column header: nav (left), Hard Problems logo (center),
    newsletter form (right). Stacks on mobile; becomes a single row at
    the desktop breakpoint via the @media block below. */
@@ -261,7 +275,8 @@ nav a.active {
 
 .site-footer h3 {
   font-size: 22px;
-  margin-bottom: 1em;
+  margin-bottom: 0.5rem;
+  color: #235337;
 }
 
 .site-footer a,
@@ -285,6 +300,8 @@ nav a.active {
 
 .footer-contact-icon {
   flex-shrink: 0;
+  color: #235337;
+  opacity: 0.5;
 }
 
 b {
@@ -619,6 +636,38 @@ iframe.newsletter-form {
   margin: 0 0 1em 1em;
 }
 
+/* Hand-drawn checklist — apply `class="hand-drawn-checklist"` to a <ul>
+   (or to a wrapping div around one) and each <li> renders with a sketchy
+   hand-drawn checkbox marker instead of a bullet. Used in articles and
+   on /about. */
+.hand-drawn-checklist,
+.hand-drawn-checklist ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.hand-drawn-checklist li,
+.hand-drawn-checklist ul li {
+  position: relative;
+  padding-left: 1.7em;
+  margin: 0.8em 0;
+  min-height: 1.3em;
+}
+
+.hand-drawn-checklist li::before,
+.hand-drawn-checklist ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 1.15em;
+  height: 1.15em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23231f20' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6,5L27,4L28,27L5,26Z'/%3E%3Cpath d='M10,16L15,22L25,9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 /* Grid of offering cards (used on /about right column). Reuses the
    .grid-cell visual treatment. Single column on mobile, 2x2 grid on
    desktop (overrides the desktop 46% width). */
@@ -632,6 +681,7 @@ iframe.newsletter-form {
 .offer-stack .grid-cell {
   width: 100%;
   margin-top: 0;
+  padding-top: 8px;
 }
 
 @media only screen and (min-width: 1000px) {

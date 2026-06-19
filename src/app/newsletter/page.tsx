@@ -43,7 +43,7 @@ export default function Page() {
 
   const dateFormat: Intl.DateTimeFormatOptions = {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
   };
 
@@ -89,7 +89,7 @@ export default function Page() {
                         className={styles.newsletterImage}
                       />
                       <span className={styles.newsletterDate}>
-                        {newsletter.pubDate.toLocaleDateString('en', dateFormat)}
+                        {newsletter.pubDate.toLocaleDateString('en-GB', dateFormat)}
                       </span>
                     </div>
                     <div className={styles.newsletterBody}>

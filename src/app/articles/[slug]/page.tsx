@@ -13,11 +13,14 @@ import { getAuthorUrl } from '../../../lib/authors';
 import styles from './article.module.scss';
 
 // Hand-picked slugs shown in the "Top articles" rail at the bottom of
-// every article page. Order here is the order they render.
+// every article page. Order here is the order they render. Extra slugs
+// past the first three serve as backfill when the current article is
+// itself one of the picks (so the rail always shows three cards).
 const TOP_ARTICLE_SLUGS = [
   'hard-problems-explained',
   'use-a-spreadsheet-to-choose-your-next-role',
-  'join-nonprofit-board-or-advisory-group'
+  'join-nonprofit-board-or-advisory-group',
+  'hard-problems-job-board'
 ];
 
 type Props = { params: Promise<{ slug: string }> };
@@ -102,12 +105,14 @@ export default async function ArticlePage({ params }: Props) {
   // Build the "Top articles" rail. Filter out the current article so a
   // post never recommends itself, and skip any slug that doesn't resolve
   // to a published article (so a typo in the list above degrades
-  // gracefully rather than crashing the page).
+  // gracefully). Cap at 3 — extra slugs in TOP_ARTICLE_SLUGS act as
+  // backfill when one of the top picks is the current article.
   const topArticles = TOP_ARTICLE_SLUGS.map((s) => getArticleBySlug(s))
     .filter(
       (a): a is NonNullable<typeof a> =>
         a != null && a.status === 'published' && a.slug !== article.slug
-    );
+    )
+    .slice(0, 3);
 
   return (
     <>
