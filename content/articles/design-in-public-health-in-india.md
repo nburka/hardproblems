@@ -44,3 +44,7 @@ A behind-the-scenes conversation with [Dr. Prabhdeep Kaur](https://www.linkedin.
 With decades of experience running large-scale health programs, they'll share candid insights into the software, systems, and design choices that drive (or derail) real-world outcomes. We'll also dive into a question more technologists are starting to ask: Is there an exciting career in public health for people like us?
 
 Whether you're curious about impact, looking beyond big tech, or already working at the intersection of design and health, this conversation will spark new ideas about where your skills can truly make a difference.
+
+## Events at Hard Problems
+
+This video is from an event organized by Hard Problems. Keep informed about future events by signing up to our [email newsletter](/newsletter).
