@@ -25,8 +25,7 @@ featured: false
 image: '/images/content/thumb-talk-ux.jpg'
 imageAlt: 'Daniel Burka and Mahima Chandak speaking at TalkUX 2025 in Brighton, UK'
 
-thumbnailVideo: '/videos/daniel-burka-explainer.mp4'
-thumbnailVideoWebm: '/videos/daniel-burka-explainer.webm'
+thumbnailVideo: '/videos/about-hard-problems-thumb.mp4'
 
 seoTitle: 'What is Hard Problems all about?'
 seoDescription: 'A 10 minute video introduction to Hard Problems and our goals.'

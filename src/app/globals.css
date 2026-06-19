@@ -271,6 +271,10 @@ nav a.active {
 
 .site-footer p {
   font-size: 14px;
+  max-width: 22em;
+  /* Balance line lengths so short footer paragraphs don't end on a
+     single dangling word — same idea as the thumbnail titles. */
+  text-wrap: balance;
 }
 
 .site-footer h3 {
