@@ -6,6 +6,7 @@ import CodeBlockCopyButtons from '../components/CodeBlockCopyButtons';
 import NewsletterForm from '../components/NewsletterForm';
 import PostHogProvider from '../components/PostHogProvider';
 import { Footer } from '../components/Footer';
+import RotatingTagline from '../components/RotatingTagline';
 import './globals.css';
 
 // Used for article titles (listing cards and the article H1). Exposed as a
@@ -53,10 +54,7 @@ export default function RootLayout({
       <body>
         <PostHogProvider>
           <div className="main">
-            <p className="site-tagline">
-              We are a nonprofit that helps designers transition to
-              full-time careers focused on urgent global challenges
-            </p>
+            <RotatingTagline />
             <header className="site-header">
               <div className="site-header-nav" />
               <h1>

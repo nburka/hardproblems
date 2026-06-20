@@ -136,6 +136,13 @@ h1 {
   display: none;
 }
 
+/* Rotating word at the end of the tagline. The opacity transition is
+   set inline by the React component so the fade-out timing matches the
+   text swap. Inline-block keeps it sized like a word, not a block. */
+.site-tagline-rotator {
+  display: inline-block;
+}
+
 /* Site-wide footer band — light green background that bleeds out
    through body's padding to the viewport edges. The negative side
    margins extend the element beyond body's content area; the matching
