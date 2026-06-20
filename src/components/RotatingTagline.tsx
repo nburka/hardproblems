@@ -37,7 +37,7 @@ export default function RotatingTagline() {
   return (
     <p className="site-tagline">
       Good design solves problems. Great design solves problems that
-      matter. Like:{' '}
+      matter:{' '}
       <strong
         className="site-tagline-rotator"
         aria-live="polite"
