@@ -158,7 +158,7 @@ h1 {
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 3.5rem;
 }
 
 /* Normalize h3 top margin in every footer column so the three titles
