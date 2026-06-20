@@ -76,6 +76,25 @@
   text-transform: none;
 }
 
+// Mobile: stack each byline piece on its own line and hide the dot
+// separators. Each part is wrapped in a `<span>` in the JSX; the
+// separator " · " is a child `<span aria-hidden="true">` inside that
+// wrapper.
+@media only screen and (max-width: 999px) {
+  .byline > span {
+    display: block;
+    margin-bottom: 0.75em;
+  }
+
+  .byline > span:last-child {
+    margin-bottom: 0;
+  }
+
+  .byline > span > span[aria-hidden='true'] {
+    display: none;
+  }
+}
+
 // Author byline link — keeps the byline's gray color (the wrapping
 // <strong> below provides the visual emphasis) and only changes on hover.
 .authorLink,
@@ -173,9 +192,16 @@
 
   // Byline lives inside .body now (injected after the intro). Bump
   // specificity to .body .byline so its bottom margin wins over the
-  // generic `.body p` rule above.
+  // generic `.body p` rule above. Mobile uses a tighter gap because
+  // the byline takes 3 stacked lines there.
   .byline {
-    margin: 0 0 10em 0;
+    margin: 0 0 5em 0;
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .byline {
+      margin: 0 0 10em 0;
+    }
   }
 
   // Match the site-wide link styling (no underline, darkblue on hover)
