@@ -58,9 +58,7 @@ export default function RootLayout({
               full-time careers focused on urgent global challenges
             </p>
             <header className="site-header">
-              <div className="site-header-nav">
-                <TopBar />
-              </div>
+              <div className="site-header-nav" />
               <h1>
                 <Link href="/">
                   Hard Problems<span className="hp-period">.</span>
@@ -70,6 +68,7 @@ export default function RootLayout({
                 <NewsletterForm />
               </div>
             </header>
+            <TopBar />
             <div className="container">{children}</div>
           </div>
           <footer className="site-footer">

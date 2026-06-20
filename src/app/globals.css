@@ -19,7 +19,7 @@ body {
 }
 
 nav {
-  font-size: 14px;
+  font-size: 0.85rem;
 }
 
 a,
@@ -183,20 +183,25 @@ h1 {
   grid-template-columns: 1fr;
   gap: 1.5rem;
   align-items: center;
-  margin: 0 0 2rem 0;
+  /* No bottom margin — the nav-bar sits directly underneath, butting
+     up against this header's border-bottom. Spacing to the page
+     content is provided by the nav-bar's own bottom margin. */
+  margin: 0;
   padding: 1.25rem 0;
   border-top: 1px solid rgba(59, 79, 94, 0.5);
   border-bottom: 1px solid rgba(59, 79, 94, 0.5);
 }
 
 .site-header-nav {
-  display: flex;
-  justify-content: center;
+  /* Hidden on mobile so the empty grid cell doesn't push the logo
+     off-center vertically. Re-enabled on desktop where it acts as the
+     left placeholder for the 3-column header grid. */
+  display: none;
 }
 
 .site-header-newsletter {
-  /* Hidden on mobile — replaced by the .nav-newsletter link in the nav.
-     Re-enabled at the desktop breakpoint below. */
+  /* Hidden on mobile — the Newsletter link in the nav serves the same
+     purpose at this width. Re-enabled at the desktop breakpoint below. */
   display: none;
   width: 100%;
   max-width: 400px;
@@ -246,17 +251,10 @@ h4 {
 
 nav {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px 6px;
 }
 
 nav a,
 nav a:visited {
-  margin: 0;
-  padding: 4px 12px;
-  border-radius: 100px;
   color: #231f20;
 }
 
@@ -267,6 +265,56 @@ nav a:hover {
 nav a.active {
   background: transparent;
   color: #3aa36d;
+}
+
+/* Equal-width nav bar that sits directly below the site header. The
+   dark stroke at the bottom mirrors the .site-header bottom border
+   above; thin vertical dividers separate each link. On narrow
+   viewports where labels don't fit, the row scrolls horizontally
+   instead of wrapping. */
+nav.site-nav-bar {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  margin: 0 0 2rem 0;
+  border-bottom: 1px solid rgba(59, 79, 94, 0.5);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+nav.site-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.site-nav-bar a,
+.site-nav-bar a:visited {
+  /* grow: 1 → each link expands to fill its share when there's room
+     shrink: 0 → never shrink below content width
+     basis: auto → start from the link's natural label width
+     Result: equal-width on wide viewports, natural-width with
+     horizontal scroll on narrow ones. */
+  flex: 1 0 auto;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.9rem 0.85rem;
+  border-right: 1px solid rgba(59, 79, 94, 0.18);
+  border-radius: 0;
+  margin: 0;
+}
+
+.site-nav-bar a:last-child {
+  border-right: none;
+}
+
+/* Default: short labels visible, long hidden. Swap at the desktop
+   breakpoint below. */
+.nav-label-short {
+  display: inline;
+}
+
+.nav-label-long {
+  display: none;
 }
 
 .site-footer p {
@@ -787,6 +835,15 @@ iframe.newsletter-form {
     margin-right: 0;
   }
 
+  /* Desktop: swap the short mobile labels for the full names. */
+  .nav-label-short {
+    display: none;
+  }
+
+  .nav-label-long {
+    display: inline;
+  }
+
   .site-tagline {
     display: block;
     text-align: center;
@@ -804,7 +861,9 @@ iframe.newsletter-form {
   .site-header {
     grid-template-columns: 1fr auto 1fr;
     gap: 2rem;
-    margin: 1rem 0 2.5rem 0;
+    /* Top margin only — bottom is 0 so the nav-bar butts against the
+       header's bottom border. */
+    margin: 1rem 0 0 0;
     /* Pad to the same 42px that .container section uses, so the nav
        starts where the left column's text starts and the newsletter
        ends where the right column's text ends. Vertical padding sets
@@ -813,10 +872,10 @@ iframe.newsletter-form {
   }
 
   .site-header-nav {
+    /* Restored on desktop — empty grid cell that balances the
+       newsletter form on the right so the logo stays centered. */
+    display: block;
     justify-self: start;
-    /* Center nav text vertically with the logo. The active underline is
-       still anchored to the .site-header border-bottom via the larger
-       padding-bottom on nav a above. */
     align-self: center;
   }
 
