@@ -10,7 +10,7 @@ authorSlug: 'daniel-burka'
 publishedAt: '2026-06-17'
 updatedAt: '2026-06-17'
 
-status: 'published' # draft | review | published
+status: 'draft' # draft | review | published
 
 articleType: 'Video' # Article | Book Review | Podcast | Opinion | Video
 

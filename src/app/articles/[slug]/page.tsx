@@ -19,7 +19,9 @@ const TOP_ARTICLE_SLUGS = [
   'hard-problems-explained',
   'use-a-spreadsheet-to-choose-your-next-role',
   'join-nonprofit-board-or-advisory-group',
-  'hard-problems-job-board'
+  'hard-problems-job-board',
+  'missing-piece-design-career',
+  'tricks-find-meaningful-job-linkedin'
 ];
 
 type Props = { params: Promise<{ slug: string }> };

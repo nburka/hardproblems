@@ -1,7 +1,7 @@
 .articles {
   width: 100%;
-  padding-top: 24px;
-  margin-top: 42px;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .articleList {
@@ -158,6 +158,17 @@
   display: none;
 }
 
+// Mobile-only Newest jobs panel slotted into the article list after
+// the 3rd article. Hidden on desktop where the .heroJobs panel to the
+// right of the hero already covers this.
+.mobileJobsTeaser {
+  margin: 0;
+}
+
+.mobileJobsTeaser h3 {
+  margin: 0 0 1rem 0;
+}
+
 .heroJobs h3 {
   margin: 0 0 1rem 0;
 }
@@ -174,6 +185,12 @@
   .articleList {
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem 3rem;
+  }
+
+  // Hide the mobile-only jobs teaser slotted into the article list —
+  // on desktop the .heroJobs panel covers this role.
+  .mobileJobsTeaser {
+    display: none;
   }
 }
 

@@ -79,3 +79,11 @@ Regrettably, there are reasons to think that moral reframing might be less effec
 ## Where does this leave us? {#where-does-this-leave-us}
 
 In all, we think *Moral Ambition* serves as an effective clarion call. Disillusionment should spur us into action. Individual agency can make a difference, even in the face of powerful structural forces. In order to effect change, we need smart people to develop new tools and arguments. The moral responsibility Bregman lays out in *Moral Ambition* speaks to much of what we aim to do at Hard Problems, and the force of his convictions makes it a worthwhile read for anybody considering a transition into impact-focused work.
+
+## Watch Rutger Bregman on the Daily Show {#watch-rutger-bregman-on-the-daily-show}
+
+Check out this great interview that Rutger Bregman gave with host Jon Stewart.
+
+<div class="video-embed">
+<iframe src="https://www.youtube-nocookie.com/embed/djKBIET9kMw" title="Rutger Bregman on the Daily Show with Jon Stewart" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
