@@ -188,8 +188,8 @@ h1 {
      content is provided by the nav-bar's own bottom margin. */
   margin: 0;
   padding: 1.25rem 0;
-  border-top: 1px solid rgba(59, 79, 94, 0.5);
-  border-bottom: 1px solid rgba(59, 79, 94, 0.5);
+  border-top: 1px solid rgba(59, 79, 94, 0.18);
+  border-bottom: 1px solid rgba(59, 79, 94, 0.18);
 }
 
 .site-header-nav {
@@ -277,7 +277,7 @@ nav.site-nav-bar {
   width: 100%;
   flex-wrap: nowrap;
   margin: 0 0 2rem 0;
-  border-bottom: 1px solid rgba(59, 79, 94, 0.5);
+  border-bottom: 1px solid rgba(59, 79, 94, 0.18);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
