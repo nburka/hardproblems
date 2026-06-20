@@ -43,49 +43,6 @@
   }
 }
 
-// Full-width row above the centered article column. Breadcrumb sits on
-// the left, byline on the right. Both wrap onto the next line on narrow
-// widths so the row doesn't squeeze either piece of text.
-.topBar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0 0 1.5rem 0;
-}
-
-.breadcrumb {
-  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 400;
-  color: #235337;
-  margin: 0;
-
-  a,
-  a:visited {
-    color: #235337;
-    text-decoration: none;
-  }
-
-  a:hover,
-  a:focus {
-    color: #324bbc;
-    text-decoration: underline;
-  }
-}
-
-// Lighter green separator between breadcrumb segments. The text either
-// side stays at the darker brand green; only the slash lightens. The
-// padding adds extra breathing room around the slash on top of the NBSPs
-// baked into the JSX.
-.breadcrumbSep {
-  color: #84d9a6;
-  padding: 0 0.4em;
-}
 
 .header {
   // 5em of breathing room above the frontmatter (between the top bar and

@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import ArticleCard from '../../../components/ArticleCard';
 import {
-  articleTypeSlug,
   formatPublishedDate,
   getAllArticles,
   getArticleBySlug,
@@ -117,32 +116,6 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <section className={styles.articleWrap}>
-        <div className={styles.topBar}>
-          <p className={styles.breadcrumb}>
-            <Link href="/">
-              <span aria-hidden="true">←</span> Home
-            </Link>
-            {article.articleType &&
-              article.articleType.toLowerCase() !== 'article' && (
-                <>
-                  <span
-                    aria-hidden="true"
-                    className={styles.breadcrumbSep}
-                  >
-                    {' / '}
-                  </span>
-                  <Link
-                    href={`/articles/type/${articleTypeSlug(
-                      article.articleType
-                    )}`}
-                  >
-                    {article.articleType}
-                  </Link>
-                </>
-              )}
-          </p>
-        </div>
-
         <article className={styles.article}>
         <header className={styles.header}>
           {article.articleType &&
@@ -193,7 +166,7 @@ export default async function ArticlePage({ params }: Props) {
   );
 }
 
-// Byline row shown in the article's top bar: "By <Author> · <Date> · N min read".
+// Byline row shown above the article body: "By <Author> · <Date> · N min read".
 // Each piece is conditional, so the dot separators only appear between pieces
 // that are actually rendered. Author becomes a link when we have a URL for them.
 function ArticleByline({
