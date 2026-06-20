@@ -308,10 +308,43 @@ nav.site-nav-bar::-webkit-scrollbar {
   border-right: 1px solid rgba(59, 79, 94, 0.18);
   border-radius: 0;
   margin: 0;
+  position: relative;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .site-nav-bar a:last-child {
   border-right: none;
+}
+
+/* Hover: light green tint fills the cell, text shifts to the
+   dark-green brand colour, and a thin green underline slides in
+   from below. The underline uses transform-scale so it animates
+   from a 1px line at the bottom up to its full position without
+   shifting layout. */
+.site-nav-bar a:hover,
+.site-nav-bar a:focus-visible {
+  background-color: rgba(132, 217, 166, 0.18);
+  color: #235337;
+  outline: none;
+}
+
+.site-nav-bar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: #3aa36d;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.site-nav-bar a:hover::after,
+.site-nav-bar a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 /* Default: short labels visible, long hidden. Swap at the desktop
@@ -895,7 +928,7 @@ iframe.newsletter-form {
 
 
   h1 {
-    font-size: 30px;
+    font-size: 35px;
   }
 
   .container {

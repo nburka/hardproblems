@@ -121,7 +121,9 @@
 // keep it quiet against the dark excerpt text.
 .articleCardReadingTime {
   margin: 0.2rem 0 0 0;
-  font-size: 0.8rem;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.7rem;
   color: #6b7d8c;
 }
 
