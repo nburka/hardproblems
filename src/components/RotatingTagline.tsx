@@ -36,8 +36,8 @@ export default function RotatingTagline() {
 
   return (
     <p className="site-tagline">
-      We are a nonprofit that helps designers transition to full-time
-      careers focused on urgent global challenges like{' '}
+      Good design solves problems. Great design solves problems that
+      matter. Like:{' '}
       <strong
         className="site-tagline-rotator"
         aria-live="polite"
