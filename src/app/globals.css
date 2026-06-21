@@ -715,6 +715,22 @@ iframe.newsletter-form {
   border: 4px solid #cbead8;
 }
 
+/* Desktop: roomier episode card with the original full-size podcast
+   image. Mobile keeps the smaller 80px image so it doesn't crowd the
+   episode title to its left. */
+@media only screen and (min-width: 1000px) {
+  .episode {
+    padding: 24px 200px 24px 24px;
+    min-height: 160px;
+  }
+
+  .episode .podcast-image {
+    width: 160px;
+    height: 160px;
+    border-width: 6px;
+  }
+}
+
 /* Each episode gets its own hue — background plus a matching, slightly
    darker image border. */
 .episode--1 {

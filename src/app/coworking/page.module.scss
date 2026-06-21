@@ -26,13 +26,12 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  border: 1px solid #ebf7f0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   transition: border-color 0.15s ease;
 }
 
 .teamTileImage:hover {
-  border-color: #84d9a6;
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 // Placeholder for teams that don't yet have a logo. Same aspect ratio so
@@ -41,9 +40,8 @@
   display: block;
   width: 100%;
   aspect-ratio: 512 / 410;
-  border-radius: 8px;
   background: #f4f7f5;
-  border: 1px solid #ebf7f0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .teamTileName {
