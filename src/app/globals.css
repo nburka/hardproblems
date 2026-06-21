@@ -33,7 +33,6 @@ a:focus {
   color: darkblue;
 }
 
-
 /* Black pill button — same look as the one used inside articles. Explicit
    :visited and `a` selectors override the site link-color rules above. */
 a.black-button,
@@ -189,7 +188,6 @@ h1 {
 .footer-col p {
   margin: 0;
 }
-
 
 /* Three-column header: nav (left), Hard Problems logo (center),
    newsletter form (right). Stacks on mobile; becomes a single row at
@@ -405,7 +403,6 @@ nav.site-nav-bar::-webkit-scrollbar {
 .nav-label-long {
   display: none;
 }
-
 
 .site-footer p {
   font-size: 14px;
@@ -636,13 +633,6 @@ iframe.newsletter-form {
 .container section.right {
   padding-top: 0;
   margin-top: 1rem;
-}
-
-/* Keep the green rule between stacked sections on mobile — but only on
-   .right, since .left now sits directly under the header which already
-   has its own border-bottom. */
-.container section.right {
-  border-top: 1px solid #84d9a6;
 }
 
 .image-full {
@@ -982,14 +972,12 @@ iframe.newsletter-form {
     padding: 1.25rem 42px;
   }
 
-
   .site-header-newsletter {
     display: block;
     justify-self: end;
     margin: 0;
     max-width: 400px;
   }
-
 
   h1 {
     font-size: 35px;
