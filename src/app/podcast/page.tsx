@@ -5,10 +5,10 @@ export default function Page() {
   return (
     <>
       <section className="left">
-        <h2>Podcast (coming soon)</h2>
+        <h2>Podcast</h2>
         <p className="intro">
-          We plan to interview the designers in the trenches doing the work on
-          &#8216;hard problems.&#8217;
+          Coming soon. We plan to interview the designers in the trenches doing
+          the work on &#8216;hard problems.&#8217;
         </p>
         <div className="illustration-home">
           <Image

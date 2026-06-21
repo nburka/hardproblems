@@ -97,8 +97,8 @@ blockquote {
 }
 
 p.intro {
-  line-height: 1.43;
-  font-size: 22px;
+  line-height: 1.5;
+  font-size: 18px;
   margin: 1rem 0 3rem 0;
   font-weight: 300;
 }
@@ -300,7 +300,7 @@ nav.site-nav-bar::-webkit-scrollbar {
   flex: 0 0 auto;
   text-align: center;
   white-space: nowrap;
-  padding: 1.2rem 1.2rem;
+  padding: 1.2rem 0.6rem;
   font-weight: 700;
   border-radius: 0;
   margin: 0;
@@ -591,8 +591,8 @@ iframe.newsletter-form {
 
 .container section.left,
 .container section.right {
-  padding-top: 24px;
-  margin-top: 42px;
+  padding-top: 0;
+  margin-top: 1rem;
 }
 
 /* Keep the green rule between stacked sections on mobile — but only on
@@ -844,6 +844,13 @@ iframe.newsletter-form {
     background: white;
   }
 
+  /* Restore the larger intro size on desktop — mobile uses the
+     smaller 18px set on the base p.intro rule above. */
+  p.intro {
+    font-size: 22px;
+    line-height: 1.43;
+  }
+
   .main {
     max-width: 1400px;
     margin: 0 auto;
@@ -880,6 +887,12 @@ iframe.newsletter-form {
 
   nav a:last-child {
     margin-right: 0;
+  }
+
+  /* Desktop: roomier horizontal padding on the nav links. Mobile keeps
+     the tighter padding so the labels fit on narrow viewports. */
+  .site-nav-bar a {
+    padding: 1.2rem 1.2rem;
   }
 
   /* Desktop: swap the short mobile labels for the full names. */
