@@ -7,6 +7,7 @@ import NewsletterForm from '../components/NewsletterForm';
 import PostHogProvider from '../components/PostHogProvider';
 import { Footer } from '../components/Footer';
 import RotatingTagline from '../components/RotatingTagline';
+import SiteHeaderHome from '../components/SiteHeaderHome';
 import './globals.css';
 
 // Used for article titles (listing cards and the article H1). Exposed as a
@@ -56,7 +57,7 @@ export default function RootLayout({
           <div className="main">
             <RotatingTagline />
             <header className="site-header">
-              <div className="site-header-nav" />
+              <SiteHeaderHome />
               <h1>
                 <Link href="/">
                   Hard Problems<span className="hp-period">.</span>

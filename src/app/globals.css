@@ -205,23 +205,42 @@ h1 {
    the desktop breakpoint via the @media block below. */
 .site-header {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  /* 1fr auto 1fr keeps the logo perfectly page-centered with the Home
+     link in the left column and (on desktop) the newsletter form on
+     the right. Same on mobile and desktop — only spacing differs. */
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
   align-items: center;
-  /* No bottom margin — the nav-bar sits directly underneath, butting
-     up against this header's border-bottom. Spacing to the page
-     content is provided by the nav-bar's own bottom margin. */
   margin: 0;
   padding: 1.25rem 0;
   border-top: 1px solid rgba(59, 79, 94, 0.18);
   border-bottom: 1px solid rgba(59, 79, 94, 0.18);
 }
 
-.site-header-nav {
-  /* Hidden on mobile so the empty grid cell doesn't push the logo
-     off-center vertically. Re-enabled on desktop where it acts as the
-     left placeholder for the 3-column header grid. */
-  display: none;
+/* Home link in the top-left of the header. Same line as the Hard
+   Problems logo on both mobile and desktop. Renders as an inline-flex
+   so the left-caret SVG sits flush against the "Home" text. */
+.site-header-home,
+.site-header-home:visited {
+  justify-self: start;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  font-size: 0.85rem;
+  color: #235337;
+  text-decoration: none;
+}
+
+.site-header-home:hover {
+  color: #0d4f27;
+  text-decoration: underline;
+}
+
+.site-header-home-caret {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
 }
 
 .site-header-newsletter {
@@ -396,14 +415,6 @@ nav.site-nav-bar::-webkit-scrollbar {
   display: none;
 }
 
-/* Home link on mobile shows an icon instead of the word "Home". Sized
-   to ~1.2em so it sits visually balanced with the other labels. */
-.nav-home-icon {
-  display: inline-block;
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: -0.25em;
-}
 
 .site-footer p {
   font-size: 14px;
@@ -972,13 +983,6 @@ iframe.newsletter-form {
     padding: 1.25rem 42px;
   }
 
-  .site-header-nav {
-    /* Restored on desktop — empty grid cell that balances the
-       newsletter form on the right so the logo stays centered. */
-    display: block;
-    justify-self: start;
-    align-self: center;
-  }
 
   .site-header-newsletter {
     display: block;
