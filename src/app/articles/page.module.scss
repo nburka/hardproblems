@@ -79,6 +79,32 @@
   gap: 0.4rem;
 }
 
+// White pill overlay at the bottom-left of the thumbnail for Video
+// ("Watch") and Podcast ("Listen") cards. Includes an inline SVG
+// icon followed by a short verb. Light shadow keeps it legible over
+// any image / video poster.
+.articleCardBadge {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 6px 12px 6px 10px;
+  background: #fff;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #231f20;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.articleCardBadgeIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 // Article-type kicker sitting above the thumbnail (e.g. "OPINION",
 // "VIDEO", "BOOK REVIEW"). Plain text, no pill background — matches
 // the .preTitleLabel treatment used on the article page itself.
@@ -145,12 +171,6 @@
   margin: 0;
 }
 
-// Hide the article-type kicker on the hero card — the bigger card
-// already reads as the lead piece, and the kicker adds noise above
-// the larger title.
-.heroList .articleType {
-  display: none;
-}
 
 // Hide the entire Newest jobs panel on mobile — it eats too much vertical
 // space below the hero article. Re-enabled at desktop in the @media block.
@@ -167,6 +187,76 @@
 
 .mobileJobsTeaser h3 {
   margin: 0 0 1rem 0;
+}
+
+// Mobile-only "More content" heading rendered just before the first
+// compact card. Hidden on desktop where the layout returns to the
+// 3-up grid of standard cards.
+.moreContentHeading {
+  margin: 0;
+}
+
+.moreContentHeading h3 {
+  margin: 0;
+}
+
+// Compact mobile card — image left, type/title/excerpt right, with a
+// thin line above each card. Used on the homepage for articles after
+// the 3rd. Negative top margin pulls the card up into the article
+// list's 4rem grid gap so the stack reads as a tight list with rule
+// separators rather than widely-spaced cards. Resets to the normal
+// stacked layout on desktop via the @media rule below.
+.articleCardCompact {
+  margin-top: -2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #d9eee2;
+}
+
+.articleCardCompact .articleCardLink {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  grid-template-areas:
+    'image type'
+    'image body';
+  gap: 0.3rem 1rem;
+  align-items: start;
+}
+
+.articleCardCompact .articleType {
+  grid-area: type;
+  // Compact cards don't use the negative bottom-margin pull-up that
+  // the standard layout uses (image is to the right, not below).
+  margin: 0;
+}
+
+.articleCardCompact .articleCardImageWrap {
+  grid-area: image;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+// Hide the Watch / Listen badges on compact cards — the thumbnail is
+// too small for the pill to read cleanly.
+.articleCardCompact .articleCardBadge {
+  display: none;
+}
+
+// Crop the image / video to the square wrapper — sides may be
+// trimmed but the visible area always matches the layout.
+.articleCardCompact .articleCardImage,
+.articleCardCompact .articleCardVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleCardCompact .articleCardBody {
+  grid-area: body;
+}
+
+.articleCardCompact .articleCardTitle {
+  font-size: 1.5rem;
+  line-height: 1.15;
 }
 
 .heroJobs h3 {
@@ -191,6 +281,69 @@
   // on desktop the .heroJobs panel covers this role.
   .mobileJobsTeaser {
     display: none;
+  }
+
+  // "More content" heading is mobile-only — desktop has just one
+  // unbroken article grid.
+  .moreContentHeading {
+    display: none;
+  }
+
+  // Hide the article-type kicker on the hero card on desktop only —
+  // the bigger card already reads as the lead piece, and the kicker
+  // adds noise above the larger title. Mobile keeps the kicker.
+  .heroList .articleType {
+    display: none;
+  }
+
+  // Compact card is a mobile-only treatment — reset to the standard
+  // stacked card on desktop so it fits the 3-column grid.
+  .articleCardCompact {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .articleCardCompact .articleCardLink {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+    gap: 1rem;
+  }
+
+  .articleCardCompact .articleType,
+  .articleCardCompact .articleCardImageWrap,
+  .articleCardCompact .articleCardBody {
+    grid-area: auto;
+  }
+
+  // Reset the square crop applied on mobile — desktop compact cards
+  // fall back to the standard image layout (natural aspect ratio).
+  .articleCardCompact .articleCardImageWrap {
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .articleCardCompact .articleCardImage,
+  .articleCardCompact .articleCardVideo {
+    width: 100%;
+    height: auto;
+    object-fit: initial;
+  }
+
+  // Restore the Watch / Listen badge on desktop — hiding it was a
+  // mobile-only treatment for the small compact thumbnail.
+  .articleCardCompact .articleCardBadge {
+    display: inline-flex;
+  }
+
+  .articleCardCompact .articleType {
+    margin: 0 0 -0.7rem 0;
+  }
+
+  .articleCardCompact .articleCardTitle {
+    font-size: 1.5rem;
+    line-height: 1.15;
   }
 }
 

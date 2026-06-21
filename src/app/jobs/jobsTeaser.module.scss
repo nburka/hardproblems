@@ -133,12 +133,19 @@
 // flex: 1 lets it take the remaining row width; min-width: 0 prevents
 // long words from pushing the button off the edge.
 .seeAllText {
+  display: none;
   flex: 1;
   min-width: 0;
   margin: 0;
   font-size: 0.85rem;
   line-height: 1.4;
   color: #555;
+}
+
+@media only screen and (min-width: 1000px) {
+  .seeAllText {
+    display: block;
+  }
 }
 
 // Black pill button matching the code-block "Copy" button styling. The

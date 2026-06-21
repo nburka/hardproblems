@@ -37,12 +37,24 @@ export default async function Home() {
           <ul className={styles.articleList}>
             {remainingArticles.map((article, i) => (
               <Fragment key={article.slug}>
-                <ArticleCard article={article} />
-                {/* Inserted after the 2nd remaining card = the 3rd
-                    article overall on the page (hero + 2 cards above).
-                    Mobile only — hidden on desktop where the
-                    .heroJobs teaser to the right of the hero serves
-                    the same purpose. */}
+                {/* Mobile-only "More content" heading right before the
+                    first compact card. Hidden on desktop. */}
+                {i === 2 && (
+                  <li className={styles.moreContentHeading}>
+                    <h3>More content</h3>
+                  </li>
+                )}
+                {/* hero = 1st article, list = 2nd onward. Indices 0,1
+                    are the 2nd and 3rd articles → standard card.
+                    Indices 2+ are the 4th onward → compact card on
+                    mobile (image left + text right with top rule).
+                    Desktop falls back to the normal card layout via
+                    the @media rules in page.module.scss. */}
+                <ArticleCard article={article} compact={i >= 2} />
+                {/* Mobile-only jobs teaser slotted between the 3rd
+                    and 4th articles. Hidden on desktop where the
+                    .heroJobs teaser to the right of the hero already
+                    serves the same purpose. */}
                 {i === 1 && (
                   <li className={styles.mobileJobsTeaser}>
                     <h3>Newest jobs</h3>
