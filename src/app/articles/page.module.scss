@@ -200,6 +200,141 @@
   margin: 0;
 }
 
+// Co-working aside slotted into the article grid on desktop next to
+// the secondary hero. Hidden on mobile via display:none; the desktop
+// @media block below positions it as col 1 spanning 2 rows so the
+// hero on its right (col 2-3, also spanning 2 rows) lines up.
+.coworkingAside {
+  display: none;
+}
+
+.coworkingAside h3 {
+  margin: 0 0 0.75rem 0;
+}
+
+.coworkingAsideIntro {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #444;
+}
+
+// "Learn more…" CTA sits below the rotator, left-aligned.
+.coworkingAsideCta {
+  margin: 1.25rem 0 0 0;
+}
+
+.coworkingAsideList {
+  list-style: none;
+  padding-left: 0;
+  margin: 2rem 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 0.75rem;
+  column-gap: 0.75rem;
+}
+
+// Zero out line-height + margin on the li so the cell height equals
+// the square image's height — keeps the vertical gap between rows
+// identical to the horizontal gap between columns.
+.coworkingAsideList li {
+  margin: 0;
+  line-height: 0;
+}
+
+// The link itself is the square box; the image inside fills 100% of
+// it via object-fit. This is more reliable than putting
+// `aspect-ratio` directly on the <img> (where browsers can fall back
+// to the image's intrinsic dimensions and leave a slice of empty
+// space inside the border). `overflow: visible` so the hover tooltip
+// can render outside the thumbnail.
+.coworkingAsideLink {
+  display: block;
+  position: relative;
+  aspect-ratio: 512 / 410;
+}
+
+// 1px semi-transparent inner stroke — matches the article-card image
+// inner-stroke treatment.
+.coworkingAsideLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+
+.coworkingAsideThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// Hover tooltip showing the company description — mirrors the yellow
+// job-board tooltip. Sits above the thumbnail with a small arrow
+// pointing down toward it.
+.coworkingAsideTooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  background: #fef9e7;
+  border: 1px solid #ebd2b3;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  box-shadow: 0 6px 18px rgba(139, 105, 20, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease, visibility 0.12s ease;
+  z-index: 10;
+}
+
+// Two-layer arrow below the tooltip pointing down at the thumbnail.
+// ::before is the border-coloured outer triangle, ::after is the
+// bg-coloured inner triangle one pixel smaller so the arrow shows
+// a clean border.
+.coworkingAsideTooltip::before,
+.coworkingAsideTooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.coworkingAsideTooltip::before {
+  margin-left: -8px;
+  border-style: solid;
+  border-width: 8px 8px 0 8px;
+  border-color: #ebd2b3 transparent transparent transparent;
+}
+
+.coworkingAsideTooltip::after {
+  margin-left: -7px;
+  border-style: solid;
+  border-width: 7px 7px 0 7px;
+  border-color: #fef9e7 transparent transparent transparent;
+}
+
+.coworkingAsideLink:hover .coworkingAsideTooltip,
+.coworkingAsideLink:focus-visible .coworkingAsideTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.coworkingAsideTooltipName {
+  font-weight: 700;
+  color: #231f20;
+}
+
+
 // Compact mobile card — image left, type/title/excerpt right, with a
 // thin line above each card. Used on the homepage for articles after
 // the 3rd. Negative top margin pulls the card up into the article
@@ -259,6 +394,10 @@
   line-height: 1.15;
 }
 
+// Hero card class — only takes effect on desktop (see the @media
+// block below). On mobile the card uses whatever other treatment is
+// active (typically `articleCardCompact`).
+
 .heroJobs h3 {
   margin: 0 0 1rem 0;
 }
@@ -289,11 +428,104 @@
     display: none;
   }
 
-  // Hide the article-type kicker on the hero card on desktop only —
-  // the bigger card already reads as the lead piece, and the kicker
-  // adds noise above the larger title. Mobile keeps the kicker.
+  // Position the main hero's article-type kicker over the image as a
+  // semi-transparent white pill (top-left corner).
+  .heroList .articleCardLink {
+    position: relative;
+  }
+
   .heroList .articleType {
-    display: none;
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin: 0;
+  }
+
+  // Co-working aside — col 1 of the secondary hero row, spans 2 rows
+  // alongside the hero on the right.
+  .coworkingAside {
+    display: block;
+    grid-column: 1;
+    grid-row: span 2;
+    margin: 0;
+    align-self: start;
+  }
+
+  // Secondary hero — the 5th article (4th card in remainingArticles).
+  // Takes 2 of 3 grid columns AND spans 2 rows, sitting beside the
+  // Co-working aside on the left. The result is a magazine-style row:
+  // text rail on the left, big featured article on the right.
+  .articleCardHero {
+    grid-column: 2 / span 2;
+    grid-row: span 2;
+    display: flex;
+  }
+
+  .articleCardHero .articleCardLink {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-areas: 'image body';
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .articleCardHero .articleCardImageWrap {
+    grid-area: image;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  // Crop the hero image / video to fill the doubled row height. The
+  // image always covers the area; sides may be trimmed.
+  .articleCardHero .articleCardImage,
+  .articleCardHero .articleCardVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .articleCardHero .articleCardBody {
+    grid-area: body;
+  }
+
+  // Secondary hero — same pill-on-image treatment as the main hero
+  // above. The hero link is already a grid container; position
+  // relative makes it the anchor for the absolutely positioned pill.
+  .articleCardHero .articleCardLink {
+    position: relative;
+  }
+
+  .articleCardHero .articleType {
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin: 0;
+  }
+
+  .articleCardHero .articleCardTitle {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .articleCardHero .articleCardExcerpt {
+    font-size: 1rem;
+    line-height: 1.45;
   }
 
   // Compact card is a mobile-only treatment — reset to the standard

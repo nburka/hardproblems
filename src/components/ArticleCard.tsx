@@ -45,12 +45,18 @@ function HeadphonesIcon() {
 // `compact` enables a mobile-only horizontal layout used on the
 // homepage for the 4th-and-later cards (image left, text right, top
 // rule). Desktop falls back to the normal stacked card.
+// `hero` enables a desktop-only wider layout — full-grid-width with
+// image on the left and text on the right. Used for the 7th article
+// on the homepage as a "secondary hero" break in the article list.
+// On mobile the hero flag has no effect (compact still applies).
 export default function ArticleCard({
   article,
-  compact = false
+  compact = false,
+  hero = false
 }: {
   article: Article;
   compact?: boolean;
+  hero?: boolean;
 }) {
   const articleTypeLower = article.articleType?.toLowerCase();
   const isVideo = articleTypeLower === 'video';
@@ -60,7 +66,7 @@ export default function ArticleCard({
     <li
       className={`${styles.articleCard} ${
         compact ? styles.articleCardCompact : ''
-      }`}
+      } ${hero ? styles.articleCardHero : ''}`}
     >
       <Link
         href={`/articles/${article.slug}`}

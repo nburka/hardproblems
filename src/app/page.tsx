@@ -1,5 +1,7 @@
 import { Fragment } from 'react';
+import Link from 'next/link';
 import ArticleCard from '../components/ArticleCard';
+import CoworkingRotator from '../components/CoworkingRotator';
 import { getAllArticles } from '../lib/articles';
 import { fetchJobs } from './jobs/fetchJobs';
 import JobsTeaser from './jobs/JobsTeaser';
@@ -50,7 +52,31 @@ export default async function Home() {
                     mobile (image left + text right with top rule).
                     Desktop falls back to the normal card layout via
                     the @media rules in page.module.scss. */}
-                <ArticleCard article={article} compact={i >= 2} />
+                {/* Desktop only — slot the Co-working aside into the
+                    left grid column right before the secondary hero
+                    so the row reads as: [aside | hero spanning 2/3].
+                    Hidden on mobile via CSS. */}
+                {i === 3 && (
+                  <li className={styles.coworkingAside}>
+                    <h3>Co-working in London</h3>
+                    <p className={styles.coworkingAsideIntro}>
+                      These health and climate organizations use our{' '}
+                      <Link href="/coworking">co-working space</Link>{' '}
+                      for teams working on hard problems.
+                    </p>
+                    <CoworkingRotator />
+                    <p className={styles.coworkingAsideCta}>
+                      <Link href="/coworking" className="black-button">
+                        Learn more…
+                      </Link>
+                    </p>
+                  </li>
+                )}
+                <ArticleCard
+                  article={article}
+                  compact={i >= 2}
+                  hero={i === 3}
+                />
                 {/* Mobile-only jobs teaser slotted between the 3rd
                     and 4th articles. Hidden on desktop where the
                     .heroJobs teaser to the right of the hero already

@@ -130,10 +130,28 @@ h1 {
   margin: 0;
 }
 
-/* Mission-statement tagline that sits above the nav on desktop only.
-   Mirrors the .sectorKicker treatment from the jobs preview. */
+/* Mission-statement tagline that sits above the site header on both
+   mobile and desktop. Mirrors the .sectorKicker treatment from the
+   jobs preview. */
 .site-tagline {
-  display: none;
+  display: block;
+  text-align: center;
+  font-family:
+    'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: #2f8b53;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.4;
+}
+
+/* Forced line break in the tagline — visible on mobile, hidden on
+   desktop so the sentence reflows back to one line. */
+.site-tagline-break {
+  display: inline;
 }
 
 /* Rotating word at the end of the tagline. The opacity transition is
@@ -149,7 +167,7 @@ h1 {
    padding restores the content's visual indent. */
 .site-footer {
   background: #ebf7f0;
-  margin: 2rem -1.5rem -1.5rem -1.5rem;
+  margin: 6em -1.5rem -1.5rem -1.5rem;
   padding: 1.5rem 1.5rem 5rem 1.5rem;
 }
 
@@ -231,6 +249,20 @@ h2 {
   letter-spacing: 0;
   display: block;
   font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+}
+
+/* On mobile, tighten the gap between a page's main heading (h2) and
+   the .intro paragraph that usually follows it. Desktop keeps the
+   browser default + intro top margin (taller hierarchy works better
+   at wide widths). */
+@media only screen and (max-width: 999px) {
+  h2 {
+    margin-bottom: 0.2em;
+  }
+
+  h2 + p.intro {
+    margin-top: 0;
+  }
 }
 
 h3 {
@@ -362,6 +394,15 @@ nav.site-nav-bar::-webkit-scrollbar {
 
 .nav-label-long {
   display: none;
+}
+
+/* Home link on mobile shows an icon instead of the word "Home". Sized
+   to ~1.2em so it sits visually balanced with the other labels. */
+.nav-home-icon {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.25em;
 }
 
 .site-footer p {
@@ -663,10 +704,13 @@ iframe.newsletter-form {
 
 .episode {
   background: #ebf7f0;
-  padding: 24px 140px 24px 24px;
+  /* Right padding leaves room for the absolutely-positioned podcast
+     image. The padding has to be at least image-width + right-offset
+     so the image doesn't overlap the body content on its left. */
+  padding: 24px 116px 24px 24px;
   position: relative;
   margin: 2em 0 1em 0;
-  min-height: 160px;
+  min-height: 104px;
   clear: both;
 }
 
@@ -674,9 +718,9 @@ iframe.newsletter-form {
   position: absolute;
   right: 24px;
   top: 24px;
-  width: 160px;
-  height: 160px;
-  border: 6px solid #cbead8;
+  width: 80px;
+  height: 80px;
+  border: 4px solid #cbead8;
 }
 
 /* Each episode gets its own hue — background plus a matching, slightly
@@ -904,17 +948,14 @@ iframe.newsletter-form {
     display: inline;
   }
 
+  /* Desktop: hide the mobile-only forced line break so the tagline
+     reads on one line. */
+  .site-tagline-break {
+    display: none;
+  }
+
   .site-tagline {
-    display: block;
-    text-align: center;
-    font-family:
-      'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-      monospace;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 400;
-    color: #2f8b53;
+    font-size: 0.65rem;
     margin: 0 0 2.5rem 0;
   }
 
