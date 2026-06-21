@@ -62,7 +62,7 @@ export default async function Home() {
                     <p className={styles.coworkingAsideIntro}>
                       These health and climate organizations use our{' '}
                       <Link href="/coworking">co-working space</Link>{' '}
-                      for teams working on hard problems.
+                      in London.
                     </p>
                     <CoworkingRotator />
                     <p className={styles.coworkingAsideCta}>

@@ -51,8 +51,11 @@ export default function Page() {
         <h3 className="space-top-small">How to apply for a desk?</h3>
         <p>Please complete this Google Form:</p>
         <p>
-          <Link href="https://forms.gle/BFESE6iHh6pppUGXA" className="button">
-            Apply for a desk
+          <Link
+            href="https://forms.gle/BFESE6iHh6pppUGXA"
+            className="black-button"
+          >
+            Apply for a desk <span aria-hidden="true">→</span>
           </Link>
         </p>
 

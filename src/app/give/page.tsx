@@ -15,9 +15,9 @@ export default function Page() {
         <p>
           <a
             href="https://www.paypal.com/ncp/payment/EKT76R9DGCEH4"
-            className="button"
+            className="black-button"
           >
-            Paypal gift (credit card)
+            Paypal gift (credit card) <span aria-hidden="true">→</span>
           </a>
         </p>
         <p>
