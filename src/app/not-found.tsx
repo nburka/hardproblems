@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -29,6 +30,19 @@ export default function NotFound() {
             Back to the homepage <span aria-hidden="true">→</span>
           </Link>
         </p>
+        <Image
+          src="/images/illustration-connection.svg"
+          width="360"
+          height="360"
+          alt=""
+          style={{
+            display: 'block',
+            margin: '2rem auto 0',
+            width: '360px',
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
 
         <h3 className="space-top-large">Did we break a link?</h3>
         <p>

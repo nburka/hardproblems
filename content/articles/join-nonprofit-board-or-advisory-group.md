@@ -98,6 +98,8 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 
 > "It might be surprising given my current design role but I'm often engaging with the executives around budgeting, roadmaps, and forecasting." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
+![](/images/illustration-explain.svg){.float-right}
+
 ## What is an advisory group? {#what-is-an-advisory-group}
 
 Joining an advisory group is another excellent way to contribute. For instance, I currently serve on a tech advisory board for [Our Future Health](https://ourfuturehealth.org.uk/), a major genomics project in the UK. I met the CTO, Marko, through a mutual friend, and we bonded over public health technology. Once a quarter, I join a diverse group of technologists and ethicists to discuss the project's current priorities. As the only user experience designer, I provide guidance on product direction, user research, and methodology. I even assisted in interviewing candidates for their Chief Product Officer role.
