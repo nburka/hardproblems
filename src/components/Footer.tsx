@@ -167,25 +167,36 @@ export function Footer() {
       <div className="footer-col">
         <h3>Contact</h3>
         <p>
-          <Link href="https://maps.app.goo.gl/8SYY1vdDDcwwqGJy7" className="footer-contact-link">
-            <BuildingIcon />
-            1 Rivington Place, London EC2A 3BA
+          <Link
+            href="https://maps.app.goo.gl/8SYY1vdDDcwwqGJy7"
+            className="footer-contact-link"
+          >
+            <BuildingIcon />1 Rivington Place, London EC2A 3BA
           </Link>
         </p>
         <p>
-          <Link href="mailto:contact@hardproblems.com" className="footer-contact-link">
+          <Link
+            href="mailto:contact@hardproblems.com"
+            className="footer-contact-link"
+          >
             <MailIcon />
             contact@hardproblems.com
           </Link>
         </p>
         <p>
-          <Link href="https://www.linkedin.com/company/hardproblems/" className="footer-contact-link">
+          <Link
+            href="https://www.linkedin.com/company/hardproblems/"
+            className="footer-contact-link"
+          >
             <LinkedInIcon />
             LinkedIn
           </Link>
         </p>
         <p>
-          <Link href="https://bsky.app/profile/hardproblems.com" className="footer-contact-link">
+          <Link
+            href="https://bsky.app/profile/hardproblems.com"
+            className="footer-contact-link"
+          >
             <BlueskyIcon />
             Bluesky
           </Link>
@@ -208,6 +219,7 @@ export function Footer() {
           in the UK in 2024.
         </p>
         <Image
+          className="desktop"
           src="/images/uk-government.svg"
           width="77"
           height="77"
