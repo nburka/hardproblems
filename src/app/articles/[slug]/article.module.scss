@@ -186,6 +186,19 @@
     margin: 2rem 0 0.2rem 0;
   }
 
+  h3:global(.book-heading) {
+    font-family:
+      'SF Pro Text',
+      'San Francisco',
+      -apple-system,
+      BlinkMacSystemFont,
+      Helvetica,
+      Arial,
+      sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+  }
+
   p {
     margin: 0 0 1.2rem 0;
   }
