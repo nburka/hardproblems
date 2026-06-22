@@ -23,8 +23,8 @@ export default function Page() {
         <p>
           Get in touch by email: <em>contact@hardproblems.com</em>
         </p>
-        <h4 className="space-top-xlarge">Ideas for gifting:</h4>
-        <h3 className="space-top-large">Co-working space in London</h3>
+        <h3 className="space-top-xlarge">Ideas for gifting:</h3>
+        <h4 className="space-top-large">Co-working space in London</h4>
         <p>
           We have a <Link href="/coworking">co-working space</Link> in London
           where we donate desks to people that work on hard problems. Renting
@@ -36,9 +36,9 @@ export default function Page() {
           &#8212; buy a chair (£100) or even gift a bag of good coffee (£10).
           Any gift would be appreciated.
         </p>
-        <h3 className="space-top-large">Sponsor an event</h3>
+        <h4 className="space-top-large">Sponsor an event</h4>
         <p>
-          We will run events in 2025 with an audience of people who work on hard
+          We will run events in 2026 with an audience of people who work on hard
           problems all over the world. If you or your company is interested in
           sponsoring an event, please get in touch. You will get a nice
           shout-out at the event.

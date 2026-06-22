@@ -562,20 +562,21 @@
 }
 
 .jobDate {
-  font-size: 0.75rem;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.7rem;
   text-transform: uppercase;
   color: #231f20;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
-// "Today" gets a brighter, bolder treatment + a sparkle icon to draw the
-// eye to freshly listed roles.
+// "Today" gets a brighter colour + a sparkle icon to draw the eye to
+// freshly listed roles.
 .jobDateToday {
   display: inline-flex;
   align-items: center;
   gap: 0.3em;
   color: #b8860b;
-  font-weight: 700;
 }
 
 .jobDateIcon {
@@ -628,7 +629,7 @@
     clear: both;
     display: grid;
     grid-template-columns: 320px 1fr;
-    gap: 2.5rem;
+    gap: 4rem;
     align-items: start;
   }
 

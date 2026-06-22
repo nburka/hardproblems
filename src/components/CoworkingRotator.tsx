@@ -10,17 +10,21 @@ import {
 import styles from '../app/articles/page.module.scss';
 
 const VISIBLE_COUNT = 12;
-const SWAP_INTERVAL_MS = 3000;
-const FADE_MS = 600;
+const ROW_SIZE = 3;
+const ROW_COUNT = VISIBLE_COUNT / ROW_SIZE;
+const SWAP_INTERVAL_MS = 5000;
+const STAGGER_MS = 120;
+const FADE_MS = 500;
 
 type Tile = {
   team: CoworkingTeam;
   visible: boolean;
 };
 
-// 3x3 grid that initially shows the first 9 teams, then periodically
-// swaps one tile out for an off-screen team. Each swap fades the tile
-// down to opacity 0, replaces the team, and fades it back in.
+// 3x4 grid that initially shows the first 12 teams, then every few
+// seconds swaps an entire row (3 tiles) with a left-to-right
+// stagger — each tile fades down, swaps its team, and fades back in
+// ~120ms after the one to its left started.
 export default function CoworkingRotator() {
   const [tiles, setTiles] = useState<Tile[]>(() =>
     coworkingTeams.slice(0, VISIBLE_COUNT).map((team) => ({
@@ -29,56 +33,80 @@ export default function CoworkingRotator() {
     }))
   );
 
-  // Mirror the latest tiles in a ref so the interval can read the
-  // current state without re-creating itself on every render.
   const tilesRef = useRef(tiles);
   useEffect(() => {
     tilesRef.current = tiles;
   });
 
   useEffect(() => {
-    // Companies waiting to rotate in — starts with everyone not in
-    // the initial 9, refills from the off-screen set when empty.
+    // Off-screen queue — refilled from the not-currently-visible set
+    // whenever it dips below a row's worth.
     let queue: CoworkingTeam[] = coworkingTeams.slice(VISIBLE_COUNT);
-    // Don't swap the same tile twice in a row.
-    let lastTileIndex = -1;
+    let lastRow = -1;
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+
+    const refillIfNeeded = () => {
+      if (queue.length >= ROW_SIZE) return;
+      const visibleHrefs = new Set(
+        tilesRef.current.map((t) => t.team.href)
+      );
+      const pending = new Set(queue.map((t) => t.href));
+      const candidates = coworkingTeams.filter(
+        (t) => !visibleHrefs.has(t.href) && !pending.has(t.href)
+      );
+      queue.push(...candidates);
+    };
 
     const cycle = () => {
-      if (queue.length === 0) {
-        const visibleHrefs = new Set(
-          tilesRef.current.map((t) => t.team.href)
-        );
-        queue = coworkingTeams.filter((t) => !visibleHrefs.has(t.href));
-        if (queue.length === 0) return;
+      refillIfNeeded();
+      if (queue.length < ROW_SIZE) return;
+
+      // Pick a row, avoiding the row we swapped last time.
+      let row = Math.floor(Math.random() * ROW_COUNT);
+      if (row === lastRow && ROW_COUNT > 1) {
+        row = (row + 1) % ROW_COUNT;
       }
+      lastRow = row;
 
-      let tileIndex: number;
-      do {
-        tileIndex = Math.floor(Math.random() * VISIBLE_COUNT);
-      } while (tileIndex === lastTileIndex && VISIBLE_COUNT > 1);
-      lastTileIndex = tileIndex;
-
-      const newTeam = queue.shift()!;
-
-      // Phase 1: fade the chosen tile out.
-      setTiles((prev) =>
-        prev.map((t, i) =>
-          i === tileIndex ? { ...t, visible: false } : t
-        )
+      const startIdx = row * ROW_SIZE;
+      const tileIndices = Array.from(
+        { length: ROW_SIZE },
+        (_, k) => startIdx + k
       );
+      const newTeams = queue.splice(0, ROW_SIZE);
 
-      // Phase 2: once it's invisible, swap the team and fade in.
-      setTimeout(() => {
-        setTiles((prev) =>
-          prev.map((t, i) =>
-            i === tileIndex ? { team: newTeam, visible: true } : t
-          )
+      tileIndices.forEach((idx, i) => {
+        const delay = i * STAGGER_MS;
+
+        // Fade the tile out.
+        timeouts.push(
+          setTimeout(() => {
+            setTiles((prev) =>
+              prev.map((t, ti) =>
+                ti === idx ? { ...t, visible: false } : t
+              )
+            );
+          }, delay)
         );
-      }, FADE_MS);
+
+        // After it's invisible, swap the team and fade back in.
+        timeouts.push(
+          setTimeout(() => {
+            setTiles((prev) =>
+              prev.map((t, ti) =>
+                ti === idx ? { team: newTeams[i], visible: true } : t
+              )
+            );
+          }, delay + FADE_MS)
+        );
+      });
     };
 
     const interval = setInterval(cycle, SWAP_INTERVAL_MS);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      timeouts.forEach(clearTimeout);
+    };
   }, []);
 
   return (

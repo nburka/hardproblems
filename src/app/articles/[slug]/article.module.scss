@@ -713,6 +713,16 @@
   }
 }
 
+// Opt-out for individual images that should stay inside the reading
+// column at all viewport widths — apply `{.normal-width}` in markdown.
+@media only screen and (min-width: 1000px) {
+  .body img:global(.normal-width) {
+    max-width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
+
 // Same desktop bleed for the brick layout container so the composite
 // extends into the side margins, just like a single full-width image
 // would. The img-level bleed rules are explicitly disabled inside the

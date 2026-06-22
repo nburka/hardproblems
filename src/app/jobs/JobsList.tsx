@@ -12,14 +12,19 @@ import {
 } from './orgType';
 import {
   FILTER_PARAM_KEYS,
+  META_REGIONS,
+  META_REGION_NAMES,
   SECTOR_OPTIONS,
+  SENIORITY_OPTIONS,
   SectorCategory,
+  SeniorityCategory,
   WORK_STYLE_OPTIONS,
   WorkStyle,
   filterJobs,
   parseOrgParam,
   parseRoleParam,
   parseSectorParam,
+  parseSeniorityParam,
   parseWorkStyleParam,
   splitCountries
 } from './filters';
@@ -375,12 +380,10 @@ const COUNTRY_ISO_INDEX: Record<string, string> = Object.fromEntries(
   ])
 );
 
-// Special-case overrides for dropdown options that don't map to a single
-// country. "all" is the literal value of the "All countries" option;
-// "Europe" is a synthetic value the user can select to broaden the search.
+// Special-case override for the "All countries" sentinel. Regions
+// render with no emoji prefix.
 const SPECIAL_COUNTRY_FLAGS: Record<string, string> = {
-  all: '🌍', // globe centered on Europe-Africa
-  Europe: '🇪🇺'
+  all: '🌍'
 };
 
 function isoToFlagEmoji(iso: string): string {
@@ -464,6 +467,10 @@ export default function JobsList({
     () => parseRoleParam(searchParams.get('role')),
     [searchParams]
   );
+  const seniorityFilters = useMemo(
+    () => parseSeniorityParam(searchParams.get('seniority')),
+    [searchParams]
+  );
 
   const updateParams = (mutate: (params: URLSearchParams) => void) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -487,6 +494,10 @@ export default function JobsList({
         // location-agnostic. matchesCountry() makes those jobs appear in
         // every filter, so we hide the value from the dropdown itself.
         if (c.toLowerCase() === 'global') continue;
+        // Meta-region tags (Europe, Africa, etc.) are already shown in
+        // the "Region" optgroup above — hide them from the country
+        // list so the dropdown doesn't list them twice.
+        if (META_REGION_NAMES.has(c)) continue;
         set.add(c);
       }
     }
@@ -510,9 +521,18 @@ export default function JobsList({
         workStyles: workStyleFilters,
         orgs: orgFilters,
         sectors: sectorFilters,
-        roles: roleFilters
+        roles: roleFilters,
+        seniorities: seniorityFilters
       }),
-    [jobs, country, workStyleFilters, orgFilters, sectorFilters, roleFilters]
+    [
+      jobs,
+      country,
+      workStyleFilters,
+      orgFilters,
+      sectorFilters,
+      roleFilters,
+      seniorityFilters
+    ]
   );
 
   const toggleWorkStyle = (value: WorkStyle) => {
@@ -555,6 +575,16 @@ export default function JobsList({
     });
   };
 
+  const toggleSeniorityFilter = (value: SeniorityCategory) => {
+    const next = seniorityFilters.includes(value)
+      ? seniorityFilters.filter((v) => v !== value)
+      : [...seniorityFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('seniority');
+      else params.set('seniority', next.join(','));
+    });
+  };
+
   const clearFilters = () => {
     updateParams((params) => {
       params.delete('country');
@@ -562,6 +592,7 @@ export default function JobsList({
       params.delete('org');
       params.delete('sector');
       params.delete('role');
+      params.delete('seniority');
     });
   };
 
@@ -570,7 +601,8 @@ export default function JobsList({
     workStyleFilters.length > 0 ||
     orgFilters.length > 0 ||
     sectorFilters.length > 0 ||
-    roleFilters.length > 0;
+    roleFilters.length > 0 ||
+    seniorityFilters.length > 0;
 
   // RSS feed URL mirrors the current filter state so subscribing while
   // looking at e.g. "Climate + Remote" lands you on the equivalent feed.
@@ -600,14 +632,26 @@ export default function JobsList({
             className={styles.filterSelect}
           >
             <option value="all">{countryFlag('all')}{'  '}All countries</option>
-            {countries.map((c) => {
-              const flag = countryFlag(c);
-              return (
-                <option key={c} value={c}>
-                  {flag ? `${flag}  ${c}` : c}
-                </option>
-              );
-            })}
+            <optgroup label="Region">
+              {META_REGIONS.map((r) => {
+                const flag = countryFlag(r.name);
+                return (
+                  <option key={r.name} value={r.name}>
+                    {flag ? `${flag}  ${r.name}` : r.name}
+                  </option>
+                );
+              })}
+            </optgroup>
+            <optgroup label="Countries">
+              {countries.map((c) => {
+                const flag = countryFlag(c);
+                return (
+                  <option key={c} value={c}>
+                    {flag ? `${flag}  ${c}` : c}
+                  </option>
+                );
+              })}
+            </optgroup>
           </select>
         </label>
 
@@ -634,6 +678,42 @@ export default function JobsList({
                     type="checkbox"
                     checked={orgFilters.includes(opt.value)}
                     onChange={() => toggleOrgFilter(opt.value)}
+                  />
+                  <span className={styles.checkboxBox} aria-hidden="true" />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {roles.length > 0 && (
+            <div className={styles.filterField}>
+              <span className={styles.filterLabel}>Role</span>
+              <div className={styles.checkboxes}>
+                {roles.map((role) => (
+                  <label key={role} className={styles.checkbox}>
+                    <input
+                      type="checkbox"
+                      checked={roleFilters.includes(role)}
+                      onChange={() => toggleRoleFilter(role)}
+                    />
+                    <span className={styles.checkboxBox} aria-hidden="true" />
+                    {displayRole(role)}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className={styles.filterField}>
+            <span className={styles.filterLabel}>Seniority</span>
+            <div className={styles.checkboxes}>
+              {SENIORITY_OPTIONS.map((opt) => (
+                <label key={opt.value} className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    checked={seniorityFilters.includes(opt.value)}
+                    onChange={() => toggleSeniorityFilter(opt.value)}
                   />
                   <span className={styles.checkboxBox} aria-hidden="true" />
                   {opt.label}
@@ -675,25 +755,6 @@ export default function JobsList({
               ))}
             </div>
           </div>
-
-          {roles.length > 0 && (
-            <div className={styles.filterField}>
-              <span className={styles.filterLabel}>Role</span>
-              <div className={styles.checkboxes}>
-                {roles.map((role) => (
-                  <label key={role} className={styles.checkbox}>
-                    <input
-                      type="checkbox"
-                      checked={roleFilters.includes(role)}
-                      onChange={() => toggleRoleFilter(role)}
-                    />
-                    <span className={styles.checkboxBox} aria-hidden="true" />
-                    {displayRole(role)}
-                  </label>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         <a

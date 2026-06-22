@@ -54,7 +54,7 @@ For those of us who are still thinking about how to orient our careers around im
 
 - If you're starting to question the impact of your work, you aren't alone.
 - Yes, individuals can change the course of history.
-- We need to generate new strategies for winning the moral argument.
+- We need new strategies for winning the moral argument.
 
 Let's take each of these in turn.
 
@@ -70,7 +70,7 @@ Happily for us, individual actors can make a difference. Throughout the book, we
 
 Bregman acknowledges that many of the people discussed share "a certain degree of privilege", but goes on to emphasize that "to get going, you only need the smallest of beginnings". Bregman also celebrates "the people working behind the scenes", emphasizing the importance of collaboration and, at times, difficult compromise. ([Bayard Rustin](https://en.wikipedia.org/wiki/Bayard_Rustin), a strategist for the civil rights movement in America, "was described by a contemporary as 'one of the five smartest men in America'. Despite that, he was never pulled on stage by his fellow activists because [...] they feared his sexual orientation would somehow prove a liability to the movement.") While not without its flaws, Bregman's strident assessment of the power of individual agency and ingenuity successfully frames moral ambition as both desirable and attainable.
 
-## We need to generate new strategies for winning the moral argument {#we-need-to-generate-new-strategies-for-winning-the-moral-argument}
+## We need new strategies for winning the moral argument {#we-need-to-generate-new-strategies-for-winning-the-moral-argument}
 
 It is our "moral duty" to win the argument, according to Bregman. Ironically, he offers little practical advice for how we might do so. In Chapter 4, Bregman argues that progressives should find clever ways of making our case within the bounds of the [Overton window](https://en.wikipedia.org/wiki/Overton_window) ("moral reframing"), a tactic employed by the eighteenth-century abolitionist Thomas Clarkson: "Clarkson knew he needed other arguments against the slave trade, so he turned his attention to the fate of British sailors on slave ships." Applying similar logic to the issue of taxation, Bregman suggests that conservative voters are more likely to be moved by an argument that focuses not on the unfair distribution of wealth in society but on the fact that the wealthiest individuals "don't work for their money".
 

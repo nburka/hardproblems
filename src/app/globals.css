@@ -109,6 +109,26 @@ p.intro {
   font-weight: 400;
 }
 
+.tag-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  margin-left: 0.6em;
+  background: #fff3c4;
+  color: #8a5a00;
+  font-weight: 500;
+  font-size: 0.8rem;
+  font-family:
+    'SF Pro Text',
+    'San Francisco',
+    -apple-system,
+    BlinkMacSystemFont,
+    Helvetica,
+    Arial,
+    sans-serif;
+  vertical-align: middle;
+}
+
 h1 {
   font-weight: 700;
   line-height: 1;

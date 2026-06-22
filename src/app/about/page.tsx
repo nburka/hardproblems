@@ -53,23 +53,6 @@ export default function Page() {
           initiatives, or inspiring a generation of designers to work on these
           fundamentally important problems.
         </p>
-        <p>
-          We are in the earliest stages of forming the Hard Problems nonprofit.
-          We don’t have all of the answers, but we’ll start anyhow and learn
-          along the way.
-        </p>
-
-        <Image src="/images/illustration-bridge.svg" width="80" height="80" alt="Illustration of two hands shaking. One is a designer and the other is a environmentalist, doctor, epidemiologist
-        climatologist who is working on hard problems " className="image-full space-top-large" />
-
-        <div className="captions desktop">
-          <p className="caption-right">
-            <b>Environmentalists</b>, <b>doctors</b>, <b>epidemiologists</b>, & others working on hard problems
-          </p>
-          <p className="caption-left">
-            <b>Designers</b> who want to work on hard problems
-          </p>
-        </div>
 
         <h3 className="space-top-large">Building bridges</h3>
         <p>
@@ -92,6 +75,18 @@ export default function Page() {
           We aim to solve this divide by bridging the gap and championing the
           importance of practical tech for good.
         </p>
+
+        <Image src="/images/illustration-bridge.svg" width="80" height="80" alt="Illustration of two hands shaking. One is a designer and the other is a environmentalist, doctor, epidemiologist
+        climatologist who is working on hard problems " className="image-full space-top-large" />
+
+        <div className="captions desktop">
+          <p className="caption-right">
+            <b>Environmentalists</b>, <b>doctors</b>, <b>epidemiologists</b>, & others working on hard problems
+          </p>
+          <p className="caption-left">
+            <b>Designers</b> who want to work on hard problems
+          </p>
+        </div>
 
         <h3 className="space-top-large">We plan to</h3>
         <ul className="hand-drawn-checklist">
@@ -142,15 +137,15 @@ export default function Page() {
             <p className="grid-detail">For designers</p>
           </Link>
 
-          <Link href="/newsletter" className="grid-cell">
+          <Link href="/" className="grid-cell">
             <Image
-              src="/images/icon-mailbox.svg"
+              src="/images/icon-conversation.svg"
               width="120"
               height="120"
-              alt="Mailbox"
+              alt="Speech bubbles."
             />
-            <b className="grid-link">Email newsletter</b>
-            <p className="grid-detail">To keep up-to-date</p>
+            <b className="grid-link">Articles &amp; advice</b>
+            <p className="grid-detail">For designers and orgs</p>
           </Link>
 
           <Link href="/podcast" className="grid-cell">
@@ -173,17 +168,6 @@ export default function Page() {
             />
             <b className="grid-link">Co-working space</b>
             <p className="grid-detail">In London, UK</p>
-          </Link>
-
-          <Link href="/" className="grid-cell">
-            <Image
-              src="/images/icon-conversation.svg"
-              width="120"
-              height="120"
-              alt="Speech bubbles."
-            />
-            <b className="grid-link">Articles &amp; advice</b>
-            <p className="grid-detail">Book reviews and advice</p>
           </Link>
         </div>
         <h3 className="divider">Team</h3>

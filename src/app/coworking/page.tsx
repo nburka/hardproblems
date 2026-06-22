@@ -80,9 +80,6 @@ export default function Page() {
                   aria-hidden="true"
                 />
               )}
-              <div className={styles.teamTileName}>
-                <Link href={team.href}>{team.name}</Link>
-              </div>
               {team.description && (
                 <p className={styles.teamTileDescription}>{team.description}</p>
               )}

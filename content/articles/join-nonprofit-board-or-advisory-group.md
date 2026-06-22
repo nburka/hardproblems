@@ -85,7 +85,7 @@ There isn't a perfect framework for finding a nonprofit that will take you as a 
 
 In my experience, a nonprofit board functions similarly to a corporate board but with a few distinct priorities. Boards typically meet on a fixed schedule; for example, Laboratoria's board met every two months.
 
-- **Focus on strategy.** Your primary responsibility is to maintain a high-level perspective. While the internal team handles day-to-day operations, the board evaluates whether the organization is meeting its broader strategic objectives.
+- **Focus on strategy.** Your primary responsibility is to maintain a high-level perspective. While the internal team handles day-to-day operations, the board evaluates whether the organization is meeting its broader strategic objectives. My friend [Sam Nguyen](https://www.linkedin.com/in/sampng/) points out: "As a digital trustee, my role is to help each organisation understand where technology can support its operations and its mission."
 - **Ensure financial prudence.** Is the nonprofit using its money wisely? You'll have to put your business hat on and think strategically about money and how to put it to use most effectively while safeguarding the precious money that has been donated to the cause.
 - **Uphold ethical and legal standards.** The board ensures the organization maintains high ethical standards, particularly during challenges. When facing difficulties, the board must prioritize what is right over what is easy or merely protective of the organization.
 - **Provide connections.** Your professional network is a valuable asset. At critical junctures, you can leverage your connections to bring specialized expertise into the organization.
@@ -98,7 +98,7 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 
 > "It might be surprising given my current design role but I'm often engaging with the executives around budgeting, roadmaps, and forecasting." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
-![](/images/illustration-explain.svg){.float-right}
+![](/images/illustration-decisions.svg){.float-right}
 
 ## What is an advisory group? {#what-is-an-advisory-group}
 
@@ -119,5 +119,11 @@ For me, the board seat at Laboratoria was the beginning of a path toward full-ti
 I hope you find a way to contribute through a board or advisory role. When the time is right, perhaps you too can transition full-time into solving the world's most important challenges.
 
 ## Advice for new board members? {#advice-for-new-board-members}
+
+### "Your perspective matters even before you feel like an expert"
+
+[Sam Nguyen](https://www.linkedin.com/in/sampng/), a designer who does Product & Venture Strategy at pharmaceutical company [Bayer](https://www.bayer.com) says: "Be curious, listen actively, and trust that your perspective matters even before you feel like an expert. The strongest board members ask thoughtful questions, stay open to learning, and work collaboratively rather than assuming they need all the answers. Keep returning to the organisation's mission and the people it serves — and don't hold back your ideas just because you're new to the table."
+
+### "Due diligence is your friend"
 
 [Jeff Barnes](https://www.linkedin.com/in/texburgher/), Head of Design at [Tavus](https://www.tavus.io), and ex-[Googler](https://google.com) says: "Make sure you understand the nature and requirements of the work up-front. Talk to other board members before you sign up. Board service can be incredibly gratifying but also emotionally taxing and time-consuming. As with any significant undertaking, due diligence is your friend. Once you commit, serve with joy and intensity. And maybe most importantly, establish success metrics, exit criteria, and succession planning intentions as early as you can. Too many servants let their noble commitments become albatrosses simply because they never planned to pass the baton."

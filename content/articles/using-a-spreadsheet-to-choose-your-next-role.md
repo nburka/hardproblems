@@ -47,6 +47,8 @@ canonicalUrl: ''
 
 _"Job Rank" is a simple framework to identify the job that best aligns with your values._{.intro}
 
+![](/images/illustration-found-it.svg){.float-right}
+
 We all know the feeling: You're at a career crossroads, staring at 10 different paths and paralyzed by choice. Do you chase the high compensation package or the mission-driven role? The exciting new stealth startup or the reliable organization? Jump to a nonprofit or stay in big tech? For people who've spent time in product or design, this sounds like a strategy problem. You're theorizing about a major life decision but without a useful rubric.
 
 I've been there three times in my career:

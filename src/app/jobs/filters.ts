@@ -14,6 +14,48 @@ export const WORK_STYLE_OPTIONS: { value: WorkStyle; label: string }[] = [
   { value: 'onsite', label: 'On-site' }
 ];
 
+export type SeniorityCategory =
+  | 'junior'
+  | 'general'
+  | 'senior'
+  | 'director';
+
+// Order matters — the dropdown / checkbox rendering follows this
+// array, not an alphabetical sort.
+export const SENIORITY_OPTIONS: {
+  value: SeniorityCategory;
+  label: string;
+  keywords: string[];
+}[] = [
+  { value: 'junior', label: 'Junior', keywords: ['junior', 'entry'] },
+  {
+    value: 'general',
+    label: 'General',
+    keywords: ['general', 'mid', 'intermediate']
+  },
+  {
+    value: 'senior',
+    label: 'Senior and staff',
+    keywords: ['senior', 'staff', 'principal', 'lead']
+  },
+  {
+    value: 'director',
+    label: 'Director and above',
+    keywords: [
+      'director',
+      'vp',
+      'vice president',
+      'chief',
+      'head of',
+      'c-level',
+      'cto',
+      'cpo',
+      'ceo',
+      'executive'
+    ]
+  }
+];
+
 export type SectorCategory =
   | 'climate'
   | 'health'
@@ -38,6 +80,20 @@ export const SECTOR_OPTIONS: {
   },
   { value: 'education', label: 'Education', keywords: ['education'] }
 ];
+
+// Meta-regions shown at the top of the country dropdown. Selecting a
+// region matches every job whose country string mentions any country
+// in the region's list — plus any job tagged with the region name
+// itself ("Europe", "Africa", etc.) or a common alias (e.g. "EU",
+// "MENA"). The region name itself is included in each list so those
+// cross-region tags resolve correctly.
+export type MetaRegion = {
+  name: string;
+  // List of country names + aliases that should resolve when this
+  // region is selected. Matched as word-boundary case-insensitive
+  // substrings against the job's country field.
+  countries: string[];
+};
 
 export const EUROPEAN_COUNTRIES = [
   'Europe',
@@ -89,6 +145,179 @@ export const EUROPEAN_COUNTRIES = [
   'Cyprus'
 ];
 
+const SOUTH_AMERICAN_COUNTRIES = [
+  'South America',
+  'LatAm',
+  'Latin America',
+  'Argentina',
+  'Bolivia',
+  'Brazil',
+  'Chile',
+  'Colombia',
+  'Ecuador',
+  'Guyana',
+  'Paraguay',
+  'Peru',
+  'Suriname',
+  'Uruguay',
+  'Venezuela'
+];
+
+const AFRICAN_COUNTRIES = [
+  'Africa',
+  'Algeria',
+  'Angola',
+  'Benin',
+  'Botswana',
+  'Burkina Faso',
+  'Burundi',
+  'Cabo Verde',
+  'Cameroon',
+  'Central African Republic',
+  'Chad',
+  'Comoros',
+  'Congo',
+  'DR Congo',
+  "Côte d'Ivoire",
+  'Ivory Coast',
+  'Djibouti',
+  'Egypt',
+  'Equatorial Guinea',
+  'Eritrea',
+  'Eswatini',
+  'Ethiopia',
+  'Gabon',
+  'Gambia',
+  'Ghana',
+  'Guinea',
+  'Guinea-Bissau',
+  'Kenya',
+  'Lesotho',
+  'Liberia',
+  'Libya',
+  'Madagascar',
+  'Malawi',
+  'Mali',
+  'Mauritania',
+  'Mauritius',
+  'Morocco',
+  'Mozambique',
+  'Namibia',
+  'Niger',
+  'Nigeria',
+  'Rwanda',
+  'Sao Tome and Principe',
+  'Senegal',
+  'Seychelles',
+  'Sierra Leone',
+  'Somalia',
+  'South Africa',
+  'South Sudan',
+  'Sudan',
+  'Tanzania',
+  'Togo',
+  'Tunisia',
+  'Uganda',
+  'Zambia',
+  'Zimbabwe'
+];
+
+const MIDDLE_EAST_COUNTRIES = [
+  'Middle East',
+  'MENA',
+  'Bahrain',
+  'Egypt',
+  'Iran',
+  'Iraq',
+  'Israel',
+  'Jordan',
+  'Kuwait',
+  'Lebanon',
+  'Oman',
+  'Palestine',
+  'Qatar',
+  'Saudi Arabia',
+  'Syria',
+  'Turkey',
+  'UAE',
+  'United Arab Emirates',
+  'Yemen'
+];
+
+const ASIAN_COUNTRIES = [
+  'Asia',
+  'APAC',
+  'Afghanistan',
+  'Bangladesh',
+  'Bhutan',
+  'Brunei',
+  'Cambodia',
+  'China',
+  'Hong Kong',
+  'India',
+  'Indonesia',
+  'Japan',
+  'Kazakhstan',
+  'Kyrgyzstan',
+  'Laos',
+  'Macau',
+  'Malaysia',
+  'Maldives',
+  'Mongolia',
+  'Myanmar',
+  'Nepal',
+  'North Korea',
+  'Pakistan',
+  'Philippines',
+  'Singapore',
+  'South Korea',
+  'Sri Lanka',
+  'Taiwan',
+  'Tajikistan',
+  'Thailand',
+  'Timor-Leste',
+  'Turkmenistan',
+  'Uzbekistan',
+  'Vietnam'
+];
+
+const NORTH_AMERICAN_COUNTRIES = [
+  'North America',
+  'USA',
+  'US',
+  'United States',
+  'United States of America',
+  'America',
+  'Canada',
+  'Mexico',
+  'Bahamas',
+  'Barbados',
+  'Belize',
+  'Costa Rica',
+  'Cuba',
+  'Dominican Republic',
+  'El Salvador',
+  'Greenland',
+  'Guatemala',
+  'Haiti',
+  'Honduras',
+  'Jamaica',
+  'Nicaragua',
+  'Panama',
+  'Trinidad and Tobago'
+];
+
+export const META_REGIONS: MetaRegion[] = [
+  { name: 'Africa', countries: AFRICAN_COUNTRIES },
+  { name: 'Asia', countries: ASIAN_COUNTRIES },
+  { name: 'Europe', countries: EUROPEAN_COUNTRIES },
+  { name: 'Middle East', countries: MIDDLE_EAST_COUNTRIES },
+  { name: 'North America', countries: NORTH_AMERICAN_COUNTRIES },
+  { name: 'South America', countries: SOUTH_AMERICAN_COUNTRIES }
+];
+
+export const META_REGION_NAMES = new Set(META_REGIONS.map((r) => r.name));
+
 export function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -105,8 +334,12 @@ export function matchesCountry(jobCountry: string, selected: string): boolean {
   // "Global" roles are location-agnostic — they should appear in every
   // country filter so a user looking at e.g. Germany still sees them.
   if (/\bGlobal\b/i.test(jobCountry)) return true;
-  if (selected === 'Europe') {
-    return EUROPEAN_COUNTRIES.some((name) =>
+  // Meta region (Europe, South America, Africa, Middle East, Asia) —
+  // matches if the job's country field mentions any country or alias
+  // in the region's list.
+  const region = META_REGIONS.find((r) => r.name === selected);
+  if (region) {
+    return region.countries.some((name) =>
       new RegExp(`\\b${escapeRegex(name)}\\b`, 'i').test(jobCountry)
     );
   }
@@ -129,6 +362,16 @@ export function matchesSector(
   const opt = SECTOR_OPTIONS.find((o) => o.value === category);
   if (!opt) return false;
   const lower = jobSector.toLowerCase();
+  return opt.keywords.some((k) => lower.includes(k));
+}
+
+export function matchesSeniority(
+  jobSeniority: string,
+  category: SeniorityCategory
+): boolean {
+  const opt = SENIORITY_OPTIONS.find((o) => o.value === category);
+  if (!opt) return false;
+  const lower = jobSeniority.toLowerCase();
   return opt.keywords.some((k) => lower.includes(k));
 }
 
@@ -167,6 +410,19 @@ export function parseSectorParam(value: string | null): SectorCategory[] {
     );
 }
 
+export function parseSeniorityParam(value: string | null): SeniorityCategory[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .filter(
+      (v): v is SeniorityCategory =>
+        v === 'junior' ||
+        v === 'general' ||
+        v === 'senior' ||
+        v === 'director'
+    );
+}
+
 export function parseRoleParam(value: string | null): string[] {
   if (!value) return [];
   return value
@@ -182,7 +438,8 @@ export const FILTER_PARAM_KEYS = [
   'work',
   'org',
   'sector',
-  'role'
+  'role',
+  'seniority'
 ] as const;
 
 export type JobFilters = {
@@ -191,6 +448,7 @@ export type JobFilters = {
   orgs: OrgCategory[];
   sectors: SectorCategory[];
   roles: string[];
+  seniorities: SeniorityCategory[];
 };
 
 export function parseFiltersFromParams(
@@ -201,7 +459,8 @@ export function parseFiltersFromParams(
     workStyles: parseWorkStyleParam(params.get('work')),
     orgs: parseOrgParam(params.get('org')),
     sectors: parseSectorParam(params.get('sector')),
-    roles: parseRoleParam(params.get('role'))
+    roles: parseRoleParam(params.get('role')),
+    seniorities: parseSeniorityParam(params.get('seniority'))
   };
 }
 
@@ -231,6 +490,12 @@ export function filterJobs(
       return false;
     }
     if (filters.roles.length > 0 && !filters.roles.includes(j.role)) {
+      return false;
+    }
+    if (
+      filters.seniorities.length > 0 &&
+      !filters.seniorities.some((s) => matchesSeniority(j.seniority, s))
+    ) {
       return false;
     }
     return true;
