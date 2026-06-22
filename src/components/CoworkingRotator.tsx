@@ -41,7 +41,7 @@ export default function CoworkingRotator() {
   useEffect(() => {
     // Off-screen queue — refilled from the not-currently-visible set
     // whenever it dips below a row's worth.
-    let queue: CoworkingTeam[] = coworkingTeams.slice(VISIBLE_COUNT);
+    const queue: CoworkingTeam[] = coworkingTeams.slice(VISIBLE_COUNT);
     let lastRow = -1;
     const timeouts: ReturnType<typeof setTimeout>[] = [];
 
