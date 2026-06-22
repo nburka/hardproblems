@@ -79,7 +79,7 @@ In *Moral Ambition*, Rutger Bregman argues that many talented people spend their
 
 Todd argues that your career is one of the biggest opportunities you have to make a positive impact on the world. He makes the case that choosing where to work, what problems to focus on, and how to use your skills can have an outsized effect on issues like global health, poverty, climate change, and emerging technologies. In particular, the book gives you a strong framework for choosing what role might have the most positive impact in the world. Note: that this book is from a group called Effective Altruists and is biased towards some of their core philosophies (like earning maximum $$$ to contribute to hard problems) that we do not wholeheartedly endorse.
 
-![](/images/content/image-books-next-move.jpg){.normal-width}
+![](/images/content/image-books-next-move.jpg)
 
 ## Best for designers who want to avoid past mistakes {#best-for-designers-who-want-to-avoid-past-mistakes}
 
@@ -91,7 +91,7 @@ This book challenges the tech-first idea that technology on its own can solve th
 
 In this academic and well-researched book, Silvio Lorusso pushes back against the idea that design can (or should) solve every problem. He examines the limits of design, questioning the industry's tendency toward solutionism and its faith in innovation as a cure-all. For designers who want to make a positive impact, the book offers a useful challenge: sometimes the most responsible response is not to design something new, but to better understand the social, political, and economic forces already at work. It might surprise you, but this book was one of my inspirations for starting Hard Problems.
 
-![](/images/content/image-books-avoid-mistakes.jpg){.normal-width}
+![](/images/content/image-books-avoid-mistakes.jpg)
 
 ## Best for designers who want to work in the public sector {#best-for-designers-who-want-to-work-in-the-public-sector}
 
@@ -102,6 +102,8 @@ Cyd is a designer and digital leader for the City of San Francisco. This book dr
 ### [Who is Government? by Michael Lewis](https://www.penguin.co.uk/books/474004/who-is-government-by-lewis-michael/9781837310319)
 
 Journalist Michael Lewis tells the stories of public servants whose work quietly affects millions of lives, often without recognition or public attention. For designers considering public-sector work, it's a reminder that government is not an abstract bureaucracy but a collection of people working on some of society's most important challenges.
+
+![](/images/content/image-books-public-sector.jpg)
 
 ## Best for designers who want to work in public health {#best-for-designers-who-want-to-work-in-public-health}
 
@@ -120,6 +122,8 @@ Data is at the core of good public health work. Smith tells the story of Chris M
 ### [Mountains Beyond Mountains by Tracy Kidder](https://en.wikipedia.org/wiki/Mountains_Beyond_Mountains)
 
 Journalist Tracy Kidder follows the life and work of Paul Farmer, a doctor who dedicated himself to bringing high-quality healthcare to some of the world's poorest communities. The book challenges the assumption that life-saving care is only possible in wealthy settings and shows what can be achieved through persistence, creativity, and an unwavering commitment to patients. This book always reminded me to be in the field in rural clinics as often as possible in order to keep solving real-world problems for patients that fit their local context.
+
+![](/images/content/image-books-public-health.jpg)
 
 ## Best for designers who want to work in healthcare {#best-for-designers-who-want-to-work-in-healthcare}
 
