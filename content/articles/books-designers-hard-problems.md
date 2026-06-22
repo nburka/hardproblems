@@ -2,7 +2,7 @@
 title: "Books for designers who want to work on hard problems"
 slug: "books-designers-hard-problems"
 
-excerpt: "Reading helped me get the lay of the land when I jumped from consumer tech into global public health. Here are the books we most often recommend to designers heading into climate, public health, healthcare, and the public sector."
+excerpt: "Books we often recommend to designers making the jump."
 
 author: "Daniel Burka"
 authorSlug: "daniel-burka"
