@@ -1026,10 +1026,8 @@ export default function JobsList({
                         Hard Problems Pick
                       </strong>
                       <p>
-                        Selected jobs at orgs working explicitly to make the
-                        world better — saving lives, fighting poverty,
-                        improving education, tackling climate change, and
-                        strengthening the public good.
+                        Selected jobs at organizations whose primary mission
+                        is to make the world better.
                       </p>
                     </div>
                   )}
