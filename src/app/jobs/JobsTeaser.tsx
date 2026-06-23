@@ -6,7 +6,7 @@ import { usePostHog } from 'posthog-js/react';
 import {
   Activity,
   GraduationCap,
-  HeartPlus,
+  Heart,
   Sprout,
   Landmark,
   HandHelping
@@ -42,7 +42,7 @@ function getSectorIcon(displayed: string) {
     case 'education':
       return GraduationCap;
     case 'personal health':
-      return HeartPlus;
+      return Heart;
     case 'climate tech':
       return Sprout;
     case 'public services':

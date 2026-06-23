@@ -133,8 +133,9 @@ export default function CoworkingRotator() {
             )}
             <span className={styles.coworkingAsideTooltip} role="tooltip">
               <strong className={styles.coworkingAsideTooltipName}>
-                {tile.team.name} —
-              </strong>{' '}
+                {tile.team.name}
+              </strong>
+              <br />
               {tile.team.description}
             </span>
           </Link>

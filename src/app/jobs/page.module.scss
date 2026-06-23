@@ -427,9 +427,38 @@
 }
 
 .jobDescriptionCompany {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text);
   margin-right: 0.25rem;
+}
+
+// Hard Problems Pick explainer that appears under the company
+// description inside the tooltip when a job is marked as a pick.
+.jobDescriptionPick {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid #ebd2b3;
+  font-size: 0.85rem;
+  line-height: 1.4;
+
+  p {
+    margin: 0.25rem 0 0 0;
+  }
+}
+
+.jobDescriptionPickHeading {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--color-pick-text);
+}
+
+.jobDescriptionPickIcon {
+  width: 0.88em;
+  height: 0.88em;
+  margin-right: 5px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 .jobIcon {
@@ -511,8 +540,21 @@
 }
 
 .jobSector {
+  display: inline-flex;
+  align-items: center;
   margin: 0;
-  vertical-align: baseline;
+  vertical-align: middle;
+}
+
+// Inline Lucide icon inside the sector tag — sized in `em` so it
+// tracks the tag's font-size (the global `.tag` rule sets 0.8rem).
+.jobSectorIcon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 5px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  opacity: 0.5;
 }
 
 .jobType {
@@ -525,16 +567,21 @@
 .jobStaffPick {
   display: inline-flex;
   align-items: center;
-  gap: 0.3em;
-  margin: 0 0.4rem 0 0;
-  vertical-align: baseline;
+  margin: 0 0 0 0.4rem;
+  vertical-align: middle;
   background: var(--color-pick-bg);
   color: var(--color-pick-text);
   font-weight: 500;
 }
 
+// Match the sector-tag icon (`.jobSectorIcon`) exactly so the pills
+// line up — only opacity differs (the staff pick stays at full color).
 .jobStaffPickStar {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 5px;
   flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 .jobSectorRow {
