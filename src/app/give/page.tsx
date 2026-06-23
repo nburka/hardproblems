@@ -59,13 +59,22 @@ export default function Page() {
         </p>
         <ul>
           <li>
-            <a href="https://d.mba/">d.MBA</a>
+            <a href="https://www.funsize.co/">Funsize</a> for kindly redesigning
+            our website and giving us strategic guidance.
+          </li>
+          <li>
+            <a href="https://d.mba/">d.MBA</a> for their generous gift
           </li>
           <li>
             <a href="https://champaca.in/pages/meet-the-booksellers">
               Radhika Timbadia
             </a>{' '}
-            &amp; <a href="https://www.rahulgonsalves.com/">Rahul Gonsalves</a>
+            &amp; <a href="https://www.rahulgonsalves.com/">Rahul Gonsalves</a>{' '}
+            for their generous cash gift
+          </li>
+          <li>
+            <a href="https://primeradiantstudio.webflow.io/">Prime Radiant</a>{' '}
+            for gifting a beautfiul coffee machine
           </li>
         </ul>
         <Image

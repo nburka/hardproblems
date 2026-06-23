@@ -23,8 +23,8 @@ export default function Page() {
         </div>
         <h3>The challenge</h3>
         <p>
-          “The best minds of my generation are thinking about how to make people
-          click ads. That sucks.” &#8212; Jeff Hammerbacher, 2011
+          <em>“The best minds of my generation are thinking about how to make people
+          click ads. That sucks.”</em> &#8212; Jeff Hammerbacher, 2011
         </p>
         <h3>Our mission</h3>
         <p>

@@ -195,8 +195,8 @@ export default function JobsTeaser({
       })}
       <div className={styles.seeAll}>
         <p className={styles.seeAllText}>
-          We follow job boards that feature roles for senior designers
-          working on hard problems.
+          We search the web to find roles for designers to work on
+          hard problems.
         </p>
         <Link href="/jobs">
           {typeof totalCount === 'number'
