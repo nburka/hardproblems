@@ -162,6 +162,23 @@
   margin-bottom: 3rem;
 }
 
+// Mobile-only hero treatment: center the title/excerpt, bump the
+// title size, and add extra space below the hero before the next
+// article. Desktop overrides live in the @media block further down.
+@media only screen and (max-width: 999px) {
+  .heroRow {
+    margin-bottom: 5rem;
+  }
+
+  .heroList .articleCardBody {
+    text-align: center;
+  }
+
+  .heroList .articleCardTitle {
+    font-size: 2rem;
+  }
+}
+
 .heroList {
   list-style: none;
   padding: 0;

@@ -74,7 +74,7 @@ export default async function Home() {
                 )}
                 <ArticleCard
                   article={article}
-                  compact={i >= 2}
+                  compact={i >= 0}
                   hero={i === 3}
                 />
                 {/* Mobile-only jobs teaser slotted between the 3rd
