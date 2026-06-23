@@ -73,13 +73,17 @@ Over the following year, I stayed in close contact with Mariana and her team, fa
 
 There isn't a perfect framework for finding a nonprofit that will take you as a board member or advisor. You can't exactly replicate my story with Laboratoria in Peru. And most board and advisory roles aren't listed on jobs sites (though sometimes they are). But some of the steps that worked for me will be useful to you too:
 
-1. **Identify the right organization.** Brainstorm and consider where your specific skills and passions intersect with a sector's needs. You will be better prepared to recognize an opportunity if you have already researched the landscape.
+1. **Identify the right type of organization.** Brainstorm and consider where your specific skills and passions intersect with a sector's needs. You will be better prepared to recognize an opportunity if you have already researched the landscape.
 2. **Expand your network.** Leverage existing connections, send introductory emails, and attend industry events. Subscribing to a nonprofit's newsletter is an excellent way to stay informed about their initiatives and gatherings.
 3. **Demonstrate immediate value.** The most direct path to a board seat is proving your utility. Identify organizations you admire, inquire about their current strategic objectives, and offer specific expertise to help them reach those goals.
 4. **Open the dialogue.** Board seats are rarely offered immediately. View your initial outreach as the start of a long-term relationship that may lead to a formal role over time.
 5. **Be direct.** Don't be afraid to state your interest. Clearly saying, "I'd love to be considered for a board position," can be the catalyst needed to move the conversation forward.
 
 > "I never got a role until I started pointing out to people that I was open for board roles." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
+
+Most articles about board roles will tell you to be very strategic to find your first board role. However, none of the designers who I spoke to for this article landed their first board seat by targeting a specific charity. They had a vague sense of what interested them and then an opportunity came up through their social network and they they took it. For instance, [Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/), met another mother through a "mom's group" in her area — that mom happened to work at a fantastic human rights org and Rochelle ended up taking a board seat there after months of conversations. As my friend [Desigan](https://uk.linkedin.com/in/desiganchinniah) points out, it would be better for inclusion if more board roles went through an open process (like a hiring process), but realistically that's unfortunately uncommon.
+
+One piece of advice that every design leader told me: “Be really clear and ask what the board wants from you.” It's critical to be transparent with what they want and what you can offer. Ask particularly about time commitment and money (some boards require members to donate themselves or to solicit donations from their network).
 
 ## What is it like on a nonprofit board? {#what-is-it-like-on-a-nonprofit-board}
 
@@ -89,9 +93,9 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 - **Ensure financial prudence.** Is the nonprofit using its money wisely? You'll have to put your business hat on and think strategically about money and how to put it to use most effectively while safeguarding the precious money that has been donated to the cause.
 - **Uphold ethical and legal standards.** The board ensures the organization maintains high ethical standards, particularly during challenges. When facing difficulties, the board must prioritize what is right over what is easy or merely protective of the organization.
 - **Provide connections.** Your professional network is a valuable asset. At critical junctures, you can leverage your connections to bring specialized expertise into the organization.
-
-- **Fundraising.** It is common for all nonprofit board members to share responsibility for fundraising, whether through direct contributions or by leveraging their networks — a notable difference from many corporate boards.
-- **Support and evaluate the CEO.** Leadership is challenging. The board holds the CEO accountable while simultaneously supporting their success through prudent advice and being available.
+- **Fundraising.** It is common for all nonprofit board members to share responsibility for fundraising, whether through direct contributions or by leveraging their networks — a notable difference from many corporate boards. If you are not sure what your obligations are, it is best to ask up-front.
+- **Support and evaluate the CEO and other leaders.** Leadership is challenging. The board holds the CEO accountable while simultaneously supporting their success through prudent advice and being available. [Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/), told me that one of her major contributions to the boards she's on is to offer leadership coaching, like teaching how to hire-and-fire, be a great manager, delegate tasks etc.
+- **Run workshops** Facilitation is a core design skill, especially at the senior level. Several of the designers that I spoke with for this article told me that they sometimes get called on to lead internal workshops for the board or for part of the charity they work with.
 - **~~Design or product.~~** You might be surprised, but your core skills as a designer or product manager aren't the key to being a great board member. I sit on a corporate board and was on the Laboratoria board for six years, and I rarely brought my craft skills to bear directly. What mattered was strategic judgment.
 
 > "In my current capacities, I support financial management, planning, funding, facility construction of a new school, executive hiring, and I focus on scholastic AI policy." [Geoff Barnes](https://www.linkedin.com/in/geoffbarnes/), Head of Design at [Tavus](https://tavus.io)
@@ -127,3 +131,7 @@ I hope you find a way to contribute through a board or advisory role. When the t
 ### "Due diligence is your friend"
 
 [Jeff Barnes](https://www.linkedin.com/in/texburgher/), Head of Design at [Tavus](https://www.tavus.io), and ex-[Googler](https://google.com) says: "Make sure you understand the nature and requirements of the work up-front. Talk to other board members before you sign up. Board service can be incredibly gratifying but also emotionally taxing and time-consuming. As with any significant undertaking, due diligence is your friend. Once you commit, serve with joy and intensity. And maybe most importantly, establish success metrics, exit criteria, and succession planning intentions as early as you can. Too many servants let their noble commitments become albatrosses simply because they never planned to pass the baton."
+
+### "Get outside of your bubble"
+
+[Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/) told me "It’s been mind-expanding. You get in a bubble when you work in Big Tech. Being on these boards has opened up a whole new world. You get exposure to groups of people who are outside your standard network and who think differently from you. I'm on a human rights board where I meet with lawyers who are working all over the world in places like Ethiopia and Bangladesh! It really broadens my experience from my home in Los Gatos, California."

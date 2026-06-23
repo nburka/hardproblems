@@ -70,7 +70,7 @@ export default function ArticleCard({
     >
       <Link
         href={`/articles/${article.slug}`}
-        className={styles.articleCardLink}
+        className={`${styles.articleCardLink} hover-saturate`}
       >
         <span className={styles.articleType}>{article.articleType}</span>
         {(article.image || article.thumbnailVideo) && (

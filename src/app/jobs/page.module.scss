@@ -86,7 +86,7 @@
   gap: 0.5rem;
   padding: 5px 16px 5px 8px;
   font-size: 0.9rem;
-  color: #235337;
+  color: var(--color-dark-green);
   background: #fff;
   border: 1px solid #cbead8;
   border-radius: 100px;
@@ -131,8 +131,8 @@
 }
 
 .checkbox input:checked + .checkboxBox {
-  background: #2f8b53;
-  border-color: #2f8b53;
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
 }
 
 .checkbox input:checked + .checkboxBox::after {
@@ -164,7 +164,7 @@
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 12px;
-  color: #235337;
+  color: var(--color-dark-green);
   // Match the checkbox pills' full-width behavior at every viewport.
   width: 100%;
   cursor: pointer;
@@ -192,8 +192,8 @@
 // light treatment above so the dropdown blends with the filter rail.
 @media only screen and (max-width: 999px) {
   .filterSelect {
-    background-color: #231f20;
-    border-color: #231f20;
+    background-color: var(--color-text);
+    border-color: var(--color-text);
     color: #fff;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   }
@@ -217,7 +217,7 @@
   border: 1px solid #cbead8;
   border-radius: 100px;
   background: #fff;
-  color: #235337;
+  color: var(--color-dark-green);
   cursor: pointer;
 }
 
@@ -277,7 +277,7 @@
   padding: 0;
   width: 100%;
   margin-bottom: 2em;
-  color: #4a7bd4;
+  color: var(--color-link);
   cursor: pointer;
   text-decoration: none;
   text-align: right;
@@ -306,7 +306,7 @@
   padding: 3.5rem 1.5rem;
   margin-top: 2rem;
   background: #f6faf8;
-  border: 1px solid #d9eee2;
+  border: 1px solid var(--color-light-green);
   border-radius: 10px;
 }
 
@@ -320,7 +320,7 @@
   text-transform: none;
   letter-spacing: 0;
   margin: 0 0 0.5rem 0;
-  color: #235337;
+  color: var(--color-dark-green);
 }
 
 .noResultsText {
@@ -336,7 +336,7 @@
   border: 1px solid #cbead8;
   border-radius: 100px;
   background: #cbead8;
-  color: #235337;
+  color: var(--color-dark-green);
   cursor: pointer;
 }
 
@@ -359,11 +359,11 @@
   gap: 1.5rem;
   padding: 1.1rem 0;
   margin: 0;
-  border-bottom: 1px solid #ebf7f0;
+  border-bottom: 1px solid var(--color-pale-green);
 }
 
 .job:first-child {
-  border-top: 1px solid #ebf7f0;
+  border-top: 1px solid var(--color-pale-green);
 }
 
 .jobDescription {
@@ -428,7 +428,7 @@
 
 .jobDescriptionCompany {
   font-weight: 700;
-  color: #231f20;
+  color: var(--color-text);
   margin-right: 0.25rem;
 }
 
@@ -441,7 +441,7 @@
   height: 36px;
   margin-left: 8px;
   background: #fff;
-  border: 1px solid #d9eee2;
+  border: 1px solid var(--color-light-green);
   border-radius: 50%;
   box-sizing: border-box;
   transition: border-color 0.15s ease;
@@ -473,7 +473,7 @@
 .jobTitle a,
 .jobTitle a:visited {
   font-weight: 500;
-  color: #4a7bd4;
+  color: var(--color-link);
 }
 
 .jobTitle a:hover {
@@ -489,7 +489,7 @@
 .jobCompany,
 .jobCompany:visited {
   font-weight: 500;
-  color: #231f20;
+  color: var(--color-text);
 }
 
 .jobCompany:hover,
@@ -528,8 +528,8 @@
   gap: 0.3em;
   margin: 0 0.4rem 0 0;
   vertical-align: baseline;
-  background: #fff3c4;
-  color: #8a5a00;
+  background: var(--color-pick-bg);
+  color: var(--color-pick-text);
   font-weight: 500;
 }
 
@@ -562,11 +562,10 @@
 }
 
 .jobDate {
-  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
-  color: #231f20;
+  color: var(--color-text);
   letter-spacing: 0.08em;
 }
 

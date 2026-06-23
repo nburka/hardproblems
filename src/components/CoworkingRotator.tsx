@@ -116,7 +116,7 @@ export default function CoworkingRotator() {
           <Link
             href={tile.team.href}
             aria-label={`Visit ${tile.team.name}`}
-            className={styles.coworkingAsideLink}
+            className={`${styles.coworkingAsideLink} hover-saturate`}
             style={{
               opacity: tile.visible ? 1 : 0,
               transition: `opacity ${FADE_MS}ms ease`

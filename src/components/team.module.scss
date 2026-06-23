@@ -25,9 +25,6 @@
 }
 
 .team a:hover {
-  color: #4a7bd4;
+  color: var(--color-link);
 }
 
-.team a:hover img {
-  transform: scale(1.1);
-}

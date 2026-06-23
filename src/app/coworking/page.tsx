@@ -65,7 +65,7 @@ export default function Page() {
           {teams.map((team) => (
             <li key={team.name} className={styles.teamTile}>
               {team.image ? (
-                <Link href={team.href} aria-label={`Visit ${team.name}`}>
+                <Link href={team.href} aria-label={`Visit ${team.name}`} className="hover-saturate">
                   <Image
                     src={team.image}
                     width={512}

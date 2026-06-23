@@ -95,7 +95,7 @@
   border-radius: 100px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #231f20;
+  color: var(--color-text);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
@@ -110,13 +110,12 @@
 // the .preTitleLabel treatment used on the article page itself.
 .articleType {
   display: block;
-  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 400;
-  color: #235337;
+  color: var(--color-dark-green);
   /* Negative bottom margin pulls the image up so the kicker sits
      directly above it (tighter than the .articleCardLink grid's 1rem
      gap). */
@@ -131,7 +130,7 @@
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: #4a7bd4;
+  color: var(--color-link);
   transition: color 0.15s ease;
   text-wrap: balance;
 }
@@ -148,8 +147,7 @@
 // keep it quiet against the dark excerpt text.
 .articleCardReadingTime {
   margin: 0.2rem 0 0 0;
-  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   color: #6b7d8c;
 }
@@ -349,7 +347,7 @@
 
 .coworkingAsideTooltipName {
   font-weight: 700;
-  color: #231f20;
+  color: var(--color-text);
 }
 
 
@@ -362,7 +360,7 @@
 .articleCardCompact {
   margin-top: -2.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #d9eee2;
+  border-top: 1px solid var(--color-light-green);
 }
 
 .articleCardCompact .articleCardLink {

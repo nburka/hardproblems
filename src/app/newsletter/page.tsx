@@ -78,7 +78,7 @@ export default function Page() {
                   <Link
                     href={newsletter.url}
                     target="_blank"
-                    className={styles.newsletterLink}
+                    className={`${styles.newsletterLink} hover-saturate`}
                   >
                     <div className={styles.newsletterImageWrap}>
                       <Image
