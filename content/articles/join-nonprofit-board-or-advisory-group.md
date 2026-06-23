@@ -134,7 +134,7 @@ I hope you find a way to contribute through a board or advisory role. When the t
 
 ### "Get outside of your bubble"
 
-[Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/) told me "It’s been mind-expanding. You get in a bubble when you work in Big Tech. Being on these boards has opened up a whole new world. You get exposure to groups of people who are outside your standard network and who think differently from you. I'm on a human rights board where I meet with lawyers who are working all over the world in places like Ethiopia and Bangladesh! It really broadens my experience from my home in Los Gatos, California."
+[Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/) told me: "It’s been mind-expanding. You get in a bubble when you work in Big Tech. Being on these boards has opened up a whole new world. You get exposure to groups of people who are outside your standard network and who think differently from you. I'm on a human rights board where I meet with lawyers who are working all over the world in places like Ethiopia and Bangladesh! It really broadens my experience from my home in Los Gatos, California."
 
 ### "Who are you are willing to give up your time for?"
 
