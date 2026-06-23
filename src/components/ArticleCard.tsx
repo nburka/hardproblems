@@ -1,42 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { SquarePlay, Headphones } from 'lucide-react';
 import { type Article } from '../lib/articles';
 import styles from '../app/articles/page.module.scss';
-
-// Filled play triangle — used in the "Watch" badge on Video cards.
-function PlayIcon() {
-  return (
-    <svg
-      className={styles.articleCardBadgeIcon}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
-// Spotify-style headphones — used in the "Listen" badge on Podcast
-// cards. Drawn with a thin stroke so it reads at small sizes.
-function HeadphonesIcon() {
-  return (
-    <svg
-      className={styles.articleCardBadgeIcon}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3 17v-5a9 9 0 0 1 18 0v5" />
-      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z" />
-      <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
-    </svg>
-  );
-}
 
 // Shared card used by both /articles (full listing) and
 // /articles/topic/[topic] (per-topic listings). Keeping a single component
@@ -104,13 +70,19 @@ export default function ArticleCard({
             )}
             {isVideo && (
               <span className={styles.articleCardBadge}>
-                <PlayIcon />
+                <SquarePlay
+                  className={styles.articleCardBadgeIcon}
+                  aria-hidden="true"
+                />
                 Watch
               </span>
             )}
             {isPodcast && (
               <span className={styles.articleCardBadge}>
-                <HeadphonesIcon />
+                <Headphones
+                  className={styles.articleCardBadgeIcon}
+                  aria-hidden="true"
+                />
                 Listen
               </span>
             )}

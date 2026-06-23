@@ -35,7 +35,7 @@ people:
   - Barack Obama
   - Mark Zuckerberg
 
-readingTime: 7
+readingTime: 10
 
 featured: false
 
@@ -135,3 +135,7 @@ I hope you find a way to contribute through a board or advisory role. When the t
 ### "Get outside of your bubble"
 
 [Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/) told me "It’s been mind-expanding. You get in a bubble when you work in Big Tech. Being on these boards has opened up a whole new world. You get exposure to groups of people who are outside your standard network and who think differently from you. I'm on a human rights board where I meet with lawyers who are working all over the world in places like Ethiopia and Bangladesh! It really broadens my experience from my home in Los Gatos, California."
+
+### "Who are you are willing to give up your time for?"
+
+[Desigan Chinniah](https://uk.linkedin.com/in/desiganchinniah) who serves on several boards and advisory groups (including with me on [Our Future Health](https://ourfuturehealth.org.uk/)) told me: "You should first better know what sorts of organisations you are willing to give up your time for. What sector, what mission and why it matters to you. Spend sometime researching and create a shortlist of organisations that you believe meet your criteria. Look at who in your networks has either worked for or had experiences within these orgs or similar orgs. Talk to these folks. It's a bonus if they are or have been on the board of that org itself. Or perhaps they know others that are. Even if you don't know anyone mention it or your desire to be on a board to people within these worlds. They'll sometimes surprise when opportunities arise as opposed to you seeing them only when listed."

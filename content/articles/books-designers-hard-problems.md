@@ -47,7 +47,7 @@ people:
   - Hannah Ritchie
   - John Doerr
 
-readingTime: 6
+readingTime: 8
 
 featured: false
 

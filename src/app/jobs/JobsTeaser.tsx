@@ -3,6 +3,14 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import { usePostHog } from 'posthog-js/react';
+import {
+  Activity,
+  GraduationCap,
+  HeartPlus,
+  Sprout,
+  Landmark,
+  HandHelping
+} from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
 import { orgTypeDisplay } from './orgType';
 import styles from './jobsTeaser.module.scss';
@@ -19,6 +27,31 @@ function buildFaviconUrl(rawUrl: string): string | null {
     return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
   } catch {
     return null;
+  }
+}
+
+// Lucide icon to show next to each sector kicker. Keyed off the
+// _displayed_ sector string (lower-cased) so the mapping survives the
+// pretty-printing in displaySector(). Returns null if the sector
+// doesn't have a dedicated icon yet.
+function getSectorIcon(displayed: string) {
+  const key = displayed.toLowerCase().trim();
+  switch (key) {
+    case 'healthcare':
+      return Activity;
+    case 'education':
+      return GraduationCap;
+    case 'personal health':
+      return HeartPlus;
+    case 'climate tech':
+      return Sprout;
+    case 'public services':
+    case 'good gov':
+      return Landmark;
+    case 'non-profit support':
+      return HandHelping;
+    default:
+      return null;
   }
 }
 
@@ -148,11 +181,21 @@ export default function JobsTeaser({
               <div className={styles.icon}>{iconContents}</div>
             )}
             <div className={styles.content}>
-            {job.sector && (
-              <div className={styles.sectorKicker}>
-                {displaySector(job.sector)}
-              </div>
-            )}
+            {job.sector && (() => {
+              const displayed = displaySector(job.sector);
+              const SectorIcon = getSectorIcon(displayed);
+              return (
+                <div className={styles.sectorKicker}>
+                  {SectorIcon && (
+                    <SectorIcon
+                      className={styles.sectorKickerIcon}
+                      aria-hidden="true"
+                    />
+                  )}
+                  {displayed}
+                </div>
+              );
+            })()}
             <div className={styles.titleLine}>
               {job.url ? (
                 <Link

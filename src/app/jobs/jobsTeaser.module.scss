@@ -79,14 +79,26 @@
 // (e.g. "Healthcare", "Public health"). Sets the category for the role
 // before the reader scans the title and meta line.
 .sectorKicker {
-  display: block;
+  display: flex;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: 0.7rem;
+  line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 400;
   color: var(--color-mid-green);
   margin-bottom: 0.2rem;
+}
+
+// Inline Lucide icon sitting to the left of the sector text. Sized in
+// `em` so it tracks the kicker's font-size automatically.
+.sectorKickerIcon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 5px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 .titleLine {
