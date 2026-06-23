@@ -544,6 +544,8 @@
   align-items: center;
   margin: 0;
   vertical-align: middle;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
 }
 
 // Inline Lucide icon inside the sector tag — sized in `em` so it
@@ -562,6 +564,8 @@
   vertical-align: baseline;
   background: #d6e4f7;
   color: #1d4e89;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
 }
 
 .jobStaffPick {
@@ -572,6 +576,8 @@
   background: var(--color-pick-bg);
   color: var(--color-pick-text);
   font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
 }
 
 // Match the sector-tag icon (`.jobSectorIcon`) exactly so the pills
@@ -623,6 +629,7 @@
   align-items: center;
   gap: 0.3em;
   color: #b8860b;
+  font-weight: 700;
 }
 
 .jobDateIcon {
