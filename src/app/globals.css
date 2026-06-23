@@ -286,8 +286,8 @@ h1 {
   align-items: center;
   margin: 0;
   padding: 1.25rem 0;
-  border-top: 1px solid rgba(59, 79, 94, 0.18);
-  border-bottom: 1px solid rgba(59, 79, 94, 0.18);
+  border-top: 1px solid #b7ddc8;
+  border-bottom: 1px solid #b7ddc8;
 }
 
 /* Home link in the top-left of the header. Same line as the Hard
@@ -409,7 +409,7 @@ nav.site-nav-bar {
   width: 100%;
   flex-wrap: nowrap;
   margin: 0 0 2rem 0;
-  border-bottom: 1px solid rgba(59, 79, 94, 0.18);
+  border-bottom: 1px solid #b7ddc8;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
