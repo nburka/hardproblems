@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { CalendarDays } from 'lucide-react';
 import Parser from 'rss-parser';
 import NewsletterSkeleton from './newsletterSkeleton';
 import NewsletterForm from '../../components/NewsletterForm';
@@ -88,9 +89,6 @@ export default function Page() {
                         alt={newsletter.title}
                         className={styles.newsletterImage}
                       />
-                      <span className={styles.newsletterDate}>
-                        {newsletter.pubDate.toLocaleDateString('en-GB', dateFormat)}
-                      </span>
                     </div>
                     <div className={styles.newsletterBody}>
                       <h4 className={styles.newsletterTitle}>
@@ -99,6 +97,13 @@ export default function Page() {
                       <p className={styles.newsletterExcerpt}>
                         {newsletter.content}
                       </p>
+                      <span className={styles.newsletterDate}>
+                        <CalendarDays
+                          className={styles.newsletterDateIcon}
+                          aria-hidden="true"
+                        />
+                        {newsletter.pubDate.toLocaleDateString('en-GB', dateFormat)}
+                      </span>
                     </div>
                   </Link>
                 </div>
