@@ -41,7 +41,9 @@ _A 25 min video explaining why we want to see more designers tackle urgent globa
 <iframe src="https://www.youtube-nocookie.com/embed/vW6HAPzj7mI" title="Hard Problems explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-We were asked to present about Hard Problems at the wonderful [Leading Design](https://leadingdesign.com) conference in London in November 2025. It's a gathering of design leaders from around the world, from Chief Design Officers at big companies like [Vinted](https://www.vinted.co.uk/) to leads at large public sector technology teams like the UK's [Government Digital Service](https://www.gov.uk/government/organisations/government-digital-service). Thank you to the team at [Clearleft](https://clearleft.com) for the invitation.
+We were asked to present about Hard Problems at the wonderful [Leading Design](https://leadingdesign.com) conference in London in November 2025. It's a gathering of design leaders from around the world, from Chief Design Officers at big companies like [Vinted](https://www.vinted.co.uk/) to leads at large public sector technology teams like the UK's [Government Digital Service](https://www.gov.uk/government/organisations/government-digital-service).
+
+Thank you to the team at [Clearleft](https://clearleft.com), who organize Leading Design, for the invitation.
 
 ## The talk {#the-talk}
 

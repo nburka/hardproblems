@@ -61,8 +61,8 @@ export default async function Home() {
                     <h3>Co-working in London</h3>
                     <p className={styles.coworkingAsideIntro}>
                       These health and climate organizations use our{' '}
-                      <Link href="/coworking">co-working space</Link>{' '}
-                      in London.
+                      <Link href="/coworking">co-working space</Link> in London,
+                      UK. You can use our space if you are visiting the city.
                     </p>
                     <CoworkingRotator />
                     <p className={styles.coworkingAsideCta}>
@@ -84,10 +84,7 @@ export default async function Home() {
                 {i === 1 && (
                   <li className={styles.mobileJobsTeaser}>
                     <h3>Newest jobs</h3>
-                    <JobsTeaser
-                      jobs={recentJobs}
-                      totalCount={jobs.length}
-                    />
+                    <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
                   </li>
                 )}
               </Fragment>
