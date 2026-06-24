@@ -26,19 +26,17 @@ export default function Page() {
           to sustainable development goals, the answer could be
           &#8216;Yes!&#8217;
         </p>
-        <dl>
-          <dt>Drop-in</dt>
-          <dd>
-            Need a desk for just a few days? If you work on a hard problem,
-            apply and we could offer you a free place to work.
-          </dd>
-          <dt>Desks</dt>
-          <dd>
-            If you can pay, a fixed desk is £450/month and a drop-in desk is
-            £200/month. If that is too much, get in touch and we might be able
-            to work something out.
-          </dd>
-        </dl>
+        <h4 style={{ color: 'var(--color-mid-green)' }}>Drop-in for a few days</h4>
+        <p>
+          Need a desk for just a few days? If you work on a hard problem,
+          apply and we could offer you a free place to work.
+        </p>
+        <h4 style={{ color: 'var(--color-mid-green)' }}>Long-term desks</h4>
+        <p>
+          If you can pay, a fixed desk is £450/month and a drop-in desk is
+          £200/month. If that is too much, get in touch and we might be able
+          to work something out.
+        </p>
 
         <h3 className="space-top-small">Is it free?</h3>
         <p>
@@ -102,7 +100,8 @@ export default function Page() {
         <p>
           Liverpool Street Station and Old Street Station are closest
           Underground stops. There is secure bicycle parking at the office by
-          request.
+          request. Visiting? Come into Autograph Gallery and ask for Hard
+          Problems at the front desk.
         </p>
         <h3 className="divider">Photos</h3>
         <p>
