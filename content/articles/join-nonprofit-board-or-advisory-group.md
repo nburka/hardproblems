@@ -1,5 +1,5 @@
 ---
-title: 'How to join a nonprofit board or advisory group'
+title: 'How to join a nonprofit board'
 slug: 'join-nonprofit-board-or-advisory-group'
 
 excerpt: 'Can’t dedicate yourself full-time to working on a hard problem? Consider joining a charity as a volunteer in a strategic position.'
@@ -48,7 +48,7 @@ seoDescription: 'How senior designers and product leaders can find, join, and co
 canonicalUrl: ''
 ---
 
-# How to join a nonprofit board or advisory group {#join-nonprofit-board-or-advisory-group}
+# How to join a nonprofit board {#join-nonprofit-board-or-advisory-group}
 
 _Can't dedicate yourself full-time to working on a hard problem? Consider joining a charity as a volunteer in a strategic position._{.intro}
 
