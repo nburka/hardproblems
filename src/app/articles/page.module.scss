@@ -172,7 +172,8 @@
     text-align: center;
   }
 
-  .heroList .articleCardTitle {
+  .heroList .articleCardTitle,
+  .articleCardHero .articleCardTitle {
     font-size: var(--font-size-xl);
   }
 }
@@ -594,6 +595,16 @@
   .articleCardCompact .articleCardTitle {
     font-size: var(--font-size-lg);
     line-height: 1.15;
+  }
+
+  // The secondary hero on the homepage carries both `.articleCardCompact`
+  // and `.articleCardHero`. Reassert the hero size here so it wins over
+  // the compact override above (same specificity, but this comes later
+  // in source order so it cascades correctly).
+  .articleCardHero.articleCardCompact .articleCardTitle,
+  .articleCardHero .articleCardTitle {
+    font-size: var(--font-size-2xl);
+    line-height: 1.1;
   }
 }
 

@@ -66,7 +66,10 @@ export default async function Home() {
                     </p>
                     <CoworkingRotator />
                     <p className={styles.coworkingAsideCta}>
-                      <Link href="/coworking" className="black-button">
+                      <Link
+                        href="/coworking"
+                        className="black-button black-button--small"
+                      >
                         Learn more…
                       </Link>
                     </p>

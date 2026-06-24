@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <>
       <section className="left">
-        <h2>Give</h2>
+        <h2>Support our work</h2>
         <p className="intro">
           Hard Problems is a nonprofit that is primarily funded by the founding
           team. We aim to keep our expenses low, which will allow us to run
@@ -23,8 +23,13 @@ export default function Page() {
         <p>
           Get in touch by email: <em>contact@hardproblems.com</em>
         </p>
-        <h3 className="space-top-xlarge">Ideas for gifting:</h3>
-        <h4 className="space-top-large">Co-working space in London</h4>
+        <h3 className="space-top-xlarge">Ideas for gifts</h3>
+        <p>
+          Here are a few ideas for gifts. We&rsquo;re open to all kinds of
+          new ideas too, so please get in touch if you have ideas that
+          might be helpful to Hard Problems. Thank you.
+        </p>
+        <h4 className="space-top-large" style={{ color: 'var(--color-mid-green)' }}>Co-working space in London</h4>
         <p>
           We have a <Link href="/coworking">co-working space</Link> in London
           where we donate desks to people that work on hard problems. Renting
@@ -36,7 +41,7 @@ export default function Page() {
           &#8212; buy a chair (£100) or even gift a bag of good coffee (£10).
           Any gift would be appreciated.
         </p>
-        <h4 className="space-top-large">Sponsor an event</h4>
+        <h4 className="space-top-large" style={{ color: 'var(--color-mid-green)' }}>Sponsor an event</h4>
         <p>
           We will run events in 2026 with an audience of people who work on hard
           problems all over the world. If you or your company is interested in

@@ -75,7 +75,7 @@ Mahima also outlined an ongoing climate preparedness initiative with a regional 
 
 ## Hard problems are hard {#hard-problems-are-hard}
 
-I explicitly cautioned the audience against technological hubris, citing historical missteps like the "One Laptop per Child" program as examples of arrogant developers expecting hardware to solve deeply rooted poverty. I strongly suggested reading the excellent book [Geek Heresy](https://geekheresy.org/) by Kentaro Toyoma that gives excellent caution and guidance on how to create technology and design that might actually accomplish your goals on hard challenges. Complex humanitarian problems cannot be fixed simply by throwing isolated technologies at them; they require an understanding of economics, local politics, partnerships, and long-term, iterative solutions developed with local stakeholders.
+I explicitly cautioned the audience against technological hubris, citing historical missteps like the "One Laptop per Child" program as examples of arrogant developers expecting hardware to solve deeply rooted poverty. I strongly suggested reading the excellent book [Geek Heresy](https://geekheresy.org/) by Kentaro Toyama that gives excellent caution and guidance on how to create technology and design that might actually accomplish your goals on hard challenges. Complex humanitarian problems cannot be fixed simply by throwing isolated technologies at them; they require an understanding of economics, local politics, partnerships, and long-term, iterative solutions developed with local stakeholders.
 
 I didn't minimize the real financial trade-offs required to engage in this work — most organizations working for the public good will never be able to compete on salary directly with the Googles of the world.
 

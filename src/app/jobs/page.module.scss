@@ -441,7 +441,7 @@
 
   p {
     margin: 0.25rem 0 0 0;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     line-height: 1.4;
   }
 }
@@ -633,7 +633,10 @@
 }
 
 .jobDateIcon {
+  width: 1.1em;
+  height: 1.1em;
   flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 @media only screen and (max-width: 700px) {

@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ArrowLeft, House } from 'lucide-react';
 
-// "← Home" link in the top-left of the site header. Hidden on the
+// "← 🏠" link in the top-left of the site header. Hidden on the
 // homepage itself (where it would just point at the current page),
 // but we still render an empty placeholder span so the header's
 // `1fr auto 1fr` grid keeps the logo centered.
@@ -14,20 +15,14 @@ export default function SiteHeaderHome() {
   }
 
   return (
-    <Link href="/" className="site-header-home">
-      <svg
-        className="site-header-home-caret"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M15 18l-6-6 6-6" />
-      </svg>
-      Home
+    <Link
+      href="/"
+      className="site-header-home"
+      title="Go to the Hard Problems homepage"
+    >
+      <ArrowLeft className="site-header-home-icon" aria-hidden="true" />
+      <House className="site-header-home-icon" aria-hidden="true" />
+      <span className="sr-only">Go to the Hard Problems homepage</span>
     </Link>
   );
 }

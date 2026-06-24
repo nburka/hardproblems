@@ -94,6 +94,15 @@ a.black-button:visited {
     transform 0.2s ease;
 }
 
+/* Smaller variant — applied alongside the base class for tighter
+   contexts (e.g. inline buttons inside compact cards or asides). */
+a.black-button.black-button--small,
+a.black-button.black-button--small:visited {
+  padding: 6px 12px;
+  font-size: var(--font-size-sm);
+  gap: 0.35rem;
+}
+
 /* Arrow/icon inside the button (any inline child) slides right on hover. */
 a.black-button > span {
   transition: transform 0.2s ease;
@@ -310,10 +319,34 @@ h1 {
   text-decoration: underline;
 }
 
-.site-header-home-caret {
-  width: 0.85em;
-  height: 0.85em;
+.site-header-home-icon {
+  width: 1.1em;
+  height: 1.1em;
   flex-shrink: 0;
+  stroke-width: 1.8;
+  transition: transform 0.2s ease;
+}
+
+/* On hover, slide the arrow a few pixels to the left for a subtle
+   "going back" feel. The house icon stays put. */
+.site-header-home:hover .site-header-home-icon:first-child,
+.site-header-home:focus-visible .site-header-home-icon:first-child {
+  transform: translateX(-3px);
+}
+
+/* Visually hidden but still read by screen readers. Use on inline
+   text that's needed for accessibility but should not be visible
+   (e.g. labels inside icon-only links/buttons). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .site-header-newsletter {

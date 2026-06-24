@@ -11,7 +11,8 @@ import {
   Sprout,
   Landmark,
   HandHelping,
-  Gem
+  Gem,
+  Sparkle
 } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
 import {
@@ -1026,7 +1027,7 @@ export default function JobsList({
                         Hard Problems Pick
                       </strong>
                       <p>
-                        Selected jobs at organizations whose primary mission
+                        We hand-select great jobs at orgs whose primary mission
                         is to make the world better.
                       </p>
                     </div>
@@ -1045,12 +1046,10 @@ export default function JobsList({
                         }`}
                       >
                         {isNewToday && (
-                          <span
+                          <Sparkle
                             className={styles.jobDateIcon}
                             aria-hidden="true"
-                          >
-                            ✨
-                          </span>
+                          />
                         )}
                         {relativeLabel}
                       </small>

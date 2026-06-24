@@ -9,9 +9,9 @@ import { OrgCategory, orgCategory } from './orgType';
 export type WorkStyle = 'remote' | 'hybrid' | 'onsite';
 
 export const WORK_STYLE_OPTIONS: { value: WorkStyle; label: string }[] = [
-  { value: 'remote', label: 'Remote' },
   { value: 'hybrid', label: 'Hybrid' },
-  { value: 'onsite', label: 'On-site' }
+  { value: 'onsite', label: 'On-site' },
+  { value: 'remote', label: 'Remote' }
 ];
 
 export type SeniorityCategory =
@@ -35,7 +35,7 @@ export const SENIORITY_OPTIONS: {
   },
   {
     value: 'senior',
-    label: 'Senior and staff',
+    label: 'Senior, staff, or lead',
     keywords: ['senior', 'staff', 'principal', 'lead']
   },
   {
@@ -72,13 +72,13 @@ export const SECTOR_OPTIONS: {
     label: 'Climate change',
     keywords: ['climate', 'clean energy']
   },
+  { value: 'education', label: 'Education', keywords: ['education'] },
   { value: 'health', label: 'Health', keywords: ['health'] },
   {
     value: 'public-services',
     label: 'Public services',
     keywords: ['public service', 'government']
-  },
-  { value: 'education', label: 'Education', keywords: ['education'] }
+  }
 ];
 
 // Meta-regions shown at the top of the country dropdown. Selecting a

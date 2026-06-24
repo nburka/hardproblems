@@ -1,18 +1,18 @@
 ---
-title: "Books for designers who want to work on hard problems"
-slug: "books-designers-hard-problems"
+title: 'Books for designers who want to work on hard problems'
+slug: 'books-designers-hard-problems'
 
-excerpt: "Books we often recommend to designers making the jump."
+excerpt: 'Books we often recommend to designers making the jump.'
 
-author: "Daniel Burka"
-authorSlug: "daniel-burka"
+author: 'Daniel Burka'
+authorSlug: 'daniel-burka'
 
-publishedAt: "2026-06-11"
-updatedAt: "2026-06-11"
+publishedAt: '2026-06-11'
+updatedAt: '2026-06-11'
 
-status: "published" # draft | review | published
+status: 'published' # draft | review | published
 
-articleType: "Article" # Article | Book Review | Podcast | Opinion
+articleType: 'Article' # Article | Book Review | Podcast | Opinion
 
 topics:
   - careers
@@ -30,7 +30,7 @@ organizations:
 people:
   - Rutger Bregman
   - Benjamin Todd
-  - Kentaro Toyoma
+  - Kentaro Toyama
   - Silvio Lorusso
   - Cyd Harrell
   - Michael Lewis
@@ -51,19 +51,18 @@ readingTime: 8
 
 featured: false
 
-image: "/images/content/thumb-books-list.jpg"
-imageAlt: "A stack of books recommended for designers working on hard problems"
+image: '/images/content/thumb-books-list.jpg'
+imageAlt: 'A stack of books recommended for designers working on hard problems'
 
-seoTitle: "Books for Designers Who Want to Work on Hard Problems"
-seoDescription: "A curated reading list for designers moving into public health, climate change, healthcare, and the public sector — with our top picks and category-by-category recommendations."
+seoTitle: 'Books for Designers Who Want to Work on Hard Problems'
+seoDescription: 'A curated reading list for designers moving into public health, climate change, healthcare, and the public sector — with our top picks and category-by-category recommendations.'
 
-canonicalUrl: ""
-
+canonicalUrl: ''
 ---
 
 # Books for designers who want to work on hard problems {#books-for-designers-who-want-to-work-on-hard-problems}
 
-*Considering the leap into a new challenge like public health or climate change? These books offer guidance.*{.intro}
+_Considering the leap into a new challenge like public health or climate change? These books offer guidance._{.intro}
 
 I spent almost 20 years designing pretty typical digital tools before I made the jump to become a designer in global public health. I have designed lots of consumer software, e-commerce systems, mobile apps, and logos. Even so, jumping into a full-time leadership role in a public health charity called [Resolve to Save Lives](https://rtsl.org) was intimidating. Reading books helped me to get the lay of the land.
 
@@ -73,17 +72,17 @@ These are some of the books that we frequently recommend to designers who are se
 
 <h3 class="book-heading"><a href="https://www.moralambition.org/book"><strong>Moral Ambition</strong> by Rutger Bregman</a></h3>
 
-In *Moral Ambition*, Rutger Bregman argues that many talented people spend their careers optimizing for status, comfort, or prestige when they could be applying their abilities to solving the world's most important problems. He makes the case that people should work on high-impact issues like poverty, public health, climate change, and institutional reform. I like that this book includes many inspiring stories of people, just like you, who have gone on to make positive change in the world. We wrote a [full review](https://www.hardproblems.com/articles/moral-ambition-rutger-bregman) of this book.
+In _Moral Ambition_, Rutger Bregman argues that many talented people spend their careers optimizing for status, comfort, or prestige when they could be applying their abilities to solving the world's most important problems. He makes the case that people should work on high-impact issues like poverty, public health, climate change, and institutional reform. I like that this book includes many inspiring stories of people, just like you, who have gone on to make positive change in the world. We wrote a [full review](https://www.hardproblems.com/articles/moral-ambition-rutger-bregman) of this book.
 
 <h3 class="book-heading"><a href="https://80000hours.org/book/"><strong>80,000 Hours</strong> by Benjamin Todd</a></h3>
 
-Todd argues that your career is one of the biggest opportunities you have to make a positive impact on the world. He makes the case that choosing where to work, what problems to focus on, and how to use your skills can have an outsized effect on issues like global health, poverty, climate change, and emerging technologies. In particular, the book gives you a strong framework for choosing what role might have the most positive impact in the world. Note: that this book is from a group called Effective Altruists and is biased towards some of their core philosophies (like earning maximum $$$ to contribute to hard problems) that we do not wholeheartedly endorse.
+Todd argues that your career is one of the biggest opportunities you have to make a positive impact on the world. He makes the case that choosing where to work, what problems to focus on, and how to use your skills can have an outsized effect on issues like global health, poverty, climate change, and emerging technologies. In particular, the book provides a strong framework for choosing what role might have the most positive impact in the world. Note: that this book is from a group called Effective Altruists and is biased towards some of their core philosophies (like earning maximum $$$ to contribute to hard problems) that we do not wholeheartedly endorse.
 
 ![](/images/content/image-books-next-move.jpg)
 
 ## Best for designers who <span class="highlight-underline">want to avoid past mistakes</span> {#best-for-designers-who-want-to-avoid-past-mistakes}
 
-<h3 class="book-heading"><a href="https://geekheresy.org/"><strong>Geek Heresy</strong> by Kentaro Toyoma</a> <span class="tag tag-pick"><span aria-hidden="true">⭐</span> Top pick</span></h3>
+<h3 class="book-heading"><a href="https://geekheresy.org/"><strong>Geek Heresy</strong> by Kentaro Toyama</a> <span class="tag tag-pick"><span aria-hidden="true">⭐</span> Top pick</span></h3>
 
 This book challenges the tech-first idea that technology on its own can solve the world's biggest problems. Drawing on his experience in international development (especially education projects in India as part of Microsoft Labs) Toyoma argues that social change depends far more on people, institutions, and local capacity than on clever apps or new devices. The book is excellent. It's a valuable corrective for designers and technologists who want to improve the world, reminding us that technology is most effective when it amplifies strong human systems rather than trying to replace them. Note: This is an older book, but still very relevant.
 
