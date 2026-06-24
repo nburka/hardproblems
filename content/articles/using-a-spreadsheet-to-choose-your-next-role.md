@@ -7,8 +7,8 @@ excerpt: '"Job Rank" is a simple scoring framework that helps you score competin
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-11'
-updatedAt: '2026-06-11'
+publishedAt: '2026-06-12'
+updatedAt: '2026-06-12'
 
 status: 'published' # draft | review | published
 
