@@ -2,7 +2,7 @@
 title: 'Design in Public Health in India'
 slug: 'design-in-public-health-in-india'
 
-excerpt: 'Two of India''s leading public health experts share their experience with design and technology.'
+excerpt: "Two of India's leading public health experts share their experience with design and technology."
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
@@ -19,14 +19,14 @@ topics:
   - social-impact
   - public-health
 
-readingTime: 3
+readingTime: 75
 
 featured: false
 
 thumbnailVideo: '/videos/epidemiology-ganesh.mp4'
 
 seoTitle: 'Design in Public Health in India'
-seoDescription: 'Two of India''s leading public health experts share their experience with design and technology.'
+seoDescription: "Two of India's leading public health experts share their experience with design and technology."
 
 canonicalUrl: ''
 ---

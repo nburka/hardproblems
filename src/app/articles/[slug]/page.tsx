@@ -208,7 +208,18 @@ function ArticleByline({
     );
   }
   if (article.readingTime) {
-    parts.push(<span key="read">{article.readingTime} min read</span>);
+    const articleTypeLower = article.articleType?.toLowerCase();
+    const unit =
+      articleTypeLower === 'video'
+        ? 'video'
+        : articleTypeLower === 'podcast'
+          ? 'podcast'
+          : 'read';
+    parts.push(
+      <span key="read">
+        {article.readingTime} min {unit}
+      </span>
+    );
   }
 
   return (

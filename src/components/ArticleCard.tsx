@@ -93,9 +93,10 @@ export default function ArticleCard({
           {article.excerpt && (
             <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
           )}
-          {article.readingTime && !isVideo && !isPodcast ? (
+          {article.readingTime ? (
             <p className={styles.articleCardReadingTime}>
-              {article.readingTime} min read
+              {article.readingTime} min{' '}
+              {isVideo ? 'video' : isPodcast ? 'podcast' : 'read'}
             </p>
           ) : null}
         </div>
