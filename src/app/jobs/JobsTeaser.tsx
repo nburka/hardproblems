@@ -9,7 +9,8 @@ import {
   Heart,
   Sprout,
   Landmark,
-  HandHelping
+  HandHelping,
+  Earth
 } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
 import { orgTypeDisplay } from './orgType';
@@ -44,12 +45,15 @@ function getSectorIcon(displayed: string) {
     case 'personal health':
       return Heart;
     case 'climate tech':
+    case 'climate change':
       return Sprout;
     case 'public services':
     case 'good gov':
       return Landmark;
     case 'non-profit support':
       return HandHelping;
+    case 'other':
+      return Earth;
     default:
       return null;
   }
@@ -66,6 +70,7 @@ function displaySector(sector: string): string {
     return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
   }
   if (trimmed.toLowerCase() === 'good government') return 'Good gov';
+  if (trimmed.toLowerCase() === 'clean energy') return 'Climate Tech';
   return trimmed;
 }
 

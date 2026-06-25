@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { SquarePlay, Headphones } from 'lucide-react';
-import { type Article } from '../lib/articles';
+import { type Article, articleTypeSlug } from '../lib/articles';
 import styles from '../app/articles/page.module.scss';
 
 // Shared card used by both /articles (full listing) and
@@ -34,11 +34,18 @@ export default function ArticleCard({
         compact ? styles.articleCardCompact : ''
       } ${hero ? styles.articleCardHero : ''}`}
     >
+      {article.articleType && (
+        <Link
+          href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+          className={styles.articleType}
+        >
+          {article.articleType}
+        </Link>
+      )}
       <Link
         href={`/articles/${article.slug}`}
         className={`${styles.articleCardLink} hover-saturate`}
       >
-        <span className={styles.articleType}>{article.articleType}</span>
         {(article.image || article.thumbnailVideo) && (
           <div className={styles.articleCardImageWrap}>
             {article.thumbnailVideo ? (

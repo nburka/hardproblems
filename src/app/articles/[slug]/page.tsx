@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import ArticleCard from '../../../components/ArticleCard';
 import {
+  articleTypeSlug,
   formatPublishedDate,
   getAllArticles,
   getArticleBySlug,
@@ -120,13 +121,15 @@ export default async function ArticlePage({ params }: Props) {
       <section className={styles.articleWrap}>
         <article className={styles.article}>
         <header className={styles.header}>
-          {article.articleType &&
-            (article.articleType.toLowerCase() === 'book review' ||
-              article.articleType.toLowerCase() === 'opinion' ||
-              article.articleType.toLowerCase() === 'advice' ||
-              article.articleType.toLowerCase() === 'video') && (
-              <p className={styles.preTitleLabel}>{article.articleType}</p>
-            )}
+          {article.articleType && (
+            <p className={styles.preTitleLabel}>
+              <Link
+                href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+              >
+                {article.articleType}
+              </Link>
+            </p>
+          )}
         </header>
 
         <div className={styles.body}>
@@ -135,10 +138,18 @@ export default async function ArticlePage({ params }: Props) {
           <div dangerouslySetInnerHTML={{ __html: after }} />
         </div>
 
-        {article.topics.length > 0 && (
+        {(article.articleType || article.topics.length > 0) && (
           <>
             <h3 className={styles.tagsLabel}>Tags</h3>
             <div className={styles.topics}>
+              {article.articleType && (
+                <Link
+                  href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+                  className={`tag ${styles.topicTag}`}
+                >
+                  {article.articleType}
+                </Link>
+              )}
               {article.topics.map((t) => (
                 <Link
                   key={t}

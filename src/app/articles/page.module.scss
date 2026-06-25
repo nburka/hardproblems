@@ -108,7 +108,8 @@
 // Article-type kicker sitting above the thumbnail (e.g. "OPINION",
 // "VIDEO", "BOOK REVIEW"). Plain text, no pill background — matches
 // the .preTitleLabel treatment used on the article page itself.
-.articleType {
+.articleType,
+.articleType:visited {
   display: block;
   font-family: var(--font-mono);
   font-size: var(--font-size-mono);
@@ -116,10 +117,15 @@
   letter-spacing: 0.08em;
   font-weight: 400;
   color: var(--color-dark-green);
-  /* Negative bottom margin pulls the image up so the kicker sits
-     directly above it (tighter than the .articleCardLink grid's 1rem
-     gap). */
-  margin: 0 0 -0.7rem 0;
+  text-decoration: none;
+  margin: 0 0 0.3rem 0;
+}
+
+.articleType:hover,
+.articleType:focus {
+  color: #0d4f27;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
 }
 
 .articleCardTitle {
@@ -447,26 +453,6 @@
     display: none;
   }
 
-  // Position the main hero's article-type kicker over the image as a
-  // semi-transparent white pill (top-left corner).
-  .heroList .articleCardLink {
-    position: relative;
-  }
-
-  .heroList .articleType {
-    display: inline-block;
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    padding: 4px 12px;
-    border-radius: 100px;
-    margin: 0;
-    font-size: var(--font-size-mono);
-  }
 
   // Co-working aside — col 1 of the secondary hero row, spans 2 rows
   // alongside the hero on the right.
@@ -486,11 +472,12 @@
     grid-column: 2 / span 2;
     grid-row: span 2;
     display: flex;
+    flex-direction: column;
   }
 
   .articleCardHero .articleCardLink {
     width: 100%;
-    height: 100%;
+    flex: 1;
     display: grid;
     grid-template-columns: 1.6fr 1fr;
     grid-template-areas: 'image body';
@@ -522,21 +509,6 @@
   // relative makes it the anchor for the absolutely positioned pill.
   .articleCardHero .articleCardLink {
     position: relative;
-  }
-
-  .articleCardHero .articleType {
-    display: inline-block;
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    padding: 4px 12px;
-    border-radius: 100px;
-    margin: 0;
-    font-size: var(--font-size-mono);
   }
 
   .articleCardHero .articleCardTitle {
@@ -591,7 +563,7 @@
   }
 
   .articleCardCompact .articleType {
-    margin: 0 0 -0.7rem 0;
+    margin: 0 0 0.3rem 0;
   }
 
   .articleCardCompact .articleCardTitle {
