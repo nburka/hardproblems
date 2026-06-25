@@ -74,6 +74,11 @@
   text-transform: none;
 }
 
+.bylineReadingTime {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 // Mobile: stack each byline piece on its own line and hide the dot
 // separators. Each part is wrapped in a `<span>` in the JSX; the
 // separator " · " is a child `<span aria-hidden="true">` inside that
@@ -209,17 +214,22 @@
     }
   }
 
-  // Match the site-wide link styling (no underline, darkblue on hover)
-  // instead of the underlined deep-blue used elsewhere in this stylesheet.
+  // Match the site-wide link styling: cornflower-blue with a soft
+  // light-blue underline in body prose, darkblue + matching underline
+  // on hover.
   a,
   a:visited {
     color: var(--color-link);
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: #b8d0f5;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 
   a:hover,
   a:focus {
     color: darkblue;
+    text-decoration-color: currentColor;
   }
 
   // Reusable black pill-button styling — same look as the code-block
@@ -286,6 +296,32 @@
     margin: 2.5em 0;
     color: #444;
     font-style: italic;
+
+    // Reset the default body paragraph margins inside the blockquote so
+    // the quote and its attribution sit tightly together.
+    p {
+      margin: 0;
+    }
+
+    // Speaker / citation line — sits as a second paragraph inside the
+    // blockquote (separated by a blank `>` line in the markdown source).
+    // Smaller, upright (non-italic), and lighter so it reads as
+    // attribution rather than part of the quote itself.
+    p + p {
+      margin-top: 0.5em;
+      font-style: normal;
+      font-size: var(--font-size-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-dark-green);
+
+      a,
+      a:visited {
+        color: var(--color-dark-green);
+        text-decoration: none;
+        font-weight: 500;
+      }
+    }
   }
 
   // Note banner — yellow background with a lightbulb icon. Use by wrapping

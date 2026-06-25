@@ -53,6 +53,10 @@ My career spans back to the late 1990s — including the sale of my startup, Mil
 
 While I don't think corporate tech jobs entirely "poison" individual talent, I argued that business models inevitably dictate and compromise the desire to optimize for what's best for the world at most organizations. We often hear corporate slogans that, on the surface, sound meaningful but ultimately the real goal is sell ads, sign-up more paying users, or ink business deals.
 
+> "The best minds of my generation are thinking about how to make people click ads. That sucks."
+>
+> — [Jeff Hammerbacher](https://en.wikipedia.org/wiki/Jeff_Hammerbacher)
+
 ## Is corporate work the only option? {#is-corporate-work-the-only-option}
 
 There is a fundamental misalignment between many designers' professional aspirations and market realities. I recently visited the [Royal College of Art](https://www.rca.ac.uk/) graduate presentations, where service design students in their Masters program presented sophisticated projects for inspiring problems like the diabetes care pathway and support systems for victims of sexual assault. Almost none of these ambitious students will be working on those problems in a few years' time — economics routinely funnel top-tier young designers into corporate roles.
@@ -63,7 +67,9 @@ Invoking the Japanese philosophical framework of [Ikigai](https://en.wikipedia.o
 
 I emphasized my personal ethos by referencing a tattoo on my wrist: "Don't make anything unless it's necessary, but if it's necessary don't hesitate to make it beautiful."
 
-> "Don't make anything unless it's necessary, but if it's necessary don't hesitate to make it beautiful." [Shaker](https://www.cabgfx.com/shaker/) design philosophy
+> "Don't make anything unless it's necessary, but if it's necessary don't hesitate to make it beautiful."
+>
+> — [Shaker](https://www.cabgfx.com/shaker/) design philosophy
 
 ## Examples from the field {#examples-from-the-field}
 

@@ -71,6 +71,31 @@ a:focus {
   color: darkblue;
 }
 
+/* Body links inside paragraphs and blockquotes get a soft light-blue
+   underline so they read as inline hyperlinks without distracting from
+   the surrounding prose. Other contexts (nav, cards, buttons) keep the
+   undecorated treatment from the rule above. */
+p a,
+p a:visited,
+blockquote a,
+blockquote a:visited,
+li a,
+li a:visited {
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+p a:hover,
+p a:focus,
+blockquote a:hover,
+blockquote a:focus,
+li a:hover,
+li a:focus {
+  text-decoration-color: currentColor;
+}
+
 /* Black pill button — same look as the one used inside articles. Explicit
    :visited and `a` selectors override the site link-color rules above. */
 a.black-button,

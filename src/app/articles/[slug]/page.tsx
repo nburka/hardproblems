@@ -216,7 +216,7 @@ function ArticleByline({
           ? 'podcast'
           : 'read';
     parts.push(
-      <span key="read">
+      <span key="read" className={styles.bylineReadingTime}>
         {article.readingTime} min {unit}
       </span>
     );

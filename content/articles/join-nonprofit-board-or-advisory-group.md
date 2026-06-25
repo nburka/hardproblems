@@ -82,9 +82,13 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 - **Run workshops** Facilitation is a core design skill, especially at the senior level. Several of the designers that I spoke with for this article told me that they sometimes get called on to lead internal workshops for the board or for part of the charity they work with.
 - **~~Design or product.~~** You might be surprised, but your core skills as a designer or product manager aren't the key to being a great board member. I sit on a corporate board and was on the Laboratoria board for six years, and I rarely brought my craft skills to bear directly. What mattered was strategic judgment.
 
-> "In my current capacities, I support financial management, planning, funding, facility construction of a new school, executive hiring, and I focus on scholastic AI policy." [Geoff Barnes](https://www.linkedin.com/in/geoffbarnes/), Head of Design at [Tavus](https://tavus.io)
+> "In my current capacities, I support financial management, planning, funding, facility construction of a new school, executive hiring, and I focus on scholastic AI policy."
+>
+> — [Geoff Barnes](https://www.linkedin.com/in/geoffbarnes/), Head of Design at [Tavus](https://tavus.io)
 
-> "It might be surprising given my current design role but I'm often engaging with the executives around budgeting, roadmaps, and forecasting." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
+> "It might be surprising given my current design role but I'm often engaging with the executives around budgeting, roadmaps, and forecasting."
+>
+> — [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
 ## How to find a board or advisory role {#how-to-find-a-board-or-advisory-role}
 
@@ -96,7 +100,9 @@ There isn't a perfect framework for finding a nonprofit that will take you as a 
 4. **Open the dialogue.** Board seats are rarely offered immediately. View your initial outreach as the start of a long-term relationship that may lead to a formal role over time.
 5. **Be direct.** Don't be afraid to state your interest. Clearly saying, "I'd love to be considered for a board position," can be the catalyst needed to move the conversation forward.
 
-> "I never got a role until I started pointing out to people that I was open for board roles." [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
+> "I never got a role until I started pointing out to people that I was open for board roles."
+>
+> — [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
 Most articles about board roles will tell you to be very strategic to find your first board role. However, none of the designers who I spoke to for this article landed their first board seat by targeting a specific charity. They had a vague sense of what interested them and then an opportunity came up through their social network and they they took it. For instance, [Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/), met another mother through a "mom's group" in her area — that mom happened to work at a fantastic human rights org and Rochelle ended up taking a board seat there after months of conversations.
 

@@ -78,7 +78,9 @@ Jobs that score highest are labeled with a "Hard Problems Pick" badge. Typically
 
 We've built this board to reduce the time it takes for you to find an exciting opportunity that combines good work with positive social outcomes.
 
-> "This board feels trustworthy and is well curated," says [Naomi Owolabi](https://www.linkedin.com/in/owolabinaomi/), a product specialist based in London
+> "This board feels trustworthy and is well curated."
+>
+> — [Naomi Owolabi](https://www.linkedin.com/in/owolabinaomi/), a product specialist based in London
 
 ## More full-time, senior roles {#more-full-time-senior-roles}
 
