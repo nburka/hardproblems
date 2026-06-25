@@ -154,7 +154,7 @@ export default function Page() {
         </p>
 
         <h3 className="divider">Who makes a good guest?</h3>
-        <ul>
+        <ul className="hand-drawn-checklist">
           <li>Not the usual suspects who do the podcast circuit.</li>
           <li>
             Not just a &#8216;thought leader.&#8217; Someone who actually works
@@ -167,21 +167,13 @@ export default function Page() {
           <li>Takes a thoughtful and ethical approach to their work.</li>
           <li>
             Likely works on tech related to:
-            <p>
-              <span className="tag">Climate change</span>
-              <br />
-              <span className="tag">Public health</span>
-              <br />
-              <span className="tag">Healthcare</span>
-              <br />
-              <span className="tag">Government or civics</span>
-              <br />
-              <span className="tag">Education</span>
-              <br />
-              <span className="tag">Sustainable Development Goals</span>
-              <br />
-              <span className="tag">Etc...</span>
-            </p>
+            <br />
+            <span className="tag">Climate change</span>
+            <span className="tag">Public health</span>
+            <span className="tag">Healthcare</span>
+            <span className="tag">Government or civics</span>
+            <span className="tag">Education</span>
+            <span className="tag">Sustainable Development Goals</span>
           </li>
         </ul>
       </section>

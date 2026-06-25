@@ -128,6 +128,10 @@ For me, the board seat at Laboratoria was the beginning of a path toward full-ti
 
 I hope you find a way to contribute through a board or advisory role. When the time is right, perhaps you too can transition full-time into solving the world's most important challenges.
 
+> "The more you work on boards, the less important some of the corporate work seems to be for me."
+>
+> — [Rochelle King](https://www.linkedin.com/in/rochelleking), former VP of Design at [Netflix](https://netflix.com/)
+
 ## Advice for new board members? {#advice-for-new-board-members}
 
 ### "Your perspective matters even before you feel like an expert"

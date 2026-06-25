@@ -4,6 +4,30 @@
   margin-top: 1rem;
 }
 
+// Strip the global p/li underline treatment from every link on the
+// jobs page — the dense layout reads cleaner without underlines.
+// Exception: links inside `.filterFooter` (the "Our favorite job sources"
+// sentence) keep the site-wide body-link underline.
+.board a,
+.board a:visited,
+.board a:hover,
+.board a:focus {
+  text-decoration: none;
+}
+
+.board .filterFooter a,
+.board .filterFooter a:visited {
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.board .filterFooter a:hover,
+.board .filterFooter a:focus {
+  text-decoration-color: currentColor;
+}
+
 .layout {
   // Mobile default: single column, filters stack above results.
   display: block;
