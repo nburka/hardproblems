@@ -2,7 +2,7 @@
 title: 'Books for designers who want to work on hard problems'
 slug: 'books-designers-hard-problems'
 
-excerpt: 'Books we often recommend to designers making the jump.'
+excerpt: 'Books that we often recommend to designers making the jump.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
