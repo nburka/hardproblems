@@ -198,8 +198,8 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
     'Reflections and writing about hard problems and impact-driven careers.',
   advice:
     'Practical guidance for navigating impact-driven careers and the work that matters.',
-  'book-review':
-    'Books we’ve read on impact-driven careers and the work that matters.',
+  reading:
+    'Books and reading recommendations for impact-driven careers and the work that matters.',
   tools:
     'Practical tools and rubrics for thinking through impact-driven work.',
   opinion:
@@ -208,7 +208,7 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
     'Conversations with designers working on hard problems.',
   video:
     'Talks, conference sessions, and videos on design and the hard problems that matter.',
-  'about-us':
+  'hard-problems':
     'Updates and stories about Hard Problems — what we’re building and why.'
 };
 

@@ -33,7 +33,6 @@ import {
   WORK_STYLE_OPTIONS,
   WorkStyle,
   filterJobs,
-  matchesSectorPick,
   parseOrgParam,
   parseRoleParam,
   parseSectorParam,

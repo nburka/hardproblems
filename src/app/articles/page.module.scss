@@ -443,6 +443,10 @@
     margin-top: 0;
   }
 
+  .heroList {
+    margin-top: -2em;
+  }
+
   .articleList {
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem 3rem;
@@ -480,6 +484,7 @@
     grid-row: span 2;
     display: flex;
     flex-direction: column;
+    margin-top: -2em;
   }
 
   .articleCardHero .articleCardLink {

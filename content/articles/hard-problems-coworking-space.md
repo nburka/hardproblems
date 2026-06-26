@@ -12,7 +12,7 @@ updatedAt: '2026-02-14'
 
 status: 'published' # draft | review | published
 
-articleType: 'About Us' # Article | Book Review | Podcast | About Us
+articleType: 'Hard Problems' # Article | Reading | Podcast | Hard Problems
 
 topics:
   - community
