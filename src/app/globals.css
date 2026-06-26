@@ -301,6 +301,36 @@ h1 {
   padding: 1.5rem 1.5rem 5rem 1.5rem;
 }
 
+/* Mission-statement block rendered above the footer on every page
+   except /about. White band that bleeds edge-to-edge with a green
+   stroke on top. Lives as a sibling of <footer> in layout.tsx, so the
+   adjacent-sibling selector below collapses the footer's top margin
+   only when the intro is present. */
+.footer-intro {
+  background: #fff;
+  margin: 6em 0 0 0;
+  padding: 3rem 0 5rem 0;
+  border-top: 1px solid #b7ddc8;
+}
+
+.footer-intro + .site-footer {
+  margin-top: 0;
+}
+
+.footer-intro-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-intro p {
+  margin: 0 0 1.25rem 0;
+}
+
+.footer-intro p:last-child {
+  margin-bottom: 0;
+}
+
 /* Footer columns: stack on mobile, switch to a 3-up grid on desktop
    using the same column width and gap as the article-card list. */
 .footer-grid {

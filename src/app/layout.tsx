@@ -6,6 +6,7 @@ import CodeBlockCopyButtons from '../components/CodeBlockCopyButtons';
 import NewsletterForm from '../components/NewsletterForm';
 import PostHogProvider from '../components/PostHogProvider';
 import { Footer } from '../components/Footer';
+import FooterIntro from '../components/FooterIntro';
 import RotatingTagline from '../components/RotatingTagline';
 import SiteHeaderHome from '../components/SiteHeaderHome';
 import './globals.css';
@@ -70,6 +71,7 @@ export default function RootLayout({
             <TopBar />
             <div className="container">{children}</div>
           </div>
+          <FooterIntro />
           <footer className="site-footer">
             <div className="main">
               <Footer />
