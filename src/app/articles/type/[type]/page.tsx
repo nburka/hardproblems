@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ArticleListSection from '../../../../components/ArticleListSection';
+import ArticleCard from '../../../../components/ArticleCard';
+import CategoriesSidebar from '../../../../components/CategoriesSidebar';
 import {
   articleTypeSlug,
   getAllArticles,
   pluralize
 } from '../../../../lib/articles';
+import styles from '../../page.module.scss';
 
 type Props = { params: Promise<{ type: string }> };
 
@@ -40,19 +42,32 @@ export async function generateMetadata({
 
 export default async function TypePage({ params }: Props) {
   const { type } = await params;
-  const articles = getAllArticles().filter(
+  const allArticles = getAllArticles();
+  const articles = allArticles.filter(
     (a) => articleTypeSlug(a.articleType) === type
   );
   if (articles.length === 0) notFound();
 
-  const label = pluralize(articles[0].articleType);
   const typeName = articles[0].articleType;
 
   return (
-    <ArticleListSection
-      heading={label}
-      intro={<>All articles under the category: {typeName}</>}
-      articles={articles}
-    />
+    <>
+      <section className="left">
+        <h2>{typeName}</h2>
+        <ul
+          className={`${styles.articleList} ${styles.articleListTwoCol}`}
+        >
+          {articles.map((article) => (
+            <ArticleCard key={article.slug} article={article} />
+          ))}
+        </ul>
+      </section>
+      <section className="right">
+        <CategoriesSidebar
+          allArticles={allArticles}
+          activeKey={`type:${type}`}
+        />
+      </section>
+    </>
   );
 }

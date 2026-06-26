@@ -16,6 +16,8 @@ articleType: 'Reading' # Article | Reading | Podcast | Opinion
 
 topics:
   - careers
+  - public-health
+  - climate-change
 
 organizations:
   - Hard Problems

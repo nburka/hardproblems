@@ -15,7 +15,7 @@ status: 'published' # draft | review | published
 articleType: 'Video' # Article | Book Review | Podcast | Opinion | Video
 
 topics:
-  - optimize-careers
+  - careers
 
 readingTime: 25
 

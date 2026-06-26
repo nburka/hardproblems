@@ -461,6 +461,13 @@
     gap: 5rem 3rem;
   }
 
+  // 2-up grid when the list lives inside a narrower left column
+  // (e.g. /articles/type/[type] and /articles/topic/[topic] which
+  // render with a categories sidebar on the right).
+  .articleListTwoCol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   // Hide the mobile-only jobs teaser slotted into the article list —
   // on desktop the .heroJobs panel covers this role.
   .mobileJobsTeaser {
@@ -626,4 +633,68 @@
     font-size: var(--font-size-sm);
     line-height: 1.4;
   }
+}
+
+// "All categories" sidebar — used on the topic and type listing pages.
+// Vertical list with the label on the left, count + arrow on the right.
+.categoriesList {
+  list-style: none;
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+}
+
+.categoriesList li {
+  margin: 0;
+  border-top: 1px solid var(--color-light-green);
+}
+
+.categoriesList li:last-child {
+  border-bottom: 1px solid var(--color-light-green);
+}
+
+.categoriesLink,
+.categoriesLink:visited {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-link);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.categoriesLink:hover,
+.categoriesLink:focus {
+  color: darkblue;
+  text-decoration: none;
+}
+
+.categoriesLinkActive,
+.categoriesLinkActive:visited {
+  color: var(--color-dark-green);
+}
+
+.categoriesMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.categoriesCount {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  font-weight: 400;
+  color: var(--color-mid-green);
+}
+
+.categoriesIcon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  color: var(--color-dark-green);
+  opacity: 0.5;
 }

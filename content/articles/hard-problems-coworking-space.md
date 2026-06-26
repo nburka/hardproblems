@@ -15,7 +15,6 @@ status: 'published' # draft | review | published
 articleType: 'Hard Problems' # Article | Reading | Podcast | Hard Problems
 
 topics:
-  - community
 
 organizations:
   - Hard Problems
