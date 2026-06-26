@@ -265,11 +265,30 @@ h1 {
   display: inline;
 }
 
-/* Rotating word at the end of the tagline. The opacity transition is
-   set inline by the React component so the fade-out timing matches the
-   text swap. Inline-block keeps it sized like a word, not a block. */
+/* Rotating word at the end of the tagline. All candidate words live
+   inside this wrapper stacked on top of each other in a single grid
+   cell so the wrapper's width always equals the widest word — that
+   stops the centered tagline from shifting horizontally as words
+   change. */
 .site-tagline-rotator {
-  display: inline-block;
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  vertical-align: bottom;
+}
+
+.site-tagline-rotator-word {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+}
+
+.site-tagline-rotator-icon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 4px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 /* Site-wide footer band — light green background that bleeds out

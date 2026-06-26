@@ -1,15 +1,23 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import {
+  Activity,
+  GraduationCap,
+  Heart,
+  Landmark,
+  Sprout,
+  type LucideIcon
+} from 'lucide-react';
 
-// Words cycled at the end of the site tagline. Order is the order the
-// rotation runs through.
-const WORDS = [
-  'public health',
-  'healthcare',
-  'climate change',
-  'good government',
-  'education'
+// Words cycled at the end of the site tagline. Each pairs with the
+// same icon used by the matching sector tag on the job board.
+const WORDS: { label: string; Icon: LucideIcon }[] = [
+  { label: 'public health', Icon: Heart },
+  { label: 'healthcare', Icon: Activity },
+  { label: 'climate change', Icon: Sprout },
+  { label: 'good government', Icon: Landmark },
+  { label: 'education', Icon: GraduationCap }
 ];
 
 const VISIBLE_MS = 2200;
@@ -17,37 +25,41 @@ const FADE_MS = 450;
 
 export default function RotatingTagline() {
   const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Fade the current word out, swap text at the bottom of the
-      // fade, then fade the next word in. Total cycle = VISIBLE_MS +
-      // FADE_MS * 2.
-      setVisible(false);
-      const swap = setTimeout(() => {
-        setIndex((i) => (i + 1) % WORDS.length);
-        setVisible(true);
-      }, FADE_MS);
-      return () => clearTimeout(swap);
+      setIndex((i) => (i + 1) % WORDS.length);
     }, VISIBLE_MS + FADE_MS);
     return () => clearInterval(interval);
   }, []);
 
+  // All words render into the same grid cell so the rotator's box width
+  // = the widest word. Only the active word is fully opaque; the others
+  // sit invisibly underneath to reserve the layout space. Crossfade is
+  // a simple opacity transition between sibling words.
   return (
     <p className="site-tagline">
       Good design solves problems.
       <br className="site-tagline-break" /> Great design solves problems
       that matter:{' '}
-      <strong
-        className="site-tagline-rotator"
-        aria-live="polite"
-        style={{
-          opacity: visible ? 1 : 0,
-          transition: `opacity ${FADE_MS}ms ease`
-        }}
-      >
-        {WORDS[index]}
+      <strong className="site-tagline-rotator" aria-live="polite">
+        {WORDS.map(({ label, Icon }, i) => (
+          <span
+            key={label}
+            className="site-tagline-rotator-word"
+            aria-hidden={i === index ? undefined : 'true'}
+            style={{
+              opacity: i === index ? 1 : 0,
+              transition: `opacity ${FADE_MS}ms ease`
+            }}
+          >
+            <Icon
+              className="site-tagline-rotator-icon"
+              aria-hidden="true"
+            />
+            {label}
+          </span>
+        ))}
       </strong>
     </p>
   );
