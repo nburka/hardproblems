@@ -142,7 +142,7 @@ export default async function ArticlePage({ params }: Props) {
 
         {(article.articleType || article.topics.length > 0) && (
           <>
-            <h3 className={styles.tagsLabel}>Tags</h3>
+            <h3 className={styles.tagsLabel}>More articles about&hellip;</h3>
             <div className={styles.topics}>
               {article.articleType && (
                 <Link

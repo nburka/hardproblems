@@ -15,8 +15,6 @@ status: 'published' # draft | review | published
 articleType: 'Video' # Article | Book Review | Podcast | Opinion | Video
 
 topics:
-  - design
-  - social-impact
   - public-health
 
 readingTime: 75

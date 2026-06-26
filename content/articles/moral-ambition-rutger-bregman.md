@@ -1,22 +1,22 @@
 ---
-title: "Moral Ambition by Rutger Bregman"
-slug: "moral-ambition-rutger-bregman"
+title: 'Moral Ambition by Rutger Bregman'
+slug: 'moral-ambition-rutger-bregman'
 
-excerpt: "A timely provocation for those of us seeking to center our professional lives on problems that matter."
+excerpt: 'A timely provocation for those of us seeking to center our professional lives on problems that matter.'
 
-author: "Kane Lincoln"
-authorSlug: "kane-lincoln"
+author: 'Kane Lincoln'
+authorSlug: 'kane-lincoln'
 
-publishedAt: "2026-03-10"
-updatedAt: "2026-03-10"
+publishedAt: '2026-03-10'
+updatedAt: '2026-03-10'
 
-status: "published" # draft | review | published
+status: 'published' # draft | review | published
 
-articleType: "Reading" # Article | Reading | Podcast
+articleType: 'Reading' # Article | Reading | Podcast
 
 topics:
   - careers
-  - social-impact
+  - job-search
 
 organizations:
   - Hard Problems
@@ -32,23 +32,22 @@ readingTime: 5
 
 featured: false
 
-image: "/images/content/thumb-moral-ambition-bregman.jpg"
-imageAlt: "Cover of Moral Ambition by Rutger Bregman"
+image: '/images/content/thumb-moral-ambition-bregman.jpg'
+imageAlt: 'Cover of Moral Ambition by Rutger Bregman'
 
-seoTitle: "Moral Ambition by Rutger Bregman — A Book Review"
+seoTitle: 'Moral Ambition by Rutger Bregman — A Book Review'
 seoDescription: "Rutger Bregman's Moral Ambition argues that idealistic, scale-oriented work is the antidote to career disillusionment. A review of his case for impact-driven careers."
 
-canonicalUrl: ""
-
+canonicalUrl: ''
 ---
 
-# *Moral Ambition* by Rutger Bregman {#moral-ambition-by-rutger-bregman}
+# _Moral Ambition_ by Rutger Bregman {#moral-ambition-by-rutger-bregman}
 
-*This book offers a timely provocation for those of us seeking to center our professional lives on problems that matter.*{.intro}
+_This book offers a timely provocation for those of us seeking to center our professional lives on problems that matter._{.intro}
 
 ![Cover of Moral Ambition by Rutger Bregman](/images/content/moral-ambition-book.jpg){.float-right}
 
-"There are millions of people around the world who could help make [it] a better place, but don't," writes [Rutger Bregman](https://en.wikipedia.org/wiki/Rutger_Bregman). In his latest book, *[Moral Ambition](https://www.moralambition.org/book)*, Bregman makes a compelling case for working on the types of global challenges we're obsessed with at Hard Problems.
+"There are millions of people around the world who could help make [it] a better place, but don't," writes [Rutger Bregman](https://en.wikipedia.org/wiki/Rutger_Bregman). In his latest book, _[Moral Ambition](https://www.moralambition.org/book)_, Bregman makes a compelling case for working on the types of global challenges we're obsessed with at Hard Problems.
 
 For those of us who are still thinking about how to orient our careers around impact, there are important lessons we can learn through Bregman's analysis:
 
@@ -78,7 +77,7 @@ Regrettably, there are reasons to think that moral reframing might be less effec
 
 ## Where does this leave us? {#where-does-this-leave-us}
 
-In all, we think *Moral Ambition* serves as an effective clarion call. Disillusionment should spur us into action. Individual agency can make a difference, even in the face of powerful structural forces. In order to effect change, we need smart people to develop new tools and arguments. The moral responsibility Bregman lays out in *Moral Ambition* speaks to much of what we aim to do at Hard Problems, and the force of his convictions makes it a worthwhile read for anybody considering a transition into impact-focused work.
+In all, we think _Moral Ambition_ serves as an effective clarion call. Disillusionment should spur us into action. Individual agency can make a difference, even in the face of powerful structural forces. In order to effect change, we need smart people to develop new tools and arguments. The moral responsibility Bregman lays out in _Moral Ambition_ speaks to much of what we aim to do at Hard Problems, and the force of his convictions makes it a worthwhile read for anybody considering a transition into impact-focused work.
 
 ## Watch Rutger Bregman on the Daily Show {#watch-rutger-bregman-on-the-daily-show}
 

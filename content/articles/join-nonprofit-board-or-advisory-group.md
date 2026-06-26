@@ -16,11 +16,7 @@ articleType: 'Advice' # Article | Book Review | Podcast | Opinion | Advice
 
 topics:
   - careers
-  - nonprofit
-  - board-membership
-  - social-impact
-  - design
-  - advisory
+  - job-search
 
 organizations:
   - Hard Problems

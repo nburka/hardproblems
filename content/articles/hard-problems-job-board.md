@@ -17,9 +17,6 @@ articleType: 'Hard Problems' # Article | Reading | Podcast | Hard Problems
 topics:
   - careers
   - job-search
-  - design
-  - social-impact
-  - hiring
 
 organizations:
   - Hard Problems

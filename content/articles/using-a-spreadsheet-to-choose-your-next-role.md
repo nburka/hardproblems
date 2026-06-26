@@ -17,7 +17,6 @@ articleType: 'Tools' # Article | Book Review | Tools | Podcast
 topics:
   - careers
   - job-search
-  - frameworks
 
 organizations:
   - Hard Problems

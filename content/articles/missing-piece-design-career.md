@@ -16,10 +16,6 @@ articleType: 'Opinion' # Article | Book Review | Podcast | Opinion
 
 topics:
   - careers
-  - design
-  - tech-careers
-  - social-impact
-  - burnout
 
 organizations:
   - Hard Problems

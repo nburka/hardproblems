@@ -15,10 +15,7 @@ status: 'published' # draft | review | published
 articleType: 'Tools' # Article | Book Review | Podcast | Opinion | Advice | Tools
 
 topics:
-  - careers
   - job-search
-  - design
-  - social-impact
 
 organizations:
   - Hard Problems

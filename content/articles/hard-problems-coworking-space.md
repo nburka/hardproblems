@@ -16,9 +16,6 @@ articleType: 'Hard Problems' # Article | Reading | Podcast | Hard Problems
 
 topics:
   - community
-  - coworking
-  - social-impact
-  - london
 
 organizations:
   - Hard Problems

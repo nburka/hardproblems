@@ -15,8 +15,6 @@ status: 'draft' # draft | review | published
 articleType: 'Video' # Article | Book Review | Podcast | Opinion | Video
 
 topics:
-  - design
-  - social-impact
 
 readingTime: 3
 

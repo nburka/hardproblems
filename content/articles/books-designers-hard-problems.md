@@ -16,8 +16,6 @@ articleType: 'Reading' # Article | Reading | Podcast | Opinion
 
 topics:
   - careers
-  - design
-  - social-impact
 
 organizations:
   - Hard Problems
