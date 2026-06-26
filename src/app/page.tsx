@@ -12,10 +12,28 @@ import styles from './articles/page.module.scss';
 // its right; below, the remaining articles fall into a regular 3-up grid.
 // On mobile the right-of-hero teaser is hidden — a second teaser is
 // inserted into the article list after the 3rd article instead.
+// Slug pinned to the secondary-hero slot (i === 3 in the remaining list)
+// so it always sits on the same row as the Co-working London aside.
+const COWORKING_HERO_SLUG = 'hard-problems-coworking-space';
+
 export default async function Home() {
   const articles = getAllArticles();
   const heroArticle = articles[0];
-  const remainingArticles = articles.slice(1);
+  let remainingArticles = articles.slice(1);
+
+  // Pin the co-working article into the secondary-hero slot.
+  const coworkingIdx = remainingArticles.findIndex(
+    (a) => a.slug === COWORKING_HERO_SLUG
+  );
+  if (coworkingIdx !== -1 && coworkingIdx !== 3) {
+    const [coworkingArticle] = remainingArticles.splice(coworkingIdx, 1);
+    const insertAt = Math.min(3, remainingArticles.length);
+    remainingArticles = [
+      ...remainingArticles.slice(0, insertAt),
+      coworkingArticle,
+      ...remainingArticles.slice(insertAt)
+    ];
+  }
 
   const jobs = await fetchJobs();
   const recentJobs = jobs.slice(0, 5);
@@ -79,6 +97,7 @@ export default async function Home() {
                   article={article}
                   compact={i >= 0}
                   hero={i === 3}
+                  hideDate={article.slug === COWORKING_HERO_SLUG}
                 />
                 {/* Mobile-only jobs teaser slotted between the 3rd
                     and 4th articles. Hidden on desktop where the

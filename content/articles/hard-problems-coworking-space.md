@@ -2,13 +2,13 @@
 title: 'The Hard Problems co-working space'
 slug: 'hard-problems-coworking-space'
 
-excerpt: 'Our co-working space at in London is open to teams tackling climate change, public health, and other urgent global challenges.'
+excerpt: 'Our co-working space in London is open to teams tackling climate change, public health, and other urgent global challenges.'
 
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
 
-publishedAt: '2026-06-11'
-updatedAt: '2026-06-11'
+publishedAt: '2026-02-14'
+updatedAt: '2026-02-14'
 
 status: 'published' # draft | review | published
 

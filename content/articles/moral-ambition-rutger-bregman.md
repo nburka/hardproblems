@@ -7,8 +7,8 @@ excerpt: "A timely provocation for those of us seeking to center our professiona
 author: "Kane Lincoln"
 authorSlug: "kane-lincoln"
 
-publishedAt: "2026-06-10"
-updatedAt: "2026-06-10"
+publishedAt: "2026-03-10"
+updatedAt: "2026-03-10"
 
 status: "published" # draft | review | published
 

@@ -1112,7 +1112,9 @@ export default function JobsList({
                       return (
                         <button
                           type="button"
-                          onClick={() => toggleSectorPick(displayed)}
+                          onClick={() => {
+                            if (!isActive) toggleSectorPick(displayed);
+                          }}
                           className={`tag ${styles.jobSector} ${styles.jobTagButton} ${
                             isActive ? styles.jobTagButtonActive : ''
                           }`}
@@ -1143,7 +1145,9 @@ export default function JobsList({
                         return (
                           <button
                             type="button"
-                            onClick={() => toggleOrgFilter(cat)}
+                            onClick={() => {
+                              if (!isActive) toggleOrgFilter(cat);
+                            }}
                             className={`tag ${styles.jobType} ${styles.jobTagButton} ${
                               isActive ? styles.jobTagButtonActive : ''
                             }`}
@@ -1157,7 +1161,9 @@ export default function JobsList({
                     {isStaffPick && (
                       <button
                         type="button"
-                        onClick={togglePicksOnly}
+                        onClick={() => {
+                          if (!picksOnly) togglePicksOnly();
+                        }}
                         className={`tag ${styles.jobStaffPick} ${styles.jobTagButton} ${
                           picksOnly ? styles.jobTagButtonActive : ''
                         }`}

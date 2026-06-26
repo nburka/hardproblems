@@ -160,6 +160,13 @@
   color: #6b7d8c;
 }
 
+// "NEW" badge inline with the reading time + date when an article was
+// published in the last 30 days.
+.articleCardNew {
+  color: #c2310f;
+  font-weight: 600;
+}
+
 // Hero row at the top of /articles — newest article on the left, a
 // compact job-board teaser on the right. Stacks vertically on mobile,
 // becomes a 2-column grid at desktop with the hero card taking more

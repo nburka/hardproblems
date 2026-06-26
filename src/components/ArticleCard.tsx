@@ -22,15 +22,30 @@ import styles from '../app/articles/page.module.scss';
 export default function ArticleCard({
   article,
   compact = false,
-  hero = false
+  hero = false,
+  hideDate = false
 }: {
   article: Article;
   compact?: boolean;
   hero?: boolean;
+  hideDate?: boolean;
 }) {
   const articleTypeLower = article.articleType?.toLowerCase();
   const isVideo = articleTypeLower === 'video';
   const isPodcast = articleTypeLower === 'podcast';
+
+  // "NEW" badge appears on the meta line for any article published in
+  // the last 30 days. Comparison uses local time; a few hours of skew
+  // doesn't matter for a 30-day window.
+  let isNew = false;
+  if (article.publishedAt && !hideDate) {
+    const published = new Date(article.publishedAt).getTime();
+    if (!Number.isNaN(published)) {
+      const ageDays = (Date.now() - published) / 86400000;
+      isNew = ageDays >= 0 && ageDays < 30;
+    }
+  }
+  const showDate = !hideDate && !!article.publishedAt;
 
   return (
     <li
@@ -104,7 +119,7 @@ export default function ArticleCard({
           {article.excerpt && (
             <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
           )}
-          {(article.readingTime || article.publishedAt) && (
+          {(article.readingTime || showDate) && (
             <p className={styles.articleCardReadingTime}>
               {article.readingTime ? (
                 <>
@@ -112,10 +127,16 @@ export default function ArticleCard({
                   {isVideo ? 'video' : isPodcast ? 'podcast' : 'read'}
                 </>
               ) : null}
-              {article.readingTime && article.publishedAt && (
+              {article.readingTime && showDate && (
                 <span aria-hidden="true"> · </span>
               )}
-              {article.publishedAt && (
+              {isNew && (
+                <>
+                  <span className={styles.articleCardNew}>NEW</span>
+                  {showDate && <span aria-hidden="true"> · </span>}
+                </>
+              )}
+              {showDate && (
                 <time dateTime={article.publishedAt}>
                   {formatPublishedDate(article.publishedAt)}
                 </time>
