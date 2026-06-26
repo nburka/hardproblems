@@ -2,7 +2,7 @@
 title: 'How to join a nonprofit board'
 slug: 'join-nonprofit-board-or-advisory-group'
 
-excerpt: 'Can’t dedicate yourself full-time to working on a hard problem? Consider joining a charity as a volunteer in a strategic position.'
+excerpt: 'Can’t work full-time on a hard problem? Consider joining a charity as a volunteer in a strategic position.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
@@ -46,11 +46,11 @@ canonicalUrl: ''
 
 # How to join a nonprofit board {#join-nonprofit-board-or-advisory-group}
 
-_Can't dedicate yourself full-time to working on a hard problem? Consider joining a charity as a volunteer in a strategic position._{.intro}
+_Can’t work full-time on a hard problem, yet? Consider joining a charity as a volunteer in a strategic position._{.intro}
 
 <div class="note">
 
-**Note:** The advice in this article is particularly for very senior designers. But if you're a junior designer, it's good to keep an eye on where you could be in 10–15 years.
+**Note:** The advice in this article is targeted at very senior designers. But if you're a junior, it's good to imagine where you could be in 10–15 years.
 
 </div>
 
