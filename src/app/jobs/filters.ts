@@ -411,7 +411,7 @@ export function parseOrgParam(value: string | null): OrgCategory[] {
     .filter(
       (v): v is OrgCategory =>
         v === 'for-profit' ||
-        v === 'not-for-profit' ||
+        v === 'nonprofit' ||
         v === 'public-sector'
     );
 }

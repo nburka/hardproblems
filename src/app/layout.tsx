@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Hard Problems',
     description:
-      'A not-for-profit helping designers to work on the hard problems that matter in the world.',
+      'A nonprofit helping designers to work on the hard problems that matter in the world.',
     url: 'https://hardproblems.com',
     siteName: 'Hard Problems',
     type: 'website'
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Hard Problems',
     description:
-      'A not-for-profit helping designers to work on the hard problems that matter in the world.'
+      'A nonprofit helping designers to work on the hard problems that matter in the world.'
     // twitter:image is auto-populated by Next.js from each route's
     // opengraph-image.tsx, so no need to specify it here.
   }

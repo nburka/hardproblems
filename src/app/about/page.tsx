@@ -41,7 +41,7 @@ export default function Page() {
         <p>
           It’s time to refocus the tech world on what matters most. It’s time to
           build new relationships between doctors, environmentalists,
-          scientists, not-for-profit leaders, public servants, and others
+          scientists, nonprofit leaders, public servants, and others
           tackling the world’s hardest problems with designers who can help make
           practical tools to help them succeed.
         </p>

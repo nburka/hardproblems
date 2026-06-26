@@ -40,7 +40,7 @@ export default function Page() {
 
         <h3 className="space-top-small">Is it free?</h3>
         <p>
-          We offer free desks for a limited time (3-6 months) for not-for-profit
+          We offer free desks for a limited time (3-6 months) for nonprofit
           tech people who are working on hard problems. If you have budget to
           pay for co-working space, we would prefer if you paid, but if you are
           running on a shoestring, please apply for a free desk.
