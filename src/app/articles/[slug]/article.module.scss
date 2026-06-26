@@ -101,6 +101,7 @@
     margin-bottom: 0.75em;
   }
 
+
   .byline > span:last-child {
     margin-bottom: 0;
   }
@@ -122,6 +123,42 @@
 .authorLink:focus {
   color: darkblue;
   text-decoration: underline;
+}
+
+// Author headshot rendered to the left of "By <Author>" at the top of
+// every article. The avatar is a plain inline element with
+// `vertical-align: middle` so it shares a baseline with every other
+// byline piece (date, reading time, etc.) on the same line.
+.authorAvatarLink {
+  display: inline-block;
+  line-height: 0;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+
+// Mobile: stack the avatar on its own row above the author's name so
+// the whole byline reads vertically. Lives after the base rule above
+// so the cascade picks this up at narrow viewports.
+@media only screen and (max-width: 999px) {
+  .authorAvatarLink {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 0.5em auto;
+  }
+
+  .authorAvatar {
+    margin: 0 auto;
+  }
+}
+
+.authorAvatar {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 // Article body — rendered from Markdown via dangerouslySetInnerHTML. We

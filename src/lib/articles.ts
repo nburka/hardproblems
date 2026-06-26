@@ -8,6 +8,21 @@ import markdownItAttrs from 'markdown-it-attrs';
 // file there is the entire workflow for publishing an article — the file
 // system is the CMS.
 const ARTICLES_DIR = path.join(process.cwd(), 'content/articles');
+const TEAM_IMAGE_DIR = path.join(process.cwd(), 'public/images/team');
+
+// Returns the public path to an author's headshot (jpg or png) when one
+// exists in /public/images/team, otherwise null. Used by the article-page
+// byline to show a small avatar next to the author's name.
+export function getAuthorImage(authorSlug: string | undefined): string | null {
+  if (!authorSlug) return null;
+  for (const ext of ['jpg', 'png']) {
+    const file = `${authorSlug}.${ext}`;
+    if (fs.existsSync(path.join(TEAM_IMAGE_DIR, file))) {
+      return `/images/team/${file}`;
+    }
+  }
+  return null;
+}
 
 // markdown-it-attrs gives us the Pandoc-style `{#id .class key=val}` syntax
 // that the source articles use for heading anchors, paragraph classes, and

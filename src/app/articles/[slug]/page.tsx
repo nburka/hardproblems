@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -7,6 +8,7 @@ import {
   formatPublishedDate,
   getAllArticles,
   getArticleBySlug,
+  getAuthorImage,
   topicDisplay
 } from '../../../lib/articles';
 import { getAuthorUrl } from '../../../lib/authors';
@@ -193,8 +195,33 @@ function ArticleByline({
 
   if (article.author) {
     const name = <strong>{article.author}</strong>;
+    const avatarSrc = getAuthorImage(article.authorSlug);
+    const avatar = avatarSrc ? (
+      <Image
+        src={avatarSrc}
+        width={64}
+        height={64}
+        alt=""
+        className={styles.authorAvatar}
+      />
+    ) : null;
     parts.push(
       <span key="author">
+        {avatar &&
+          (authorUrl ? (
+            <Link
+              href={authorUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-hidden="true"
+              tabIndex={-1}
+              className={`${styles.authorAvatarLink} hover-saturate`}
+            >
+              {avatar}
+            </Link>
+          ) : (
+            avatar
+          ))}
         By{' '}
         {authorUrl ? (
           <Link
