@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { SquarePlay, Headphones } from 'lucide-react';
-import { type Article, articleTypeSlug } from '../lib/articles';
+import {
+  type Article,
+  articleTypeSlug,
+  formatPublishedDate
+} from '../lib/articles';
 import styles from '../app/articles/page.module.scss';
 
 // Shared card used by both /articles (full listing) and
@@ -100,12 +104,24 @@ export default function ArticleCard({
           {article.excerpt && (
             <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
           )}
-          {article.readingTime ? (
+          {(article.readingTime || article.publishedAt) && (
             <p className={styles.articleCardReadingTime}>
-              {article.readingTime} min{' '}
-              {isVideo ? 'video' : isPodcast ? 'podcast' : 'read'}
+              {article.readingTime ? (
+                <>
+                  {article.readingTime} min{' '}
+                  {isVideo ? 'video' : isPodcast ? 'podcast' : 'read'}
+                </>
+              ) : null}
+              {article.readingTime && article.publishedAt && (
+                <span aria-hidden="true"> · </span>
+              )}
+              {article.publishedAt && (
+                <time dateTime={article.publishedAt}>
+                  {formatPublishedDate(article.publishedAt)}
+                </time>
+              )}
             </p>
-          ) : null}
+          )}
         </div>
       </Link>
     </li>

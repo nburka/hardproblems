@@ -185,14 +185,16 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
     'Practical guidance for navigating impact-driven careers and the work that matters.',
   'book-review':
     'Books we’ve read on impact-driven careers and the work that matters.',
-  framework:
+  tools:
     'Practical tools and rubrics for thinking through impact-driven work.',
   opinion:
     'Personal takes on careers, design, and the work that matters.',
   podcast:
     'Conversations with designers working on hard problems.',
   video:
-    'Talks, conference sessions, and videos on design and the hard problems that matter.'
+    'Talks, conference sessions, and videos on design and the hard problems that matter.',
+  'about-us':
+    'Updates and stories about Hard Problems — what we’re building and why.'
 };
 
 export function articleTypeSubtitle(

@@ -46,15 +46,12 @@ export default async function TypePage({ params }: Props) {
   if (articles.length === 0) notFound();
 
   const label = pluralize(articles[0].articleType);
+  const typeName = articles[0].articleType;
 
   return (
     <ArticleListSection
       heading={label}
-      intro={
-        <>
-          All <strong>{label.toLowerCase()}</strong> from Hard Problems.
-        </>
-      }
+      intro={<>All articles under the category: {typeName}</>}
       articles={articles}
     />
   );

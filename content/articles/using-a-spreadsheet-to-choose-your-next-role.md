@@ -12,7 +12,7 @@ updatedAt: '2026-06-12'
 
 status: 'published' # draft | review | published
 
-articleType: 'Framework' # Article | Book Review | Framework | Podcast
+articleType: 'Tools' # Article | Book Review | Tools | Podcast
 
 topics:
   - careers
