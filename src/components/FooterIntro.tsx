@@ -16,9 +16,9 @@ export default function FooterIntro() {
       <div className="footer-intro-inner">
         <h3>What is Hard Problems?</h3>
         <p>
-          Hard Problems is a nonprofit that helps designers to make the
-          shift to working full-time on the world&rsquo;s hard problems
-          &mdash; problems like climate change and public health.
+          We are a nonprofit that helps designers to make the shift to
+          working full-time on the world&rsquo;s hard problems &mdash;
+          like climate change and public health.
         </p>
         <p>
           <Link href="/about" className="black-button">

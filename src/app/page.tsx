@@ -47,7 +47,7 @@ export default async function Home() {
               <ArticleCard article={heroArticle} />
             </ul>
             <aside className={styles.heroJobs}>
-              <h3>Newest jobs</h3>
+              <h3>New on the job board</h3>
               <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
             </aside>
           </div>
@@ -105,7 +105,7 @@ export default async function Home() {
                     serves the same purpose. */}
                 {i === 1 && (
                   <li className={styles.mobileJobsTeaser}>
-                    <h3>Newest jobs</h3>
+                    <h3>New on the job board</h3>
                     <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
                   </li>
                 )}
