@@ -7,8 +7,8 @@ excerpt: 'Can’t work full-time on a hard problem? Consider joining a charity a
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-24'
-updatedAt: '2026-06-24'
+publishedAt: '2026-06-23'
+updatedAt: '2026-06-23'
 
 status: 'published' # draft | review | published
 

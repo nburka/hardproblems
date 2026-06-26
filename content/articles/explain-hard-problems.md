@@ -7,8 +7,8 @@ excerpt: 'A 25 min video explaining why we want to see more designers tackle urg
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-23'
-updatedAt: '2026-06-23'
+publishedAt: '2026-06-22'
+updatedAt: '2026-06-22'
 
 status: 'published' # draft | review | published
 
