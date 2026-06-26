@@ -81,6 +81,8 @@
 .sectorKicker {
   display: flex;
   align-items: center;
+  align-self: flex-start;
+  width: fit-content;
   font-family: var(--font-mono);
   font-size: var(--font-size-mono);
   line-height: 1;
@@ -89,6 +91,17 @@
   font-weight: 400;
   color: var(--color-mid-green);
   margin-bottom: 0.2rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sectorKicker:hover,
+.sectorKicker:focus-visible {
+  color: var(--color-dark-green);
+}
+
+.sectorKicker:visited {
+  color: var(--color-mid-green);
 }
 
 // Inline Lucide icon sitting to the left of the sector text. Sized in

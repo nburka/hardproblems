@@ -365,6 +365,25 @@ export function matchesSector(
   return opt.keywords.some((k) => lower.includes(k));
 }
 
+// Matches a job's raw sector against a specific displayed sector picked
+// from a job-card tag click. Comparison is case-insensitive and falls
+// back to checking the raw sector string when the displayed form
+// (e.g. "Healthcare") differs from the source ("Health (Healthcare)").
+export function matchesSectorPick(jobSector: string, pick: string): boolean {
+  const a = jobSector.trim().toLowerCase();
+  const b = pick.trim().toLowerCase();
+  if (!a || !b) return false;
+  return a === b || a.includes(`(${b})`);
+}
+
+// A job is a Hard Problems Pick when its "good for world" score (sheet
+// column F) parses to a number greater than 8. Mirrors the inline check
+// in JobsList that drives the pill rendering.
+export function isHardProblemsPick(goodForWorld: string): boolean {
+  const score = parseFloat(goodForWorld);
+  return !Number.isNaN(score) && score > 8;
+}
+
 export function matchesSeniority(
   jobSeniority: string,
   category: SeniorityCategory
@@ -438,8 +457,10 @@ export const FILTER_PARAM_KEYS = [
   'work',
   'org',
   'sector',
+  'sectorPick',
   'role',
-  'seniority'
+  'seniority',
+  'pick'
 ] as const;
 
 export type JobFilters = {
@@ -447,9 +468,19 @@ export type JobFilters = {
   workStyles: WorkStyle[];
   orgs: OrgCategory[];
   sectors: SectorCategory[];
+  sectorPicks: string[];
   roles: string[];
   seniorities: SeniorityCategory[];
+  picksOnly: boolean;
 };
+
+export function parseSectorPickParam(value: string | null): string[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .map((v) => v.trim())
+    .filter((v) => v.length > 0);
+}
 
 export function parseFiltersFromParams(
   params: URLSearchParams
@@ -459,8 +490,10 @@ export function parseFiltersFromParams(
     workStyles: parseWorkStyleParam(params.get('work')),
     orgs: parseOrgParam(params.get('org')),
     sectors: parseSectorParam(params.get('sector')),
+    sectorPicks: parseSectorPickParam(params.get('sectorPick')),
     roles: parseRoleParam(params.get('role')),
-    seniorities: parseSeniorityParam(params.get('seniority'))
+    seniorities: parseSeniorityParam(params.get('seniority')),
+    picksOnly: params.get('pick') === '1'
   };
 }
 
@@ -487,6 +520,15 @@ export function filterJobs(
       filters.sectors.length > 0 &&
       !filters.sectors.some((s) => matchesSector(j.sector, s))
     ) {
+      return false;
+    }
+    if (
+      filters.sectorPicks.length > 0 &&
+      !filters.sectorPicks.some((p) => matchesSectorPick(j.sector, p))
+    ) {
+      return false;
+    }
+    if (filters.picksOnly && !isHardProblemsPick(j.goodForWorld)) {
       return false;
     }
     if (filters.roles.length > 0 && !filters.roles.includes(j.role)) {

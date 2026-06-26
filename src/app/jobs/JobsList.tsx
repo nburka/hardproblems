@@ -19,6 +19,7 @@ import type { SerializedJob } from './fetchJobs';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
+  orgCategory,
   orgTypeDisplay
 } from './orgType';
 import {
@@ -32,9 +33,11 @@ import {
   WORK_STYLE_OPTIONS,
   WorkStyle,
   filterJobs,
+  matchesSectorPick,
   parseOrgParam,
   parseRoleParam,
   parseSectorParam,
+  parseSectorPickParam,
   parseSeniorityParam,
   parseWorkStyleParam,
   splitCountries
@@ -502,6 +505,11 @@ export default function JobsList({
     () => parseSectorParam(searchParams.get('sector')),
     [searchParams]
   );
+  const sectorPickFilters = useMemo(
+    () => parseSectorPickParam(searchParams.get('sectorPick')),
+    [searchParams]
+  );
+  const picksOnly = searchParams.get('pick') === '1';
   const roleFilters = useMemo(
     () => parseRoleParam(searchParams.get('role')),
     [searchParams]
@@ -560,8 +568,10 @@ export default function JobsList({
         workStyles: workStyleFilters,
         orgs: orgFilters,
         sectors: sectorFilters,
+        sectorPicks: sectorPickFilters,
         roles: roleFilters,
-        seniorities: seniorityFilters
+        seniorities: seniorityFilters,
+        picksOnly
       }),
     [
       jobs,
@@ -569,8 +579,10 @@ export default function JobsList({
       workStyleFilters,
       orgFilters,
       sectorFilters,
+      sectorPickFilters,
       roleFilters,
-      seniorityFilters
+      seniorityFilters,
+      picksOnly
     ]
   );
 
@@ -604,6 +616,31 @@ export default function JobsList({
     });
   };
 
+  // Toggles the Hard Problems Pick filter — driven by clicking the
+  // "Hard Problems Pick" pill on a job card. Only the `pick` URL param
+  // changes; every other filter is preserved.
+  const togglePicksOnly = () => {
+    updateParams((params) => {
+      if (picksOnly) params.delete('pick');
+      else params.set('pick', '1');
+    });
+  };
+
+  // Toggles a "specific sector pick" filter — driven by clicking a
+  // sector tag on a job card. Comparison happens against the raw sector
+  // string in matchesSectorPick(); other filters are preserved.
+  const toggleSectorPick = (pick: string) => {
+    const key = pick.trim().toLowerCase();
+    if (!key) return;
+    const next = sectorPickFilters.includes(key)
+      ? sectorPickFilters.filter((v) => v !== key)
+      : [...sectorPickFilters, key];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('sectorPick');
+      else params.set('sectorPick', next.join(','));
+    });
+  };
+
   const toggleRoleFilter = (value: string) => {
     const next = roleFilters.includes(value)
       ? roleFilters.filter((v) => v !== value)
@@ -632,6 +669,8 @@ export default function JobsList({
       params.delete('sector');
       params.delete('role');
       params.delete('seniority');
+      params.delete('sectorPick');
+      params.delete('pick');
     });
   };
 
@@ -640,8 +679,79 @@ export default function JobsList({
     workStyleFilters.length > 0 ||
     orgFilters.length > 0 ||
     sectorFilters.length > 0 ||
+    sectorPickFilters.length > 0 ||
     roleFilters.length > 0 ||
-    seniorityFilters.length > 0;
+    seniorityFilters.length > 0 ||
+    picksOnly;
+
+  // Compact "filter chip" list shown under the job count. Each chip
+  // describes one applied filter and removes it on click.
+  type ActiveChip = { key: string; label: string; remove: () => void };
+  const activeChips: ActiveChip[] = [];
+  if (country !== 'all') {
+    activeChips.push({
+      key: `country:${country}`,
+      label: country,
+      remove: () => setCountry('all')
+    });
+  }
+  orgFilters.forEach((cat) => {
+    const opt = ORG_TYPE_OPTIONS.find((o) => o.value === cat);
+    if (opt)
+      activeChips.push({
+        key: `org:${cat}`,
+        label: opt.label,
+        remove: () => toggleOrgFilter(cat)
+      });
+  });
+  sectorFilters.forEach((cat) => {
+    const opt = SECTOR_OPTIONS.find((o) => o.value === cat);
+    if (opt)
+      activeChips.push({
+        key: `sector:${cat}`,
+        label: opt.label,
+        remove: () => toggleSectorFilter(cat)
+      });
+  });
+  sectorPickFilters.forEach((pick) => {
+    activeChips.push({
+      key: `pick:${pick}`,
+      label: pick,
+      remove: () => toggleSectorPick(pick)
+    });
+  });
+  roleFilters.forEach((role) => {
+    activeChips.push({
+      key: `role:${role}`,
+      label: displayRole(role),
+      remove: () => toggleRoleFilter(role)
+    });
+  });
+  seniorityFilters.forEach((cat) => {
+    const opt = SENIORITY_OPTIONS.find((o) => o.value === cat);
+    if (opt)
+      activeChips.push({
+        key: `sen:${cat}`,
+        label: opt.label,
+        remove: () => toggleSeniorityFilter(cat)
+      });
+  });
+  workStyleFilters.forEach((style) => {
+    const opt = WORK_STYLE_OPTIONS.find((o) => o.value === style);
+    if (opt)
+      activeChips.push({
+        key: `work:${style}`,
+        label: opt.label,
+        remove: () => toggleWorkStyle(style)
+      });
+  });
+  if (picksOnly) {
+    activeChips.push({
+      key: 'picksOnly',
+      label: 'Hard Problems Pick',
+      remove: togglePicksOnly
+    });
+  }
 
   // RSS feed URL mirrors the current filter state so subscribing while
   // looking at e.g. "Climate + Remote" lands you on the equivalent feed.
@@ -708,23 +818,6 @@ export default function JobsList({
             showMore ? styles.moreFiltersOpen : ''
           }`}
         >
-          <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Org type</span>
-            <div className={styles.checkboxes}>
-              {ORG_TYPE_OPTIONS.map((opt) => (
-                <label key={opt.value} className={styles.checkbox}>
-                  <input
-                    type="checkbox"
-                    checked={orgFilters.includes(opt.value)}
-                    onChange={() => toggleOrgFilter(opt.value)}
-                  />
-                  <span className={styles.checkboxBox} aria-hidden="true" />
-                  {opt.label}
-                </label>
-              ))}
-            </div>
-          </div>
-
           {roles.length > 0 && (
             <div className={styles.filterField}>
               <span className={styles.filterLabel}>Role</span>
@@ -770,6 +863,23 @@ export default function JobsList({
                     type="checkbox"
                     checked={sectorFilters.includes(opt.value)}
                     onChange={() => toggleSectorFilter(opt.value)}
+                  />
+                  <span className={styles.checkboxBox} aria-hidden="true" />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.filterField}>
+            <span className={styles.filterLabel}>Org type</span>
+            <div className={styles.checkboxes}>
+              {ORG_TYPE_OPTIONS.map((opt) => (
+                <label key={opt.value} className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    checked={orgFilters.includes(opt.value)}
+                    onChange={() => toggleOrgFilter(opt.value)}
                   />
                   <span className={styles.checkboxBox} aria-hidden="true" />
                   {opt.label}
@@ -828,6 +938,24 @@ export default function JobsList({
       <div className={styles.filterCount}>
         {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
       </div>
+      {activeChips.length > 0 && (
+        <div className={styles.activeFilters}>
+          {activeChips.map((chip) => (
+            <button
+              key={chip.key}
+              type="button"
+              onClick={chip.remove}
+              className={`tag ${styles.activeFilterChip}`}
+              aria-label={`Remove filter ${chip.label}`}
+            >
+              {chip.label}
+              <span aria-hidden="true" className={styles.activeFilterChipX}>
+                ×
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
       {filtered.length === 0 && (
         <div className={styles.noResults}>
           <svg
@@ -978,8 +1106,19 @@ export default function JobsList({
                     {job.sector && (() => {
                       const displayed = displaySector(job.sector);
                       const SectorIcon = getSectorIcon(displayed);
+                      const isActive = sectorPickFilters.includes(
+                        displayed.toLowerCase()
+                      );
                       return (
-                        <span className={`tag ${styles.jobSector}`}>
+                        <button
+                          type="button"
+                          onClick={() => toggleSectorPick(displayed)}
+                          className={`tag ${styles.jobSector} ${styles.jobTagButton} ${
+                            isActive ? styles.jobTagButtonActive : ''
+                          }`}
+                          aria-pressed={isActive}
+                          aria-label={`Filter by sector ${displayed}`}
+                        >
                           {SectorIcon && (
                             <SectorIcon
                               className={styles.jobSectorIcon}
@@ -987,22 +1126,50 @@ export default function JobsList({
                             />
                           )}
                           {displayed}
-                        </span>
+                        </button>
                       );
                     })()}
-                    {typeLabel && (
-                      <span className={`tag ${styles.jobType}`}>
-                        {typeLabel}
-                      </span>
-                    )}
+                    {typeLabel &&
+                      (() => {
+                        const cat = orgCategory(job.typeOfOrg);
+                        if (!cat) {
+                          return (
+                            <span className={`tag ${styles.jobType}`}>
+                              {typeLabel}
+                            </span>
+                          );
+                        }
+                        const isActive = orgFilters.includes(cat);
+                        return (
+                          <button
+                            type="button"
+                            onClick={() => toggleOrgFilter(cat)}
+                            className={`tag ${styles.jobType} ${styles.jobTagButton} ${
+                              isActive ? styles.jobTagButtonActive : ''
+                            }`}
+                            aria-pressed={isActive}
+                            aria-label={`Filter by org type ${typeLabel}`}
+                          >
+                            {typeLabel}
+                          </button>
+                        );
+                      })()}
                     {isStaffPick && (
-                      <span className={`tag ${styles.jobStaffPick}`}>
+                      <button
+                        type="button"
+                        onClick={togglePicksOnly}
+                        className={`tag ${styles.jobStaffPick} ${styles.jobTagButton} ${
+                          picksOnly ? styles.jobTagButtonActive : ''
+                        }`}
+                        aria-pressed={picksOnly}
+                        aria-label="Filter to Hard Problems Picks only"
+                      >
                         <Gem
                           className={styles.jobStaffPickStar}
                           aria-hidden="true"
                         />
                         Hard Problems Pick
-                      </span>
+                      </button>
                     )}
                   </div>
                 )}

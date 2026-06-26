@@ -172,7 +172,7 @@ p.intro {
 .tag {
   display: inline-block;
   white-space: nowrap;
-  padding: 2px 10px;
+  padding: 4px 10px;
   margin: 4px 4px 4px 0;
   font-family: var(--font-mono);
   font-size: var(--font-size-mono);

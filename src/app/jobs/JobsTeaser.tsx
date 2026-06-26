@@ -189,8 +189,15 @@ export default function JobsTeaser({
             {job.sector && (() => {
               const displayed = displaySector(job.sector);
               const SectorIcon = getSectorIcon(displayed);
+              const filterHref = `/jobs?sectorPick=${encodeURIComponent(
+                displayed.toLowerCase()
+              )}`;
               return (
-                <div className={styles.sectorKicker}>
+                <Link
+                  href={filterHref}
+                  className={styles.sectorKicker}
+                  aria-label={`See all ${displayed} jobs on the job board`}
+                >
                   {SectorIcon && (
                     <SectorIcon
                       className={styles.sectorKickerIcon}
@@ -198,7 +205,7 @@ export default function JobsTeaser({
                     />
                   )}
                   {displayed}
-                </div>
+                </Link>
               );
             })()}
             <div className={styles.titleLine}>

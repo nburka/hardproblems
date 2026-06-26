@@ -618,6 +618,53 @@
   margin-top: 0.35rem;
 }
 
+// Tag buttons (sector / org-type) act as one-click filter toggles.
+// Strip only the browser button chrome (border, cursor) so the `.tag`
+// rule keeps full control of font, padding, colour, and pill shape.
+.jobTagButton {
+  cursor: pointer;
+  border: 0;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+// "Active filters" row under the job count. Each chip is a removable
+// filter — clicking it deletes that specific filter from the URL.
+.activeFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.activeFilterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  cursor: pointer;
+  border: 0;
+  transition: filter 0.15s ease;
+}
+
+.activeFilterChip:hover,
+.activeFilterChip:focus-visible {
+  filter: brightness(0.94);
+  outline: none;
+}
+
+.activeFilterChipX {
+  font-size: 1.2em;
+  line-height: 1;
+  font-weight: 600;
+  margin-top: -1px;
+}
+
+.jobTagButton:hover,
+.jobTagButton:focus-visible {
+  filter: brightness(0.94);
+  outline: none;
+}
+
+
 .jobBullet {
   color: #999;
   user-select: none;
