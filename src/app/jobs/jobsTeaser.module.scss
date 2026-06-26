@@ -277,9 +277,38 @@
 }
 
 .descriptionCompany {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text);
   margin-right: 0.25rem;
+}
+
+// Hard Problems Pick explainer inside the hover tooltip — mirrors the
+// `.jobDescriptionPick` treatment on /jobs.
+.descriptionPick {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid #ebd2b3;
+
+  p {
+    margin: 0.25rem 0 0 0;
+    font-size: var(--font-size-xs);
+    line-height: 1.4;
+  }
+}
+
+.descriptionPickHeading {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--color-pick-text);
+}
+
+.descriptionPickIcon {
+  width: 0.88em;
+  height: 0.88em;
+  margin-right: 5px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 @media only screen and (min-width: 1000px) {

@@ -10,9 +10,11 @@ import {
   Sprout,
   Landmark,
   HandHelping,
-  Earth
+  Earth,
+  Gem
 } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
+import { isHardProblemsPick } from './filters';
 import { orgTypeDisplay } from './orgType';
 import styles from './jobsTeaser.module.scss';
 
@@ -129,6 +131,7 @@ export default function JobsTeaser({
       {jobs.map((job, i) => {
         const location = job.country.trim();
         const typeLabel = orgTypeDisplay(job.typeOfOrg);
+        const isStaffPick = isHardProblemsPick(job.goodForWorld);
         const metaParts: { key: string; node: React.ReactNode }[] = [];
         if (job.company) {
           metaParts.push({
@@ -234,15 +237,36 @@ export default function JobsTeaser({
               ))}
             </div>
             </div>
-            {job.description && (
+            {(job.description || isStaffPick) && (
               <div className={styles.description} role="tooltip">
-                {job.company && (
-                  <strong className={styles.descriptionCompany}>
-                    {job.company} —
-                  </strong>
+                {job.description && (
+                  <>
+                    {job.company && (
+                      <>
+                        <strong className={styles.descriptionCompany}>
+                          {job.company}
+                        </strong>
+                        <br />
+                      </>
+                    )}
+                    {job.description}
+                  </>
                 )}
-                {job.company && ' '}
-                {job.description}
+                {isStaffPick && (
+                  <div className={styles.descriptionPick}>
+                    <strong className={styles.descriptionPickHeading}>
+                      <Gem
+                        className={styles.descriptionPickIcon}
+                        aria-hidden="true"
+                      />
+                      Hard Problems Pick
+                    </strong>
+                    <p>
+                      We hand-select great jobs at orgs whose primary
+                      mission is to make the world better.
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </div>
