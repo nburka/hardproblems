@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { ArrowRight } from 'lucide-react';
 import ArticleCard from '../../../components/ArticleCard';
 import {
   articleTypeSlug,
@@ -118,6 +119,23 @@ export default async function ArticlePage({ params }: Props) {
     )
     .slice(0, 3);
 
+  // Build counts for every articleType and topic across all published
+  // articles, used to annotate each row in "More articles about…".
+  const allArticles = getAllArticles();
+  const typeCounts = new Map<string, number>();
+  const topicCounts = new Map<string, number>();
+  for (const a of allArticles) {
+    if (a.articleType) {
+      typeCounts.set(
+        a.articleType,
+        (typeCounts.get(a.articleType) || 0) + 1
+      );
+    }
+    for (const t of a.topics) {
+      topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+    }
+  }
+
   return (
     <>
       <section className={styles.articleWrap}>
@@ -142,26 +160,47 @@ export default async function ArticlePage({ params }: Props) {
 
         {(article.articleType || article.topics.length > 0) && (
           <>
-            <h3 className={styles.tagsLabel}>More articles about&hellip;</h3>
-            <div className={styles.topics}>
+            <h2 className={styles.tagsLabel}>More about&hellip;</h2>
+            <ul className={styles.topics}>
               {article.articleType && (
-                <Link
-                  href={`/articles/type/${articleTypeSlug(article.articleType)}`}
-                  className={`tag ${styles.topicTag}`}
-                >
-                  {article.articleType}
-                </Link>
+                <li>
+                  <Link
+                    href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+                    className={styles.topicTag}
+                  >
+                    <span>{article.articleType}</span>
+                    <span className={styles.topicTagMeta}>
+                      <span className={styles.topicTagCount}>
+                        {typeCounts.get(article.articleType) ?? 0}
+                      </span>
+                      <ArrowRight
+                        className={styles.topicTagIcon}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Link>
+                </li>
               )}
               {article.topics.map((t) => (
-                <Link
-                  key={t}
-                  href={`/articles/topic/${t}`}
-                  className={`tag ${styles.topicTag}`}
-                >
-                  {topicDisplay(t)}
-                </Link>
+                <li key={t}>
+                  <Link
+                    href={`/articles/topic/${t}`}
+                    className={styles.topicTag}
+                  >
+                    <span>{topicDisplay(t)}</span>
+                    <span className={styles.topicTagMeta}>
+                      <span className={styles.topicTagCount}>
+                        {topicCounts.get(t) ?? 0}
+                      </span>
+                      <ArrowRight
+                        className={styles.topicTagIcon}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </>
         )}
         </article>

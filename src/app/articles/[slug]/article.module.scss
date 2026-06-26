@@ -692,27 +692,69 @@
 }
 
 .topics {
-  margin: 0 0 1rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  list-style: none;
+  margin: 1.5rem 0 1rem 0;
+  padding: 0;
 }
 
-// Topic links inside .topics — keep the pill background from the global
-// `.tag` class but use the tag's dark-green colour instead of the link
-// blue, and lift the underline so they read as tags rather than links.
+.topics li {
+  margin: 0;
+  border-top: 1px solid var(--color-light-green);
+}
+
+.topics li:last-child {
+  border-bottom: 1px solid var(--color-light-green);
+}
+
+// Each topic / type entry is a full-row link with the label on the left
+// and a right-arrow on the far right. Inherits the dark-green colour and
+// shifts the arrow on hover to reinforce that it's clickable.
 .topicTag,
 .topicTag:visited {
-  color: var(--color-dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-link);
+  font-weight: 500;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 .topicTag:hover,
 .topicTag:focus {
-  background: #b8dec7;
-  color: var(--color-dark-green);
+  color: darkblue;
   text-decoration: none;
+}
+
+.topicTagMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.topicTagCount {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  font-weight: 400;
+  color: var(--color-mid-green);
+}
+
+.topicTagIcon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  color: var(--color-dark-green);
+  opacity: 0.5;
+  transition: transform 0.15s ease;
+}
+
+.topicTag:hover .topicTagIcon,
+.topicTag:focus .topicTagIcon {
+  transform: translateX(3px);
 }
 
 @media only screen and (min-width: 1000px) {
