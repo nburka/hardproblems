@@ -163,8 +163,17 @@
 // "NEW" badge inline with the reading time + date when an article was
 // published in the last 30 days.
 .articleCardNew {
-  color: #c2310f;
+  color: #e85a3a;
   font-weight: 600;
+}
+
+.articleCardNewIcon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 2px;
+  vertical-align: -0.15em;
+  stroke-width: 1.8;
 }
 
 // Hero row at the top of /articles — newest article on the left, a

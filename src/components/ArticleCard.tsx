@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { SquarePlay, Headphones } from 'lucide-react';
+import { SquarePlay, Headphones, Sparkle } from 'lucide-react';
 import {
   type Article,
   articleTypeSlug,
@@ -132,7 +132,13 @@ export default function ArticleCard({
               )}
               {isNew && (
                 <>
-                  <span className={styles.articleCardNew}>NEW</span>
+                  <span className={styles.articleCardNew}>
+                    <Sparkle
+                      className={styles.articleCardNewIcon}
+                      aria-hidden="true"
+                    />
+                    NEW
+                  </span>
                   {showDate && <span aria-hidden="true"> · </span>}
                 </>
               )}
