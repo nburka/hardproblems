@@ -72,7 +72,7 @@ By default, LinkedIn will include many stale roles. You will be more successful 
 
 ### Enter multiple job titles {#enter-multiple-job-titles}
 
-"Design" is too expansive, but designers have so many different overlapping job titles that specific titles like "UX design" might limit your results too much. We like using multiple titles like "UX Design", "Product Design", "UX design", "Interface Design", "UI Design", "Mobile Design", etc. together in one search.
+"Design" is too expansive, but designers have so many different overlapping job titles that specific titles like "UX design" might limit your results too much. We like using multiple titles like "Product Design", "UX design", "Interface Design", "UI Design", "Mobile Design", etc. together in one search.
 
 </div>
 

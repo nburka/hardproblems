@@ -1,5 +1,5 @@
 ---
-title: 'The Hard Problems co-working space'
+title: 'Welcome to the Hard Problems co-working space'
 slug: 'hard-problems-coworking-space'
 
 excerpt: 'Our co-working space in London is open to teams tackling climate change, public health, and other urgent global challenges.'

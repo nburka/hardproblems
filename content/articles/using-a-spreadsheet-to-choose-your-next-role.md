@@ -62,7 +62,7 @@ When the stakes are high, I turn to a simple framework: a weighted scoring sprea
 
 The idea is simple: Create a rubric of what matters to you right now, assign a weight to each metric, and then score any potential job (or even your made-up dream job) against it.
 
-<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get the free "Job Rank" template <span aria-hidden="true">→</span></a>
+<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get our free "Job Rank" template <span aria-hidden="true">→</span></a>
 
 [![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy)
 
@@ -82,13 +82,14 @@ The template has a suggested list, but your values will be unique. Here are some
 
 |                                    |                                             |                                               |
 | ---------------------------------- | ------------------------------------------- | --------------------------------------------- |
-| Job stability                      | Work autonomy                               | Innovative work                               |
+| Aligns with my values              | Work autonomy                               | Innovative work                               |
 | Company culture                    | Benefits package                            | Need to relocate                              |
 | Work/life balance                  | High quality work                           | Aligned to my skills                          |
 | Work with smart people             | Career growth opportunity                   | My passion for the problem                    |
 | Positive impact for the world      | I would use the product myself              | Chance to travel to cool places               |
 | Short commute or work-from-home    | Mentorship from people I respect            | Opportunity to share work publicly            |
 | Small team where I can have impact | Learn skills to prepare me for my dream job | Chance to contribute to open source community |
+| Job stability                      | Inspiring leaders                           | High ethical standards                        |
 
 </div>
 
