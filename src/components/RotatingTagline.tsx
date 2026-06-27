@@ -50,7 +50,9 @@ export default function RotatingTagline() {
             aria-hidden={i === index ? undefined : 'true'}
             style={{
               opacity: i === index ? 1 : 0,
-              transition: `opacity ${FADE_MS}ms ease`
+              transform: i === index ? 'scale(1)' : 'scale(0.7)',
+              transformOrigin: 'left center',
+              transition: `opacity ${FADE_MS}ms ease, transform ${FADE_MS}ms cubic-bezier(0.34, 1.56, 0.64, 1)`
             }}
           >
             <Icon
