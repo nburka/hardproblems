@@ -52,7 +52,7 @@ function getSectorIcon(displayed: string) {
     case 'public services':
     case 'good gov':
       return Landmark;
-    case 'non-profit support':
+    case 'nonprofit support':
       return HandHelping;
     case 'other':
       return Earth;
@@ -96,7 +96,6 @@ function GlobeIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 
 export default function JobsTeaser({
   jobs,
@@ -189,53 +188,52 @@ export default function JobsTeaser({
               <div className={styles.icon}>{iconContents}</div>
             )}
             <div className={styles.content}>
-            {job.sector && (() => {
-              const displayed = displaySector(job.sector);
-              const SectorIcon = getSectorIcon(displayed);
-              const filterHref = `/jobs?sectorPick=${encodeURIComponent(
-                displayed.toLowerCase()
-              )}`;
-              return (
-                <Link
-                  href={filterHref}
-                  className={styles.sectorKicker}
-                  aria-label={`See all ${displayed} jobs on the job board`}
-                >
-                  {SectorIcon && (
-                    <SectorIcon
-                      className={styles.sectorKickerIcon}
-                      aria-hidden="true"
-                    />
-                  )}
-                  {displayed}
-                </Link>
-              );
-            })()}
-            <div className={styles.titleLine}>
-              {job.url ? (
-                <Link
-                  href={job.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.title}
-                  onClick={() => trackJobClick(job, 'title')}
-                >
-                  {job.title}
-                </Link>
-              ) : (
-                <span className={styles.title}>{job.title}</span>
-              )}
-            </div>
-            <div className={styles.meta}>
-              {metaParts.map((part, idx) => (
-                <Fragment key={part.key}>
-                  {idx > 0 && (
-                    <span className={styles.bullet}>{' · '}</span>
-                  )}
-                  {part.node}
-                </Fragment>
-              ))}
-            </div>
+              {job.sector &&
+                (() => {
+                  const displayed = displaySector(job.sector);
+                  const SectorIcon = getSectorIcon(displayed);
+                  const filterHref = `/jobs?sectorPick=${encodeURIComponent(
+                    displayed.toLowerCase()
+                  )}`;
+                  return (
+                    <Link
+                      href={filterHref}
+                      className={styles.sectorKicker}
+                      aria-label={`See all ${displayed} jobs on the job board`}
+                    >
+                      {SectorIcon && (
+                        <SectorIcon
+                          className={styles.sectorKickerIcon}
+                          aria-hidden="true"
+                        />
+                      )}
+                      {displayed}
+                    </Link>
+                  );
+                })()}
+              <div className={styles.titleLine}>
+                {job.url ? (
+                  <Link
+                    href={job.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.title}
+                    onClick={() => trackJobClick(job, 'title')}
+                  >
+                    {job.title}
+                  </Link>
+                ) : (
+                  <span className={styles.title}>{job.title}</span>
+                )}
+              </div>
+              <div className={styles.meta}>
+                {metaParts.map((part, idx) => (
+                  <Fragment key={part.key}>
+                    {idx > 0 && <span className={styles.bullet}>{' · '}</span>}
+                    {part.node}
+                  </Fragment>
+                ))}
+              </div>
             </div>
             {(job.description || isStaffPick) && (
               <div className={styles.description} role="tooltip">
@@ -262,8 +260,8 @@ export default function JobsTeaser({
                       Hard Problems Pick
                     </strong>
                     <p>
-                      We hand-select great jobs at orgs whose primary
-                      mission is to make the world better.
+                      We hand-select great jobs at orgs whose primary mission is
+                      to make the world better.
                     </p>
                   </div>
                 )}
@@ -274,8 +272,8 @@ export default function JobsTeaser({
       })}
       <div className={styles.seeAll}>
         <p className={styles.seeAllText}>
-          We search the web to find roles for designers to work on
-          hard problems.
+          We search the web to find roles for designers to work on hard
+          problems.
         </p>
         <Link href="/jobs">
           {typeof totalCount === 'number'

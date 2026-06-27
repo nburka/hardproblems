@@ -749,12 +749,12 @@
   stroke-width: 1.8;
   color: var(--color-dark-green);
   opacity: 0.5;
-  transition: transform 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 .topicTag:hover .topicTagIcon,
 .topicTag:focus .topicTagIcon {
-  transform: translateX(3px);
+  opacity: 1;
 }
 
 @media only screen and (min-width: 1000px) {

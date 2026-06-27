@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import {
   type Article,
   articleTypeSlug,
@@ -78,7 +78,7 @@ export default function CategoriesSidebar({
                   <span className={styles.categoriesCount}>
                     {entry.count}
                   </span>
-                  <ArrowRight
+                  <BookOpen
                     className={styles.categoriesIcon}
                     aria-hidden="true"
                   />

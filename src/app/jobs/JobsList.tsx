@@ -73,7 +73,7 @@ function getSectorIcon(displayed: string) {
     case 'public services':
     case 'good gov':
       return Landmark;
-    case 'non-profit support':
+    case 'nonprofit support':
       return HandHelping;
     case 'other':
       return Earth;
@@ -102,7 +102,6 @@ function displaySector(sector: string): string {
 }
 
 const BULLET_SEPARATOR = '  •  ';
-
 
 function formatRelativeDate(date: Date): string {
   const now = new Date();
@@ -779,7 +778,10 @@ export default function JobsList({
             onChange={(e) => setCountry(e.target.value)}
             className={styles.filterSelect}
           >
-            <option value="all">{countryFlag('all')}{'  '}All countries</option>
+            <option value="all">
+              {countryFlag('all')}
+              {'  '}All countries
+            </option>
             <optgroup label="Region">
               {META_REGIONS.map((r) => {
                 const flag = countryFlag(r.name);
@@ -930,313 +932,312 @@ export default function JobsList({
         {filterFooter && (
           <div className={styles.filterFooter}>{filterFooter}</div>
         )}
-
       </div>
 
       <div className={styles.results}>
-      <div className={styles.filterCount}>
-        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
-      </div>
-      {activeChips.length > 0 && (
-        <div className={styles.activeFilters}>
-          {activeChips.map((chip) => (
-            <button
-              key={chip.key}
-              type="button"
-              onClick={chip.remove}
-              className={`tag ${styles.activeFilterChip}`}
-              aria-label={`Remove filter ${chip.label}`}
-            >
-              {chip.label}
-              <span aria-hidden="true" className={styles.activeFilterChipX}>
-                ×
-              </span>
-            </button>
-          ))}
+        <div className={styles.filterCount}>
+          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
         </div>
-      )}
-      {filtered.length === 0 && (
-        <div className={styles.noResults}>
-          <svg
-            className={styles.noResultsIcon}
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="21" y1="21" x2="16.5" y2="16.5" />
-          </svg>
-          <h3 className={styles.noResultsTitle}>No jobs found</h3>
-          <p className={styles.noResultsText}>
-            No jobs match your current filters. Try removing a filter or
-            widening your search.
-          </p>
-          {hasActiveFilters && (
-            <button
-              type="button"
-              className={styles.noResultsButton}
-              onClick={clearFilters}
+        {activeChips.length > 0 && (
+          <div className={styles.activeFilters}>
+            {activeChips.map((chip) => (
+              <button
+                key={chip.key}
+                type="button"
+                onClick={chip.remove}
+                className={`tag ${styles.activeFilterChip}`}
+                aria-label={`Remove filter ${chip.label}`}
+              >
+                {chip.label}
+                <span aria-hidden="true" className={styles.activeFilterChipX}>
+                  ×
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+        {filtered.length === 0 && (
+          <div className={styles.noResults}>
+            <svg
+              className={styles.noResultsIcon}
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
             >
-              Clear all filters
-            </button>
-          )}
-        </div>
-      )}
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.5" y2="16.5" />
+            </svg>
+            <h3 className={styles.noResultsTitle}>No jobs found</h3>
+            <p className={styles.noResultsText}>
+              No jobs match your current filters. Try removing a filter or
+              widening your search.
+            </p>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                className={styles.noResultsButton}
+                onClick={clearFilters}
+              >
+                Clear all filters
+              </button>
+            )}
+          </div>
+        )}
 
-      <ul className={styles.jobs}>
-        {filtered.map((job, i) => {
-          const date = job.date ? new Date(job.date) : null;
-          const location = formatLocation(job);
-          const hasSalary =
-            job.salary && job.salary.toLowerCase() !== 'n/a';
+        <ul className={styles.jobs}>
+          {filtered.map((job, i) => {
+            const date = job.date ? new Date(job.date) : null;
+            const location = formatLocation(job);
+            const hasSalary = job.salary && job.salary.toLowerCase() !== 'n/a';
 
-          const faviconUrl = buildFaviconUrl(job.companyUrl);
-          const companyHref = job.companyUrl
-            ? job.companyUrl.startsWith('http')
-              ? job.companyUrl
-              : `https://${job.companyUrl}`
-            : null;
-          const typeLabel = orgTypeDisplay(job.typeOfOrg);
-          const goodForWorldScore = parseFloat(job.goodForWorld);
-          const isStaffPick =
-            !Number.isNaN(goodForWorldScore) && goodForWorldScore > 8;
-          const metaItems: ReactNode[] = [];
-          if (job.company) {
-            metaItems.push(
-              companyHref ? (
-                <Link
-                  href={companyHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.jobCompany}
-                  onClick={() => trackJobClick(job, 'company')}
-                >
-                  {job.company}
-                </Link>
-              ) : (
-                <span className={styles.jobCompany}>{job.company}</span>
-              )
+            const faviconUrl = buildFaviconUrl(job.companyUrl);
+            const companyHref = job.companyUrl
+              ? job.companyUrl.startsWith('http')
+                ? job.companyUrl
+                : `https://${job.companyUrl}`
+              : null;
+            const typeLabel = orgTypeDisplay(job.typeOfOrg);
+            const goodForWorldScore = parseFloat(job.goodForWorld);
+            const isStaffPick =
+              !Number.isNaN(goodForWorldScore) && goodForWorldScore > 8;
+            const metaItems: ReactNode[] = [];
+            if (job.company) {
+              metaItems.push(
+                companyHref ? (
+                  <Link
+                    href={companyHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.jobCompany}
+                    onClick={() => trackJobClick(job, 'company')}
+                  >
+                    {job.company}
+                  </Link>
+                ) : (
+                  <span className={styles.jobCompany}>{job.company}</span>
+                )
+              );
+            }
+            if (location) {
+              metaItems.push(
+                <span className={styles.jobLocation}>{location}</span>
+              );
+            }
+            if (hasSalary) {
+              metaItems.push(
+                <span className={styles.jobSalary}>{job.salary}</span>
+              );
+            }
+
+            const iconContents = faviconUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={faviconUrl}
+                alt={
+                  companyHref
+                    ? job.company
+                      ? `Icon of ${job.company}`
+                      : 'Company icon'
+                    : ''
+                }
+                width={16}
+                height={16}
+                className={styles.companyFavicon}
+                loading="lazy"
+              />
+            ) : (
+              <GlobeIcon className={styles.companyFavicon} />
             );
-          }
-          if (location) {
-            metaItems.push(
-              <span className={styles.jobLocation}>{location}</span>
-            );
-          }
-          if (hasSalary) {
-            metaItems.push(
-              <span className={styles.jobSalary}>{job.salary}</span>
-            );
-          }
 
-          const iconContents = faviconUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={faviconUrl}
-              alt={
-                companyHref
-                  ? job.company
-                    ? `Icon of ${job.company}`
-                    : 'Company icon'
-                  : ''
-              }
-              width={16}
-              height={16}
-              className={styles.companyFavicon}
-              loading="lazy"
-            />
-          ) : (
-            <GlobeIcon className={styles.companyFavicon} />
-          );
-
-          return (
-            <li key={`${job.url}-${i}`} className={styles.job}>
-              {companyHref ? (
-                <Link
-                  href={companyHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={
-                    job.company ? `Visit ${job.company}` : 'Visit company'
-                  }
-                  className={styles.jobIcon}
-                  onClick={() => trackJobClick(job, 'favicon')}
-                >
-                  {iconContents}
-                </Link>
-              ) : (
-                <div className={styles.jobIcon}>{iconContents}</div>
-              )}
-              <div className={styles.jobMain}>
-                <h4 className={styles.jobTitle}>
-                  {job.url ? (
-                    <Link
-                      href={job.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => trackJobClick(job, 'title')}
-                    >
-                      {job.title}
-                    </Link>
-                  ) : (
-                    job.title
-                  )}
-                </h4>
-                <div className={styles.jobMeta}>
-                  {metaItems.map((item, idx) => (
-                    <Fragment key={idx}>
-                      {idx > 0 && (
-                        <span className={styles.jobBullet}>
-                          {BULLET_SEPARATOR}
-                        </span>
-                      )}
-                      {item}
-                    </Fragment>
-                  ))}
-                </div>
-                {(job.sector || typeLabel || isStaffPick) && (
-                  <div className={styles.jobSectorRow}>
-                    {job.sector && (() => {
-                      const displayed = displaySector(job.sector);
-                      const SectorIcon = getSectorIcon(displayed);
-                      const isActive = sectorPickFilters.includes(
-                        displayed.toLowerCase()
-                      );
-                      return (
+            return (
+              <li key={`${job.url}-${i}`} className={styles.job}>
+                {companyHref ? (
+                  <Link
+                    href={companyHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={
+                      job.company ? `Visit ${job.company}` : 'Visit company'
+                    }
+                    className={styles.jobIcon}
+                    onClick={() => trackJobClick(job, 'favicon')}
+                  >
+                    {iconContents}
+                  </Link>
+                ) : (
+                  <div className={styles.jobIcon}>{iconContents}</div>
+                )}
+                <div className={styles.jobMain}>
+                  <h4 className={styles.jobTitle}>
+                    {job.url ? (
+                      <Link
+                        href={job.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => trackJobClick(job, 'title')}
+                      >
+                        {job.title}
+                      </Link>
+                    ) : (
+                      job.title
+                    )}
+                  </h4>
+                  <div className={styles.jobMeta}>
+                    {metaItems.map((item, idx) => (
+                      <Fragment key={idx}>
+                        {idx > 0 && (
+                          <span className={styles.jobBullet}>
+                            {BULLET_SEPARATOR}
+                          </span>
+                        )}
+                        {item}
+                      </Fragment>
+                    ))}
+                  </div>
+                  {(job.sector || typeLabel || isStaffPick) && (
+                    <div className={styles.jobSectorRow}>
+                      {job.sector &&
+                        (() => {
+                          const displayed = displaySector(job.sector);
+                          const SectorIcon = getSectorIcon(displayed);
+                          const isActive = sectorPickFilters.includes(
+                            displayed.toLowerCase()
+                          );
+                          return (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (!isActive) toggleSectorPick(displayed);
+                              }}
+                              className={`tag ${styles.jobSector} ${styles.jobTagButton} ${
+                                isActive ? styles.jobTagButtonActive : ''
+                              }`}
+                              aria-pressed={isActive}
+                              aria-label={`Filter by sector ${displayed}`}
+                            >
+                              {SectorIcon && (
+                                <SectorIcon
+                                  className={styles.jobSectorIcon}
+                                  aria-hidden="true"
+                                />
+                              )}
+                              {displayed}
+                            </button>
+                          );
+                        })()}
+                      {typeLabel &&
+                        (() => {
+                          const cat = orgCategory(job.typeOfOrg);
+                          if (!cat) {
+                            return (
+                              <span className={`tag ${styles.jobType}`}>
+                                {typeLabel}
+                              </span>
+                            );
+                          }
+                          const isActive = orgFilters.includes(cat);
+                          return (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (!isActive) toggleOrgFilter(cat);
+                              }}
+                              className={`tag ${styles.jobType} ${styles.jobTagButton} ${
+                                isActive ? styles.jobTagButtonActive : ''
+                              }`}
+                              aria-pressed={isActive}
+                              aria-label={`Filter by org type ${typeLabel}`}
+                            >
+                              {typeLabel}
+                            </button>
+                          );
+                        })()}
+                      {isStaffPick && (
                         <button
                           type="button"
                           onClick={() => {
-                            if (!isActive) toggleSectorPick(displayed);
+                            if (!picksOnly) togglePicksOnly();
                           }}
-                          className={`tag ${styles.jobSector} ${styles.jobTagButton} ${
-                            isActive ? styles.jobTagButtonActive : ''
+                          className={`tag ${styles.jobStaffPick} ${styles.jobTagButton} ${
+                            picksOnly ? styles.jobTagButtonActive : ''
                           }`}
-                          aria-pressed={isActive}
-                          aria-label={`Filter by sector ${displayed}`}
+                          aria-pressed={picksOnly}
+                          aria-label="Filter to Hard Problems Picks only"
                         >
-                          {SectorIcon && (
-                            <SectorIcon
-                              className={styles.jobSectorIcon}
-                              aria-hidden="true"
-                            />
-                          )}
-                          {displayed}
+                          <Gem
+                            className={styles.jobStaffPickStar}
+                            aria-hidden="true"
+                          />
+                          Hard Problems Pick
                         </button>
-                      );
-                    })()}
-                    {typeLabel &&
-                      (() => {
-                        const cat = orgCategory(job.typeOfOrg);
-                        if (!cat) {
-                          return (
-                            <span className={`tag ${styles.jobType}`}>
-                              {typeLabel}
-                            </span>
-                          );
-                        }
-                        const isActive = orgFilters.includes(cat);
-                        return (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              if (!isActive) toggleOrgFilter(cat);
-                            }}
-                            className={`tag ${styles.jobType} ${styles.jobTagButton} ${
-                              isActive ? styles.jobTagButtonActive : ''
-                            }`}
-                            aria-pressed={isActive}
-                            aria-label={`Filter by org type ${typeLabel}`}
-                          >
-                            {typeLabel}
-                          </button>
-                        );
-                      })()}
-                    {isStaffPick && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (!picksOnly) togglePicksOnly();
-                        }}
-                        className={`tag ${styles.jobStaffPick} ${styles.jobTagButton} ${
-                          picksOnly ? styles.jobTagButtonActive : ''
-                        }`}
-                        aria-pressed={picksOnly}
-                        aria-label="Filter to Hard Problems Picks only"
-                      >
-                        <Gem
-                          className={styles.jobStaffPickStar}
-                          aria-hidden="true"
-                        />
-                        Hard Problems Pick
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-              {(job.description || isStaffPick) && (
-                <div className={styles.jobDescription} role="tooltip">
-                  {job.description && (
-                    <>
-                      {job.company && (
-                        <>
-                          <strong className={styles.jobDescriptionCompany}>
-                            {job.company}
-                          </strong>
-                          <br />
-                        </>
                       )}
-                      {job.description}
-                    </>
-                  )}
-                  {isStaffPick && (
-                    <div className={styles.jobDescriptionPick}>
-                      <strong className={styles.jobDescriptionPickHeading}>
-                        <Gem
-                          className={styles.jobDescriptionPickIcon}
-                          aria-hidden="true"
-                        />
-                        Hard Problems Pick
-                      </strong>
-                      <p>
-                        We hand-select great jobs at orgs whose primary mission
-                        is to make the world better.
-                      </p>
                     </div>
                   )}
                 </div>
-              )}
-              <div className={styles.jobAside}>
-                {date &&
-                  (() => {
-                    const relativeLabel = formatRelativeDate(date);
-                    const isNewToday = relativeLabel === 'Today';
-                    return (
-                      <small
-                        className={`${styles.jobDate} ${
-                          isNewToday ? styles.jobDateToday : ''
-                        }`}
-                      >
-                        {isNewToday && (
-                          <Sparkle
-                            className={styles.jobDateIcon}
+                {(job.description || isStaffPick) && (
+                  <div className={styles.jobDescription} role="tooltip">
+                    {job.description && (
+                      <>
+                        {job.company && (
+                          <>
+                            <strong className={styles.jobDescriptionCompany}>
+                              {job.company}
+                            </strong>
+                            <br />
+                          </>
+                        )}
+                        {job.description}
+                      </>
+                    )}
+                    {isStaffPick && (
+                      <div className={styles.jobDescriptionPick}>
+                        <strong className={styles.jobDescriptionPickHeading}>
+                          <Gem
+                            className={styles.jobDescriptionPickIcon}
                             aria-hidden="true"
                           />
-                        )}
-                        {relativeLabel}
-                      </small>
-                    );
-                  })()}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+                          Hard Problems Pick
+                        </strong>
+                        <p>
+                          We hand-select great jobs at orgs whose primary
+                          mission is to make the world better.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div className={styles.jobAside}>
+                  {date &&
+                    (() => {
+                      const relativeLabel = formatRelativeDate(date);
+                      const isNewToday = relativeLabel === 'Today';
+                      return (
+                        <small
+                          className={`${styles.jobDate} ${
+                            isNewToday ? styles.jobDateToday : ''
+                          }`}
+                        >
+                          {isNewToday && (
+                            <Sparkle
+                              className={styles.jobDateIcon}
+                              aria-hidden="true"
+                            />
+                          )}
+                          {relativeLabel}
+                        </small>
+                      );
+                    })()}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

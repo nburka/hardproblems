@@ -12,7 +12,13 @@ export function orgCategory(typeOfOrg: string): OrgCategory | null {
   const t = typeOfOrg.trim().toLowerCase();
   if (!t) return null;
   if (t === 'for-profit') return 'for-profit';
-  if (t === 'charity' || t === 'not-for-profit' || t === 'nonprofit')
+  if (
+    t === 'charity' ||
+    t === 'not-for-profit' ||
+    t === 'nonprofit' ||
+    t === 'non-profit' ||
+    t === 'non profit'
+  )
     return 'nonprofit';
   if (t === 'public sector') return 'public-sector';
   return null;

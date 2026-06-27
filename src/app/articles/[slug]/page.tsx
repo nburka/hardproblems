@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { ArrowRight } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import ArticleCard from '../../../components/ArticleCard';
 import {
   articleTypeSlug,
@@ -173,7 +173,7 @@ export default async function ArticlePage({ params }: Props) {
                       <span className={styles.topicTagCount}>
                         {typeCounts.get(article.articleType) ?? 0}
                       </span>
-                      <ArrowRight
+                      <BookOpen
                         className={styles.topicTagIcon}
                         aria-hidden="true"
                       />
@@ -192,7 +192,7 @@ export default async function ArticlePage({ params }: Props) {
                       <span className={styles.topicTagCount}>
                         {topicCounts.get(t) ?? 0}
                       </span>
-                      <ArrowRight
+                      <BookOpen
                         className={styles.topicTagIcon}
                         aria-hidden="true"
                       />
