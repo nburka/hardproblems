@@ -12,7 +12,7 @@ updatedAt: '2026-06-11'
 
 status: 'published' # draft | review | published
 
-articleType: 'Hard Problems' # Article | Reading | Podcast | Hard Problems
+articleType: 'Announcements' # Article | Reading | Podcast | Announcements
 
 topics:
   - careers

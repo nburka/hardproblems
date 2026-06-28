@@ -208,7 +208,7 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
     'Conversations with designers working on hard problems.',
   video:
     'Talks, conference sessions, and videos on design and the hard problems that matter.',
-  'hard-problems':
+  announcements:
     'Updates and stories about Hard Problems — what we’re building and why.'
 };
 

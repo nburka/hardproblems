@@ -12,7 +12,7 @@ updatedAt: '2026-02-14'
 
 status: 'published' # draft | review | published
 
-articleType: 'Hard Problems' # Article | Reading | Podcast | Hard Problems
+articleType: 'Announcements' # Article | Reading | Podcast | Announcements
 
 topics:
 
@@ -47,7 +47,11 @@ _Situated in East London, our [co-working space](/coworking) is open to anybody 
 
 ![Illustration that says JOIN US](/images/content/hard-problems-co-working-space-join.png){.float-right}
 
-In 2010, then-Prime Minister [David Cameron](https://en.wikipedia.org/wiki/David_Cameron) announced his Tech City initiative, aimed at transforming Old Street and Shoreditch neighborhoods of London into "one of the most dynamic working environments in the world." Since then, thousands of innovators have chosen to build their companies in and around Shoreditch. Eighteen months ago, we chose this neighborhood as the location of our office and co-working space, situated on a quiet lane just off Shoreditch High Street. Today, we're inviting you to join us.
+<!-- In 2010, then-Prime Minister [David Cameron](https://en.wikipedia.org/wiki/David_Cameron) announced his Tech City initiative, aimed at transforming Old Street and Shoreditch neighborhoods of London into "one of the most dynamic working environments in the world." Since then, thousands of innovators have chosen to build their companies in and around Shoreditch. Eighteen months ago, we chose this neighborhood as the location of our office and co-working space, situated on a quiet lane just off Shoreditch High Street. -->
+
+When [Daniel Burka](https://www.linkedin.com/in/dburka/) and [Elyce Cole](https://www.linkedin.com/in/elyce-cole-1380903a/) started Hard Problems, they wanted a physical office. But, sitting on their own in the middle of one of the most international cities in the world seemed underwhelming. What if the office could double as a node for this new community of designers and technologists who are working on the world's urgent challenges? So, they found a great space in the middle of the tech-friendly Shoreditch neighborhood, they invited health tech and climate-related technologists to join them.
+
+Today, we're inviting you to join us too.
 
 ## Do your best work here {#do-your-best-work-here}
 
