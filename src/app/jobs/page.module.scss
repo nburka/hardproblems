@@ -636,18 +636,24 @@
   margin: 0.5rem 0 1rem 0;
 }
 
-.activeFilterChip {
+// Override the green `.tag` colours: chips at the top of the results
+// look like neutral "applied" pills so they don't compete visually
+// with the sector / org-type tags on each job row.
+.activeFilterChip,
+.activeFilterChip:visited {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
   cursor: pointer;
   border: 0;
+  background: #ececec;
+  color: var(--color-text);
   transition: filter 0.15s ease;
 }
 
 .activeFilterChip:hover,
 .activeFilterChip:focus-visible {
-  filter: brightness(0.94);
+  background: #fde6e0;
   outline: none;
 }
 
@@ -655,6 +661,7 @@
   font-size: 1.2em;
   line-height: 1;
   font-weight: 600;
+  color: #e85a3a;
   margin-top: -1px;
 }
 

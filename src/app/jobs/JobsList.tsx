@@ -62,6 +62,7 @@ function getSectorIcon(displayed: string) {
   const key = displayed.toLowerCase().trim();
   switch (key) {
     case 'healthcare':
+    case 'public health':
       return Activity;
     case 'education':
       return GraduationCap;
@@ -74,6 +75,7 @@ function getSectorIcon(displayed: string) {
     case 'good gov':
       return Landmark;
     case 'nonprofit support':
+    case 'non-profit support':
       return HandHelping;
     case 'other':
       return Earth;
@@ -90,7 +92,7 @@ function getSectorIcon(displayed: string) {
 //   - "Health (Personal Health)" → "Personal health"
 //   - "Good Government"         → "Good gov"
 function displaySector(sector: string): string {
-  const trimmed = sector.trim();
+  const trimmed = sector.trim().replace(/\bnon-profit\b/gi, 'Nonprofit');
   const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
   if (healthMatch) {
     const inner = healthMatch[1].trim();

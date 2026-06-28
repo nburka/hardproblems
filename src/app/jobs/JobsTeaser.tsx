@@ -41,6 +41,7 @@ function getSectorIcon(displayed: string) {
   const key = displayed.toLowerCase().trim();
   switch (key) {
     case 'healthcare':
+    case 'public health':
       return Activity;
     case 'education':
       return GraduationCap;
@@ -53,6 +54,7 @@ function getSectorIcon(displayed: string) {
     case 'good gov':
       return Landmark;
     case 'nonprofit support':
+    case 'non-profit support':
       return HandHelping;
     case 'other':
       return Earth;
@@ -65,7 +67,7 @@ function getSectorIcon(displayed: string) {
 // so the homepage and /articles previews simplify the same way the full
 // board does (e.g. "Health (Public Health)" → "Public health").
 function displaySector(sector: string): string {
-  const trimmed = sector.trim();
+  const trimmed = sector.trim().replace(/\bnon-profit\b/gi, 'Nonprofit');
   const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
   if (healthMatch) {
     const inner = healthMatch[1].trim();
