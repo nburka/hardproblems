@@ -2,7 +2,7 @@
 title: 'Why should designers focus on hard problems?'
 slug: 'explain-hard-problems'
 
-excerpt: 'A 25 min video explaining why we want to see more designers tackling urgent global issues.'
+excerpt: 'A short video explaining why we want to see more designers tackling urgent global issues.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
