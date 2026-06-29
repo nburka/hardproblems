@@ -4,18 +4,8 @@ import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
-import {
-  Activity,
-  GraduationCap,
-  Heart,
-  Sprout,
-  Landmark,
-  HandHelping,
-  Gem,
-  Sparkle,
-  Earth,
-  Users
-} from 'lucide-react';
+import { Gem, Sparkle } from 'lucide-react';
+import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
 import {
   ORG_TYPE_OPTIONS,
@@ -54,36 +44,6 @@ type ClickSource = 'title' | 'company' | 'favicon';
 function displayRole(role: string): string {
   if (role.toLowerCase() === 'copywriter') return 'Copywriting';
   return role;
-}
-
-// Lucide icon to show inside each sector tag. Keyed off the _displayed_
-// sector string (lower-cased) so the mapping survives the pretty-printing
-// in displaySector(). Returns null when there's no dedicated icon.
-function getSectorIcon(displayed: string) {
-  const key = displayed.toLowerCase().trim();
-  switch (key) {
-    case 'healthcare':
-      return Activity;
-    case 'public health':
-      return Users;
-    case 'education':
-      return GraduationCap;
-    case 'personal health':
-      return Heart;
-    case 'climate tech':
-    case 'climate change':
-      return Sprout;
-    case 'public services':
-    case 'good gov':
-      return Landmark;
-    case 'nonprofit support':
-    case 'non-profit support':
-      return HandHelping;
-    case 'other':
-      return Earth;
-    default:
-      return null;
-  }
 }
 
 // Pretty-print the sector tag shown on each job row. The raw sheet value

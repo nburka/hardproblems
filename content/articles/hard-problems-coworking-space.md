@@ -89,7 +89,7 @@ It's also worth noting that our co-working space isn't for everyone. It's small,
 
 Our events are usually themed and open to all members of our community, not only those working from the Hard Problems co-working space. Over the last few months, we've organized:
 
-- **Zero-to-Coder Workshop** — In a single afternoon, a senior engineer taught a group of noncoders to develop working software using the latest AI tools.
+- **Zero-to-Coder Workshop** — In a single afternoon, an engineer taught a group of health tech, public health, and climate entrepreneurs and designers to create software using the latest AI tools.
 - **International Women's Day Dinner** — Twenty women working on hard problems spent an evening discussing their recent wins, challenges, and aspirations for the future.
 - **Why are public health experts looking for technologists?** — We hosted a panel discussion with global epidemiologists on the role of technology in public health.
 - **Design leaders dinner** — Twenty design leaders talked about how effective design can be used to impact the world's most intractable problems.
