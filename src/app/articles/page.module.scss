@@ -698,3 +698,20 @@
   color: var(--color-dark-green);
   opacity: 0.5;
 }
+
+// "Watch our intro" featured-article block on the About page, slotted
+// inside the left column under "What success looks like".
+.aboutFeaturedArticle {
+  margin-top: 2rem;
+}
+
+.aboutFeaturedArticle .articleList {
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .aboutFeaturedArticle .articleList {
+    grid-template-columns: 1fr;
+  }
+}

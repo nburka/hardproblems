@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Team } from '../../components/Team';
+import ArticleCard from '../../components/ArticleCard';
+import { getArticleBySlug } from '../../lib/articles';
+import articlesStyles from '../articles/page.module.scss';
 
 export default function Page() {
+  const featuredArticle = getArticleBySlug('explain-hard-problems');
   return (
     <>
       <section className="left">
@@ -67,6 +71,15 @@ export default function Page() {
           In the broader sense, our goals are to change the culture of tech to
           value people who work on hard problems.
         </p>
+
+        {featuredArticle && (
+          <div className={articlesStyles.aboutFeaturedArticle}>
+            <h3 className="space-top-large">Watch our intro</h3>
+            <ul className={articlesStyles.articleList}>
+              <ArticleCard article={featuredArticle} />
+            </ul>
+          </div>
+        )}
       </section>
       <section className="right">
         <h3>What we offer</h3>
