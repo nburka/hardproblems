@@ -4,8 +4,8 @@ slug: 'design-in-public-health-in-india'
 
 excerpt: "Two of India's leading public health experts share their experience with design and technology."
 
-author: 'Daniel Burka'
-authorSlug: 'daniel-burka'
+author: 'Mahima Chandak'
+authorSlug: 'mahima-chandak'
 
 publishedAt: '2025-06-03'
 updatedAt: '2025-06-03'

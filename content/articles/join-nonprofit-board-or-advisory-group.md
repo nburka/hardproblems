@@ -2,7 +2,7 @@
 title: 'How to join a nonprofit board'
 slug: 'join-nonprofit-board-or-advisory-group'
 
-excerpt: 'Can’t work full-time on a hard problem? Consider joining a charity as a volunteer in a strategic position.'
+excerpt: "If you can’t tackle a hard problem full-time (yet), consider joining a charity's board."
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
@@ -46,7 +46,7 @@ canonicalUrl: ''
 
 # How to join a nonprofit board {#join-nonprofit-board-or-advisory-group}
 
-_Can’t work full-time on a hard problem, yet? Consider joining a charity as a volunteer in a strategic position._{.intro}
+_If you can’t tackle a hard problem full-time (yet), consider joining a charity's board._{.intro}
 
 <div class="note">
 
@@ -69,7 +69,7 @@ Over the following year, I stayed in close contact with Mariana and her team, fa
 
 In my experience, a nonprofit board functions similarly to a corporate board but with a few distinct priorities. Boards typically meet on a fixed schedule; for example, Laboratoria's board met every two months.
 
-- **Focus on strategy.** Your primary responsibility is to maintain a high-level perspective. While the internal team handles day-to-day operations, the board evaluates whether the organization is meeting its broader strategic objectives. My friend [Sam Nguyen](https://www.linkedin.com/in/sampng/) points out: "As a digital trustee, my role is to help each organization understand where technology can support its operations and its mission."
+- **Focus on strategy.** Your primary responsibility is to maintain a high-level perspective. While the internal team handles day-to-day operations, the board evaluates whether the organization is meeting its broader strategic objectives. My friend [Sam Nguyen](https://www.linkedin.com/in/sampng/) who is on the board of [Resonate Arts](https://www.linkedin.com/company/resonatearts/) points out: "As a digital trustee, my role is to help each organization understand where technology can support its operations and its mission."
 - **Ensure financial prudence.** Is the nonprofit using its money wisely? You'll have to put your business hat on and think strategically about money and how to put it to use most effectively while safeguarding the precious money that has been donated to the cause.
 - **Uphold ethical and legal standards.** The board ensures the organization maintains high ethical standards, particularly during challenges. When facing difficulties, the board must prioritize what is right over what is easy or merely protective of the organization.
 - **Provide connections.** Your professional network is a valuable asset. At critical junctures, you can leverage your connections to bring specialized expertise into the organization.
@@ -138,10 +138,12 @@ I hope you find a way to contribute through a board or advisory role. When the t
 
 [Jeff Barnes](https://www.linkedin.com/in/texburgher/), Head of Design at [Tavus](https://www.tavus.io), and ex-[Googler](https://google.com) says: "Make sure you understand the nature and requirements of the work up-front. Talk to other board members before you sign up. Board service can be incredibly gratifying but also emotionally taxing and time-consuming. As with any significant undertaking, due diligence is your friend. Once you commit, serve with joy and intensity. And maybe most importantly, establish success metrics, exit criteria, and succession planning intentions as early as you can. Too many servants let their noble commitments become albatrosses simply because they never planned to pass the baton."
 
-### "Get outside of your bubble"
+### "Direct experience is not required"
 
-[Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/) told me: "It’s been mind-expanding. You get in a bubble when you work in Big Tech. Being on these boards has opened up a whole new world. You get exposure to groups of people who are outside your standard network and who think differently from you. I'm on a human rights board where I meet with lawyers who are working all over the world in places like Ethiopia and Bangladesh! It really broadens my experience from my home in Los Gatos, California."
+[Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/) told me: "Don't rule yourself out from getting involved with an organization just because you don't have direct experience in that area. For example, there is no way that I would be qualified to work at the [Center for Justice and Accountability](https://cja.org/), the human rights organization whose board I serve on. I don't have a legal degree and no experience in human rights. However, so many of the skills that we develop and have accumulated as senior design leaders are very relevant and transferrable to board work. The biggest problems that non-profits are trying to address are often complex and systemic, the solutions will require synthesis across multiple industries, areas, and disciplines and will also need clear articulation, judgement and critical thinking. Bringing some of those skills that you've honed in your own industry to a different space can be hugely valuable to not just the non-profit but also to you."
 
 ### "Who are you are willing to give up your time for?"
 
 [Desigan Chinniah](https://uk.linkedin.com/in/desiganchinniah) who serves on several boards and advisory groups (including with me on [Our Future Health](https://ourfuturehealth.org.uk/)) told me: "You should first better know what sorts of organisations you are willing to give up your time for. What sector, what mission and why it matters to you. Spend sometime researching and create a shortlist of organisations that you believe meet your criteria. Look at who in your networks has either worked for or had experiences within these orgs or similar orgs. Talk to these folks. It's a bonus if they are or have been on the board of that org itself. Or perhaps they know others that are. Even if you don't know anyone mention it or your desire to be on a board to people within these worlds. They'll sometimes surprise when opportunities arise as opposed to you seeing them only when listed."
+
+Rochelle (see above) gives similar advice: "Choosing a non-profit to work with requires a very different approach from how you'd approach finding a job. In tech, we often think about committing to a company for the next 3-5 years. We often evaluate companies based on impact (the most users, money, etc). Where can you get the biggest, fastest personal ROI for your time? With non-profit work, you'll want to pick a cause that you genuinely care about and can imagine staying involved with for the next 20-30 years. Because of that, sometimes picking a niche cause or organization that genuinely speaks to you can be better than choosing one that simply has bigger 'reach' or a 'name brand'. The challenges in these spaces are often gnarly, complex problems that take decades to address so you want to plan for that long term commitment. If you put in that investment, there is a lot of value that you'll derive from seeing how you can help to support an important cause over a sustained period of time."

@@ -11,7 +11,8 @@ import {
   Landmark,
   HandHelping,
   Earth,
-  Gem
+  Gem,
+  Users
 } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
 import { isHardProblemsPick } from './filters';
@@ -41,8 +42,9 @@ function getSectorIcon(displayed: string) {
   const key = displayed.toLowerCase().trim();
   switch (key) {
     case 'healthcare':
-    case 'public health':
       return Activity;
+    case 'public health':
+      return Users;
     case 'education':
       return GraduationCap;
     case 'personal health':
