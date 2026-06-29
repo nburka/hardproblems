@@ -57,47 +57,6 @@ export default function Page() {
           fundamentally important problems.
         </p>
 
-        <h3 className="space-top-large">Building bridges</h3>
-        <p>
-          Many of the world’s smartest and most dedicated teams tackling hard
-          problems struggle to get help from (or hire) experienced designers who
-          are integral to designing and implementing important solutions. The
-          technical part of problem solving, which we refer to simply as tech,
-          is seen as an “add-on” to be hired out at the end of research and
-          planning when it’s much more effective to integrate tech into
-          problem-solving from the start.
-        </p>
-        <p>
-          At the same time, most designers don’t think it’s a viable career move
-          to work full-time on hard problems and decide to focus on
-          “prestigious” Silicon Valley career paths instead. Even if they do
-          want to transition to working on something meaningful, they can’t see
-          where they might have an impact.
-        </p>
-        <p>
-          We aim to solve this divide by bridging the gap and championing the
-          importance of practical tech for good.
-        </p>
-
-        <Image
-          src="/images/illustration-bridge.svg"
-          width="80"
-          height="80"
-          alt="Illustration of two hands shaking. One is a designer and the other is a environmentalist, doctor, epidemiologist
-        climatologist who is working on hard problems "
-          className="image-full space-top-large"
-        />
-
-        <div className="captions desktop">
-          <p className="caption-right">
-            <b>Environmentalists</b>, <b>doctors</b>, <b>epidemiologists</b>, &
-            others working on hard problems
-          </p>
-          <p className="caption-left">
-            <b>Designers</b> who want to work on hard problems
-          </p>
-        </div>
-
         <h3 className="space-top-large">What success looks like</h3>
         <p>
           Thinking of this in terms of KPIs, we’d first think of measuring: the
