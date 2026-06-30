@@ -23,13 +23,13 @@ featured: false
 
 thumbnailVideo: '/videos/epidemiology-ganesh.mp4'
 
-seoTitle: 'Design in Public Health in India'
+seoTitle: 'Design in public health in India'
 seoDescription: "Two of India's leading public health experts share their experience with design and technology."
 
 canonicalUrl: ''
 ---
 
-# Design in Public Health in India {#design-in-public-health-in-india}
+# Design in public health in India {#design-in-public-health-in-india}
 
 _Two of India's leading public health experts share their experience with design and technology._{.intro}
 

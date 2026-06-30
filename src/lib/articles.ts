@@ -198,7 +198,7 @@ const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
     'Reflections and writing about hard problems and impact-driven careers.',
   advice:
     'Practical guidance for navigating impact-driven careers and the work that matters.',
-  reading:
+  'book-reviews':
     'Books and reading recommendations for impact-driven careers and the work that matters.',
   tools:
     'Practical tools and rubrics for thinking through impact-driven work.',

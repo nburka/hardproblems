@@ -204,7 +204,7 @@ p.intro {
   background: var(--color-pick-bg);
   color: var(--color-pick-text);
   font-weight: 500;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-family: var(--font-sans);
   vertical-align: middle;
 }

@@ -12,11 +12,12 @@ updatedAt: '2026-06-25'
 
 status: 'published' # draft | review | published
 
-articleType: 'Reading' # Article | Reading | Podcast | Opinion
+articleType: 'Book reviews' # Article | Book reviews | Podcast | Opinion
 
 topics:
   - careers
   - public-health
+  - healthcare
   - climate-change
 
 organizations:
@@ -125,6 +126,10 @@ Journalist Tracy Kidder follows the life and work of [Paul Farmer](https://en.wi
 ![](/images/content/image-books-public-health.jpg)
 
 ## Best for designers who <span class="highlight-underline">want to work in healthcare</span> {#best-for-designers-who-want-to-work-in-healthcare}
+
+<h3 class="book-heading"><a href="https://www.goodreads.com/en/book/show/23131174-the-digital-doctor"><strong>The Digital Doctor</strong> by Robert Wachter</a></h3>
+
+Electronic medical records and other digital tools for healthcare workers were meant to revolutionize patient care and result in better health outcomes. What actually happened? Doctors are no longer making eye contact with their patients and they spend a large percentage of their time doing clerical work instead of clinical work. Many (most?) of the promised outcomes have never come to pass. This book provides excellent insight into what went wrong and how we might do better going forward.
 
 <h3 class="book-heading"><a href="https://mitpress.mit.edu/9780262539135/health-design-thinking/"><strong>Health Design Thinking</strong> by Dr. Bon Ku and Ellen Lupton</a></h3>
 
