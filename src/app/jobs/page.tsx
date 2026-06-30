@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import JobsList from './JobsList';
 import { fetchJobs } from './fetchJobs';
+import ArticleCard from '../../components/ArticleCard';
+import { getAllArticles } from '../../lib/articles';
+import articleStyles from '../articles/page.module.scss';
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
@@ -19,6 +22,9 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const jobs = await fetchJobs();
+  const careersArticles = getAllArticles()
+    .filter((a) => a.topics.includes('careers'))
+    .slice(0, 6);
 
   const filterHeader = (
     <>
@@ -61,6 +67,16 @@ export default async function Page() {
           </Suspense>
         )}
       </section>
+      {careersArticles.length > 0 && (
+        <section className={styles.careersArticles}>
+          <h2>Careers</h2>
+          <ul className={articleStyles.articleList}>
+            {careersArticles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }

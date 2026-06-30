@@ -824,3 +824,18 @@
     display: contents;
   }
 }
+
+// Articles tagged "careers" rendered as a section below the job board
+// columns. Inherits the standard .articleList card layout — single
+// column on mobile, 3-up grid on desktop.
+.careersArticles {
+  margin-top: 6rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .careersArticles :global(.articleList),
+  .careersArticles ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem 3rem;
+  }
+}
