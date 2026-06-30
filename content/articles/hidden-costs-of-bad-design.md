@@ -56,6 +56,8 @@ From my experience, badly designed digital and paper tools in public health have
 >
 > — [Dr. Ralf Speth](https://en.wikipedia.org/wiki/Ralf_Speth), Tata Motors
 
+![](/images/content/image-busy-healthcare-worker.png){.float-right .float-right-smaller}
+
 ## Badly designed tools take up too much time {#badly-designed-tools-take-up-too-much-time}
 
 Time is maybe the most precious commodity in healthcare. Time for healthcare workers to listen to patients, time to do thorough diagnostics, time to make sound judgments about clinical care, and time for compassionate counseling.

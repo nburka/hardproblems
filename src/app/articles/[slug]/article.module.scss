@@ -676,6 +676,13 @@
     margin: 0 0 1rem 1.5rem;
   }
 
+  // 30% smaller variant of the float-right image — combine the two
+  // classes in markdown: `{.float-right .float-right-smaller}`.
+  img:global(.float-right-smaller) {
+    width: 336px;
+    max-width: 42%;
+  }
+
   // Clear floats inside the body so following sections don't wrap around.
   &::after {
     content: '';
