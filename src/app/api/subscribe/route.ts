@@ -168,7 +168,7 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify({
           email,
-          reactivate_existing: false,
+          reactivate_existing: true,
           send_welcome_email: true,
           utm_source: 'hardproblems.com',
           utm_medium: 'custom_form'
@@ -193,11 +193,13 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log('[subscribe] Beehiiv success', {
-      email,
-      status: res.status,
-      body: responseText
-    });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[subscribe] Beehiiv success', {
+        email,
+        status: res.status,
+        body: responseText
+      });
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[subscribe] Beehiiv request failed', err);
