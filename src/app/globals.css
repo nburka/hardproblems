@@ -824,18 +824,211 @@ ul ul li {
   font-size: var(--font-size-sm);
 }
 
-iframe.newsletter-form {
+/* Custom newsletter subscribe form — replaces the Beehiiv iframe.
+   The client component posts to /api/subscribe, which forwards to the
+   Beehiiv API server-side. */
+.newsletter-form {
   margin: 0.4em 0 0 0;
   width: 100%;
   position: relative;
   top: -2px;
 }
 
-/* Only shrink the form to fit the compact header column — at full size
-   everywhere else (e.g. the mobile newsletter page). */
-.site-header-newsletter iframe.newsletter-form {
-  scale: 90%;
+.newsletter-form-field {
+  display: flex;
+  align-items: center;
+  padding: 4px 4px 4px 12px;
+  background: #fff;
+  border: 1px solid #cbead8;
+  border-radius: 100px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
+
+.newsletter-form-icon {
+  flex: 0 0 auto;
+  color: #7ba793;
+  margin-right: 8px;
+}
+
+.newsletter-form-field:focus-within {
+  border-color: #84d9a6;
+  box-shadow: 0 0 0 3px rgba(132, 217, 166, 0.5);
+}
+
+.newsletter-form-email {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  height: 32px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #231f20;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.newsletter-form-email::placeholder {
+  color: #7ba793;
+  opacity: 1;
+}
+
+.newsletter-form-email:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletter-form-submit {
+  flex: 0 0 auto;
+  padding: 0 14px;
+  height: 32px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  background: #231f20;
+  border: 1px solid #231f20;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.newsletter-form-submit:hover:not(:disabled),
+.newsletter-form-submit:focus-visible:not(:disabled) {
+  background: #235337;
+  border-color: #235337;
+  outline: none;
+}
+
+.newsletter-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Visually hidden honeypot field — bots see and fill it, humans don't. */
+.newsletter-form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.newsletter-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 23, 20, 0.55);
+  animation: newsletter-modal-fade 0.15s ease-out;
+}
+
+.newsletter-modal {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 2rem 1.75rem 1.75rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: newsletter-modal-pop 0.18s ease-out;
+}
+
+.newsletter-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #6b6f6d;
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.newsletter-modal-close:hover,
+.newsletter-modal-close:focus-visible {
+  background: #f0f2f1;
+  color: #231f20;
+  outline: none;
+}
+
+.newsletter-modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.newsletter-modal--success .newsletter-modal-icon {
+  color: #4ea373;
+}
+
+.newsletter-modal--error .newsletter-modal-icon {
+  color: #c2310f;
+}
+
+.newsletter-modal-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #231f20;
+}
+
+.newsletter-modal-body {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #4a4f4d;
+}
+
+.newsletter-modal-cta {
+  display: inline-block;
+  min-width: 120px;
+  padding: 0 18px;
+  height: 40px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  background: #231f20;
+  border: 1px solid #231f20;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.newsletter-modal-cta:hover,
+.newsletter-modal-cta:focus-visible {
+  background: #235337;
+  border-color: #235337;
+  outline: none;
+}
+
+@keyframes newsletter-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes newsletter-modal-pop {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 
 .container section.left,
 .container section.right {
