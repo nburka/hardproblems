@@ -14,6 +14,7 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "leaflet": "^1.9.4",
+    "lucide-react": "^1.22.0",
     "markdown-it": "^14.2.0",
     "markdown-it-attrs": "^5.0.0",
     "next": "15.5.18",
