@@ -7,7 +7,7 @@ excerpt: 'Our co-working space in London is open to teams tackling climate chang
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
 
-publishedAt: '2026-02-14'
+publishedAt: '2026-02-19'
 updatedAt: '2026-02-14'
 
 status: 'published' # draft | review | published

@@ -184,6 +184,25 @@ p.intro {
   font-weight: 400;
 }
 
+/* Article image → click to open the full-size source in a new tab.
+   Added server-side in articles.ts by wrapping non-.float-right <img>
+   tags in an anchor. Kill the paragraph-link underline and give the
+   image a subtle brighten on hover for click-affordance. */
+.article-image-link,
+.article-image-link:visited {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.article-image-link img {
+  transition: filter 0.2s ease;
+}
+
+.article-image-link:hover img,
+.article-image-link:focus-visible img {
+  filter: brightness(1.03) saturate(1.05);
+}
+
 /* Light-green underline used inline in article headings to draw the eye
    to a phrase (e.g. the section qualifier on the books article).
    text-decoration lets us tuck the stroke close to the baseline via
@@ -569,6 +588,14 @@ nav.site-nav-bar::-webkit-scrollbar {
   outline: none;
 }
 
+/* Nav items that hide at the desktop breakpoint — e.g. the newsletter
+   link, since the header subscribe form already links there on desktop. */
+@media only screen and (min-width: 1000px) {
+  .site-nav-bar a.nav-hide-desktop {
+    display: none;
+  }
+}
+
 .site-nav-bar a:hover::before,
 .site-nav-bar a:focus-visible::before {
   transform: translateY(0);
@@ -844,6 +871,126 @@ ul ul li {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Footer copy of the newsletter form — keep the pill compact so it
+   doesn't dominate the column, and drop the form's default top margin
+   so the label sits flush under the "Newsletter" heading. */
+.footer-col .newsletter-form {
+  margin-top: 0;
+}
+
+.footer-col .newsletter-form-field {
+  max-width: 220px;
+}
+
+/* Footer label carries a longer descriptive sentence — let it wrap,
+   always render the linked "newsletter" (mobile default hides it),
+   and add a half-line gap before the pill. Match the footer paragraph
+   font-size for consistency with the other columns. */
+.footer-col .newsletter-form-label {
+  display: block;
+  margin-bottom: 1em;
+  white-space: normal;
+  font-size: var(--font-size-sm);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+.footer-col .newsletter-form-label-link {
+  display: inline;
+}
+
+.footer-col .newsletter-form-label a,
+.footer-col .newsletter-form-label a:visited {
+  text-decoration: none;
+}
+
+.footer-col .newsletter-form-label-plain {
+  display: none;
+}
+
+.newsletter-form-label {
+  font-size: 0.95rem;
+  color: #231f20;
+  white-space: nowrap;
+}
+
+.newsletter-form-label a,
+.newsletter-form-label a:visited {
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.newsletter-form-label a:hover,
+.newsletter-form-label a:focus {
+  text-decoration-color: currentColor;
+}
+
+/* Mobile default: show the plain-text version, hide the link. */
+.newsletter-form-label-link {
+  display: none;
+}
+
+.newsletter-form-label-plain {
+  display: inline;
+}
+
+@media only screen and (min-width: 1000px) {
+  .newsletter-form-label-link {
+    display: inline;
+  }
+  .newsletter-form-label-plain {
+    display: none;
+  }
+}
+
+/* Mobile only: make the label bold and add breathing room before the
+   pill. Applies wherever the form appears (header is hidden on mobile,
+   so this mostly shows up on the /newsletter page). */
+@media only screen and (max-width: 999px) {
+  .newsletter-form-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+/* Desktop only: keep the label + pill on one line, aligned right;
+   cap the pill's width; expand it while focused. On mobile the header
+   form is left at its natural (full-width) block layout, and focus
+   doesn't resize it. */
+@media only screen and (min-width: 1000px) {
+  .site-header-newsletter .newsletter-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.6rem;
+  }
+
+  .site-header-newsletter .newsletter-form-field {
+    max-width: 208px;
+    transition: max-width 0.25s ease, border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .site-header-newsletter
+    .newsletter-form:focus-within
+    .newsletter-form-label {
+    display: none;
+  }
+
+  .site-header-newsletter
+    .newsletter-form:focus-within
+    .newsletter-form-field {
+    max-width: 380px;
+  }
+}
+
 .newsletter-form-icon {
   flex: 0 0 auto;
   color: #7ba793;
@@ -880,17 +1027,32 @@ ul ul li {
 
 .newsletter-form-submit {
   flex: 0 0 auto;
-  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
   height: 32px;
+  padding: 0;
   font: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
   color: #fff;
   background: #231f20;
   border: 1px solid #231f20;
   border-radius: 100px;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.newsletter-form-submit-icon {
+  display: block;
+}
+
+.newsletter-form-submit-icon--spin {
+  animation: newsletter-submit-spin 0.9s linear infinite;
+}
+
+@keyframes newsletter-submit-spin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
 }
 
 .newsletter-form-submit:hover:not(:disabled),
@@ -1331,7 +1493,7 @@ ul ul li {
      footer columns start/end at the same x-coordinate as the article
      columns above. */
   .footer-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 3rem 2rem;
     padding: 0 42px;
   }

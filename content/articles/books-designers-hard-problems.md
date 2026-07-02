@@ -7,7 +7,7 @@ excerpt: 'Books that we often recommend to designers making the jump.'
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-24'
+publishedAt: '2026-06-29'
 updatedAt: '2026-06-25'
 
 status: 'published' # draft | review | published

@@ -7,7 +7,7 @@ excerpt: 'A short video explaining why we want to see more designers tackling ur
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-22'
+publishedAt: '2026-06-27'
 updatedAt: '2026-06-22'
 
 status: 'published' # draft | review | published

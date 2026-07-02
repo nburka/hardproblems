@@ -8,6 +8,7 @@ import {
   FileHeart,
   Copyright
 } from 'lucide-react';
+import NewsletterForm from './NewsletterForm';
 
 // Shared props for the small icons that sit before each footer link
 // (or in the Notices column). They use currentColor so they inherit
@@ -115,6 +116,10 @@ export function Footer() {
           alt="UK Government Logo"
           style={{ opacity: 0.5 }}
         />
+      </div>
+      <div className="footer-col">
+        <h3>Newsletter</h3>
+        <NewsletterForm labelSuffix=" to get bi-weekly news and info on jobs that tackle urgent issues." />
       </div>
       <div className="footer-col">
         <h3>Notices</h3>

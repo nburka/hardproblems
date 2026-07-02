@@ -65,6 +65,47 @@ export type Article = {
   contentHtml: string;
 };
 
+// Wrap standalone <img> tags in an anchor that opens the source file
+// in a new tab, so readers can view the full-resolution image. Skip
+// images that are:
+//   1. Already inside an <a>...</a> (the markdown author gave them a
+//      specific link), or
+//   2. Tagged with `.float-right` — inline aside images (portraits,
+//      small illustrations) where click-to-enlarge would be off-tone.
+// We walk tag-by-tag with a running anchor-depth counter so nested
+// anchors and text between tags are handled correctly.
+function wrapImagesInLinks(html: string): string {
+  const tagRe = /<(\/?)(a|img)\b([^>]*)>/gi;
+  let result = '';
+  let lastIndex = 0;
+  let anchorDepth = 0;
+  let m: RegExpExecArray | null;
+  while ((m = tagRe.exec(html)) !== null) {
+    result += html.slice(lastIndex, m.index);
+    const [full, slash, tagName, attrs] = m;
+    if (tagName.toLowerCase() === 'a') {
+      if (slash === '/') {
+        anchorDepth = Math.max(0, anchorDepth - 1);
+      } else {
+        anchorDepth++;
+      }
+      result += full;
+    } else {
+      const isFloatRight =
+        /class\s*=\s*["'][^"']*\bfloat-right\b[^"']*["']/i.test(attrs);
+      const srcMatch = attrs.match(/\bsrc\s*=\s*["']([^"']+)["']/i);
+      if (anchorDepth > 0 || isFloatRight || !srcMatch) {
+        result += full;
+      } else {
+        result += `<a href="${srcMatch[1]}" target="_blank" rel="noopener noreferrer" class="article-image-link">${full}</a>`;
+      }
+    }
+    lastIndex = m.index + full.length;
+  }
+  result += html.slice(lastIndex);
+  return result;
+}
+
 function listArticleFiles(): string[] {
   if (!fs.existsSync(ARTICLES_DIR)) return [];
   return fs
@@ -80,7 +121,7 @@ function readArticleFile(filename: string): Article | null {
   const parsed = matter(raw);
   const data = parsed.data as Partial<Article>;
   const content = parsed.content;
-  const contentHtml = md.render(content);
+  const contentHtml = wrapImagesInLinks(md.render(content));
 
   return {
     slug: typeof data.slug === 'string' && data.slug ? data.slug : slug,

@@ -7,7 +7,7 @@ excerpt: 'Meaningful roles can be hard to surface. A few simple tricks help you 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-03-01'
+publishedAt: '2026-03-06'
 updatedAt: '2026-03-01'
 
 status: 'published' # draft | review | published
