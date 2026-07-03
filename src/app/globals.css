@@ -581,14 +581,6 @@ nav.site-nav-bar::-webkit-scrollbar {
   outline: none;
 }
 
-/* Nav items that hide at the desktop breakpoint — e.g. the newsletter
-   link, since the header subscribe form already links there on desktop. */
-@media only screen and (min-width: 1000px) {
-  .site-nav-bar a.nav-hide-desktop {
-    display: none;
-  }
-}
-
 .site-nav-bar a:hover::before,
 .site-nav-bar a:focus-visible::before {
   transform: translateY(0);
@@ -1041,13 +1033,14 @@ ul ul li {
   height: 32px;
   padding: 0;
   font: inherit;
-  color: #fff;
-  background: #231f20;
-  border: 1px solid #231f20;
+  color: #231f20;
+  background: #fff;
+  border: 1px solid #cbead8;
   border-radius: 100px;
   cursor: pointer;
   transition:
     background 0.15s ease,
+    color 0.15s ease,
     border-color 0.15s ease;
 }
 
@@ -1070,6 +1063,7 @@ ul ul li {
 
 .newsletter-form-submit:hover:not(:disabled),
 .newsletter-form-submit:focus-visible:not(:disabled) {
+  color: #fff;
   background: #235337;
   border-color: #235337;
   outline: none;

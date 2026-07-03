@@ -11,17 +11,11 @@ type NavItem = {
   short: string;
   long: string;
   matches?: (pathname: string) => boolean;
-  // When true, the link is hidden at the desktop breakpoint. Used for
-  // items whose destination is already accessible another way on
-  // desktop (e.g. the newsletter, reachable via the header subscribe
-  // form).
-  hideOnDesktop?: boolean;
 };
 
 const NAV_ITEMS: NavItem[] = [
   { href: '/jobs', short: 'Jobs', long: 'Job board' },
   { href: '/podcast', short: 'Podcast', long: 'Podcast' },
-  { href: '/newsletter', short: 'News', long: 'Newsletter', hideOnDesktop: true },
   { href: '/about', short: 'About', long: 'About us' }
 ];
 
@@ -33,14 +27,11 @@ export default function TopBar() {
         const isActive = item.matches
           ? item.matches(pathname)
           : pathname === item.href;
-        const classes = ['link'];
-        if (isActive) classes.push('active');
-        if (item.hideOnDesktop) classes.push('nav-hide-desktop');
         return (
           <Link
             key={item.href}
             href={item.href}
-            className={classes.join(' ')}
+            className={`link ${isActive ? 'active' : ''}`}
           >
             <span className="nav-label-short">{item.short}</span>
             <span className="nav-label-long">{item.long}</span>
