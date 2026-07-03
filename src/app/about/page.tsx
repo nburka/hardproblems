@@ -127,6 +127,17 @@ export default function Page() {
             <b className="grid-link">Co-working space</b>
             <p className="grid-detail">In London, UK</p>
           </Link>
+
+          <Link href="/newsletter" className="grid-cell">
+            <Image
+              src="/images/icon-lightbulb.svg"
+              width="120"
+              height="120"
+              alt="Lightbulb."
+            />
+            <b className="grid-link">Newsletter</b>
+            <p className="grid-detail">Weekly updates</p>
+          </Link>
         </div>
         <h3 className="divider">Team</h3>
         <p>We are an all-volunteer team from around the world.</p>

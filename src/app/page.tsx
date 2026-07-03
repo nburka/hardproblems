@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import ArticleCard from '../components/ArticleCard';
 import CoworkingRotator from '../components/CoworkingRotator';
+import NewsletterModule from '../components/NewsletterModule';
 import { getAllArticles } from '../lib/articles';
 import { fetchJobs } from './jobs/fetchJobs';
 import JobsTeaser from './jobs/JobsTeaser';
@@ -57,6 +58,15 @@ export default async function Home() {
           <ul className={styles.articleList}>
             {remainingArticles.map((article, i) => (
               <Fragment key={article.slug}>
+                {/* Mobile-only newsletter module inserted just above the
+                    "More content" heading. Hidden on desktop — a
+                    desktop-only copy is slotted before the co-working
+                    aside further down. */}
+                {i === 2 && (
+                  <li className={styles.newsletterModuleRowMobile}>
+                    <NewsletterModule />
+                  </li>
+                )}
                 {/* Mobile-only "More content" heading right before the
                     first compact card. Hidden on desktop. */}
                 {i === 2 && (
@@ -74,6 +84,11 @@ export default async function Home() {
                     left grid column right before the secondary hero
                     so the row reads as: [aside | hero spanning 2/3].
                     Hidden on mobile via CSS. */}
+                {i === 3 && (
+                  <li className={styles.newsletterModuleRow}>
+                    <NewsletterModule />
+                  </li>
+                )}
                 {i === 3 && (
                   <li className={styles.coworkingAside}>
                     <h3>Co-working in London</h3>

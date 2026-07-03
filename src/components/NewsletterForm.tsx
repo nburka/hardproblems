@@ -146,14 +146,7 @@ export default function NewsletterForm({ labelSuffix = ':' }: Props = {}) {
         </label>
 
         <span className="newsletter-form-label">
-          Join our{' '}
-          <Link
-            href="/newsletter"
-            className="newsletter-form-label-link"
-          >
-            newsletter
-          </Link>
-          <span className="newsletter-form-label-plain">newsletter</span>
+          Join our <Link href="/newsletter">newsletter</Link>
           {labelSuffix}
         </span>
         <div className="newsletter-form-field">

@@ -120,27 +120,6 @@
   color: #666;
 }
 
-// "Join the newsletter" CTA pointing at the header form. Hidden on
-// mobile (the header form isn't there) and the arrow floats to the
-// right of the h3 so the heading text flows around it.
-.joinSection {
-  display: none;
-}
-
-@media only screen and (min-width: 1000px) {
-  .joinSection {
-    display: block;
-    margin-bottom: 2.5rem;
-  }
-}
-
-.newsletterArrow {
-  float: right;
-  width: 80px;
-  height: auto;
-  margin: -5rem 0 0.5rem 0.75rem;
-}
-
 // Date label sitting under the title/excerpt. Same small monospace
 // dark-green text used elsewhere on the site (kickers, bylines),
 // no pill background.

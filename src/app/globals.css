@@ -13,22 +13,24 @@
 
   /* Type stacks. `--font-instrument-serif` is supplied by next/font in
      layout.tsx, so it isn't re-declared here. */
-  --font-sans: 'SF Pro Text', 'San Francisco', -apple-system,
-    BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-  --font-mono: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  --font-sans:
+    'SF Pro Text', 'San Francisco', -apple-system, BlinkMacSystemFont,
+    Helvetica, Arial, sans-serif;
+  --font-mono:
+    'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
 
   /* Font-size scale. Eight tokens, all in rem so they scale with the
      browser's user-set base size. Use the named tokens in component
      CSS rather than hardcoding `rem`/`px` values. */
-  --font-size-xs:   0.75rem;   /* 12px — kickers, badges, dates       */
-  --font-size-sm:   0.875rem;  /* 14px — meta, captions, footer       */
-  --font-size-base: 1rem;      /* 16px — body                         */
-  --font-size-md:   1.125rem;  /* 18px — intro, blockquote, mid       */
-  --font-size-lg:   1.375rem;  /* 22px — card titles, h3 small        */
-  --font-size-xl:   1.75rem;   /* 28px — h3 large, episode title      */
-  --font-size-2xl:  2.25rem;   /* 36px — h2                           */
-  --font-size-3xl:  3rem;      /* 48px — article h1, h2 desktop       */
+  --font-size-xs: 0.75rem; /* 12px — kickers, badges, dates       */
+  --font-size-sm: 0.875rem; /* 14px — meta, captions, footer       */
+  --font-size-base: 1rem; /* 16px — body                         */
+  --font-size-md: 1.125rem; /* 18px — intro, blockquote, mid       */
+  --font-size-lg: 1.375rem; /* 22px — card titles, h3 small        */
+  --font-size-xl: 1.75rem; /* 28px — h3 large, episode title      */
+  --font-size-2xl: 2.25rem; /* 36px — h2                           */
+  --font-size-3xl: 3rem; /* 48px — article h1, h2 desktop       */
 
   /* Shared size for every place the site sets `font-family: var(--font-mono)`
      (kickers, bylines, dates, the header tagline). Code blocks and
@@ -445,15 +447,6 @@ h1 {
   border: 0;
 }
 
-.site-header-newsletter {
-  /* Hidden on mobile — the Newsletter link in the nav serves the same
-     purpose at this width. Re-enabled at the desktop breakpoint below. */
-  display: none;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
 h1 a:link,
 h1 a:visited {
   color: #333;
@@ -667,7 +660,9 @@ nav.site-nav-bar::-webkit-scrollbar {
   flex-shrink: 0;
   color: var(--color-dark-green);
   opacity: 0.5;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 /* On hover, the icon next to an actual footer link (not the static
@@ -855,10 +850,88 @@ ul ul li {
    The client component posts to /api/subscribe, which forwards to the
    Beehiiv API server-side. */
 .newsletter-form {
-  margin: 0.4em 0 0 0;
   width: 100%;
-  position: relative;
-  top: -2px;
+}
+
+/* Full-width newsletter call-to-action band (NewsletterModule.tsx).
+   Drop-in anywhere on the site; light-green fill matches the footer,
+   and the label + pill sit centred within a comfortable max-width. */
+.newsletter-module {
+  box-sizing: border-box;
+  border-top: 1px solid var(--color-light-green);
+  border-bottom: 1px solid var(--color-light-green);
+  margin: 0;
+  width: 100%;
+}
+
+.newsletter-module-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.newsletter-module .newsletter-form {
+  margin: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.newsletter-module .newsletter-form-label {
+  display: block;
+  margin: 0;
+  white-space: normal;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--color-text);
+  max-width: 32em !important;
+  text-wrap: balance;
+}
+
+.newsletter-module .newsletter-form-label a,
+.newsletter-module .newsletter-form-label a:visited {
+  font-weight: 400;
+  color: var(--color-dark-green);
+  text-decoration: none;
+}
+
+.newsletter-module .newsletter-form-field {
+  /* Scales with the viewport on narrow screens (75vw) and caps at
+     340px on desktop, so the pill looks proportional whatever the
+     window width. */
+  width: min(340px, 75vw);
+}
+
+/* Desktop: try to sit the label to the left of the pill. Uses
+   flex-wrap so that if the sentence + pill won't fit alongside each
+   other (the label would have to wrap awkwardly) the label flows onto
+   its own row above the pill — same result as the mobile stacked
+   layout. */
+@media only screen and (min-width: 1000px) {
+  .newsletter-module-inner {
+    max-width: 820px;
+  }
+
+  .newsletter-module .newsletter-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem 1.25rem;
+  }
+
+  .newsletter-module .newsletter-form-label {
+    flex: 0 1 auto;
+    text-align: right;
+    font-size: var(--font-size-base);
+    max-width: 24em;
+    white-space: nowrap;
+  }
 }
 
 .newsletter-form-field {
@@ -868,7 +941,9 @@ ul ul li {
   background: #fff;
   border: 1px solid #cbead8;
   border-radius: 100px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 /* Footer copy of the newsletter form — keep the pill compact so it
@@ -898,17 +973,9 @@ ul ul li {
   text-wrap: balance;
 }
 
-.footer-col .newsletter-form-label-link {
-  display: inline;
-}
-
 .footer-col .newsletter-form-label a,
 .footer-col .newsletter-form-label a:visited {
   text-decoration: none;
-}
-
-.footer-col .newsletter-form-label-plain {
-  display: none;
 }
 
 .newsletter-form-label {
@@ -929,66 +996,6 @@ ul ul li {
 .newsletter-form-label a:hover,
 .newsletter-form-label a:focus {
   text-decoration-color: currentColor;
-}
-
-/* Mobile default: show the plain-text version, hide the link. */
-.newsletter-form-label-link {
-  display: none;
-}
-
-.newsletter-form-label-plain {
-  display: inline;
-}
-
-@media only screen and (min-width: 1000px) {
-  .newsletter-form-label-link {
-    display: inline;
-  }
-  .newsletter-form-label-plain {
-    display: none;
-  }
-}
-
-/* Mobile only: make the label bold and add breathing room before the
-   pill. Applies wherever the form appears (header is hidden on mobile,
-   so this mostly shows up on the /newsletter page). */
-@media only screen and (max-width: 999px) {
-  .newsletter-form-label {
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-}
-
-/* Desktop only: keep the label + pill on one line, aligned right;
-   cap the pill's width; expand it while focused. On mobile the header
-   form is left at its natural (full-width) block layout, and focus
-   doesn't resize it. */
-@media only screen and (min-width: 1000px) {
-  .site-header-newsletter .newsletter-form {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.6rem;
-  }
-
-  .site-header-newsletter .newsletter-form-field {
-    max-width: 208px;
-    transition: max-width 0.25s ease, border-color 0.15s ease,
-      box-shadow 0.15s ease;
-  }
-
-  .site-header-newsletter
-    .newsletter-form:focus-within
-    .newsletter-form-label {
-    display: none;
-  }
-
-  .site-header-newsletter
-    .newsletter-form:focus-within
-    .newsletter-form-field {
-    max-width: 380px;
-  }
 }
 
 .newsletter-form-icon {
@@ -1039,7 +1046,9 @@ ul ul li {
   border: 1px solid #231f20;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .newsletter-form-submit-icon {
@@ -1051,8 +1060,12 @@ ul ul li {
 }
 
 @keyframes newsletter-submit-spin {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .newsletter-form-submit:hover:not(:disabled),
@@ -1119,7 +1132,9 @@ ul ul li {
   border: none;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .newsletter-modal-close:hover,
@@ -1171,7 +1186,9 @@ ul ul li {
   border: 1px solid #231f20;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .newsletter-modal-cta:hover,
@@ -1182,15 +1199,24 @@ ul ul li {
 }
 
 @keyframes newsletter-modal-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes newsletter-modal-pop {
-  from { opacity: 0; transform: translateY(6px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-
 
 .container section.left,
 .container section.right {
@@ -1548,13 +1574,6 @@ ul ul li {
        ends where the right column's text ends. Vertical padding sets
        how close the green top/bottom rules sit to the nav contents. */
     padding: 1.25rem 42px;
-  }
-
-  .site-header-newsletter {
-    display: block;
-    justify-self: end;
-    margin: 0;
-    max-width: 400px;
   }
 
   h1 {

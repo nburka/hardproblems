@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { CalendarDays } from 'lucide-react';
 import Parser from 'rss-parser';
 import NewsletterSkeleton from './newsletterSkeleton';
-import NewsletterForm from '../../components/NewsletterForm';
+import NewsletterModule from '../../components/NewsletterModule';
 import styles from './page.module.scss';
 
 type Newsletter = {
@@ -57,9 +57,7 @@ export default function Page() {
           others  who want to work on hard problems.
         </p>
 
-        <div className="mobile-only">
-          <NewsletterForm />
-        </div>
+        <NewsletterModule />
 
         <h3 className="space-top-large">Recent newsletters</h3>
         <div className={styles.newsletters}>
@@ -112,21 +110,6 @@ export default function Page() {
         </div>
       </section>
       <section className="right">
-        <div className={styles.joinSection}>
-          <Image
-            src="/images/arrow-up.svg"
-            width="80"
-            height="80"
-            alt=""
-            className={styles.newsletterArrow}
-          />
-          <h3>Join the newsletter</h3>
-          <p>
-            Enter your email to get the newsletter in your inbox. You can
-            unsubscribe at any time.
-          </p>
-        </div>
-
         <h3>About the newsletter</h3>
         <ul className={styles.checklist}>
           <li>1-2 emails per month</li>

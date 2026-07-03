@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Instrument_Serif } from 'next/font/google';
 import TopBar from '../components/TopBar';
 import CodeBlockCopyButtons from '../components/CodeBlockCopyButtons';
-import NewsletterForm from '../components/NewsletterForm';
 import PostHogProvider from '../components/PostHogProvider';
 import { Footer } from '../components/Footer';
 import FooterIntro from '../components/FooterIntro';
@@ -64,9 +63,6 @@ export default function RootLayout({
                   Hard Problems<span className="hp-period">.</span>
                 </Link>
               </h1>
-              <div className="site-header-newsletter">
-                <NewsletterForm />
-              </div>
             </header>
             <TopBar />
             <div className="container">{children}</div>

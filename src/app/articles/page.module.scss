@@ -241,6 +241,21 @@
   margin: 0;
 }
 
+// Two slots for the NewsletterModule call-to-action:
+//   - .newsletterModuleRow      → desktop, spans all 3 grid columns
+//                                 right before the co-working aside.
+//   - .newsletterModuleRowMobile → mobile, sits just above the
+//                                 "More content" heading.
+// Each is hidden at the other breakpoint below.
+.newsletterModuleRow {
+  display: none;
+  margin: 0;
+}
+
+.newsletterModuleRowMobile {
+  margin: 0;
+}
+
 // Co-working aside slotted into the article grid on desktop next to
 // the secondary hero. Hidden on mobile via display:none; the desktop
 // @media block below positions it as col 1 spanning 2 rows so the
@@ -459,6 +474,18 @@
   .articleList {
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem 3rem;
+  }
+
+  // Desktop: show the module row and let it span all 3 columns.
+  .newsletterModuleRow {
+    display: block;
+    grid-column: 1 / -1;
+  }
+
+  // Desktop: hide the mobile-only module (the desktop one above
+  // covers the same role near the co-working aside).
+  .newsletterModuleRowMobile {
+    display: none;
   }
 
   // 2-up grid when the list lives inside a narrower left column

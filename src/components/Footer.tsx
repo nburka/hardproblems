@@ -119,7 +119,7 @@ export function Footer() {
       </div>
       <div className="footer-col">
         <h3>Newsletter</h3>
-        <NewsletterForm labelSuffix=" to get bi-weekly news and info on jobs that tackle urgent issues." />
+        <NewsletterForm labelSuffix=" for weekly news and meaningful jobs." />
       </div>
       <div className="footer-col">
         <h3>Notices</h3>

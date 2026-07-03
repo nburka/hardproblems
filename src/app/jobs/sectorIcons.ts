@@ -7,6 +7,7 @@ import {
   HandHelping,
   Earth,
   Users,
+  Palette,
   type LucideIcon
 } from 'lucide-react';
 
@@ -40,6 +41,8 @@ export function getSectorIcon(displayed: string): LucideIcon | null {
     case 'nonprofit support':
     case 'non-profit support':
       return HandHelping;
+    case 'culture':
+      return Palette;
     case 'other':
       return Earth;
     default:

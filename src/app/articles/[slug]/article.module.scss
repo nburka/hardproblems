@@ -1,3 +1,18 @@
+// Article-page-specific styling for the NewsletterModule sitting at the
+// top of every article. Only override the properties asked for; leave
+// width/margins alone. The wrapper uses `display: contents` so it
+// doesn't introduce a new flex/box layer under `.container`.
+.newsletterWrap {
+  display: contents;
+}
+
+.newsletterWrap :global(.newsletter-module) {
+  background: var(--color-pale-green);
+  border-top: none;
+  border-bottom: none;
+  border-radius: 5px;
+}
+
 // Full-width wrapper holding the green divider so it spans the same width
 // as the line on /jobs, /about, etc. The .article inside is centered on a
 // narrower reading column for legible body text.
@@ -81,7 +96,7 @@
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
   color: var(--color-dark-green);
-  margin: 0 0 5em 0;
+  margin: 0 0 2em 0;
   text-align: center;
   text-transform: none;
 }
@@ -254,7 +269,7 @@
   // generic `.body p` rule above. Mobile uses a tighter gap because
   // the byline takes 3 stacked lines there.
   .byline {
-    margin: 0 0 5em 0;
+    margin: 0 0 2em 0;
   }
 
   @media only screen and (min-width: 1000px) {

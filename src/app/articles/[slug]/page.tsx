@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { BookOpen } from 'lucide-react';
 import ArticleCard from '../../../components/ArticleCard';
+import NewsletterModule from '../../../components/NewsletterModule';
 import {
   articleTypeSlug,
   formatPublishedDate,
@@ -138,6 +139,9 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      <div className={styles.newsletterWrap}>
+        <NewsletterModule />
+      </div>
       <section className={styles.articleWrap}>
         <article className={styles.article}>
         <header className={styles.header}>
