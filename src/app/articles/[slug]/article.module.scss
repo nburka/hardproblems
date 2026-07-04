@@ -10,7 +10,14 @@
   background: var(--color-pale-green);
   border-top: none;
   border-bottom: none;
-  border-radius: 5px;
+  border-radius: 0;
+  // Pull up by the nav's 2rem bottom margin so the module sits flush
+  // beneath the site nav.
+  margin-top: -2rem;
+}
+
+.newsletterWrap :global(.newsletter-module-inner) {
+  padding: 0.75rem 0;
 }
 
 // Full-width wrapper holding the green divider so it spans the same width

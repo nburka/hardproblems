@@ -30,8 +30,9 @@ export default async function Page() {
     <>
       <h2>Job board</h2>
       <p>
-        Jobs for designers who want to work on hard problems like healthcare,
-        public health, good government, and climate change.
+        Jobs for designers, researchers, PMs, and copywriters who want to work
+        on urgent problems like healthcare, public health, good government, and
+        climate change.
       </p>
     </>
   );

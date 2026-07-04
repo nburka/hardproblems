@@ -1,13 +1,13 @@
 ---
-title: 'Books for designers who want to work on hard problems'
+title: 'Books for people who want to work on hard problems'
 slug: 'books-designers-hard-problems'
 
-excerpt: 'Books that we often recommend to designers making the jump.'
+excerpt: 'We often recommend these books to designers, user researchers, PMs, and others making the jump.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-29'
+publishedAt: '2026-06-24'
 updatedAt: '2026-06-25'
 
 status: 'published' # draft | review | published
@@ -69,7 +69,7 @@ I spent almost 20 years designing pretty typical digital tools before I made the
 
 These are some of the books that we frequently recommend to designers who are setting out to make a positive difference in the world:
 
-## Best for designers <span class="highlight-underline">thinking about their next move</span> {#best-for-designers-thinking-about-their-next-move}
+## Best for people <span class="highlight-underline">thinking about their next move</span> {#best-for-designers-thinking-about-their-next-move}
 
 <h3 class="book-heading"><a href="https://www.moralambition.org/book"><strong>Moral Ambition</strong> by Rutger Bregman</a></h3>
 
@@ -81,7 +81,7 @@ Todd argues that your career is one of the biggest opportunities you have to mak
 
 ![](/images/content/image-books-next-move.jpg)
 
-## Best for designers who <span class="highlight-underline">want to avoid past mistakes</span> {#best-for-designers-who-want-to-avoid-past-mistakes}
+## Best for people who <span class="highlight-underline">want to avoid past mistakes</span> {#best-for-designers-who-want-to-avoid-past-mistakes}
 
 <h3 class="book-heading"><a href="https://geekheresy.org/"><strong>Geek Heresy</strong> by Kentaro Toyama</a> <span class="tag tag-pick"><span aria-hidden="true">⭐</span> Top pick</span></h3>
 
@@ -93,7 +93,7 @@ In this academic and well-researched book, Silvio Lorusso pushes back against th
 
 ![](/images/content/image-books-avoid-mistakes.jpg)
 
-## Best for designers who <span class="highlight-underline">want to work in the public sector</span> {#best-for-designers-who-want-to-work-in-the-public-sector}
+## Best for people who <span class="highlight-underline">want to work in the public sector</span> {#best-for-designers-who-want-to-work-in-the-public-sector}
 
 <h3 class="book-heading"><a href="https://www.goodreads.com/en/book/show/55225556-a-civic-technologist-s-practice-guide"><strong>A Civic Technologist's Practice Guide</strong> by Cyd Harrell</a> <span class="tag tag-pick"><span aria-hidden="true">⭐</span> Top pick</span></h3>
 
@@ -105,7 +105,7 @@ Journalist Michael Lewis tells the stories of public servants whose work quietly
 
 ![](/images/content/image-books-public-sector.jpg)
 
-## Best for designers who <span class="highlight-underline">want to work in public health</span> {#best-for-designers-who-want-to-work-in-public-health}
+## Best for people who <span class="highlight-underline">want to work in public health</span> {#best-for-designers-who-want-to-work-in-public-health}
 
 <h3 class="book-heading"><a href="https://www.gapminder.org/factfulness-book/"><strong>Factfulness</strong> by Hans Rosling</a> <span class="tag tag-pick"><span aria-hidden="true">⭐</span> Top pick</span></h3>
 
@@ -125,7 +125,7 @@ Journalist Tracy Kidder follows the life and work of [Paul Farmer](https://en.wi
 
 ![](/images/content/image-books-public-health.jpg)
 
-## Best for designers who <span class="highlight-underline">want to work in healthcare</span> {#best-for-designers-who-want-to-work-in-healthcare}
+## Best for people who <span class="highlight-underline">want to work in healthcare</span> {#best-for-designers-who-want-to-work-in-healthcare}
 
 <h3 class="book-heading"><a href="https://www.goodreads.com/en/book/show/23131174-the-digital-doctor"><strong>The Digital Doctor</strong> by Robert Wachter</a></h3>
 
@@ -141,7 +141,7 @@ In this classic book, Gawande explores a surprisingly simple idea: in complex en
 
 ![](/images/content/image-books-healthcare.jpg)
 
-## Best for designers who <span class="highlight-underline">want to work on climate change</span> {#best-for-designers-who-want-to-work-on-climate-change}
+## Best for people who <span class="highlight-underline">want to work on climate change</span> {#best-for-designers-who-want-to-work-on-climate-change}
 
 <h3 class="book-heading"><a href="https://mitpress.mit.edu/9780262548304/design-for-a-better-world/"><strong>Design for a Better World</strong> by Don Norman</a></h3>
 

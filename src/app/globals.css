@@ -211,7 +211,7 @@ p.intro {
    text-underline-offset. */
 .highlight-underline {
   text-decoration: underline;
-  text-decoration-color: var(--color-light-green);
+  text-decoration-color: #b7ddc8;
   text-decoration-thickness: 5px;
   text-underline-offset: 0.12em;
   text-decoration-skip-ink: none;
@@ -555,35 +555,17 @@ nav.site-nav-bar::-webkit-scrollbar {
   border-radius: 0;
   margin: 0;
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
   transition: color 0.125s ease;
-}
-
-/* Hover background slides up from the bottom of the link via a
-   ::before pseudo-element. `isolation: isolate` on the link creates a
-   local stacking context so z-index: -1 keeps the fill behind the
-   link's text without bleeding past the link itself. */
-.site-nav-bar a::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(132, 217, 166, 0.22);
-  transform: translateY(100%);
-  transition: transform 0.14s ease;
-  pointer-events: none;
-  z-index: -1;
 }
 
 .site-nav-bar a:hover,
 .site-nav-bar a:focus-visible {
-  color: var(--color-dark-green);
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
   outline: none;
-}
-
-.site-nav-bar a:hover::before,
-.site-nav-bar a:focus-visible::before {
-  transform: translateY(0);
 }
 
 .site-nav-bar a::after {
@@ -889,7 +871,10 @@ ul ul li {
 .newsletter-module .newsletter-form-label a:visited {
   font-weight: 400;
   color: var(--color-dark-green);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 .newsletter-module .newsletter-form-field {

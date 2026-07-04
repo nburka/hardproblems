@@ -95,11 +95,29 @@ export default function JobsTeaser({
         const location = job.country.trim();
         const typeLabel = orgTypeDisplay(job.typeOfOrg);
         const isStaffPick = isHardProblemsPick(job.goodForWorld);
+        const faviconUrl = buildFaviconUrl(job.companyUrl);
+        const companyHref = job.companyUrl
+          ? job.companyUrl.startsWith('http')
+            ? job.companyUrl
+            : `https://${job.companyUrl}`
+          : null;
         const metaParts: { key: string; node: React.ReactNode }[] = [];
         if (job.company) {
           metaParts.push({
             key: 'company',
-            node: <span className={styles.company}>{job.company}</span>
+            node: companyHref ? (
+              <Link
+                href={companyHref}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.company}
+                onClick={() => trackJobClick(job, 'company')}
+              >
+                {job.company}
+              </Link>
+            ) : (
+              <span className={styles.company}>{job.company}</span>
+            )
           });
         }
         if (typeLabel) {
@@ -114,12 +132,6 @@ export default function JobsTeaser({
             node: <span className={styles.location}>{location}</span>
           });
         }
-        const faviconUrl = buildFaviconUrl(job.companyUrl);
-        const companyHref = job.companyUrl
-          ? job.companyUrl.startsWith('http')
-            ? job.companyUrl
-            : `https://${job.companyUrl}`
-          : null;
         const iconContents = faviconUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -236,8 +248,8 @@ export default function JobsTeaser({
       })}
       <div className={styles.seeAll}>
         <p className={styles.seeAllText}>
-          We search the web to find roles for designers to work on hard
-          problems.
+          We find roles from across the web for designers, PMs, and others to
+          work on hard problems.
         </p>
         <Link href="/jobs">
           {typeof totalCount === 'number'

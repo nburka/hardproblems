@@ -531,6 +531,10 @@
 
 .jobTitle a:hover {
   color: darkblue;
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 .jobMeta {
@@ -545,9 +549,13 @@
   color: var(--color-text);
 }
 
-.jobCompany:hover,
-.jobCompany:focus {
+a.jobCompany:hover,
+a.jobCompany:focus {
   color: darkblue;
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 .companyFavicon {

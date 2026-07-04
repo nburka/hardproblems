@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   MapPinned,
   Mail,
@@ -108,14 +107,6 @@ export function Footer() {
           </Link>{' '}
           in the UK in 2024.
         </p>
-        <Image
-          className="desktop"
-          src="/images/uk-government.svg"
-          width="77"
-          height="77"
-          alt="UK Government Logo"
-          style={{ opacity: 0.5 }}
-        />
       </div>
       <div className="footer-col">
         <h3>Newsletter</h3>

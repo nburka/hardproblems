@@ -39,7 +39,7 @@ _A 10 minute video introduction to Hard Problems and our goals._{.intro}
 <iframe src="https://www.youtube-nocookie.com/embed/Hp-H9QU4Ymg?start=8" title="What is Hard Problems all about?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-Hard Problems is a nonprofit that helps designers to make the shift to working full-time on the world’s hard problems — problems like climate change and public health.
+Hard Problems is a nonprofit that helps designers, PMs, and others to make the shift to working full-time on the world’s hard problems — problems like climate change and public health.
 
 Many of the world’s smartest and most dedicated teams tackling hard problems struggle to get help from (or hire) experienced designers who are integral to designing and implementing important solutions. The technical part of problem solving, which we refer to simply as tech, is seen as an “add-on” to be hired out at the end of research and planning when it’s much more effective to integrate tech into problem-solving from the start.
 

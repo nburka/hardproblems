@@ -1,13 +1,13 @@
 ---
-title: 'Why should designers focus on hard problems?'
+title: 'Why should designers and tech people focus on hard problems?'
 slug: 'explain-hard-problems'
 
-excerpt: 'A short video explaining why we want to see more designers tackling urgent global issues.'
+excerpt: 'A short video explaining why we want to see more people tackling urgent global issues.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-27'
+publishedAt: '2026-06-22'
 updatedAt: '2026-06-22'
 
 status: 'published' # draft | review | published
@@ -32,9 +32,9 @@ seoDescription: 'A 20 min video explaining why we want to see more designers tac
 canonicalUrl: ''
 ---
 
-# Why should designers focus on hard problems? {#explain-hard-problems}
+# Why should designers and tech people focus on hard problems? {#explain-hard-problems}
 
-_A 25 min video explaining why we want to see more designers tackling urgent global issues (and why this is so challenging)._{.intro}
+_A 25 min video explaining why we want to see more designers and tech people tackling urgent global issues (and why this is so challenging)._{.intro}
 
 <div class="video-embed">
 <iframe src="https://www.youtube-nocookie.com/embed/vW6HAPzj7mI" title="Hard Problems explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

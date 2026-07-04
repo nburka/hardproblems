@@ -128,6 +128,10 @@
 
 .title:hover {
   color: darkblue;
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 .meta {
@@ -142,6 +146,15 @@
 .company {
   font-weight: 500;
   color: var(--color-text);
+}
+
+a.company:hover,
+a.company:focus {
+  color: darkblue;
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 .location,

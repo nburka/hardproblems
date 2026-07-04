@@ -50,7 +50,7 @@ _If you can’t tackle a hard problem full-time (yet), consider joining a charit
 
 <div class="note">
 
-**Note:** The advice in this article is targeted at very senior designers. But if you're a junior, it's good to imagine where you could be in 10–15 years.
+**Note:** The advice in this article is targeted at very senior professionals. But if you're a junior, it's good to imagine where you could be in 10–15 years.
 
 </div>
 

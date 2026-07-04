@@ -42,7 +42,7 @@ seoDescription: 'A curated job board with hundreds of design, product, research,
 canonicalUrl: ''
 ---
 
-# We now have a job board for designers {#hard-problems-now-has-a-job-board}
+# We now have a job board for designers and PMs {#hard-problems-now-has-a-job-board}
 
 _We created a job board with hundreds of design jobs related to climate change, healthcare, education, and public services._{.intro}
 

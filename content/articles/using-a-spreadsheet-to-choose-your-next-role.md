@@ -88,7 +88,7 @@ The template has a suggested list, but your values will be unique. Here are some
 | Work with smart people             | Career growth opportunity                   | My passion for the problem                    |
 | Positive impact for the world      | I would use the product myself              | Chance to travel to cool places               |
 | Short commute or work-from-home    | Mentorship from people I respect            | Opportunity to share work publicly            |
-| Small team where I can have impact | Learn skills to prepare me for my dream job | Chance to contribute to open source community |
+| Small team where I'll have impact | Build skills for my dream job | Contribute to open source |
 | Job stability                      | Inspiring leaders                           | High ethical standards                        |
 
 </div>
