@@ -380,21 +380,68 @@ h1 {
   margin: 0;
 }
 
-/* Three-column header: nav (left), Hard Problems logo (center),
-   newsletter form (right). Stacks on mobile; becomes a single row at
-   the desktop breakpoint via the @media block below. */
+/* Three-column header: nav cluster (left), Hard Problems logo (center),
+   nav cluster (right). Both nav clusters are hidden on mobile — the
+   standalone TopBar below the header carries navigation there. */
 .site-header {
   display: grid;
-  /* 1fr auto 1fr keeps the logo perfectly page-centered with the Home
-     link in the left column and (on desktop) the newsletter form on
-     the right. Same on mobile and desktop — only spacing differs. */
   grid-template-columns: 1fr auto 1fr;
   gap: 1rem;
   align-items: center;
-  margin: 0;
+  margin: 0 0 10rem 0;
   padding: 1.25rem 0;
   border-top: 1px solid #b7ddc8;
   border-bottom: 1px solid #b7ddc8;
+}
+
+/* Mobile: with both nav clusters hidden, collapse the header to a
+   single centered column so the logo stays centered, and drop the
+   desktop bottom margin so the TopBar butts against the header. */
+@media only screen and (max-width: 999px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin-bottom: 0;
+  }
+}
+
+/* Inline nav clusters on either side of the logo. Hidden on mobile
+   (the below-header TopBar takes over there). */
+.site-header-nav {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.site-header-nav--left {
+  justify-self: start;
+}
+
+.site-header-nav--right {
+  justify-self: end;
+}
+
+.site-header-nav a,
+.site-header-nav a:visited {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.125s ease;
+}
+
+.site-header-nav a:hover,
+.site-header-nav a:focus-visible {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: #b8d0f5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  outline: none;
+}
+
+.site-header-nav a.active {
+  color: var(--color-mid-green);
 }
 
 /* Home link in the top-left of the header. Same line as the Hard
@@ -454,6 +501,14 @@ h1 a:visited {
 
 h1 a span.hp-period {
   color: #3aa36d;
+  display: inline-block;
+  transform-origin: bottom left;
+  transition: transform 0.2s ease;
+}
+
+h1 a:hover span.hp-period,
+h1 a:focus-visible span.hp-period {
+  transform: translateX(2px);
 }
 
 h2 {
@@ -1472,6 +1527,17 @@ ul ul li {
     background: white;
   }
 
+  /* Show the inline nav clusters and hide the below-header TopBar on
+     desktop, where the header has room for the nav links inline. */
+  .site-header-nav {
+    display: flex;
+    font-size: var(--font-size-base);
+  }
+
+  nav.site-nav-bar {
+    display: none;
+  }
+
   /* Restore the larger intro size on desktop — mobile uses the
      smaller 18px set on the base p.intro rule above. */
   p.intro {
@@ -1545,18 +1611,16 @@ ul ul li {
   .site-header {
     grid-template-columns: 1fr auto 1fr;
     gap: 2rem;
-    /* Top margin only — bottom is 0 so the nav-bar butts against the
-       header's bottom border. */
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 2rem 0;
     /* Pad to the same 42px that .container section uses, so the nav
-       starts where the left column's text starts and the newsletter
-       ends where the right column's text ends. Vertical padding sets
-       how close the green top/bottom rules sit to the nav contents. */
+       links align with the article grid's left/right edges. Vertical
+       padding sets how close the green top/bottom rules sit to the
+       header contents. */
     padding: 1.25rem 42px;
   }
 
   h1 {
-    font-size: var(--font-size-2xl);
+    font-size: 1.8rem;
   }
 
   .container {

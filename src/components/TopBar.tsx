@@ -14,6 +14,7 @@ type NavItem = {
 };
 
 const NAV_ITEMS: NavItem[] = [
+  { href: '/', short: 'Home', long: 'Home' },
   { href: '/jobs', short: 'Jobs', long: 'Job board' },
   { href: '/podcast', short: 'Podcast', long: 'Podcast' },
   { href: '/about', short: 'About', long: 'About us' }

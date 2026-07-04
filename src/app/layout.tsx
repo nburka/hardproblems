@@ -7,7 +7,7 @@ import PostHogProvider from '../components/PostHogProvider';
 import { Footer } from '../components/Footer';
 import FooterIntro from '../components/FooterIntro';
 import RotatingTagline from '../components/RotatingTagline';
-import SiteHeaderHome from '../components/SiteHeaderHome';
+import SiteHeaderNav from '../components/SiteHeaderNav';
 import './globals.css';
 
 // Used for article titles (listing cards and the article H1). Exposed as a
@@ -57,12 +57,13 @@ export default function RootLayout({
           <div className="main">
             <RotatingTagline />
             <header className="site-header">
-              <SiteHeaderHome />
+              <SiteHeaderNav side="left" />
               <h1>
                 <Link href="/">
                   Hard Problems<span className="hp-period">.</span>
                 </Link>
               </h1>
+              <SiteHeaderNav side="right" />
             </header>
             <TopBar />
             <div className="container">{children}</div>
