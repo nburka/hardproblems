@@ -20,13 +20,17 @@
 .articleCardLink {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.5rem;
   color: inherit;
   text-decoration: none;
 
   &:hover .articleCardTitle,
   &:focus .articleCardTitle {
-    color: darkblue;
+    color: var(--color-dark-green);
+    text-decoration: underline;
+    text-decoration-color: #b7ddc8;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 
   &:hover .articleCardImageWrap::after,
@@ -105,12 +109,28 @@
   flex-shrink: 0;
 }
 
+// Row above the thumbnail carrying the "NEW" chip (recent articles
+// only) followed by the article-type kicker. Rendered as an inline
+// flex row so both sit on the same baseline. Mono-kicker typography
+// is set here so the NEW chip and the article-type link share it.
+.articleCardKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.3rem 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
 // Article-type kicker sitting above the thumbnail (e.g. "OPINION",
 // "VIDEO", "BOOK REVIEW"). Plain text, no pill background — matches
 // the .preTitleLabel treatment used on the article page itself.
 .articleType,
 .articleType:visited {
-  display: block;
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: var(--font-size-mono);
   text-transform: uppercase;
@@ -118,14 +138,17 @@
   font-weight: 400;
   color: var(--color-dark-green);
   text-decoration: none;
-  margin: 0 0 0.3rem 0;
+  margin: 0;
+  padding: 2px 6px;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 5px;
 }
 
 .articleType:hover,
 .articleType:focus {
   color: #0d4f27;
-  text-decoration: underline;
-  text-decoration-color: currentColor;
+  border-color: currentColor;
+  text-decoration: none;
 }
 
 .articleCardTitle {
@@ -136,7 +159,7 @@
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: var(--color-link);
+  color: var(--color-mid-green);
   transition: color 0.15s ease;
   text-wrap: balance;
 }
@@ -149,8 +172,8 @@
   text-wrap: balance;
 }
 
-// Small "N min read" line under the card excerpt — grey-blue tint to
-// keep it quiet against the dark excerpt text.
+// Small "N min read · date" line above the card title — grey-blue tint
+// to keep it quiet against the darker title/excerpt text.
 .articleCardReadingTime {
   margin: 0.2rem 0 0 0;
   font-family: var(--font-mono);
@@ -160,11 +183,16 @@
   color: #6b7d8c;
 }
 
-// "NEW" badge inline with the reading time + date when an article was
+// "NEW" chip sitting next to the article-type kicker on any article
 // published in the last 30 days.
 .articleCardNew {
+  display: inline-flex;
+  align-items: center;
   color: #e85a3a;
   font-weight: 600;
+  padding: 2px 6px;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 5px;
 }
 
 .articleCardNewIcon {
@@ -588,7 +616,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: none;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .articleCardCompact .articleType,
@@ -615,10 +643,6 @@
   // mobile-only treatment for the small compact thumbnail.
   .articleCardCompact .articleCardBadge {
     display: inline-flex;
-  }
-
-  .articleCardCompact .articleType {
-    margin: 0 0 0.3rem 0;
   }
 
   .articleCardCompact .articleCardTitle {
@@ -694,7 +718,7 @@
 
 .categoriesLink:hover,
 .categoriesLink:focus {
-  color: darkblue;
+  color: var(--color-dark-green);
   text-decoration: none;
 }
 
@@ -847,6 +871,13 @@
   gap: 0.5rem;
   color: inherit;
   text-decoration: none;
+
+  // Title sits directly under the meta line — pull it up with a
+  // negative margin to counter the flex gap so they read as one unit
+  // above the thumbnail padding below.
+  .readingRowMeta + .readingRowArticleTitle {
+    margin-top: -0.4rem;
+  }
 }
 
 .readingRowThumb {
@@ -890,7 +921,7 @@
   font-size: var(--font-size-base);
   font-weight: 500;
   line-height: 1.3;
-  color: var(--color-link);
+  color: var(--color-mid-green);
   text-transform: none;
   letter-spacing: 0;
   text-wrap: balance;
@@ -899,9 +930,9 @@
 
 .readingRowLink:hover .readingRowArticleTitle,
 .readingRowLink:focus .readingRowArticleTitle {
-  color: darkblue;
+  color: var(--color-dark-green);
   text-decoration: underline;
-  text-decoration-color: #b8d0f5;
+  text-decoration-color: #b7ddc8;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
 }
@@ -911,7 +942,7 @@
   font-size: var(--font-size-mono);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-dark-green);
+  color: #6b7d8c;
 }
 
 @media only screen and (min-width: 1000px) {

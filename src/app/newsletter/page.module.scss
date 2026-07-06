@@ -24,7 +24,11 @@
 
   &:hover .newsletterTitle,
   &:focus .newsletterTitle {
-    color: darkblue;
+    color: var(--color-dark-green);
+    text-decoration: underline;
+    text-decoration-color: #b7ddc8;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 
   &:hover .newsletterImageWrap::after,
@@ -99,7 +103,7 @@
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: var(--color-link);
+  color: var(--color-mid-green);
   transition: color 0.15s ease;
   text-wrap: balance;
 }

@@ -240,7 +240,7 @@ function ReadingRow({
           const type = article.articleType?.toLowerCase();
           const unit =
             type === 'video'
-              ? 'video'
+              ? 'watch'
               : type === 'podcast'
                 ? 'podcast'
                 : 'read';
@@ -261,14 +261,14 @@ function ReadingRow({
                     />
                   </div>
                 )}
-                <h4 className={styles.readingRowArticleTitle}>
-                  {article.title}
-                </h4>
                 {article.readingTime > 0 && (
                   <span className={styles.readingRowMeta}>
                     {article.readingTime} min {unit}
                   </span>
                 )}
+                <h4 className={styles.readingRowArticleTitle}>
+                  {article.title}
+                </h4>
               </Link>
             </li>
           );

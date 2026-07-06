@@ -53,13 +53,26 @@ export default function ArticleCard({
         compact ? styles.articleCardCompact : ''
       } ${hero ? styles.articleCardHero : ''}`}
     >
-      {article.articleType && (
-        <Link
-          href={`/articles/type/${articleTypeSlug(article.articleType)}`}
-          className={styles.articleType}
-        >
-          {article.articleType}
-        </Link>
+      {(isNew || article.articleType) && (
+        <div className={styles.articleCardKicker}>
+          {isNew && (
+            <span className={styles.articleCardNew}>
+              <Sparkle
+                className={styles.articleCardNewIcon}
+                aria-hidden="true"
+              />
+              NEW
+            </span>
+          )}
+          {article.articleType && (
+            <Link
+              href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+              className={styles.articleType}
+            >
+              {article.articleType}
+            </Link>
+          )}
+        </div>
       )}
       <Link
         href={`/articles/${article.slug}`}
@@ -115,32 +128,16 @@ export default function ArticleCard({
           </div>
         )}
         <div className={styles.articleCardBody}>
-          <h3 className={styles.articleCardTitle}>{article.title}</h3>
-          {article.excerpt && (
-            <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
-          )}
           {(article.readingTime || showDate) && (
             <p className={styles.articleCardReadingTime}>
               {article.readingTime ? (
                 <>
                   {article.readingTime} min{' '}
-                  {isVideo ? 'video' : isPodcast ? 'podcast' : 'read'}
+                  {isVideo ? 'watch' : isPodcast ? 'podcast' : 'read'}
                 </>
               ) : null}
               {article.readingTime && showDate && (
                 <span aria-hidden="true"> · </span>
-              )}
-              {isNew && (
-                <>
-                  <span className={styles.articleCardNew}>
-                    <Sparkle
-                      className={styles.articleCardNewIcon}
-                      aria-hidden="true"
-                    />
-                    NEW
-                  </span>
-                  {showDate && <span aria-hidden="true"> · </span>}
-                </>
               )}
               {showDate && (
                 <time dateTime={article.publishedAt}>
@@ -148,6 +145,10 @@ export default function ArticleCard({
                 </time>
               )}
             </p>
+          )}
+          <h3 className={styles.articleCardTitle}>{article.title}</h3>
+          {article.excerpt && (
+            <p className={styles.articleCardExcerpt}>{article.excerpt}</p>
           )}
         </div>
       </Link>

@@ -7,7 +7,7 @@
   --color-mid-green: #2f8b53;
   --color-light-green: #d9eee2;
   --color-pale-green: #ebf7f0;
-  --color-link: #4a7bd4;
+  --color-link: #2f8b53;
   --color-pick-bg: #fff3c4;
   --color-pick-text: #8a5a00;
 
@@ -70,7 +70,7 @@ a:visited {
 
 a:hover,
 a:focus {
-  color: darkblue;
+  color: var(--color-dark-green);
 }
 
 /* Body links inside paragraphs and blockquotes get a soft light-blue
@@ -84,7 +84,7 @@ blockquote a:visited,
 li a,
 li a:visited {
   text-decoration: underline;
-  text-decoration-color: #b8d0f5;
+  text-decoration-color: #b7ddc8;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
 }
@@ -109,9 +109,9 @@ a.black-button:visited {
   font-size: var(--font-size-base);
   font-weight: 500;
   line-height: 1;
-  background: var(--color-text);
+  background: var(--color-dark-green);
   color: #fff;
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--color-dark-green);
   border-radius: 100px;
   text-decoration: none;
   transition:
@@ -137,10 +137,10 @@ a.black-button > span {
 
 a.black-button:hover,
 a.black-button:focus {
-  background: var(--color-dark-green);
+  background: var(--color-mid-green);
   color: #fff;
-  border-color: var(--color-dark-green);
-  box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+  border-color: var(--color-mid-green);
+  box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
   transform: translateY(-1px);
   text-decoration: none;
   outline: none;
@@ -432,9 +432,9 @@ h1 {
 
 .site-header-nav a:hover,
 .site-header-nav a:focus-visible {
-  color: var(--color-link);
+  color: var(--color-mid-green);
   text-decoration: underline;
-  text-decoration-color: #b8d0f5;
+  text-decoration-color: #b7ddc8;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
   outline: none;
@@ -615,9 +615,9 @@ nav.site-nav-bar::-webkit-scrollbar {
 
 .site-nav-bar a:hover,
 .site-nav-bar a:focus-visible {
-  color: var(--color-link);
+  color: var(--color-mid-green);
   text-decoration: underline;
-  text-decoration-color: #b8d0f5;
+  text-decoration-color: #b7ddc8;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
   outline: none;
@@ -768,9 +768,9 @@ pre:has(+ .code-copy-button) {
   font-size: var(--font-size-base);
   font-weight: 500;
   line-height: 1;
-  background: var(--color-text);
+  background: var(--color-dark-green);
   color: #fff;
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--color-dark-green);
   border-radius: 100px;
   cursor: pointer;
   transition:
@@ -782,9 +782,9 @@ pre:has(+ .code-copy-button) {
 
 .code-copy-button:hover,
 .code-copy-button:focus {
-  background: var(--color-dark-green);
-  border-color: var(--color-dark-green);
-  box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
+  box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
   transform: translateY(-1px);
   outline: none;
 }
@@ -1020,7 +1020,7 @@ ul ul li {
 .newsletter-form-label a:visited {
   font-weight: 400;
   text-decoration: underline;
-  text-decoration-color: #b8d0f5;
+  text-decoration-color: #b7ddc8;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
 }
@@ -1216,8 +1216,8 @@ ul ul li {
   font-size: 0.95rem;
   font-weight: 500;
   color: #fff;
-  background: #231f20;
-  border: 1px solid #231f20;
+  background: var(--color-dark-green);
+  border: 1px solid var(--color-dark-green);
   border-radius: 100px;
   cursor: pointer;
   transition:
@@ -1227,8 +1227,8 @@ ul ul li {
 
 .newsletter-modal-cta:hover,
 .newsletter-modal-cta:focus-visible {
-  background: #235337;
-  border-color: #235337;
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
   outline: none;
 }
 
