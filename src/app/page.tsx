@@ -24,7 +24,8 @@ const COWORKING_HERO_SLUG = 'hard-problems-coworking-space';
 // reviews land there automatically.
 const ORGS_SLUGS = [
   'design-in-public-health-in-india',
-  'hidden-costs-of-bad-design'
+  'hidden-costs-of-bad-design',
+  'geek-heresy-kentaro-toyama'
 ];
 
 const DESIGNERS_SLUGS = [
@@ -32,7 +33,8 @@ const DESIGNERS_SLUGS = [
   'join-nonprofit-board-or-advisory-group',
   'books-designers-hard-problems',
   'tricks-find-meaningful-job-linkedin',
-  'missing-piece-design-career'
+  'missing-piece-design-career',
+  'can-a-designer-improve-social-care'
 ];
 
 // Explicit picks for the About us column that aren't tagged as
@@ -80,6 +82,7 @@ export default async function Home() {
   const orgsArticles = ORGS_SLUGS.map(bySlug)
     .filter((a): a is NonNullable<typeof a> => a !== undefined)
     .sort(byDateDesc);
+  const orgsSlugSet = new Set(orgsArticles.map((a) => a.slug));
   const designersFromSlugs = DESIGNERS_SLUGS.map(bySlug).filter(
     (a): a is NonNullable<typeof a> => a !== undefined
   );
@@ -89,7 +92,9 @@ export default async function Home() {
   );
   const designersArticles = [
     ...designersFromSlugs,
-    ...bookReviewArticles.filter((a) => !designersSlugSet.has(a.slug))
+    ...bookReviewArticles.filter(
+      (a) => !designersSlugSet.has(a.slug) && !orgsSlugSet.has(a.slug)
+    )
   ].sort(byDateDesc);
   const announcementArticles = articles.filter(
     (a) => a.articleType?.toLowerCase() === 'announcements'
