@@ -92,7 +92,7 @@ export default async function TypePage({ params }: Props) {
           />
         </aside>
         <div className={styles.typeResults}>
-          <h2 className={styles.typeHeading}>{label}</h2>
+          <h2 className={`${styles.typeHeading} small-header`}>{label}</h2>
           <CompactArticleList articles={articles} />
         </div>
       </div>

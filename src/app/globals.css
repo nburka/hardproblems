@@ -229,6 +229,20 @@ p.page-lede {
   text-decoration-skip-ink: none;
 }
 
+/* Small-caps kicker used above listing columns — e.g. the jobs-board
+   "COUNTRY" filter labels, the "N JOBS" count above the results, and the
+   article-type heading on /articles/type/[type]. Applied alongside any
+   element-specific spacing from a module SCSS. */
+.small-header {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 /* Small red mono pill — mirrors the "NEW" chip used above article
    thumbnails. Use as `<span class="notice-pill">Coming soon…</span>`. */
 .notice-pill {

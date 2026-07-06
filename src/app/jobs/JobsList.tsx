@@ -736,7 +736,7 @@ export default function JobsList({
           <div className={styles.filterHeader}>{filterHeader}</div>
         )}
         <label className={styles.filterField}>
-          <span className={styles.filterLabel}>Country</span>
+          <span className={`${styles.filterLabel} small-header`}>Country</span>
           <select
             value={country}
             onChange={(e) => setCountry(e.target.value)}
@@ -785,7 +785,7 @@ export default function JobsList({
         >
           {roles.length > 0 && (
             <div className={styles.filterField}>
-              <span className={styles.filterLabel}>Role</span>
+              <span className={`${styles.filterLabel} small-header`}>Role</span>
               <div className={styles.checkboxes}>
                 {roles.map((role) => (
                   <label key={role} className={styles.checkbox}>
@@ -803,7 +803,7 @@ export default function JobsList({
           )}
 
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Seniority</span>
+            <span className={`${styles.filterLabel} small-header`}>Seniority</span>
             <div className={styles.checkboxes}>
               {SENIORITY_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
@@ -820,7 +820,7 @@ export default function JobsList({
           </div>
 
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Sector</span>
+            <span className={`${styles.filterLabel} small-header`}>Sector</span>
             <div className={styles.checkboxes}>
               {SECTOR_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
@@ -837,7 +837,7 @@ export default function JobsList({
           </div>
 
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Org type</span>
+            <span className={`${styles.filterLabel} small-header`}>Org type</span>
             <div className={styles.checkboxes}>
               {ORG_TYPE_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
@@ -854,7 +854,7 @@ export default function JobsList({
           </div>
 
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Work style</span>
+            <span className={`${styles.filterLabel} small-header`}>Work style</span>
             <div className={styles.checkboxes}>
               {WORK_STYLE_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
@@ -899,7 +899,7 @@ export default function JobsList({
       </div>
 
       <div className={styles.results}>
-        <div className={styles.filterCount}>
+        <div className={`${styles.filterCount} small-header`}>
           {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
         </div>
         {activeChips.length > 0 && (

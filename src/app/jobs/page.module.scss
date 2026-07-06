@@ -88,11 +88,7 @@
 }
 
 .filterLabel {
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #555;
+  // Typography comes from the shared `.small-header` global class.
 }
 
 .checkboxes {
@@ -255,12 +251,9 @@
   font-weight: 500;
 }
 
+// Typography comes from the shared `.small-header` global class; this
+// rule only owns the spacing that positions the count above the list.
 .filterCount {
-  font-size: var(--font-size-xs);
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
   margin: 0 0 0.75rem;
   padding-top: 0;
 }

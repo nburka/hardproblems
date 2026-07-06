@@ -939,16 +939,10 @@
   min-width: 0;
 }
 
-// Small caps heading above the articles grid — mirrors the jobs board
-// `.filterCount` treatment for consistency across the two listing pages.
+// Small-caps heading above the articles grid. Typography comes from
+// the shared `.small-header` global class; this rule only owns the
+// spacing that aligns it with the sidebar's first entry.
 .typeHeading {
-  font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  line-height: 1.2;
   margin: 0 0 0.75rem 0;
   padding-top: 0;
 }
