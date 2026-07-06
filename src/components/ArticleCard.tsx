@@ -55,6 +55,14 @@ export default function ArticleCard({
     >
       {(isNew || article.articleType) && (
         <div className={styles.articleCardKicker}>
+          {article.articleType && (
+            <Link
+              href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+              className={styles.articleType}
+            >
+              {article.articleType}
+            </Link>
+          )}
           {isNew && (
             <span className={styles.articleCardNew}>
               <Sparkle
@@ -63,14 +71,6 @@ export default function ArticleCard({
               />
               NEW
             </span>
-          )}
-          {article.articleType && (
-            <Link
-              href={`/articles/type/${articleTypeSlug(article.articleType)}`}
-              className={styles.articleType}
-            >
-              {article.articleType}
-            </Link>
           )}
         </div>
       )}

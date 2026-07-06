@@ -9,11 +9,10 @@ export default function Page() {
   const featuredArticle = getArticleBySlug('explain-hard-problems');
   return (
     <>
-      <section className="left">
-        <h2>About us</h2>
-        <p className="intro">
+      <section className="page-narrow">
+        <p className="page-lede">
           Hard Problems is a nonprofit that helps designers to make the shift to
-          working full-time on the world’s hard problems &#8212; problems like
+          working full-time on the world’s urgent problems &#8212; problems like
           climate change and public health.
         </p>
 
@@ -80,8 +79,7 @@ export default function Page() {
             </ul>
           </div>
         )}
-      </section>
-      <section className="right">
+
         <h3>What we offer</h3>
         <div className="offer-stack">
           <Link href="/jobs" className="grid-cell">

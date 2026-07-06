@@ -167,6 +167,18 @@ p.intro {
   font-weight: 300;
 }
 
+/* Oversized page-opening paragraph (a "lede"). Instrument Serif at
+   --font-size-2xl. Apply to the opening paragraph on top-level pages
+   (About, Newsletter, etc.) that use the .page-narrow reading column. */
+p.page-lede {
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-size: var(--font-size-2xl);
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 1rem 0 3rem 0;
+  text-wrap: balance;
+}
+
 .tags {
   padding: 0.5em 0 2em 0;
 }
@@ -215,6 +227,22 @@ p.intro {
   text-decoration-thickness: 5px;
   text-underline-offset: 0.12em;
   text-decoration-skip-ink: none;
+}
+
+/* Small red mono pill — mirrors the "NEW" chip used above article
+   thumbnails. Use as `<span class="notice-pill">Coming soon…</span>`. */
+.notice-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: #e85a3a;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 5px;
 }
 
 .tag-pick {
@@ -1256,6 +1284,16 @@ ul ul li {
 .container section.right {
   padding-top: 0;
   margin-top: 1rem;
+}
+
+/* Standard single-column reading width — matches the article body
+   (760px). Apply to any page section (About, Give, etc.) that should
+   share the article page's reading measure. */
+.container section.page-narrow {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image-full {

@@ -27,14 +27,16 @@ const EPISODES = EPISODE_TITLES.map((title, i) => {
 export default function Page() {
   return (
     <>
-      <section className="left">
-        <h2>Podcast</h2>
-        <p className="intro">
-          Coming soon. We plan to interview the designers in the trenches doing
-          the work on &#8216;hard problems.&#8217;
+      <section className="page-narrow">
+        <p className="page-lede">
+          The podcast for designers and technologists who want to work on
+          urgent problems.
         </p>
 
-        <h3 className="space-top-large">What will the podcast be about?</h3>
+        <p className="space-top-large">
+          <span className="notice-pill">Coming soon…</span>
+        </p>
+        <h3>What will the podcast be about?</h3>
         <p>
           We want to find out what works and what doesn&#8216;t work for
           designers who are working on the world&#8216;s challenges. And, we
@@ -55,9 +57,8 @@ export default function Page() {
             </li>
           ))}
         </ul>
-      </section>
-      <section className="right">
-        <h3>We need your help</h3>
+
+        <h3 className="space-top-large">We need your help</h3>
         <p>
           Know someone who we should interview? Please fill out this Google Form
           and let us know. Thanks!
