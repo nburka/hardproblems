@@ -1,5 +1,28 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from './page.module.scss';
+
+const EPISODE_TITLES = [
+  'Can design reduce fashion waste?',
+  'Can design improve power efficiency?',
+  'Can design affect climate policy?',
+  'Can design save people from cancer?',
+  'Can design impact chronic disease?',
+  'Can design education prepare designers for hard problems?',
+  'Can design make better cities?',
+  'Can design advance climate action?',
+  'Can design improve genomics?',
+  'Can design help democracy?'
+];
+
+const EPISODES = EPISODE_TITLES.map((title, i) => {
+  const num = i + 1;
+  const n = String(num).padStart(3, '0');
+  return {
+    src: `/images/content/podcast-episode-${n}.jpg`,
+    alt: title
+  };
+}).reverse();
 
 export default function Page() {
   return (
@@ -10,136 +33,28 @@ export default function Page() {
           Coming soon. We plan to interview the designers in the trenches doing
           the work on &#8216;hard problems.&#8217;
         </p>
-        <div className="illustration-home">
-          <Image
-            src="/images/illustration-podcast.svg"
-            width="80"
-            height="80"
-            alt="Illustration of a person recording a podcast."
-          />
-        </div>
 
         <h3 className="space-top-large">What will the podcast be about?</h3>
         <p>
           We want to find out what works and what doesn&#8216;t work for
-          designers who are working on the world&#8216;s challenges.
-        </p>
-        <p>
-          And, we want to inspire people (you?) to make the jump to work on hard
+          designers who are working on the world&#8216;s challenges. And, we
+          want to inspire people (you?) to make the jump to work on hard
           problems.
         </p>
 
         <h3 className="space-top-large">Episodes</h3>
         <p>
-          Episodes will be displayed here when we start. Join our{' '}
-          <Link href="/newsletter/">email newsletter</Link> so you don&#8216;t
-          miss when we start the podcast.
+          Join our <Link href="/newsletter/">email newsletter</Link> so you
+          don&#8216;t miss when we start the podcast.
         </p>
 
-        <div className="episode episode--1">
-          <Image
-            src="/images/podcast/episode-001.jpg"
-            width="80"
-            height="80"
-            alt="Photo of the guest in Episode 1"
-            className="podcast-image"
-          />
-          <h3>Episode 1</h3>
-          <div>Coming soon...</div>
-          <p>
-            <Image
-              src="/images/podcast/podcast-player-fake.svg"
-              width="80"
-              height="80"
-              alt="Podcast player holding graphic"
-              className="podcast-player"
-            />
-          </p>
-        </div>
-
-        <div className="episode episode--2">
-          <Image
-            src="/images/podcast/episode-002.jpg"
-            width="80"
-            height="80"
-            alt="Photo of the guest in Episode 2"
-            className="podcast-image"
-          />
-          <h3>Episode 2</h3>
-          <div>Coming soon...</div>
-          <p>
-            <Image
-              src="/images/podcast/podcast-player-fake.svg"
-              width="80"
-              height="80"
-              alt="Podcast player holding graphic"
-              className="podcast-player"
-            />
-          </p>
-        </div>
-
-        <div className="episode episode--3">
-          <Image
-            src="/images/podcast/episode-003.jpg"
-            width="80"
-            height="80"
-            alt="Photo of the guest in Episode 3"
-            className="podcast-image"
-          />
-          <h3>Episode 3</h3>
-          <div>Coming soon...</div>
-          <p>
-            <Image
-              src="/images/podcast/podcast-player-fake.svg"
-              width="80"
-              height="80"
-              alt="Podcast player holding graphic"
-              className="podcast-player"
-            />
-          </p>
-        </div>
-
-        <div className="episode episode--4">
-          <Image
-            src="/images/podcast/episode-004.jpg"
-            width="80"
-            height="80"
-            alt="Photo of the guest in Episode 4"
-            className="podcast-image"
-          />
-          <h3>Episode 4</h3>
-          <div>Coming soon...</div>
-          <p>
-            <Image
-              src="/images/podcast/podcast-player-fake.svg"
-              width="80"
-              height="80"
-              alt="Podcast player holding graphic"
-              className="podcast-player"
-            />
-          </p>
-        </div>
-
-        <div className="episode episode--5">
-          <Image
-            src="/images/podcast/episode-005.jpg"
-            width="80"
-            height="80"
-            alt="Photo of the guest in Episode 5"
-            className="podcast-image"
-          />
-          <h3>Episode 5</h3>
-          <div>Coming soon...</div>
-          <p>
-            <Image
-              src="/images/podcast/podcast-player-fake.svg"
-              width="80"
-              height="80"
-              alt="Podcast player holding graphic"
-              className="podcast-player"
-            />
-          </p>
-        </div>
+        <ul className={styles.episodeGrid}>
+          {EPISODES.map((ep) => (
+            <li key={ep.src}>
+              <Image src={ep.src} alt={ep.alt} width={300} height={300} />
+            </li>
+          ))}
+        </ul>
       </section>
       <section className="right">
         <h3>We need your help</h3>
@@ -148,7 +63,10 @@ export default function Page() {
           and let us know. Thanks!
         </p>
         <p>
-          <Link href="https://forms.gle/fK7LrCLNzckobynh7" className="black-button">
+          <Link
+            href="https://forms.gle/fK7LrCLNzckobynh7"
+            className="black-button"
+          >
             Suggest a guest <span aria-hidden="true">→</span>
           </Link>
         </p>
@@ -167,13 +85,21 @@ export default function Page() {
           <li>Takes a thoughtful and ethical approach to their work.</li>
           <li>
             Likely works on tech related to:
-            <br />
-            <span className="tag">Climate change</span>
-            <span className="tag">Public health</span>
-            <span className="tag">Healthcare</span>
-            <span className="tag">Government or civics</span>
-            <span className="tag">Education</span>
-            <span className="tag">Sustainable Development Goals</span>
+            <div style={{ marginTop: 10 }}>
+              <span className="tag">Climate change</span>
+              <br />
+              <span className="tag">Public health</span>
+              <br />
+              <span className="tag">Healthcare</span>
+              <br />
+              <span className="tag">Government</span>
+              <br />
+              <span className="tag">Civics</span>
+              <br />
+              <span className="tag">Education</span>
+              <br />
+              <span className="tag">Income inequality</span>
+            </div>
           </li>
         </ul>
       </section>
