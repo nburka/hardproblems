@@ -30,16 +30,18 @@ const ORGS_SLUGS = [
 
 const DESIGNERS_SLUGS = [
   'using-a-spreadsheet-to-choose-your-next-role',
+  'use-a-spreadsheet-to-choose-your-next-role',
   'join-nonprofit-board-or-advisory-group',
   'books-designers-hard-problems',
   'tricks-find-meaningful-job-linkedin',
   'missing-piece-design-career',
-  'can-a-designer-improve-social-care'
+  'can-a-designer-improve-social-care',
+  'explain-hard-problems'
 ];
 
 // Explicit picks for the About us column that aren't tagged as
 // "Announcements" but belong there anyway.
-const ABOUT_EXTRA_SLUGS = ['explain-hard-problems'];
+const ABOUT_EXTRA_SLUGS: string[] = [];
 
 // Newest-first order matches the rest of the site.
 const byDateDesc = (a: { publishedAt: string }, b: { publishedAt: string }) =>
