@@ -188,7 +188,7 @@ export default async function ArticlePage({ params }: Props) {
               {article.topics.map((t) => (
                 <li key={t}>
                   <Link
-                    href={`/articles/topic/${t}`}
+                    href={`/articles/type/${t}`}
                     className={styles.topicTag}
                   >
                     <span>{topicDisplay(t)}</span>

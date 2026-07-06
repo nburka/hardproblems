@@ -12,7 +12,7 @@ updatedAt: '2025-06-01'
 
 status: 'published' # draft | review | published
 
-articleType: 'Interview' # Article | Book reviews | Podcast | Interview
+articleType: 'Interviews' # Article | Book reviews | Podcast | Interviews
 
 topics:
   - design

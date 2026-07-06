@@ -48,9 +48,9 @@ export default function CategoriesSidebar({
   }
   for (const [topic, count] of topicCounts) {
     entries.push({
-      key: `topic:${topic}`,
+      key: `type:${topic}`,
       label: topicDisplay(topic),
-      href: `/articles/topic/${topic}`,
+      href: `/articles/type/${topic}`,
       count
     });
   }
@@ -58,11 +58,18 @@ export default function CategoriesSidebar({
     a.label.toLowerCase().localeCompare(b.label.toLowerCase())
   );
 
+  const allEntry: Entry = {
+    key: 'type:all',
+    label: 'All',
+    href: '/articles/type/all',
+    count: allArticles.length
+  };
+
   return (
     <>
-      <h3>All categories</h3>
+      <h2 className={styles.categoriesHeading}>Content</h2>
       <ul className={styles.categoriesList}>
-        {entries.map((entry) => {
+        {[allEntry, ...entries].map((entry) => {
           const isActive = entry.key === activeKey;
           return (
             <li key={entry.key}>

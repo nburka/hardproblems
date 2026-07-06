@@ -686,6 +686,13 @@
   }
 }
 
+// "Content" sidebar heading — mirrors the jobs board `.filterHeader h2`
+// treatment: zero top margin, tight bottom margin so the list sits
+// snug beneath it.
+.categoriesHeading {
+  margin: 0 0 0.5rem 0;
+}
+
 // "All categories" sidebar — used on the topic and type listing pages.
 // Vertical list with the label on the left, count + arrow on the right.
 .categoriesList {
@@ -709,7 +716,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.75rem 1rem;
+  padding: 0.35rem 1rem;
+  font-size: var(--font-size-sm);
   color: var(--color-link);
   font-weight: 500;
   text-decoration: none;
@@ -725,6 +733,7 @@
 .categoriesLinkActive,
 .categoriesLinkActive:visited {
   color: var(--color-dark-green);
+  background: var(--color-pale-green);
 }
 
 .categoriesMeta {
@@ -767,105 +776,27 @@
   }
 }
 
-// --- Homepage reading-list block ---------------------------------------
-// Sits below the main article list. A clear visual break (top rule +
-// generous top margin) separates it from the article grid, then three
-// stacked rows — each row is: [title | up to 4 articles across].
-// Overflow articles wrap to the next line, still indented past the
-// title column so the first article always sits at column 2 of the
-// 5-across grid.
+// --- Very compact article listing --------------------------------------
+// Reused by the /articles/type/[type] pages via the CompactArticleList
+// component. Mobile: bulleted single-column stack (no thumbnails).
+// Desktop: 3-column grid of thumbnail + reading-time meta + title.
 
-.guides {
-  margin-top: 5rem;
-}
-
-.guidesRows {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  // No gap — each row provides its own top rule + padding for spacing.
-}
-
-.readingRow {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin: 2rem 0 0 0;
-  padding-top: 3rem;
-  border-top: 1px solid var(--color-light-green);
-}
-
-.readingRowTitle {
-  margin: 0;
-}
-
-.readingRowArticles {
+.compactList {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  // Mobile: one article per row, thumbnails are hidden below.
   grid-template-columns: 1fr;
   gap: 1.75rem;
 }
 
-@media only screen and (max-width: 999px) {
-  .readingRowArticles {
-    gap: 0;
-  }
-
-  .readingRowArticle {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    padding-bottom: 0;
-  }
-
-  // Bullet rendered as a flex item so `align-items: baseline` on the
-  // parent aligns it with the first line of the title — same visual
-  // position as a native `<li>` marker.
-  .readingRowArticle::before {
-    content: '•';
-    flex: 0 0 auto;
-    // Small negative left margin nudges the bullet 5px closer to the
-    // list's left edge than a default marker would sit.
-    margin-left: -5px;
-    color: var(--color-dark-green);
-    font-weight: 700;
-  }
-
-  // Let the Link fill the remaining width so long titles wrap next to
-  // the bullet, not below it.
-  .readingRowLink {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  // Without the thumbnail, the flex-column gap and the title's top
-  // margin just add extra dead space between titles.
-  .readingRowLink {
-    gap: 0;
-  }
-
-  .readingRowArticleTitle {
-    margin-top: 0;
-    line-height: 1.2;
-  }
-
-  .readingRowMeta {
-    line-height: 1;
-  }
-}
-
-.readingRowArticle {
+.compactListItem {
   margin: 0;
   padding-bottom: 1.5rem;
 }
 
-.readingRowLink,
-.readingRowLink:visited {
+.compactListLink,
+.compactListLink:visited {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -875,12 +806,12 @@
   // Title sits directly under the meta line — pull it up with a
   // negative margin to counter the flex gap so they read as one unit
   // above the thumbnail padding below.
-  .readingRowMeta + .readingRowArticleTitle {
+  .compactListMeta + .compactListTitle {
     margin-top: -0.4rem;
   }
 }
 
-.readingRowThumb {
+.compactListThumb {
   position: relative;
   display: block;
   aspect-ratio: 4 / 3;
@@ -890,7 +821,7 @@
 
 // Same 1px translucent inset stroke used by the large article-card
 // thumbnails, so the small ones feel like part of the same system.
-.readingRowThumb::after {
+.compactListThumb::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -899,23 +830,14 @@
   transition: box-shadow 0.15s ease;
 }
 
-.readingRowImg {
+.compactListImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-// Hide the thumbnails on mobile — the reading list becomes a plain
-// bulleted list of titles + reading times. Declared after the base
-// rule above so this override wins on cascade order.
-@media only screen and (max-width: 999px) {
-  .readingRowThumb {
-    display: none;
-  }
-}
-
-.readingRowArticleTitle {
+.compactListTitle {
   margin: 0.25rem 0 0 0;
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
@@ -928,8 +850,8 @@
   transition: color 0.15s ease;
 }
 
-.readingRowLink:hover .readingRowArticleTitle,
-.readingRowLink:focus .readingRowArticleTitle {
+.compactListLink:hover .compactListTitle,
+.compactListLink:focus .compactListTitle {
   color: var(--color-dark-green);
   text-decoration: underline;
   text-decoration-color: #b7ddc8;
@@ -937,7 +859,7 @@
   text-underline-offset: 0.15em;
 }
 
-.readingRowMeta {
+.compactListMeta {
   font-family: var(--font-mono);
   font-size: var(--font-size-mono);
   text-transform: uppercase;
@@ -945,24 +867,110 @@
   color: #6b7d8c;
 }
 
+// Mobile: hide the thumbnails and render as a bulleted list, tight
+// spacing between items.
+@media only screen and (max-width: 999px) {
+  .compactList {
+    gap: 0;
+  }
+
+  .compactListItem {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  // Bullet rendered as a flex item so `align-items: baseline` on the
+  // parent aligns it with the first line of the title — same visual
+  // position as a native `<li>` marker.
+  .compactListItem::before {
+    content: '•';
+    flex: 0 0 auto;
+    margin-left: -5px;
+    color: var(--color-dark-green);
+    font-weight: 700;
+  }
+
+  // Let the Link fill the remaining width so long titles wrap next to
+  // the bullet, not below it. Also zero the flex-column gap since
+  // there's no thumbnail padding between the meta and title on mobile.
+  .compactListLink {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 0;
+  }
+
+  .compactListTitle {
+    margin-top: 0;
+    line-height: 1.2;
+  }
+
+  .compactListMeta {
+    line-height: 1;
+  }
+
+  .compactListThumb {
+    display: none;
+  }
+}
+
+// Desktop: 3-column grid of thumbnails.
 @media only screen and (min-width: 1000px) {
-  .readingRow {
-    // 6-across grid: title in col 1, articles in cols 2-6.
-    grid-template-columns: repeat(6, 1fr);
-    gap: 2rem;
+  .compactList {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.5rem;
+  }
+}
+
+// --- /articles/type/[type] two-column layout --------------------------
+// Mirrors the /jobs board: a 320px categories sidebar on the left, the
+// article grid on the right. Falls back to a stacked single column on
+// mobile with the sidebar sitting above the articles.
+.typeLayout {
+  display: block;
+}
+
+.typeFilters {
+  margin-bottom: 3rem;
+}
+
+.typeResults {
+  min-width: 0;
+}
+
+// Small caps heading above the articles grid — mirrors the jobs board
+// `.filterCount` treatment for consistency across the two listing pages.
+.typeHeading {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem 0;
+  padding-top: 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  // On desktop, add the same top padding used by `.filterCount` so the
+  // heading vertically aligns with the first filter label in the left
+  // column.
+  .typeHeading {
+    padding-top: 2.2em;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .typeLayout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
     align-items: start;
   }
 
-  .readingRowTitle {
-    grid-column: 1;
-  }
-
-  .readingRowArticles {
-    grid-column: 2 / 7;
-    // Inner 5-col grid — a 6th+ article wraps to the next row within
-    // this inner grid, which visually sits under cols 2-6 of the
-    // outer grid (i.e. indented one cell past the title).
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem 1.5rem;
+  .typeFilters {
+    margin-bottom: 0;
   }
 }
