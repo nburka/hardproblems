@@ -7,7 +7,7 @@ excerpt: "Two of India's leading public health experts share their experience wi
 author: 'Mahima Chandak'
 authorSlug: 'mahima-chandak'
 
-publishedAt: '2025-06-08'
+publishedAt: '2025-06-03'
 updatedAt: '2025-06-03'
 
 status: 'published' # draft | review | published
@@ -22,6 +22,9 @@ readingTime: 75
 featured: false
 
 thumbnailVideo: '/videos/epidemiology-ganesh.mp4'
+
+image: '/images/content/thumb-public-health-india.jpg'
+imageAlt: 'Person with an Indian flag'
 
 seoTitle: 'Design in public health in India'
 seoDescription: "Two of India's leading public health experts share their experience with design and technology."

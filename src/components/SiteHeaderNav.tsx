@@ -16,7 +16,7 @@ const LEFT_ITEMS: NavItem[] = [
 
 const RIGHT_ITEMS: NavItem[] = [
   { href: '/about', label: 'About us' },
-  { href: '/give', label: 'Give' }
+  { href: '/newsletter', label: 'Newsletter' }
 ];
 
 export default function SiteHeaderNav({

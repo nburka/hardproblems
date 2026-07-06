@@ -33,7 +33,7 @@ readingTime: 4
 featured: false
 
 image: '/images/content/thumb-hard-problems-co-working-space.jpg'
-imageAlt: 'Hard Problems co-working space at 1 Rivington Place, East London'
+imageAlt: 'Hard Problems co-working space'
 
 seoTitle: 'The Hard Problems Co-Working Space in East London'
 seoDescription: 'Our co-working space at 1 Rivington Place in Shoreditch is open to teams working on climate, public health, education, poverty, and other urgent challenges.'

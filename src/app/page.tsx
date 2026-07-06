@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import ArticleCard from '../components/ArticleCard';
 import CoworkingRotator from '../components/CoworkingRotator';
 import NewsletterModule from '../components/NewsletterModule';
@@ -17,10 +18,39 @@ import styles from './articles/page.module.scss';
 // so it always sits on the same row as the Co-working London aside.
 const COWORKING_HERO_SLUG = 'hard-problems-coworking-space';
 
+// Curated reading lists rendered at the bottom of the homepage. Each
+// column is a title + a list of article slugs. The book-reviews column
+// picks up any article whose articleType is "Book reviews", so future
+// reviews land there automatically.
+const ORGS_SLUGS = [
+  'design-in-public-health-in-india',
+  'hidden-costs-of-bad-design'
+];
+
+const DESIGNERS_SLUGS = [
+  'using-a-spreadsheet-to-choose-your-next-role',
+  'join-nonprofit-board-or-advisory-group',
+  'books-designers-hard-problems',
+  'tricks-find-meaningful-job-linkedin',
+  'missing-piece-design-career'
+];
+
+// Explicit picks for the About us column that aren't tagged as
+// "Announcements" but belong there anyway.
+const ABOUT_EXTRA_SLUGS = ['explain-hard-problems'];
+
+// Newest-first order matches the rest of the site.
+const byDateDesc = (a: { publishedAt: string }, b: { publishedAt: string }) =>
+  (b.publishedAt || '').localeCompare(a.publishedAt || '');
+
 export default async function Home() {
   const articles = getAllArticles();
+  // Cap the main homepage listing at 11 total (1 hero + up to 10
+  // more). Anything past that only surfaces in the curated reading
+  // rows at the bottom of the page.
+  const HOMEPAGE_MAX_ARTICLES = 11;
   const heroArticle = articles[0];
-  let remainingArticles = articles.slice(1);
+  let remainingArticles = articles.slice(1, HOMEPAGE_MAX_ARTICLES);
 
   // Pin the co-working article into the secondary-hero slot.
   const coworkingIdx = remainingArticles.findIndex(
@@ -38,6 +68,40 @@ export default async function Home() {
 
   const jobs = await fetchJobs();
   const recentJobs = jobs.slice(0, 5);
+
+  // Build the three curated columns for the reading-list block at the
+  // bottom of the page. Look up by slug (dropping any that don't
+  // resolve — e.g. unpublished drafts) and sort each column
+  // newest-first. The designers column also picks up every "Book
+  // reviews" article automatically, and the about-us column picks up
+  // every "Announcements" article.
+  const bySlug = (slug: string) =>
+    articles.find((a) => a.slug === slug);
+  const orgsArticles = ORGS_SLUGS.map(bySlug)
+    .filter((a): a is NonNullable<typeof a> => a !== undefined)
+    .sort(byDateDesc);
+  const designersFromSlugs = DESIGNERS_SLUGS.map(bySlug).filter(
+    (a): a is NonNullable<typeof a> => a !== undefined
+  );
+  const designersSlugSet = new Set(designersFromSlugs.map((a) => a.slug));
+  const bookReviewArticles = articles.filter(
+    (a) => a.articleType?.toLowerCase() === 'book reviews'
+  );
+  const designersArticles = [
+    ...designersFromSlugs,
+    ...bookReviewArticles.filter((a) => !designersSlugSet.has(a.slug))
+  ].sort(byDateDesc);
+  const announcementArticles = articles.filter(
+    (a) => a.articleType?.toLowerCase() === 'announcements'
+  );
+  const announcementSlugSet = new Set(announcementArticles.map((a) => a.slug));
+  const aboutExtras = ABOUT_EXTRA_SLUGS.map(bySlug).filter(
+    (a): a is NonNullable<typeof a> =>
+      a !== undefined && !announcementSlugSet.has(a.slug)
+  );
+  const aboutArticles = [...announcementArticles, ...aboutExtras].sort(
+    byDateDesc
+  );
 
   return (
     <>
@@ -128,7 +192,81 @@ export default async function Home() {
             ))}
           </ul>
         )}
+
+        <div className={styles.guides} aria-label="Reading lists">
+          <ul className={styles.guidesRows}>
+            <ReadingRow title="For orgs" articles={orgsArticles} />
+            <ReadingRow title="For designers" articles={designersArticles} />
+            <ReadingRow title="About us" articles={aboutArticles} />
+          </ul>
+        </div>
       </section>
     </>
+  );
+}
+
+// Reading-list row at the bottom of the homepage. On desktop the row
+// is a 5-across grid: the section title sits in column 1 and up to
+// four articles fill columns 2-5. Overflow articles wrap to the next
+// row indented one cell (still starting at column 2). Each article
+// shows a thumbnail above its title.
+function ReadingRow({
+  title,
+  articles
+}: {
+  title: string;
+  articles: {
+    slug: string;
+    title: string;
+    readingTime: number;
+    articleType: string;
+    image?: string;
+    imageAlt?: string;
+  }[];
+}) {
+  if (articles.length === 0) return null;
+  return (
+    <li className={styles.readingRow}>
+      <h3 className={styles.readingRowTitle}>{title}</h3>
+      <ul className={styles.readingRowArticles}>
+        {articles.map((article) => {
+          const type = article.articleType?.toLowerCase();
+          const unit =
+            type === 'video'
+              ? 'video'
+              : type === 'podcast'
+                ? 'podcast'
+                : 'read';
+          return (
+            <li key={article.slug} className={styles.readingRowArticle}>
+              <Link
+                href={`/articles/${article.slug}`}
+                className={`${styles.readingRowLink} hover-saturate`}
+              >
+                {article.image && (
+                  <div className={styles.readingRowThumb}>
+                    <Image
+                      src={article.image}
+                      alt={article.imageAlt ?? ''}
+                      width={400}
+                      height={300}
+                      className={styles.readingRowImg}
+                    />
+                  </div>
+                )}
+                <h4 className={styles.readingRowArticleTitle}>
+                  {article.title}
+                </h4>
+                {article.readingTime > 0 && (
+                  <span className={styles.readingRowMeta}>
+                    {article.readingTime} min {unit}
+                  </span>
+                )}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </li>
   );
 }
