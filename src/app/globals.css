@@ -964,6 +964,7 @@ ul ul li {
    and the label + pill sit centred within a comfortable max-width. */
 .newsletter-module {
   box-sizing: border-box;
+  clear: both;
   border-top: 1px solid var(--color-light-green);
   border-bottom: 1px solid var(--color-light-green);
   margin: 0;

@@ -51,6 +51,14 @@ export default function Page() {
   return (
     <>
       <section className="page-narrow">
+        <div className="illustration-home">
+          <Image
+            src="/images/illustration-newsletter.svg"
+            width="80"
+            height="80"
+            alt="Illustration of a person holding a sign that says NEWS, JOBS, STORIES."
+          />
+        </div>
         <p className="page-lede">
           The email newsletter for designers and technologists who want to work
           on hard problems.
@@ -59,7 +67,7 @@ export default function Page() {
         <ul className={styles.checklist}>
           <li>1-2 emails per month</li>
           <li>No spam</li>
-          <li>We will never share our email list</li>
+          <li>We will never share emails</li>
           <li>Easy unsubscribe</li>
         </ul>
 
