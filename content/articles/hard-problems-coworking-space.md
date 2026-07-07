@@ -12,7 +12,7 @@ updatedAt: '2026-02-14'
 
 status: 'published' # draft | review | published
 
-articleType: 'Announcements' # Article | Reading | Podcast | Announcements
+articleType: "What's new" # Article | Reading | Podcast | What's new
 
 topics:
 

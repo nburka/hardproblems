@@ -15,7 +15,6 @@ status: 'published' # draft | review | published
 articleType: 'Interviews' # Article | Book reviews | Podcast | Interviews
 
 topics:
-  - design
   - healthcare
   - careers
 
