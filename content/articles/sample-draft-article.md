@@ -1,22 +1,22 @@
 ---
-title: "Sample draft article to test article styling"
-slug: "sample-draft-article"
+title: 'Sample draft article to test article styling'
+slug: 'sample-draft-article'
 
 excerpt: "A short sample article used to verify that the article page styling generalizes correctly to articles that aren't book reviews."
 
-author: "Test Author"
-authorSlug: "test-author"
+author: 'Test Author'
+authorSlug: 'test-author'
 
-publishedAt: "2026-06-10"
-updatedAt: "2026-06-10"
+publishedAt: '2026-06-19'
+updatedAt: '2026-06-14'
 
-status: "draft" # draft | review | published
+status: 'draft' # draft | review | published
 
-articleType: "Article" # Article | Book Review | Podcast
+articleType: 'Article' # Article | Book Review | Podcast
 
 topics:
   - careers
-  - tech-for-good
+  - job-search
 
 organizations:
   - Hard Problems
@@ -27,19 +27,18 @@ readingTime: 2
 
 featured: false
 
-image: "/images/content/thumb-moral-ambition-bregman.jpg"
-imageAlt: "Placeholder image"
+image: '/images/content/thumb-moral-ambition-bregman.jpg'
+imageAlt: 'Placeholder image'
 
-seoTitle: ""
-seoDescription: ""
+seoTitle: ''
+seoDescription: ''
 
-canonicalUrl: ""
-
+canonicalUrl: ''
 ---
 
 # Sample draft article to test article styling {#sample-draft-article}
 
-*A short sample article used to verify that the article page styling generalizes correctly to articles that aren't book reviews.*{.intro}
+_A short sample article used to verify that the article page styling generalizes correctly to articles that aren't book reviews._{.intro}
 
 ![Placeholder float-right image](/images/content/moral-ambition-book.jpg){.float-right}
 
@@ -67,7 +66,7 @@ Below is an unordered list to verify list styling:
 
 - First bullet item
 - Second bullet item with [an inline link](https://hardproblems.com)
-- Third item with **bold** and *italics*
+- Third item with **bold** and _italics_
 
 And an ordered list:
 
@@ -77,7 +76,7 @@ And an ordered list:
 
 Followed by a code block:
 
-``` {.wrap-text}
+```{.wrap-text}
 This is the first sentence inside a fenced code block. This is the second sentence to verify that the block renders in monospace with appropriate spacing.
 ```
 

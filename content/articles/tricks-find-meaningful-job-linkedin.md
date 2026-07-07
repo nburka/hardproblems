@@ -2,23 +2,20 @@
 title: 'Tricks to find a meaningful job on LinkedIn'
 slug: 'tricks-find-meaningful-job-linkedin'
 
-excerpt: 'LinkedIn is still the best place to find jobs in many regions — but meaningful roles are hard to surface. A few simple tricks help you cut through the noise.'
+excerpt: 'Meaningful roles can be hard to surface. A few simple tricks help you cut through the noise.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-10'
-updatedAt: '2026-06-10'
+publishedAt: '2026-03-10'
+updatedAt: '2026-03-05'
 
 status: 'published' # draft | review | published
 
-articleType: 'Article' # Article | Book Review | Podcast
+articleType: 'Tools' # Article | Book Review | Podcast | Opinion | Advice | Tools
 
 topics:
-  - careers
   - job-search
-  - design
-  - social-impact
 
 organizations:
   - Hard Problems
@@ -75,7 +72,7 @@ By default, LinkedIn will include many stale roles. You will be more successful 
 
 ### Enter multiple job titles {#enter-multiple-job-titles}
 
-"Design" is too expansive, but designers have so many different overlapping job titles that specific titles like "UX design" might limit your results too much. We like using multiple titles like "UX Design", "Product Design", "UX design", "Interface Design", "UI Design", "Mobile Design", etc. together in one search.
+"Design" is too expansive, but designers have so many different overlapping job titles that specific titles like "UX design" might limit your results too much. We like using multiple titles like "Product Design", "UX design", "Interface Design", "UI Design", "Mobile Design", etc. together in one search.
 
 </div>
 

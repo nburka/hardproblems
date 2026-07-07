@@ -1,25 +1,22 @@
 ---
-title: 'Hard Problems now has a job board for designers'
+title: 'We now have a job board for designers'
 slug: 'hard-problems-job-board'
 
-excerpt: 'We launched a curated job board with hundreds of design, product, research, and copywriting roles at organizations solving climate, healthcare, education, and public-service challenges.'
+excerpt: 'We have a curated job board with design, product, research, and copywriting roles at orgs solving hard problems.'
 
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
 
-publishedAt: '2026-06-12'
-updatedAt: '2026-06-12'
+publishedAt: '2026-06-20'
+updatedAt: '2026-06-15'
 
 status: 'published' # draft | review | published
 
-articleType: 'Article' # Article | Book Review | Podcast
+articleType: "What's new" # Article | Reading | Podcast | What's new
 
 topics:
   - careers
   - job-search
-  - design
-  - social-impact
-  - hiring
 
 organizations:
   - Hard Problems
@@ -45,7 +42,7 @@ seoDescription: 'A curated job board with hundreds of design, product, research,
 canonicalUrl: ''
 ---
 
-# Hard Problems now has a job board for designers {#hard-problems-now-has-a-job-board}
+# We now have a job board for designers and PMs {#hard-problems-now-has-a-job-board}
 
 _We created a job board with hundreds of design jobs related to climate change, healthcare, education, and public services._{.intro}
 
@@ -68,7 +65,7 @@ As might already be blindingly obvious to you, finding even a single opportunity
 
 ## Curated roles {#curated-roles}
 
-Today, the board comprises hundreds of full-time design, product, user research, and copywriting roles at organizations that are solving the world's most pressing issues. We aggregate vacancies from a wide range of sources (you can find a full list on [this page](https://www.hardproblems.com/jobs)), including corners of the internet that are easy to overlook.
+Today, the board comprises hundreds of full-time design, product, user research, and copywriting roles at organizations that are solving the world's most pressing issues. We search the web and track open job opportunities from a wide range of sources (you can find a full list on [this page](https://www.hardproblems.com/jobs)), including corners of the internet that are easy to overlook.
 
 We use a scoring algorithm to rank each organization according to how well it aligns with the values of our community. This scoring is based on frameworks like the [Effective Altruism framework](https://80000hours.org/articles/problem-framework/) for comparing global problems in terms of expected impact and is weighted toward nonprofits, the public sector, and companies with explicit goals to make the world better. The ranking also takes into account the United Nations' [Sustainable Development Goals](https://sdgs.un.org/goals).
 
@@ -78,17 +75,15 @@ Jobs that score highest are labeled with a "Hard Problems Pick" badge. Typically
 
 We've built this board to reduce the time it takes for you to find an exciting opportunity that combines good work with positive social outcomes.
 
-> "This board feels trustworthy and is well curated," says [Naomi Owolabi](https://www.linkedin.com/in/owolabinaomi/), a product specialist based in London
+> "This board feels trustworthy and is well curated."
+>
+> — [Naomi Owolabi](https://www.linkedin.com/in/owolabinaomi/), a product specialist based in London
 
 ## More full-time, senior roles {#more-full-time-senior-roles}
 
 Currently, roles suited to senior and mid-level talent are overrepresented on our board. Incidentally, this reflects broader labor market trends: Figma recently [reported](https://www.figma.com/blog/why-demand-for-designers-is-on-the-rise/) that over half (56%) of hiring managers noted increasing demand for senior design hires, compared to 25% for more junior roles. We've also chosen to start with full-time, permanent opportunities, rather than contract or part-time positions. In time, we hope to bring more balance to the board so that it reflects a fuller range of seniorities and working patterns.
 
-## Come for the tool, stay for the community {#come-for-the-tool-stay-for-the-community}
-
-Purposeful work that accords with our personal values and beliefs is considered a top priority by most (this is the case for 96% of Gen Zs and 97% of millennials, [according](https://www.deloitte.com/content/dam/assets-shared/docs/campaigns/2026/2026-genz-millennial-survey.pdf) to Deloitte), yet it's still relatively difficult to find roles that satisfy these criteria (just 54% of Gen Zs and 58% of millennials say their job meets this standard). When we do, we're then confronted with the challenge of standing out in an increasingly crowded pool of applicants. One way to do so is through a referral, but getting one isn't always easy.
-
-Over a decade ago, venture capitalist Chris Dixon wrote a [brief essay](https://cdixon.org/2015/01/31/come-for-the-tool-stay-for-the-network/) that later became startup lore titled "Come for the tool, stay for the network." Admittedly, we didn't have his thesis in mind when we built our board, but our community is full of interesting, well-connected people who might be able to put you in touch with a relevant member of staff or hiring manager for a role you're keen to explore. If you're already familiar with the work we do at Hard Problems, we know you'll find the board useful; if you aren't, you should check it out regardless — through it, you may discover that the community we're building is one you want to be part of.
+We hope that senior designers can establish a culture of design that helps recruit and develop more entry-level design roles. More often, organizations hire junior designers first (because they’re cheaper and very motivated) and risk junior designers leaving over time because they don’t have the support they need to drive real lasting impact on complex global challenges.
 
 ## Tackle your next hard problem {#tackle-your-next-hard-problem}
 

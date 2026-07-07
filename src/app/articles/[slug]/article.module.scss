@@ -1,11 +1,32 @@
+// Article-page-specific styling for the NewsletterModule sitting at the
+// top of every article. Only override the properties asked for; leave
+// width/margins alone. The wrapper uses `display: contents` so it
+// doesn't introduce a new flex/box layer under `.container`.
+.newsletterWrap {
+  display: contents;
+}
+
+.newsletterWrap :global(.newsletter-module) {
+  background: var(--color-pale-green);
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+  // Pull up by the nav's 2rem bottom margin so the module sits flush
+  // beneath the site nav.
+  margin-top: -2rem;
+}
+
+.newsletterWrap :global(.newsletter-module-inner) {
+  padding: 0.75rem 0;
+}
+
 // Full-width wrapper holding the green divider so it spans the same width
 // as the line on /jobs, /about, etc. The .article inside is centered on a
 // narrower reading column for legible body text.
 .articleWrap {
   width: 100%;
-  border-top: 1px solid #84d9a6;
-  padding-top: 24px;
-  margin-top: 42px;
+  padding-top: 0;
+  margin-top: 1rem;
 }
 
 .article {
@@ -14,47 +35,36 @@
   margin: 0 auto;
 }
 
-// Full-width row above the centered article column. Breadcrumb sits on
-// the left, byline on the right. Both wrap onto the next line on narrow
-// widths so the row doesn't squeeze either piece of text.
-.topBar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0 0 1.5rem 0;
+// "Top articles" rail at the bottom of every article page. Sits as a
+// sibling of .article inside .articleWrap so it can span the full width
+// rather than the 760px reading column.
+.topArticles {
+  display: block;
+  margin: 5rem 0 0 0;
+  padding-top: 3rem;
+  border-top: 1px solid var(--color-light-green);
 }
 
-.breadcrumb {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #235337;
+.topArticlesHeading {
+  margin: 0 0 2rem 0;
+}
+
+.topArticlesList {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
 
-  a,
-  a:visited {
-    color: #235337;
-    text-decoration: none;
-  }
-
-  a:hover,
-  a:focus {
-    color: #324bbc;
-    text-decoration: underline;
+@media only screen and (min-width: 1000px) {
+  .topArticlesList {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem 3rem;
   }
 }
 
-// Lighter green separator between breadcrumb segments. The text either
-// side stays at the darker brand green; only the slash lightens. The
-// padding adds extra breathing room around the slash on top of the NBSPs
-// baked into the JSX.
-.breadcrumbSep {
-  color: #84d9a6;
-  padding: 0 0.4em;
-}
 
 .header {
   // 5em of breathing room above the frontmatter (between the top bar and
@@ -63,24 +73,64 @@
   margin-bottom: 0.75rem;
 }
 
-// Pre-title label for typed articles (e.g. "Book Review"). Sized at 50%
-// of the title's font-size so it scales together when the title grows on
-// desktop. Same dark body color as the title; spacing only.
+// Pre-title label for typed articles (e.g. "Book Review"). Small fixed-
+// width, dark-green kicker that sits above the serif title.
 .preTitleLabel {
-  font-size: 1rem; // 50% of .title's 2rem
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  font-weight: 400;
   line-height: 1.2;
-  text-transform: none;
-  letter-spacing: 0;
-  margin: 0 0 0.4rem 0;
-  color: #231f20;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 3em 0;
+  color: var(--color-dark-green);
+  text-align: center;
+
+  a,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+  }
 }
 
 .byline {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 0;
-  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-green);
+  margin: 0 0 2em 0;
+  text-align: center;
+  text-transform: none;
+}
+
+.bylineReadingTime {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Mobile: stack each byline piece on its own line and hide the dot
+// separators. Each part is wrapped in a `<span>` in the JSX; the
+// separator " · " is a child `<span aria-hidden="true">` inside that
+// wrapper.
+@media only screen and (max-width: 999px) {
+  .byline > span {
+    display: block;
+    margin-bottom: 0.75em;
+  }
+
+
+  .byline > span:last-child {
+    margin-bottom: 0;
+  }
+
+  .byline > span > span[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 // Author byline link — keeps the byline's gray color (the wrapping
@@ -93,41 +143,77 @@
 
 .authorLink:hover,
 .authorLink:focus {
-  color: darkblue;
+  color: var(--color-dark-green);
   text-decoration: underline;
+}
+
+// Author headshot rendered to the left of "By <Author>" at the top of
+// every article. The avatar is a plain inline element with
+// `vertical-align: middle` so it shares a baseline with every other
+// byline piece (date, reading time, etc.) on the same line.
+.authorAvatarLink {
+  display: inline-block;
+  line-height: 0;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+
+// Mobile: stack the avatar on its own row above the author's name so
+// the whole byline reads vertically. Lives after the base rule above
+// so the cascade picks this up at narrow viewports.
+@media only screen and (max-width: 999px) {
+  .authorAvatarLink {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 0.5em auto;
+  }
+
+  .authorAvatar {
+    margin: 0 auto;
+  }
+}
+
+.authorAvatar {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 // Article body — rendered from Markdown via dangerouslySetInnerHTML. We
 // can't apply CSS module class names to the descendant tags, so we scope
 // styles via the wrapper class and use plain element selectors inside.
 .body {
-  // Inherits the site-wide body font-size (18px) — explicit `1rem` here
-  // would drop to 16px (root) which doesn't match other pages.
   font-size: inherit;
   line-height: 1.6;
-  color: #231f20;
+  color: var(--color-text);
 
-  // Lede paragraph treatment matches the site-wide `p.intro` style used on
-  // /about, /jobs, etc. Override font-style so the `<em>` wrapper from the
-  // markdown source (`*text*{.intro}`) doesn't render italic, and clear
-  // any inherited background.
+  // Lede paragraph — matches the site-wide `p.intro` style used on
+  // /about, /jobs, etc. The `<em>` wrapper from markdown source
+  // (`*text*{.intro}`) is overridden so it doesn't render italic, and
+  // any inherited background is cleared.
   :global(.intro),
   em:global(.intro) {
     display: block;
     font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.43;
-    color: #231f20;
+    font-weight: 300;
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    color: var(--color-text);
     background: transparent;
-    margin: 0 0 3rem 0;
+    margin: 2.5rem 0 3rem 0;
+    text-align: center;
+    text-wrap: balance;
   }
 
   // Image caption — `_caption text_{.caption}` on its own line under an image.
   em:global(.caption),
   :global(.caption) {
     display: block;
-    font-size: 0.85em;
+    font-size: var(--font-size-sm);
     line-height: 1.4;
     text-align: center;
     color: #666;
@@ -140,50 +226,81 @@
   // markdown like *italics* in it). Spacing above is provided by `.header`
   // so the title sits flush at the top of the body.
   h1 {
-    font-size: 2.5rem;
-    line-height: 1;
-    font-weight: 700;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    font-size: var(--font-size-3xl);
+    line-height: 1.05;
+    font-weight: 400;
     text-transform: none;
     letter-spacing: 0;
-    color: #231f20;
+    color: var(--color-text);
     margin: 0 0 1rem 0;
+    text-align: center;
+    text-wrap: balance;
   }
 
   h2 {
-    font-size: 1.3rem;
-    line-height: 1.25;
-    font-weight: 700;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    font-size: var(--font-size-2xl);
+    line-height: 1.15;
+    font-weight: 400;
     text-transform: none;
     letter-spacing: 0;
-    color: #231f20;
+    color: var(--color-text);
     margin: calc(2.5rem + 1em) 0 0.75rem 0;
   }
 
   h3 {
-    font-size: 1em;
+    font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    font-size: var(--font-size-lg);
+    line-height: 1.2;
     text-transform: none;
     letter-spacing: 0;
-    font-weight: 700;
-    color: #2f8b53;
+    font-weight: 400;
+    color: var(--color-mid-green);
     margin: 2rem 0 0.2rem 0;
+  }
+
+  h3:global(.book-heading) {
+    font-family:
+      var(--font-sans);
+    font-size: var(--font-size-md);
+    font-weight: 400;
   }
 
   p {
     margin: 0 0 1.2rem 0;
   }
 
-  // Match the site-wide link styling (cornflowerblue, no underline,
-  // darkblue on hover) instead of the underlined deep-blue used elsewhere
-  // in this stylesheet.
+  // Byline lives inside .body now (injected after the intro). Bump
+  // specificity to .body .byline so its bottom margin wins over the
+  // generic `.body p` rule above. Mobile uses a tighter gap because
+  // the byline takes 3 stacked lines there.
+  .byline {
+    margin: 0 0 2em 0;
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .byline {
+      margin: 0 0 10em 0;
+    }
+  }
+
+  // Inline links inside the article body — mid-green text with a soft
+  // light-green underline, darkening to dark-green on hover with a
+  // matching underline color.
   a,
   a:visited {
-    color: cornflowerblue;
-    text-decoration: none;
+    color: var(--color-mid-green);
+    text-decoration: underline;
+    text-decoration-color: #b7ddc8;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 
   a:hover,
   a:focus {
-    color: darkblue;
+    color: var(--color-dark-green);
+    text-decoration-color: currentColor;
   }
 
   // Reusable black pill-button styling — same look as the code-block
@@ -196,12 +313,12 @@
     align-items: center;
     gap: 0.45rem;
     padding: 8px 14px;
-    font-size: 0.95rem;
+    font-size: var(--font-size-base);
     font-weight: 500;
     line-height: 1;
-    background: #231f20;
+    background: var(--color-dark-green);
     color: #fff;
-    border: 1px solid #231f20;
+    border: 1px solid var(--color-dark-green);
     border-radius: 100px;
     text-decoration: none;
     transition:
@@ -218,10 +335,10 @@
 
   a:global(.black-button):hover,
   a:global(.black-button):focus {
-    background: #235337;
+    background: var(--color-mid-green);
     color: #fff;
-    border-color: #235337;
-    box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+    border-color: var(--color-mid-green);
+    box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
     transform: translateY(-1px);
     text-decoration: none;
     outline: none;
@@ -239,22 +356,18 @@
   }
 
   ul > li {
-    margin: 0.3rem 0;
+    margin: 1rem 0;
   }
 
   ol > li {
     margin: 0.75em 0;
   }
 
+  // Wider vertical rhythm than the global blockquote — everything
+  // else (italic body, `p + p` uppercase attribution, link colour,
+  // etc.) comes from the site-wide `blockquote` rule in globals.css.
   blockquote {
     margin: 2.5em 0;
-    // Top padding is intentionally larger than bottom: the body line-height
-    // (1.6) adds half-leading + descender space below the last line, so a
-    // matching bottom padding would visually look heavier than the top.
-    padding: 0.3rem 0 0 1.2rem;
-    border-left: 3px solid #84d9a6;
-    color: #444;
-    font-style: italic;
   }
 
   // Note banner — yellow background with a lightbulb icon. Use by wrapping
@@ -267,19 +380,19 @@
     border-left: 1px solid #e8c200;
     padding: 1rem 1.25rem;
     margin: 2em 0;
-    color: #231f20;
-    font-size: 0.95em;
+    color: #746100;
+    font-size: var(--font-size-base);
     line-height: 1.5;
 
-    // Lightbulb icon (feather-style outline) rendered as a background-image
-    // on a ::before pseudo-element so it scales with the banner.
+    // Lucide `badge-info` icon rendered as a background-image on a
+    // ::before pseudo-element so it scales with the banner.
     &::before {
       content: '';
       flex-shrink: 0;
       width: 22px;
       height: 22px;
       margin-top: 0.1em;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23231f20' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14'/%3E%3C/svg%3E")
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23746100' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z'/%3E%3Cline x1='12' x2='12' y1='16' y2='12'/%3E%3Cline x1='12' x2='12.01' y1='8' y2='8'/%3E%3C/svg%3E")
         center / contain no-repeat;
     }
 
@@ -297,7 +410,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
-    font-size: 0.75em;
+    font-size: var(--font-size-xs);
     line-height: 1.3;
   }
 
@@ -306,7 +419,7 @@
     text-align: left;
     vertical-align: top;
     padding: 0.6rem 0.8rem;
-    border-bottom: 1px solid #ebf7f0;
+    border-bottom: 1px solid var(--color-pale-green);
   }
 
   th {
@@ -330,7 +443,7 @@
   // each cell's content.
   table:global(.green-table),
   :global(.green-table) table {
-    background: #d9eee2;
+    background: var(--color-light-green);
     table-layout: fixed;
   }
 
@@ -353,10 +466,10 @@
     margin: 1.5rem 0;
     padding: 1rem 1.2rem;
     background: #f4f7f5;
-    border: 1px solid #d9eee2;
+    border: 1px solid var(--color-light-green);
     border-radius: 8px;
     overflow-x: auto;
-    font-size: 0.9em;
+    font-size: var(--font-size-sm);
     line-height: 1.5;
 
     code {
@@ -392,7 +505,7 @@
   // plain text contents.
   :global(.code-highlight) {
     background: #cbead8;
-    color: #235337;
+    color: var(--color-dark-green);
     padding: 1px 4px;
     border-radius: 3px;
   }
@@ -443,7 +556,11 @@
   // holding a 16:9 box. The iframe fills the wrapper absolutely.
   :global(.video-embed) {
     position: relative;
-    width: 100%;
+    /* width: auto (rather than 100%) so the negative side margins added
+       at the desktop breakpoints below can actually widen the box —
+       width: 100% would lock the box to the parent's content width and
+       just clip past the column. */
+    width: auto;
     aspect-ratio: 16 / 9;
     margin: 0 0 3.5rem 0;
   }
@@ -489,10 +606,11 @@
   // commands, etc.
   code {
     background: #eef5f1;
-    border: 1px solid #d9eee2;
+    border: 1px solid var(--color-light-green);
     border-radius: 4px;
     padding: 0.1em 0.35em;
-    font-size: 0.9em;
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
   }
 
   img {
@@ -555,6 +673,13 @@
     margin: 0 0 1rem 1.5rem;
   }
 
+  // 30% smaller variant of the float-right image — combine the two
+  // classes in markdown: `{.float-right .float-right-smaller}`.
+  img:global(.float-right-smaller) {
+    width: 336px;
+    max-width: 42%;
+  }
+
   // Clear floats inside the body so following sections don't wrap around.
   &::after {
     content: '';
@@ -567,31 +692,73 @@
 // section-heading treatment from globals.css. 4em top margin separates
 // the label from the article body.
 .tagsLabel {
-  margin: 4em 0 0.6rem 0;
+  margin: 1.5em 0 0.6rem 0;
 }
 
 .topics {
-  margin: 0 0 1rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  list-style: none;
+  margin: 1.5rem 0 1rem 0;
+  padding: 0;
 }
 
-// Topic links inside .topics — keep the pill background from the global
-// `.tag` class but inherit its colour instead of cornflowerblue, and lift
-// the underline so they read as tags rather than ordinary links.
+.topics li {
+  margin: 0;
+  border-top: 1px solid var(--color-light-green);
+}
+
+.topics li:last-child {
+  border-bottom: 1px solid var(--color-light-green);
+}
+
+// Each topic / type entry is a full-row link with the label on the left
+// and a right-arrow on the far right. Inherits the dark-green colour and
+// shifts the arrow on hover to reinforce that it's clickable.
 .topicTag,
 .topicTag:visited {
-  color: #235337;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-link);
+  font-weight: 500;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 .topicTag:hover,
 .topicTag:focus {
-  background: #b8dec7;
-  color: #235337;
+  color: var(--color-dark-green);
   text-decoration: none;
+}
+
+.topicTagMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.topicTagCount {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  font-weight: 400;
+  color: var(--color-mid-green);
+}
+
+.topicTagIcon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  color: var(--color-dark-green);
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.topicTag:hover .topicTagIcon,
+.topicTag:focus .topicTagIcon {
+  opacity: 1;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -601,12 +768,23 @@
   }
 
   .body h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
-  // Keep the pre-title label at 50% of the title's responsive size.
+  // Pre-title label keeps its small fixed-width treatment on desktop.
   .preTitleLabel {
-    font-size: 1.2rem;
+    font-size: var(--font-size-sm);
+  }
+
+  // Title + intro + video bleed out past the 760px reading column to
+  // match the wide-image bleed (calc(100% + 160px) on the image rules
+  // below). 80px each side = 160px total wider than the column.
+  .body h1,
+  .body :global(.intro),
+  .body em:global(.intro),
+  .body :global(.video-embed) {
+    margin-left: -80px;
+    margin-right: -80px;
   }
 }
 
@@ -617,12 +795,32 @@
   .body img:global(.float-right) {
     margin-right: -240px;
   }
+
+  // 160px each side = 320px total wider — matches the image bleed at this
+  // breakpoint.
+  .body h1,
+  .body :global(.intro),
+  .body em:global(.intro),
+  .body :global(.video-embed) {
+    margin-left: -160px;
+    margin-right: -160px;
+  }
 }
 
 // Even more bleed once there's enough viewport room.
 @media only screen and (min-width: 1500px) {
   .body img:global(.float-right) {
     margin-right: -320px;
+  }
+
+  // 240px each side = 480px total wider — matches the image bleed at this
+  // breakpoint.
+  .body h1,
+  .body :global(.intro),
+  .body em:global(.intro),
+  .body :global(.video-embed) {
+    margin-left: -240px;
+    margin-right: -240px;
   }
 }
 
@@ -648,6 +846,16 @@
 @media only screen and (min-width: 1500px) {
   .body img:not(:global(.float-right)) {
     max-width: calc(100% + 480px);
+  }
+}
+
+// Opt-out for individual images that should stay inside the reading
+// column at all viewport widths — apply `{.normal-width}` in markdown.
+@media only screen and (min-width: 1000px) {
+  .body img:global(.normal-width) {
+    max-width: 100%;
+    margin-left: 0;
+    transform: none;
   }
 }
 

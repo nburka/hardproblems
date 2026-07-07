@@ -1,27 +1,186 @@
+// Recent-newsletters list. Each newsletter sits on its own row with
+// the date-overlaid image on the left and the title/excerpt on the
+// right at all viewport widths.
+.newsletters {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 5em 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
 .newsletter {
-    padding: 2rem 0;
+  margin: 0;
+}
+
+.newsletterLink {
+  display: grid;
+  grid-template-columns: minmax(220px, 40%) 1fr;
+  gap: 2rem;
+  align-items: start;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .newsletterTitle,
+  &:focus .newsletterTitle {
+    color: var(--color-dark-green);
+    text-decoration: underline;
+    text-decoration-color: #b7ddc8;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+  }
+
+  &:hover .newsletterImageWrap::after,
+  &:focus .newsletterImageWrap::after {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.newsletterImageWrap {
+  display: block;
+  position: relative;
+}
+
+// Inner stroke frame drawn just inside the image edge — matches the
+// article cards so the two surfaces read identically.
+.newsletterImageWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  transition: box-shadow 0.15s ease;
 }
 
 .newsletterImage {
-    display: inline-block;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// Mobile: crop the thumbnail to a square so each row reads as
+// image-left + content-right at compact widths. Desktop keeps the
+// natural aspect ratio.
+@media only screen and (max-width: 999px) {
+  .newsletterLink {
+    grid-template-columns: minmax(128px, 24%) 1fr;
+  }
+
+  .newsletterImageWrap {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .newsletterImage {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+
 }
 
 .newsletterSkeleton .newsletterImage {
-    min-height: 236px;
+  min-height: 236px;
 }
 
 .newsletterContent {
-    display: block;
-    min-height: 2rem;
+  display: block;
+  min-height: 2rem;
 }
 
-.newsletter small {
-  font-size: 0.8rem;
+.newsletterBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.newsletterTitle {
+  margin: 0.2rem 0 0 0;
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-size: var(--font-size-lg);
+  line-height: 1.15;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-mid-green);
+  transition: color 0.15s ease;
+  text-wrap: balance;
+}
+
+.newsletterExcerpt {
+  margin: 0;
+  color: #444;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.newsletterMeta {
+  margin-top: 0.3rem;
+  font-size: var(--font-size-sm);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
 }
 
-.newsletter p {
-  margin: 0.2rem 0;
+// Date label sitting under the title/excerpt. Same small monospace
+// dark-green text used elsewhere on the site (kickers, bylines),
+// no pill background.
+.newsletterDate {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: var(--color-dark-green);
+  margin-top: 0.5em;
 }
+
+.newsletterDateIcon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 5px;
+  margin-top: -1px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+}
+
+// Hand-drawn checkbox list — matches the .hand-drawn-checklist style
+// used inside articles (see articles/[slug]/article.module.scss). Each
+// item renders with a sketchy ticked checkbox instead of a bullet.
+.checklist {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 1.7em;
+  margin: 0.6em 0;
+  min-height: 1.3em;
+}
+
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 1.15em;
+  height: 1.15em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23231f20' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6,5L27,4L28,27L5,26Z'/%3E%3Cpath d='M10,16L15,22L25,9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+

@@ -15,6 +15,7 @@ export type SerializedJob = {
   goodForWorldExplanation: string;
   role: string;
   dateCreated: string | null;
+  seniority: string;
 };
 
 const SHEET_CSV_URL =
@@ -135,7 +136,11 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
       description: (r[12] ?? '').trim(),
       goodForWorldExplanation: (r[13] ?? '').trim(),
       role: (r[14] ?? '').trim(),
-      dateCreated: dateCreated ? dateCreated.toISOString() : null
+      dateCreated: dateCreated ? dateCreated.toISOString() : null,
+      // Column R (index 17) — "Seniority". Free-form text from the
+      // sheet; matchesSeniority() classifies it into the filter
+      // buckets at render time.
+      seniority: (r[17] ?? '').trim()
     } satisfies SerializedJob;
   });
 

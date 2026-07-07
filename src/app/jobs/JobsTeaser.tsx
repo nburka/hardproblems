@@ -1,11 +1,15 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePostHog } from 'posthog-js/react';
+import { Gem } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
-import { orgTypeDisplay } from './orgType';
-import styles from './jobsTeaser.module.scss';
+import { displaySector } from './filters';
+import { getSectorIcon } from './sectorIcons';
+import CompanyFavicon from './CompanyFavicon';
+import jobStyles from './page.module.scss';
+import teaserStyles from './jobsTeaser.module.scss';
 
 type ClickSource = 'title' | 'company' | 'favicon';
 
@@ -16,24 +20,15 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
+    return `/api/favicon?host=${encodeURIComponent(hostname)}`;
   } catch {
     return null;
   }
 }
 
-// Pretty-print the sector for display. Mirrors the helper in JobsList.tsx
-// so the homepage and /articles previews simplify the same way the full
-// board does (e.g. "Health (Public Health)" → "Public health").
-function displaySector(sector: string): string {
-  const trimmed = sector.trim();
-  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
-  if (healthMatch) {
-    const inner = healthMatch[1].trim();
-    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
-  }
-  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
-  return trimmed;
+// Country-only — the teaser omits city and remote/work-style tags.
+function formatLocation(job: SerializedJob): string {
+  return job.country.trim();
 }
 
 function GlobeIcon({ className }: { className?: string }) {
@@ -57,6 +52,7 @@ function GlobeIcon({ className }: { className?: string }) {
   );
 }
 
+const BULLET_SEPARATOR = '  •  ';
 
 export default function JobsTeaser({
   jobs,
@@ -87,121 +83,214 @@ export default function JobsTeaser({
   };
 
   return (
-    <div className={styles.teaser}>
-      {jobs.map((job, i) => {
-        const location = job.country.trim();
-        const typeLabel = orgTypeDisplay(job.typeOfOrg);
-        const metaParts: { key: string; node: React.ReactNode }[] = [];
-        if (job.company) {
-          metaParts.push({
-            key: 'company',
-            node: <span className={styles.company}>{job.company}</span>
-          });
-        }
-        if (typeLabel) {
-          metaParts.push({
-            key: 'type',
-            node: <span className={styles.type}>{typeLabel}</span>
-          });
-        }
-        if (location) {
-          metaParts.push({
-            key: 'location',
-            node: <span className={styles.location}>{location}</span>
-          });
-        }
-        const faviconUrl = buildFaviconUrl(job.companyUrl);
-        const companyHref = job.companyUrl
-          ? job.companyUrl.startsWith('http')
-            ? job.companyUrl
-            : `https://${job.companyUrl}`
-          : null;
-        const iconContents = faviconUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={faviconUrl}
-            alt=""
-            width={16}
-            height={16}
-            className={styles.favicon}
-            loading="lazy"
-          />
-        ) : (
-          <GlobeIcon className={styles.favicon} />
-        );
-        return (
-          <div key={`${job.url}-${i}`} className={styles.row}>
-            {companyHref ? (
-              <Link
-                href={companyHref}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={
-                  job.company ? `Visit ${job.company}` : 'Visit company'
-                }
-                className={styles.icon}
-                onClick={() => trackJobClick(job, 'favicon')}
-              >
-                {iconContents}
-              </Link>
-            ) : (
-              <div className={styles.icon}>{iconContents}</div>
-            )}
-            <div className={styles.content}>
-            {job.sector && (
-              <div className={styles.sectorKicker}>
-                {displaySector(job.sector)}
-              </div>
-            )}
-            <div className={styles.titleLine}>
-              {job.url ? (
+    <div className={teaserStyles.teaser}>
+      <ul className={jobStyles.jobs}>
+        {jobs.map((job, i) => {
+          const location = formatLocation(job);
+          const hasSalary =
+            job.salary && job.salary.toLowerCase() !== 'n/a';
+          const faviconUrl = buildFaviconUrl(job.companyUrl);
+          const companyHref = job.companyUrl
+            ? job.companyUrl.startsWith('http')
+              ? job.companyUrl
+              : `https://${job.companyUrl}`
+            : null;
+          const goodForWorldScore = parseFloat(job.goodForWorld);
+          const isStaffPick =
+            !Number.isNaN(goodForWorldScore) && goodForWorldScore > 8;
+
+          const metaItems: ReactNode[] = [];
+          if (job.company) {
+            metaItems.push(
+              companyHref ? (
                 <Link
-                  href={job.url}
+                  href={companyHref}
                   target="_blank"
                   rel="noreferrer"
-                  className={styles.title}
-                  onClick={() => trackJobClick(job, 'title')}
+                  className={jobStyles.jobCompany}
+                  onClick={() => trackJobClick(job, 'company')}
                 >
-                  {job.title}
+                  {job.company}
                 </Link>
               ) : (
-                <span className={styles.title}>{job.title}</span>
+                <span className={jobStyles.jobCompany}>{job.company}</span>
+              )
+            );
+          }
+          if (location) {
+            metaItems.push(
+              <span className={jobStyles.jobLocation}>{location}</span>
+            );
+          }
+          if (hasSalary) {
+            metaItems.push(
+              <span className={jobStyles.jobSalary}>{job.salary}</span>
+            );
+          }
+
+          const globe = <GlobeIcon className={jobStyles.companyFavicon} />;
+          const iconContents = faviconUrl ? (
+            <CompanyFavicon
+              src={faviconUrl}
+              alt={
+                companyHref
+                  ? job.company
+                    ? `Icon of ${job.company}`
+                    : 'Company icon'
+                  : ''
+              }
+              className={jobStyles.companyFavicon}
+              fallback={globe}
+            />
+          ) : (
+            globe
+          );
+
+          return (
+            <li
+              key={`${job.url}-${i}`}
+              className={`${jobStyles.job} ${teaserStyles.teaserJob}`}
+            >
+              {companyHref ? (
+                <Link
+                  href={companyHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={
+                    job.company ? `Visit ${job.company}` : 'Visit company'
+                  }
+                  className={jobStyles.jobIcon}
+                  onClick={() => trackJobClick(job, 'favicon')}
+                >
+                  {iconContents}
+                </Link>
+              ) : (
+                <div className={jobStyles.jobIcon}>{iconContents}</div>
               )}
-            </div>
-            <div className={styles.meta}>
-              {metaParts.map((part, idx) => (
-                <Fragment key={part.key}>
-                  {idx > 0 && (
-                    <span className={styles.bullet}>{' · '}</span>
+              <div className={jobStyles.jobMain}>
+                <h4
+                  className={`${jobStyles.jobTitle} ${teaserStyles.teaserTitle}`}
+                >
+                  {job.url ? (
+                    <Link
+                      href={job.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => trackJobClick(job, 'title')}
+                    >
+                      {job.title}
+                    </Link>
+                  ) : (
+                    job.title
                   )}
-                  {part.node}
-                </Fragment>
-              ))}
-            </div>
-            </div>
-            {job.description && (
-              <div className={styles.description} role="tooltip">
-                {job.company && (
-                  <strong className={styles.descriptionCompany}>
-                    {job.company} —
-                  </strong>
+                </h4>
+                <div
+                  className={`${jobStyles.jobMeta} ${teaserStyles.teaserMeta}`}
+                >
+                  {metaItems.map((item, idx) => (
+                    <Fragment key={idx}>
+                      {idx > 0 && (
+                        <span className={jobStyles.jobBullet}>
+                          {BULLET_SEPARATOR}
+                        </span>
+                      )}
+                      {item}
+                    </Fragment>
+                  ))}
+                </div>
+                {(job.sector || isStaffPick) && (
+                  <div className={jobStyles.jobSectorRow}>
+                    {job.sector &&
+                      (() => {
+                        const displayed = displaySector(job.sector);
+                        const SectorIcon = getSectorIcon(displayed);
+                        return (
+                          <Link
+                            href={`/jobs?sectorPick=${encodeURIComponent(
+                              displayed.toLowerCase()
+                            )}`}
+                            className={`tag ${jobStyles.jobSector} ${jobStyles.jobTagButton}`}
+                            aria-label={`See all ${displayed} jobs on the job board`}
+                          >
+                            {SectorIcon && (
+                              <SectorIcon
+                                className={jobStyles.jobSectorIcon}
+                                aria-hidden="true"
+                              />
+                            )}
+                            {displayed}
+                          </Link>
+                        );
+                      })()}
+                    {isStaffPick && (
+                      <Link
+                        href="/jobs?pick=1"
+                        className={`tag ${jobStyles.jobStaffPick} ${jobStyles.jobTagButton} ${teaserStyles.teaserPick}`}
+                        aria-label="See only Our Picks on the job board"
+                      >
+                        <Gem
+                          className={jobStyles.jobStaffPickStar}
+                          aria-hidden="true"
+                        />
+                        Our Pick
+                      </Link>
+                    )}
+                  </div>
                 )}
-                {job.company && ' '}
-                {job.description}
               </div>
-            )}
-          </div>
-        );
-      })}
-      <div className={styles.seeAll}>
-        <p className={styles.seeAllText}>
-          We follow job boards that feature roles for senior designers
-          working on hard problems.
+              {(job.description || isStaffPick) && (
+                <div
+                  className={jobStyles.jobDescription}
+                  role="tooltip"
+                >
+                  {job.description && (
+                    <>
+                      {job.company && (
+                        <>
+                          <strong
+                            className={jobStyles.jobDescriptionCompany}
+                          >
+                            {job.company}
+                          </strong>
+                          <br />
+                        </>
+                      )}
+                      {job.description}
+                    </>
+                  )}
+                  {isStaffPick && (
+                    <div className={jobStyles.jobDescriptionPick}>
+                      <strong
+                        className={jobStyles.jobDescriptionPickHeading}
+                      >
+                        <Gem
+                          className={jobStyles.jobDescriptionPickIcon}
+                          aria-hidden="true"
+                        />
+                        Our Pick
+                      </strong>
+                      <p>
+                        We hand-select great jobs at orgs whose primary
+                        mission is to make the world better.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+              {/* No .jobAside — the preview omits the relative date. */}
+            </li>
+          );
+        })}
+      </ul>
+      <div className={teaserStyles.seeAll}>
+        <p className={teaserStyles.seeAllText}>
+          We find roles from across the web for designers, PMs, and others to
+          work on hard problems.
         </p>
         <Link href="/jobs">
           {typeof totalCount === 'number'
-            ? `See all ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
-            : 'See all jobs'}{' '}
+            ? `All ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
+            : 'All jobs'}{' '}
           <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>

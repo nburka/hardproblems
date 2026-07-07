@@ -2,22 +2,21 @@
 title: 'Use a spreadsheet to choose your next role'
 slug: 'use-a-spreadsheet-to-choose-your-next-role'
 
-excerpt: '"Job Rank" is a simple weighted-scoring framework that helps you score competing offers against the values that matter most to you right now.'
+excerpt: '"Job Rank" is a simple scoring framework that helps you score competing offers against your values.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-11'
-updatedAt: '2026-06-11'
+publishedAt: '2026-07-05'
+updatedAt: '2026-06-30'
 
 status: 'published' # draft | review | published
 
-articleType: 'Framework' # Article | Book Review | Framework | Podcast
+articleType: 'Tools' # Article | Book Review | Tools | Podcast
 
 topics:
   - careers
   - job-search
-  - frameworks
 
 organizations:
   - Hard Problems
@@ -47,6 +46,8 @@ canonicalUrl: ''
 
 _"Job Rank" is a simple framework to identify the job that best aligns with your values._{.intro}
 
+![](/images/illustration-found-it.svg){.float-right}
+
 We all know the feeling: You're at a career crossroads, staring at 10 different paths and paralyzed by choice. Do you chase the high compensation package or the mission-driven role? The exciting new stealth startup or the reliable organization? Jump to a nonprofit or stay in big tech? For people who've spent time in product or design, this sounds like a strategy problem. You're theorizing about a major life decision but without a useful rubric.
 
 I've been there three times in my career:
@@ -61,7 +62,7 @@ When the stakes are high, I turn to a simple framework: a weighted scoring sprea
 
 The idea is simple: Create a rubric of what matters to you right now, assign a weight to each metric, and then score any potential job (or even your made-up dream job) against it.
 
-<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get the free "Job Rank" template <span aria-hidden="true">→</span></a>
+<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get our free "Job Rank" template <span aria-hidden="true">→</span></a>
 
 [![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy)
 
@@ -69,7 +70,7 @@ Here's a quick-start guide to the "Job Rank" template:
 
 ## Step 1: Choose your values (The Metrics) {#step-1-choose-your-values}
 
-This is the hardest part. You need to diagnose what genuinely brings you fulfillment. For me, that meant things like _Commute Time_, _Working on Interesting Technology_, _Working with Inspiring People_, _Allowing me to try new things_, and, most recently, heavily weighting _Doing Good for the World_.
+This is the hardest part. You need to diagnose what genuinely brings you fulfillment. For me, that meant things like `Commute Time`, `Work on Cool Tech`, `Work with Inspiring People`, `Allow me to try new things`, and, most recently, heavily weighting `Doing Good for the World`.
 
 Try to be thoughtful about your values, but also don't agonize over them. You can always change them while you're scoring job opportunities if you find the scores don't align with your gut feelings.
 
@@ -81,25 +82,26 @@ The template has a suggested list, but your values will be unique. Here are some
 
 |                                    |                                             |                                               |
 | ---------------------------------- | ------------------------------------------- | --------------------------------------------- |
-| Job stability                      | Work autonomy                               | Innovative work                               |
+| Aligns with my values              | Work autonomy                               | Innovative work                               |
 | Company culture                    | Benefits package                            | Need to relocate                              |
 | Work/life balance                  | High quality work                           | Aligned to my skills                          |
 | Work with smart people             | Career growth opportunity                   | My passion for the problem                    |
 | Positive impact for the world      | I would use the product myself              | Chance to travel to cool places               |
 | Short commute or work-from-home    | Mentorship from people I respect            | Opportunity to share work publicly            |
-| Small team where I can have impact | Learn skills to prepare me for my dream job | Chance to contribute to open source community |
+| Small team where I'll have impact | Build skills for my dream job | Contribute to open source |
+| Job stability                      | Inspiring leaders                           | High ethical standards                        |
 
 </div>
 
 ## Step 2: Assign weights (The Multiplier) {#step-2-assign-weights}
 
-Not all values are equal. In different chapters of my life, the importance of _Money_ shifted dramatically. Maybe today, _Commute Time_ is critical (5/5), while _Working on Interesting Technology_ is just a nice-to-have (3/5).
+Not all values are equal. In different chapters of my life, the importance of `Money` shifted dramatically. Maybe today, `Commute Time` is critical (5/5), while `Work on Cool Tech` is just a nice-to-have (3/5).
 
 **Action:**{.highlight} Use a 1 to 5 scale, where 5 is the most important value. This multiplier is what gives the framework its power.
 
 ## Step 3: Score the roles (The Data) {#step-3-score-the-roles}
 
-Now, take every role you're considering and score each value. You'll have to make educated guesses for some scores. The spreadsheet does the math: (Score × Weight) = Weighted Score out of 100
+Now, take every role you're considering and score each value. You'll have to make educated guesses for some scores. The spreadsheet does the math: `(Score × Weight) = Weighted Score out of 100`
 
 **Action:**{.highlight} The role with the highest total weighted score is the one most aligned with your current life priorities.
 

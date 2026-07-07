@@ -1,8 +1,31 @@
 .board {
   width: 100%;
-  border-top: 1px solid #84d9a6;
-  padding-top: 24px;
-  margin-top: 42px;
+  padding-top: 0;
+  margin-top: 1rem;
+}
+
+// Strip the global p/li underline treatment from every link on the
+// jobs page — the dense layout reads cleaner without underlines.
+// Exception: links inside `.filterFooter` (the "Our favorite job sources"
+// sentence) keep the site-wide body-link underline.
+.board a,
+.board a:visited,
+.board a:hover,
+.board a:focus {
+  text-decoration: none;
+}
+
+.board .filterFooter a,
+.board .filterFooter a:visited {
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.board .filterFooter a:hover,
+.board .filterFooter a:focus {
+  text-decoration-color: currentColor;
 }
 
 .layout {
@@ -26,6 +49,34 @@
   margin: 1.5rem 0 0 0;
 }
 
+// Heading + intro that /jobs passes in via JobsList's `filterHeader`
+// prop. Sits at the top of the filters column above the Country select.
+.filterHeader {
+  margin: 0 0 1.5rem 0;
+}
+
+.filterHeader h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.filterHeader p {
+  margin: 0.75em 0 0 0;
+}
+
+// Sources paragraph below the RSS link. Hidden on mobile (the filters
+// column collapses there and this content would clutter the top of the
+// jobs list). Shown on desktop via the @media block.
+.filterFooter {
+  display: none;
+}
+
+.filterFooter p {
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: #555;
+  margin: 0;
+}
+
 .filterField {
   display: flex;
   flex-direction: column;
@@ -37,11 +88,7 @@
 }
 
 .filterLabel {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #555;
+  // Typography comes from the shared `.small-header` global class.
 }
 
 .checkboxes {
@@ -58,8 +105,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 5px 16px 5px 8px;
-  font-size: 0.9rem;
-  color: #235337;
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-green);
   background: #fff;
   border: 1px solid #cbead8;
   border-radius: 100px;
@@ -104,8 +151,8 @@
 }
 
 .checkbox input:checked + .checkboxBox {
-  background: #2f8b53;
-  border-color: #2f8b53;
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
 }
 
 .checkbox input:checked + .checkboxBox::after {
@@ -128,7 +175,7 @@
 
 .filterSelect {
   font: inherit;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   padding: 8px 38px 8px 16px;
   border: 1px solid #cbead8;
   border-radius: 100px;
@@ -137,7 +184,7 @@
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 12px;
-  color: #235337;
+  color: var(--color-dark-green);
   // Match the checkbox pills' full-width behavior at every viewport.
   width: 100%;
   cursor: pointer;
@@ -159,6 +206,24 @@
   box-shadow: 0 0 0 3px rgba(132, 217, 166, 0.5);
 }
 
+// Mobile: invert the dropdown to a black-on-black pill with a white
+// chevron. Makes the country filter read as the primary control at
+// the top of the jobs list on narrow screens. Desktop keeps the
+// light treatment above so the dropdown blends with the filter rail.
+@media only screen and (max-width: 999px) {
+  .filterSelect {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+    color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  }
+
+  .filterSelect:hover {
+    background-color: #000;
+    border-color: #000;
+  }
+}
+
 .filterButtons {
   display: flex;
   flex-wrap: wrap;
@@ -167,12 +232,12 @@
 
 .filterButton {
   font: inherit;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   padding: 6px 12px;
   border: 1px solid #cbead8;
   border-radius: 100px;
   background: #fff;
-  color: #235337;
+  color: var(--color-dark-green);
   cursor: pointer;
 }
 
@@ -186,11 +251,9 @@
   font-weight: 500;
 }
 
+// Typography comes from the shared `.small-header` global class; this
+// rule only owns the spacing that positions the count above the list.
 .filterCount {
-  font-size: 0.85rem;
-  color: #777;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   margin: 0 0 0.75rem;
   padding-top: 0;
 }
@@ -203,7 +266,7 @@
   align-items: center;
   gap: 0.4rem;
   margin-top: 1.5em;
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   color: #f0932b;
   text-decoration: none;
@@ -225,13 +288,13 @@
 // Hidden at desktop in the @media block.
 .moreFiltersToggle {
   font: inherit;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   background: none;
   border: none;
   padding: 0;
   width: 100%;
   margin-bottom: 2em;
-  color: cornflowerblue;
+  color: var(--color-link);
   cursor: pointer;
   text-decoration: none;
   text-align: right;
@@ -239,7 +302,7 @@
 
 .moreFiltersToggle:hover,
 .moreFiltersToggle:focus {
-  color: darkblue;
+  color: var(--color-dark-green);
   outline: none;
   text-decoration: none;
 }
@@ -260,7 +323,7 @@
   padding: 3.5rem 1.5rem;
   margin-top: 2rem;
   background: #f6faf8;
-  border: 1px solid #d9eee2;
+  border: 1px solid var(--color-light-green);
   border-radius: 10px;
 }
 
@@ -270,11 +333,11 @@
 }
 
 .noResultsTitle {
-  font-size: 1.2rem;
+  font-size: var(--font-size-md);
   text-transform: none;
   letter-spacing: 0;
   margin: 0 0 0.5rem 0;
-  color: #235337;
+  color: var(--color-dark-green);
 }
 
 .noResultsText {
@@ -285,12 +348,12 @@
 
 .noResultsButton {
   font: inherit;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   padding: 8px 20px;
   border: 1px solid #cbead8;
   border-radius: 100px;
   background: #cbead8;
-  color: #235337;
+  color: var(--color-dark-green);
   cursor: pointer;
 }
 
@@ -313,11 +376,11 @@
   gap: 1.5rem;
   padding: 1.1rem 0;
   margin: 0;
-  border-bottom: 1px solid #ebf7f0;
+  border-bottom: 1px solid var(--color-pale-green);
 }
 
 .job:first-child {
-  border-top: 1px solid #ebf7f0;
+  border-top: 1px solid var(--color-pale-green);
 }
 
 .jobDescription {
@@ -337,7 +400,7 @@
   border: 1px solid #ebd2b3;
   border-radius: 6px;
   padding: 10px 14px;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   font-weight: 400;
   line-height: 1.4;
   color: #333;
@@ -381,21 +444,50 @@
 }
 
 .jobDescriptionCompany {
-  font-weight: 700;
-  color: #231f20;
+  font-weight: 600;
+  color: var(--color-text);
   margin-right: 0.25rem;
 }
 
+// Our Pick explainer that appears under the company
+// description inside the tooltip when a job is marked as a pick.
+.jobDescriptionPick {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid #ebd2b3;
+
+  p {
+    margin: 0.25rem 0 0 0;
+    font-size: var(--font-size-xs);
+    line-height: 1.4;
+  }
+}
+
+.jobDescriptionPickHeading {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--color-pick-text);
+}
+
+.jobDescriptionPickIcon {
+  width: 0.88em;
+  height: 0.88em;
+  margin-right: 5px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+}
+
 .jobIcon {
-  flex: 0 0 36px;
+  flex: 0 0 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   margin-left: 8px;
   background: #fff;
-  border: 1px solid #d9eee2;
+  border: 1px solid var(--color-light-green);
   border-radius: 50%;
   box-sizing: border-box;
   transition: border-color 0.15s ease;
@@ -416,25 +508,30 @@
 
 .jobTitle {
   margin: 0 0 0.25rem 0;
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
   line-height: 1.3;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: none;
   letter-spacing: 0;
+  text-wrap: balance;
 }
 
 .jobTitle a,
 .jobTitle a:visited {
-  font-weight: 700;
-  color: cornflowerblue;
+  font-weight: 500;
+  color: var(--color-mid-green);
 }
 
 .jobTitle a:hover {
-  color: darkblue;
+  color: var(--color-dark-green);
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 .jobMeta {
-  font-size: 0.92rem;
+  font-size: var(--font-size-sm);
   color: #555;
   line-height: 1.5;
 }
@@ -442,12 +539,16 @@
 .jobCompany,
 .jobCompany:visited {
   font-weight: 500;
-  color: #231f20;
+  color: var(--color-text);
 }
 
-.jobCompany:hover,
-.jobCompany:focus {
-  color: darkblue;
+a.jobCompany:hover,
+a.jobCompany:focus {
+  color: var(--color-dark-green);
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
 .companyFavicon {
@@ -464,8 +565,23 @@
 }
 
 .jobSector {
+  display: inline-flex;
+  align-items: center;
   margin: 0;
-  vertical-align: baseline;
+  vertical-align: middle;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+}
+
+// Inline Lucide icon inside the sector tag — sized in `em` so it
+// tracks the tag's font-size (the global `.tag` rule sets 0.8rem).
+.jobSectorIcon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 5px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  opacity: 0.5;
 }
 
 .jobType {
@@ -473,26 +589,89 @@
   vertical-align: baseline;
   background: #d6e4f7;
   color: #1d4e89;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
 }
 
 .jobStaffPick {
   display: inline-flex;
   align-items: center;
-  gap: 0.3em;
-  margin: 0 0.4rem 0 0;
-  vertical-align: baseline;
-  background: #fff3c4;
-  color: #8a5a00;
+  margin: 0 0 0 0.4rem;
+  vertical-align: middle;
+  background: var(--color-pick-bg);
+  color: var(--color-pick-text);
   font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
 }
 
+// Match the sector-tag icon (`.jobSectorIcon`) exactly so the pills
+// line up — only opacity differs (the staff pick stays at full color).
 .jobStaffPickStar {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 5px;
   flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 .jobSectorRow {
   margin-top: 0.35rem;
 }
+
+// Tag buttons (sector / org-type) act as one-click filter toggles.
+// Strip only the browser button chrome (border, cursor) so the `.tag`
+// rule keeps full control of font, padding, colour, and pill shape.
+.jobTagButton {
+  cursor: pointer;
+  border: 0;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+// "Active filters" row under the job count. Each chip is a removable
+// filter — clicking it deletes that specific filter from the URL.
+.activeFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+// Override the green `.tag` colours: chips at the top of the results
+// look like neutral "applied" pills so they don't compete visually
+// with the sector / org-type tags on each job row.
+.activeFilterChip,
+.activeFilterChip:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  cursor: pointer;
+  border: 0;
+  background: #ececec;
+  color: var(--color-text);
+  transition: filter 0.15s ease;
+}
+
+.activeFilterChip:hover,
+.activeFilterChip:focus-visible {
+  background: #fde6e0;
+  outline: none;
+}
+
+.activeFilterChipX {
+  font-size: 1.2em;
+  line-height: 1;
+  font-weight: 600;
+  color: #e85a3a;
+  margin-top: -1px;
+}
+
+.jobTagButton:hover,
+.jobTagButton:focus-visible {
+  filter: brightness(0.94);
+  outline: none;
+}
+
 
 .jobBullet {
   color: #999;
@@ -510,29 +689,33 @@
 }
 
 .jobLocation {
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: #555;
 }
 
 .jobDate {
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
   text-transform: uppercase;
-  color: #231f20;
-  letter-spacing: 0.05em;
+  color: var(--color-text);
+  letter-spacing: 0.08em;
 }
 
-// "Today" gets a brighter, bolder treatment + a sparkle icon to draw the
-// eye to freshly listed roles.
+// "Today" gets a brighter colour + a sparkle icon to draw the eye to
+// freshly listed roles.
 .jobDateToday {
   display: inline-flex;
   align-items: center;
   gap: 0.3em;
-  color: #b8860b;
+  color: #e85a3a;
   font-weight: 700;
 }
 
 .jobDateIcon {
+  width: 1.1em;
+  height: 1.1em;
   flex-shrink: 0;
+  stroke-width: 1.8;
 }
 
 @media only screen and (max-width: 700px) {
@@ -580,9 +763,15 @@
   .layout {
     clear: both;
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
     align-items: start;
+  }
+
+  // Source paragraph below RSS — desktop-only.
+  .filterFooter {
+    display: block;
+    margin-top: 2rem;
   }
 
   // At desktop the filter column doesn't need a bottom border (it's
@@ -634,5 +823,20 @@
   .moreFilters,
   .moreFiltersOpen {
     display: contents;
+  }
+}
+
+// Articles tagged "careers" rendered as a section below the job board
+// columns. Inherits the standard .articleList card layout — single
+// column on mobile, 3-up grid on desktop.
+.careersArticles {
+  margin-top: 6rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .careersArticles :global(.articleList),
+  .careersArticles ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem 3rem;
   }
 }

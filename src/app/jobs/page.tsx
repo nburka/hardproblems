@@ -1,9 +1,11 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Footer } from '../../components/Footer';
 import JobsList from './JobsList';
 import { fetchJobs } from './fetchJobs';
+import ArticleCard from '../../components/ArticleCard';
+import { getAllArticles } from '../../lib/articles';
+import articleStyles from '../articles/page.module.scss';
 import styles from './page.module.scss';
 
 export const metadata: Metadata = {
@@ -20,28 +22,35 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const jobs = await fetchJobs();
+  const careersArticles = getAllArticles()
+    .filter((a) => a.topics.includes('careers'))
+    .slice(0, 6);
+
+  const filterHeader = (
+    <>
+      <h2>Job board</h2>
+      <p>
+        Jobs for designers, researchers, PMs, and copywriters who want to work
+        on urgent problems like healthcare, public health, good government, and
+        climate change.
+      </p>
+    </>
+  );
+
+  const filterFooter = (
+    <p>
+      Our favorite job sources are{' '}
+      <Link href="https://linkedin.com">LinkedIn</Link>,{' '}
+      <Link href="https://designgigsforgood.org">Design Gigs for Good</Link>,{' '}
+      <Link href="https://techjobsforgood.com">Tech Jobs for Good</Link>,{' '}
+      <Link href="https://climatebase.org">Climate Base</Link>, and{' '}
+      <Link href="https://jobs.womenintech.co.uk/jobs/">Women in Tech</Link>.
+    </p>
+  );
 
   return (
     <>
       <section className={styles.board}>
-        <h2>Job board</h2>
-        <p className="intro">
-          Jobs for designers who want to work on hard problems like healthcare,
-          public health, and climate change. Our favorite job sources are{' '}
-          <Link href="https://linkedin.come">LinkedIn</Link>,{' '}
-          <Link href="https://designgigsforgood.org">Design Gigs for Good</Link>
-          , <Link href="https://techjobsforgood.com">Tech Jobs for Good</Link>,{' '}
-          <Link href="https://climatebase.org">Climate Base</Link>,{' '}
-          <Link href="https://digitalrights.community/job-board">
-            Digital Rights
-          </Link>
-          , and{' '}
-          <Link href="https://jobs.womenintech.co.uk/jobs/">
-            Women in Tech
-          </Link>
-          .
-        </p>
-
         {jobs.length === 0 ? (
           <p>
             We&rsquo;re having trouble loading the job board right now. Please
@@ -51,11 +60,24 @@ export default async function Page() {
           // Suspense is required because JobsList reads useSearchParams.
           // Without it Next.js would deopt the route from static rendering.
           <Suspense fallback={null}>
-            <JobsList jobs={jobs} />
+            <JobsList
+              jobs={jobs}
+              filterHeader={filterHeader}
+              filterFooter={filterFooter}
+            />
           </Suspense>
         )}
       </section>
-      <Footer />
+      {careersArticles.length > 0 && (
+        <section className={styles.careersArticles}>
+          <h2>Careers</h2>
+          <ul className={articleStyles.articleList}>
+            {careersArticles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }

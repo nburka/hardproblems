@@ -5,3 +5,37 @@
     height: 450px;
     max-width: 660px;
 }
+
+.episodeGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 1.5em 0;
+    padding: 0;
+    list-style: none;
+}
+
+@media only screen and (max-width: 999px) {
+    .episodeGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .episodeGrid {
+        gap: 32px;
+    }
+}
+
+.episodeGrid li {
+    margin: 0;
+    padding: 0;
+}
+
+.episodeGrid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}

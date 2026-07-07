@@ -8,6 +8,21 @@ import markdownItAttrs from 'markdown-it-attrs';
 // file there is the entire workflow for publishing an article — the file
 // system is the CMS.
 const ARTICLES_DIR = path.join(process.cwd(), 'content/articles');
+const TEAM_IMAGE_DIR = path.join(process.cwd(), 'public/images/team');
+
+// Returns the public path to an author's headshot (jpg or png) when one
+// exists in /public/images/team, otherwise null. Used by the article-page
+// byline to show a small avatar next to the author's name.
+export function getAuthorImage(authorSlug: string | undefined): string | null {
+  if (!authorSlug) return null;
+  for (const ext of ['jpg', 'png']) {
+    const file = `${authorSlug}.${ext}`;
+    if (fs.existsSync(path.join(TEAM_IMAGE_DIR, file))) {
+      return `/images/team/${file}`;
+    }
+  }
+  return null;
+}
 
 // markdown-it-attrs gives us the Pandoc-style `{#id .class key=val}` syntax
 // that the source articles use for heading anchors, paragraph classes, and
@@ -50,6 +65,47 @@ export type Article = {
   contentHtml: string;
 };
 
+// Wrap standalone <img> tags in an anchor that opens the source file
+// in a new tab, so readers can view the full-resolution image. Skip
+// images that are:
+//   1. Already inside an <a>...</a> (the markdown author gave them a
+//      specific link), or
+//   2. Tagged with `.float-right` — inline aside images (portraits,
+//      small illustrations) where click-to-enlarge would be off-tone.
+// We walk tag-by-tag with a running anchor-depth counter so nested
+// anchors and text between tags are handled correctly.
+function wrapImagesInLinks(html: string): string {
+  const tagRe = /<(\/?)(a|img)\b([^>]*)>/gi;
+  let result = '';
+  let lastIndex = 0;
+  let anchorDepth = 0;
+  let m: RegExpExecArray | null;
+  while ((m = tagRe.exec(html)) !== null) {
+    result += html.slice(lastIndex, m.index);
+    const [full, slash, tagName, attrs] = m;
+    if (tagName.toLowerCase() === 'a') {
+      if (slash === '/') {
+        anchorDepth = Math.max(0, anchorDepth - 1);
+      } else {
+        anchorDepth++;
+      }
+      result += full;
+    } else {
+      const isFloatRight =
+        /class\s*=\s*["'][^"']*\bfloat-right\b[^"']*["']/i.test(attrs);
+      const srcMatch = attrs.match(/\bsrc\s*=\s*["']([^"']+)["']/i);
+      if (anchorDepth > 0 || isFloatRight || !srcMatch) {
+        result += full;
+      } else {
+        result += `<a href="${srcMatch[1]}" target="_blank" rel="noopener noreferrer" class="article-image-link">${full}</a>`;
+      }
+    }
+    lastIndex = m.index + full.length;
+  }
+  result += html.slice(lastIndex);
+  return result;
+}
+
 function listArticleFiles(): string[] {
   if (!fs.existsSync(ARTICLES_DIR)) return [];
   return fs
@@ -65,7 +121,7 @@ function readArticleFile(filename: string): Article | null {
   const parsed = matter(raw);
   const data = parsed.data as Partial<Article>;
   const content = parsed.content;
-  const contentHtml = md.render(content);
+  const contentHtml = wrapImagesInLinks(md.render(content));
 
   return {
     slug: typeof data.slug === 'string' && data.slug ? data.slug : slug,
@@ -181,16 +237,20 @@ export function topicSubtitle(topic: string): string | undefined {
 const ARTICLE_TYPE_SUBTITLES: Record<string, string> = {
   article:
     'Reflections and writing about hard problems and impact-driven careers.',
-  'book-review':
-    'Books we’ve read on impact-driven careers and the work that matters.',
-  framework:
+  advice:
+    'Practical guidance for navigating impact-driven careers and the work that matters.',
+  'book-reviews':
+    'Books and reading recommendations for impact-driven careers and the work that matters.',
+  tools:
     'Practical tools and rubrics for thinking through impact-driven work.',
   opinion:
     'Personal takes on careers, design, and the work that matters.',
   podcast:
     'Conversations with designers working on hard problems.',
   video:
-    'Talks, conference sessions, and videos on design and the hard problems that matter.'
+    'Talks, conference sessions, and videos on design and the hard problems that matter.',
+  announcements:
+    'Updates and stories about Hard Problems — what we’re building and why.'
 };
 
 export function articleTypeSubtitle(
@@ -206,7 +266,7 @@ export function formatPublishedDate(iso: string): string {
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString('en-GB', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
   });
 }

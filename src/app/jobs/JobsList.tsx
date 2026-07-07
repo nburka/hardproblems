@@ -4,22 +4,33 @@ import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
+import { Gem, Sparkle } from 'lucide-react';
+import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
+import CompanyFavicon from './CompanyFavicon';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
+  orgCategory,
   orgTypeDisplay
 } from './orgType';
 import {
   FILTER_PARAM_KEYS,
+  META_REGIONS,
+  META_REGION_NAMES,
   SECTOR_OPTIONS,
+  SENIORITY_OPTIONS,
   SectorCategory,
+  SeniorityCategory,
   WORK_STYLE_OPTIONS,
   WorkStyle,
+  displaySector,
   filterJobs,
   parseOrgParam,
   parseRoleParam,
   parseSectorParam,
+  parseSectorPickParam,
+  parseSeniorityParam,
   parseWorkStyleParam,
   splitCountries
 } from './filters';
@@ -37,26 +48,7 @@ function displayRole(role: string): string {
   return role;
 }
 
-// Pretty-print the sector tag shown on each job row. The raw sheet value
-// is kept for filter matching, analytics, and the sector-keyword matcher
-// in filters.ts — this only affects what the user sees on the tag.
-//   - "Health (Healthcare)"     → "Healthcare"
-//   - "Health (Public Health)"  → "Public health"
-//   - "Health (Personal Health)" → "Personal health"
-//   - "Good Government"         → "Good gov"
-function displaySector(sector: string): string {
-  const trimmed = sector.trim();
-  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
-  if (healthMatch) {
-    const inner = healthMatch[1].trim();
-    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
-  }
-  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
-  return trimmed;
-}
-
 const BULLET_SEPARATOR = '  •  ';
-
 
 function formatRelativeDate(date: Date): string {
   const now = new Date();
@@ -107,7 +99,7 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
+    return `/api/favicon?host=${encodeURIComponent(hostname)}`;
   } catch {
     return null;
   }
@@ -375,12 +367,10 @@ const COUNTRY_ISO_INDEX: Record<string, string> = Object.fromEntries(
   ])
 );
 
-// Special-case overrides for dropdown options that don't map to a single
-// country. "all" is the literal value of the "All countries" option;
-// "Europe" is a synthetic value the user can select to broaden the search.
+// Special-case override for the "All countries" sentinel. Regions
+// render with no emoji prefix.
 const SPECIAL_COUNTRY_FLAGS: Record<string, string> = {
-  all: '🌍', // globe centered on Europe-Africa
-  Europe: '🇪🇺'
+  all: '🌍'
 };
 
 function isoToFlagEmoji(iso: string): string {
@@ -399,7 +389,20 @@ function countryFlag(name: string): string {
   return iso ? isoToFlagEmoji(iso) : '';
 }
 
-export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
+export default function JobsList({
+  jobs,
+  filterHeader,
+  filterFooter
+}: {
+  jobs: SerializedJob[];
+  // Optional content rendered at the top of the filters column on
+  // desktop (and above the filters on mobile). Used by /jobs to pull
+  // the page heading and intro into the filters rail.
+  filterHeader?: ReactNode;
+  // Optional content rendered at the bottom of the filters column,
+  // below the RSS link. Desktop-only (hidden on mobile).
+  filterFooter?: ReactNode;
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -447,8 +450,17 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     () => parseSectorParam(searchParams.get('sector')),
     [searchParams]
   );
+  const sectorPickFilters = useMemo(
+    () => parseSectorPickParam(searchParams.get('sectorPick')),
+    [searchParams]
+  );
+  const picksOnly = searchParams.get('pick') === '1';
   const roleFilters = useMemo(
     () => parseRoleParam(searchParams.get('role')),
+    [searchParams]
+  );
+  const seniorityFilters = useMemo(
+    () => parseSeniorityParam(searchParams.get('seniority')),
     [searchParams]
   );
 
@@ -474,6 +486,10 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
         // location-agnostic. matchesCountry() makes those jobs appear in
         // every filter, so we hide the value from the dropdown itself.
         if (c.toLowerCase() === 'global') continue;
+        // Meta-region tags (Europe, Africa, etc.) are already shown in
+        // the "Region" optgroup above — hide them from the country
+        // list so the dropdown doesn't list them twice.
+        if (META_REGION_NAMES.has(c)) continue;
         set.add(c);
       }
     }
@@ -497,9 +513,22 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
         workStyles: workStyleFilters,
         orgs: orgFilters,
         sectors: sectorFilters,
-        roles: roleFilters
+        sectorPicks: sectorPickFilters,
+        roles: roleFilters,
+        seniorities: seniorityFilters,
+        picksOnly
       }),
-    [jobs, country, workStyleFilters, orgFilters, sectorFilters, roleFilters]
+    [
+      jobs,
+      country,
+      workStyleFilters,
+      orgFilters,
+      sectorFilters,
+      sectorPickFilters,
+      roleFilters,
+      seniorityFilters,
+      picksOnly
+    ]
   );
 
   const toggleWorkStyle = (value: WorkStyle) => {
@@ -532,6 +561,31 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     });
   };
 
+  // Toggles the Our Pick filter — driven by clicking the
+  // "Our Pick" pill on a job card. Only the `pick` URL param
+  // changes; every other filter is preserved.
+  const togglePicksOnly = () => {
+    updateParams((params) => {
+      if (picksOnly) params.delete('pick');
+      else params.set('pick', '1');
+    });
+  };
+
+  // Toggles a "specific sector pick" filter — driven by clicking a
+  // sector tag on a job card. Comparison happens against the raw sector
+  // string in matchesSectorPick(); other filters are preserved.
+  const toggleSectorPick = (pick: string) => {
+    const key = pick.trim().toLowerCase();
+    if (!key) return;
+    const next = sectorPickFilters.includes(key)
+      ? sectorPickFilters.filter((v) => v !== key)
+      : [...sectorPickFilters, key];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('sectorPick');
+      else params.set('sectorPick', next.join(','));
+    });
+  };
+
   const toggleRoleFilter = (value: string) => {
     const next = roleFilters.includes(value)
       ? roleFilters.filter((v) => v !== value)
@@ -542,6 +596,16 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     });
   };
 
+  const toggleSeniorityFilter = (value: SeniorityCategory) => {
+    const next = seniorityFilters.includes(value)
+      ? seniorityFilters.filter((v) => v !== value)
+      : [...seniorityFilters, value];
+    updateParams((params) => {
+      if (next.length === 0) params.delete('seniority');
+      else params.set('seniority', next.join(','));
+    });
+  };
+
   const clearFilters = () => {
     updateParams((params) => {
       params.delete('country');
@@ -549,6 +613,9 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
       params.delete('org');
       params.delete('sector');
       params.delete('role');
+      params.delete('seniority');
+      params.delete('sectorPick');
+      params.delete('pick');
     });
   };
 
@@ -557,7 +624,79 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
     workStyleFilters.length > 0 ||
     orgFilters.length > 0 ||
     sectorFilters.length > 0 ||
-    roleFilters.length > 0;
+    sectorPickFilters.length > 0 ||
+    roleFilters.length > 0 ||
+    seniorityFilters.length > 0 ||
+    picksOnly;
+
+  // Compact "filter chip" list shown under the job count. Each chip
+  // describes one applied filter and removes it on click.
+  type ActiveChip = { key: string; label: string; remove: () => void };
+  const activeChips: ActiveChip[] = [];
+  if (country !== 'all') {
+    activeChips.push({
+      key: `country:${country}`,
+      label: country,
+      remove: () => setCountry('all')
+    });
+  }
+  orgFilters.forEach((cat) => {
+    const opt = ORG_TYPE_OPTIONS.find((o) => o.value === cat);
+    if (opt)
+      activeChips.push({
+        key: `org:${cat}`,
+        label: opt.label,
+        remove: () => toggleOrgFilter(cat)
+      });
+  });
+  sectorFilters.forEach((cat) => {
+    const opt = SECTOR_OPTIONS.find((o) => o.value === cat);
+    if (opt)
+      activeChips.push({
+        key: `sector:${cat}`,
+        label: opt.label,
+        remove: () => toggleSectorFilter(cat)
+      });
+  });
+  sectorPickFilters.forEach((pick) => {
+    activeChips.push({
+      key: `pick:${pick}`,
+      label: pick,
+      remove: () => toggleSectorPick(pick)
+    });
+  });
+  roleFilters.forEach((role) => {
+    activeChips.push({
+      key: `role:${role}`,
+      label: displayRole(role),
+      remove: () => toggleRoleFilter(role)
+    });
+  });
+  seniorityFilters.forEach((cat) => {
+    const opt = SENIORITY_OPTIONS.find((o) => o.value === cat);
+    if (opt)
+      activeChips.push({
+        key: `sen:${cat}`,
+        label: opt.label,
+        remove: () => toggleSeniorityFilter(cat)
+      });
+  });
+  workStyleFilters.forEach((style) => {
+    const opt = WORK_STYLE_OPTIONS.find((o) => o.value === style);
+    if (opt)
+      activeChips.push({
+        key: `work:${style}`,
+        label: opt.label,
+        remove: () => toggleWorkStyle(style)
+      });
+  });
+  if (picksOnly) {
+    activeChips.push({
+      key: 'picksOnly',
+      label: 'Our Pick',
+      remove: togglePicksOnly
+    });
+  }
 
   // RSS feed URL mirrors the current filter state so subscribing while
   // looking at e.g. "Climate + Remote" lands you on the equivalent feed.
@@ -576,22 +715,40 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
   return (
     <div className={styles.layout}>
       <div className={styles.filters}>
+        {filterHeader && (
+          <div className={styles.filterHeader}>{filterHeader}</div>
+        )}
         <label className={styles.filterField}>
-          <span className={styles.filterLabel}>Country</span>
+          <span className={`${styles.filterLabel} small-header`}>Country</span>
           <select
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             className={styles.filterSelect}
           >
-            <option value="all">{countryFlag('all')}{'  '}All countries</option>
-            {countries.map((c) => {
-              const flag = countryFlag(c);
-              return (
-                <option key={c} value={c}>
-                  {flag ? `${flag}  ${c}` : c}
-                </option>
-              );
-            })}
+            <option value="all">
+              {countryFlag('all')}
+              {'  '}All countries
+            </option>
+            <optgroup label="Region">
+              {META_REGIONS.map((r) => {
+                const flag = countryFlag(r.name);
+                return (
+                  <option key={r.name} value={r.name}>
+                    {flag ? `${flag}  ${r.name}` : r.name}
+                  </option>
+                );
+              })}
+            </optgroup>
+            <optgroup label="Countries">
+              {countries.map((c) => {
+                const flag = countryFlag(c);
+                return (
+                  <option key={c} value={c}>
+                    {flag ? `${flag}  ${c}` : c}
+                  </option>
+                );
+              })}
+            </optgroup>
           </select>
         </label>
 
@@ -609,15 +766,34 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
             showMore ? styles.moreFiltersOpen : ''
           }`}
         >
+          {roles.length > 0 && (
+            <div className={styles.filterField}>
+              <span className={`${styles.filterLabel} small-header`}>Role</span>
+              <div className={styles.checkboxes}>
+                {roles.map((role) => (
+                  <label key={role} className={styles.checkbox}>
+                    <input
+                      type="checkbox"
+                      checked={roleFilters.includes(role)}
+                      onChange={() => toggleRoleFilter(role)}
+                    />
+                    <span className={styles.checkboxBox} aria-hidden="true" />
+                    {displayRole(role)}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Org type</span>
+            <span className={`${styles.filterLabel} small-header`}>Seniority</span>
             <div className={styles.checkboxes}>
-              {ORG_TYPE_OPTIONS.map((opt) => (
+              {SENIORITY_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
                   <input
                     type="checkbox"
-                    checked={orgFilters.includes(opt.value)}
-                    onChange={() => toggleOrgFilter(opt.value)}
+                    checked={seniorityFilters.includes(opt.value)}
+                    onChange={() => toggleSeniorityFilter(opt.value)}
                   />
                   <span className={styles.checkboxBox} aria-hidden="true" />
                   {opt.label}
@@ -627,7 +803,7 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           </div>
 
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Sector</span>
+            <span className={`${styles.filterLabel} small-header`}>Sector</span>
             <div className={styles.checkboxes}>
               {SECTOR_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
@@ -644,7 +820,24 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           </div>
 
           <div className={styles.filterField}>
-            <span className={styles.filterLabel}>Work style</span>
+            <span className={`${styles.filterLabel} small-header`}>Org type</span>
+            <div className={styles.checkboxes}>
+              {ORG_TYPE_OPTIONS.map((opt) => (
+                <label key={opt.value} className={styles.checkbox}>
+                  <input
+                    type="checkbox"
+                    checked={orgFilters.includes(opt.value)}
+                    onChange={() => toggleOrgFilter(opt.value)}
+                  />
+                  <span className={styles.checkboxBox} aria-hidden="true" />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.filterField}>
+            <span className={`${styles.filterLabel} small-header`}>Work style</span>
             <div className={styles.checkboxes}>
               {WORK_STYLE_OPTIONS.map((opt) => (
                 <label key={opt.value} className={styles.checkbox}>
@@ -659,25 +852,6 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
               ))}
             </div>
           </div>
-
-          {roles.length > 0 && (
-            <div className={styles.filterField}>
-              <span className={styles.filterLabel}>Role</span>
-              <div className={styles.checkboxes}>
-                {roles.map((role) => (
-                  <label key={role} className={styles.checkbox}>
-                    <input
-                      type="checkbox"
-                      checked={roleFilters.includes(role)}
-                      onChange={() => toggleRoleFilter(role)}
-                    />
-                    <span className={styles.checkboxBox} aria-hidden="true" />
-                    {displayRole(role)}
-                  </label>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         <a
@@ -702,222 +876,313 @@ export default function JobsList({ jobs }: { jobs: SerializedJob[] }) {
           RSS feed{hasActiveFilters ? ' for these filters' : ''}
         </a>
 
+        {filterFooter && (
+          <div className={styles.filterFooter}>{filterFooter}</div>
+        )}
       </div>
 
       <div className={styles.results}>
-      <div className={styles.filterCount}>
-        {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
-      </div>
-      {filtered.length === 0 && (
-        <div className={styles.noResults}>
-          <svg
-            className={styles.noResultsIcon}
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="21" y1="21" x2="16.5" y2="16.5" />
-          </svg>
-          <h3 className={styles.noResultsTitle}>No jobs found</h3>
-          <p className={styles.noResultsText}>
-            No jobs match your current filters. Try removing a filter or
-            widening your search.
-          </p>
-          {hasActiveFilters && (
-            <button
-              type="button"
-              className={styles.noResultsButton}
-              onClick={clearFilters}
-            >
-              Clear all filters
-            </button>
-          )}
+        <div className={`${styles.filterCount} small-header`}>
+          {filtered.length} {filtered.length === 1 ? 'job' : 'jobs'}
         </div>
-      )}
+        {activeChips.length > 0 && (
+          <div className={styles.activeFilters}>
+            {activeChips.map((chip) => (
+              <button
+                key={chip.key}
+                type="button"
+                onClick={chip.remove}
+                className={`tag ${styles.activeFilterChip}`}
+                aria-label={`Remove filter ${chip.label}`}
+              >
+                {chip.label}
+                <span aria-hidden="true" className={styles.activeFilterChipX}>
+                  ×
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+        {filtered.length === 0 && (
+          <div className={styles.noResults}>
+            <svg
+              className={styles.noResultsIcon}
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.5" y2="16.5" />
+            </svg>
+            <h3 className={styles.noResultsTitle}>No jobs found</h3>
+            <p className={styles.noResultsText}>
+              No jobs match your current filters. Try removing a filter or
+              widening your search.
+            </p>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                className={styles.noResultsButton}
+                onClick={clearFilters}
+              >
+                Clear all filters
+              </button>
+            )}
+          </div>
+        )}
 
-      <ul className={styles.jobs}>
-        {filtered.map((job, i) => {
-          const date = job.date ? new Date(job.date) : null;
-          const location = formatLocation(job);
-          const hasSalary =
-            job.salary && job.salary.toLowerCase() !== 'n/a';
+        <ul className={styles.jobs}>
+          {filtered.map((job, i) => {
+            const date = job.date ? new Date(job.date) : null;
+            const location = formatLocation(job);
+            const hasSalary = job.salary && job.salary.toLowerCase() !== 'n/a';
 
-          const faviconUrl = buildFaviconUrl(job.companyUrl);
-          const companyHref = job.companyUrl
-            ? job.companyUrl.startsWith('http')
-              ? job.companyUrl
-              : `https://${job.companyUrl}`
-            : null;
-          const typeLabel = orgTypeDisplay(job.typeOfOrg);
-          const goodForWorldScore = parseFloat(job.goodForWorld);
-          const isStaffPick =
-            !Number.isNaN(goodForWorldScore) && goodForWorldScore > 8;
-          const metaItems: ReactNode[] = [];
-          if (job.company) {
-            metaItems.push(
-              companyHref ? (
-                <Link
-                  href={companyHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.jobCompany}
-                  onClick={() => trackJobClick(job, 'company')}
-                >
-                  {job.company}
-                </Link>
-              ) : (
-                <span className={styles.jobCompany}>{job.company}</span>
-              )
+            const faviconUrl = buildFaviconUrl(job.companyUrl);
+            const companyHref = job.companyUrl
+              ? job.companyUrl.startsWith('http')
+                ? job.companyUrl
+                : `https://${job.companyUrl}`
+              : null;
+            const typeLabel = orgTypeDisplay(job.typeOfOrg);
+            const goodForWorldScore = parseFloat(job.goodForWorld);
+            const isStaffPick =
+              !Number.isNaN(goodForWorldScore) && goodForWorldScore > 8;
+            const metaItems: ReactNode[] = [];
+            if (job.company) {
+              metaItems.push(
+                companyHref ? (
+                  <Link
+                    href={companyHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.jobCompany}
+                    onClick={() => trackJobClick(job, 'company')}
+                  >
+                    {job.company}
+                  </Link>
+                ) : (
+                  <span className={styles.jobCompany}>{job.company}</span>
+                )
+              );
+            }
+            if (location) {
+              metaItems.push(
+                <span className={styles.jobLocation}>{location}</span>
+              );
+            }
+            if (hasSalary) {
+              metaItems.push(
+                <span className={styles.jobSalary}>{job.salary}</span>
+              );
+            }
+
+            const globe = <GlobeIcon className={styles.companyFavicon} />;
+            const iconContents = faviconUrl ? (
+              <CompanyFavicon
+                src={faviconUrl}
+                alt={
+                  companyHref
+                    ? job.company
+                      ? `Icon of ${job.company}`
+                      : 'Company icon'
+                    : ''
+                }
+                className={styles.companyFavicon}
+                fallback={globe}
+              />
+            ) : (
+              globe
             );
-          }
-          if (location) {
-            metaItems.push(
-              <span className={styles.jobLocation}>{location}</span>
-            );
-          }
-          if (hasSalary) {
-            metaItems.push(
-              <span className={styles.jobSalary}>{job.salary}</span>
-            );
-          }
 
-          const iconContents = faviconUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={faviconUrl}
-              alt={
-                companyHref
-                  ? job.company
-                    ? `Icon of ${job.company}`
-                    : 'Company icon'
-                  : ''
-              }
-              width={16}
-              height={16}
-              className={styles.companyFavicon}
-              loading="lazy"
-            />
-          ) : (
-            <GlobeIcon className={styles.companyFavicon} />
-          );
-
-          return (
-            <li key={`${job.url}-${i}`} className={styles.job}>
-              {companyHref ? (
-                <Link
-                  href={companyHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={
-                    job.company ? `Visit ${job.company}` : 'Visit company'
-                  }
-                  className={styles.jobIcon}
-                  onClick={() => trackJobClick(job, 'favicon')}
-                >
-                  {iconContents}
-                </Link>
-              ) : (
-                <div className={styles.jobIcon}>{iconContents}</div>
-              )}
-              <div className={styles.jobMain}>
-                <h4 className={styles.jobTitle}>
-                  {job.url ? (
-                    <Link
-                      href={job.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => trackJobClick(job, 'title')}
-                    >
-                      {job.title}
-                    </Link>
-                  ) : (
-                    job.title
-                  )}
-                </h4>
-                <div className={styles.jobMeta}>
-                  {metaItems.map((item, idx) => (
-                    <Fragment key={idx}>
-                      {idx > 0 && (
-                        <span className={styles.jobBullet}>
-                          {BULLET_SEPARATOR}
-                        </span>
-                      )}
-                      {item}
-                    </Fragment>
-                  ))}
-                </div>
-                {(job.sector || typeLabel || isStaffPick) && (
-                  <div className={styles.jobSectorRow}>
-                    {isStaffPick && (
-                      <span className={`tag ${styles.jobStaffPick}`}>
-                        <span
-                          className={styles.jobStaffPickStar}
-                          aria-hidden="true"
+            return (
+              <li key={`${job.url}-${i}`} className={styles.job}>
+                {companyHref ? (
+                  <Link
+                    href={companyHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={
+                      job.company ? `Visit ${job.company}` : 'Visit company'
+                    }
+                    className={styles.jobIcon}
+                    onClick={() => trackJobClick(job, 'favicon')}
+                  >
+                    {iconContents}
+                  </Link>
+                ) : (
+                  <div className={styles.jobIcon}>{iconContents}</div>
+                )}
+                <div className={styles.jobMain}>
+                  <h4 className={styles.jobTitle}>
+                    {job.url ? (
+                      <Link
+                        href={job.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => trackJobClick(job, 'title')}
+                      >
+                        {job.title}
+                      </Link>
+                    ) : (
+                      job.title
+                    )}
+                  </h4>
+                  <div className={styles.jobMeta}>
+                    {metaItems.map((item, idx) => (
+                      <Fragment key={idx}>
+                        {idx > 0 && (
+                          <span className={styles.jobBullet}>
+                            {BULLET_SEPARATOR}
+                          </span>
+                        )}
+                        {item}
+                      </Fragment>
+                    ))}
+                  </div>
+                  {(job.sector || typeLabel || isStaffPick) && (
+                    <div className={styles.jobSectorRow}>
+                      {job.sector &&
+                        (() => {
+                          const displayed = displaySector(job.sector);
+                          const SectorIcon = getSectorIcon(displayed);
+                          const isActive = sectorPickFilters.includes(
+                            displayed.toLowerCase()
+                          );
+                          return (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (!isActive) toggleSectorPick(displayed);
+                              }}
+                              className={`tag ${styles.jobSector} ${styles.jobTagButton} ${
+                                isActive ? styles.jobTagButtonActive : ''
+                              }`}
+                              aria-pressed={isActive}
+                              aria-label={`Filter by sector ${displayed}`}
+                            >
+                              {SectorIcon && (
+                                <SectorIcon
+                                  className={styles.jobSectorIcon}
+                                  aria-hidden="true"
+                                />
+                              )}
+                              {displayed}
+                            </button>
+                          );
+                        })()}
+                      {typeLabel &&
+                        (() => {
+                          const cat = orgCategory(job.typeOfOrg);
+                          if (!cat) {
+                            return (
+                              <span className={`tag ${styles.jobType}`}>
+                                {typeLabel}
+                              </span>
+                            );
+                          }
+                          const isActive = orgFilters.includes(cat);
+                          return (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (!isActive) toggleOrgFilter(cat);
+                              }}
+                              className={`tag ${styles.jobType} ${styles.jobTagButton} ${
+                                isActive ? styles.jobTagButtonActive : ''
+                              }`}
+                              aria-pressed={isActive}
+                              aria-label={`Filter by org type ${typeLabel}`}
+                            >
+                              {typeLabel}
+                            </button>
+                          );
+                        })()}
+                      {isStaffPick && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (!picksOnly) togglePicksOnly();
+                          }}
+                          className={`tag ${styles.jobStaffPick} ${styles.jobTagButton} ${
+                            picksOnly ? styles.jobTagButtonActive : ''
+                          }`}
+                          aria-pressed={picksOnly}
+                          aria-label="Filter to Our Picks only"
                         >
-                          ⭐
-                        </span>
-                        Hard Problems Pick
-                      </span>
+                          <Gem
+                            className={styles.jobStaffPickStar}
+                            aria-hidden="true"
+                          />
+                          Our Pick
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+                {(job.description || isStaffPick) && (
+                  <div className={styles.jobDescription} role="tooltip">
+                    {job.description && (
+                      <>
+                        {job.company && (
+                          <>
+                            <strong className={styles.jobDescriptionCompany}>
+                              {job.company}
+                            </strong>
+                            <br />
+                          </>
+                        )}
+                        {job.description}
+                      </>
                     )}
-                    {job.sector && (
-                      <span className={`tag ${styles.jobSector}`}>
-                        {displaySector(job.sector)}
-                      </span>
-                    )}
-                    {typeLabel && (
-                      <span className={`tag ${styles.jobType}`}>
-                        {typeLabel}
-                      </span>
+                    {isStaffPick && (
+                      <div className={styles.jobDescriptionPick}>
+                        <strong className={styles.jobDescriptionPickHeading}>
+                          <Gem
+                            className={styles.jobDescriptionPickIcon}
+                            aria-hidden="true"
+                          />
+                          Our Pick
+                        </strong>
+                        <p>
+                          We hand-select great jobs at orgs whose primary
+                          mission is to make the world better.
+                        </p>
+                      </div>
                     )}
                   </div>
                 )}
-              </div>
-              {job.description && (
-                <div className={styles.jobDescription} role="tooltip">
-                  {job.company && (
-                    <strong className={styles.jobDescriptionCompany}>
-                      {job.company} —
-                    </strong>
-                  )}
-                  {job.company && ' '}
-                  {job.description}
+                <div className={styles.jobAside}>
+                  {date &&
+                    (() => {
+                      const relativeLabel = formatRelativeDate(date);
+                      const isNewToday = relativeLabel === 'Today';
+                      return (
+                        <small
+                          className={`${styles.jobDate} ${
+                            isNewToday ? styles.jobDateToday : ''
+                          }`}
+                        >
+                          {isNewToday && (
+                            <Sparkle
+                              className={styles.jobDateIcon}
+                              aria-hidden="true"
+                            />
+                          )}
+                          {relativeLabel}
+                        </small>
+                      );
+                    })()}
                 </div>
-              )}
-              <div className={styles.jobAside}>
-                {date &&
-                  (() => {
-                    const relativeLabel = formatRelativeDate(date);
-                    const isNewToday = relativeLabel === 'Today';
-                    return (
-                      <small
-                        className={`${styles.jobDate} ${
-                          isNewToday ? styles.jobDateToday : ''
-                        }`}
-                      >
-                        {isNewToday && (
-                          <span
-                            className={styles.jobDateIcon}
-                            aria-hidden="true"
-                          >
-                            ✨
-                          </span>
-                        )}
-                        {relativeLabel}
-                      </small>
-                    );
-                  })()}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

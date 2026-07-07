@@ -1,65 +1,217 @@
+:root {
+  /* Brand palette — these tokens are referenced by both globals.css and
+     every component module. Update the value here to roll the change
+     across the entire site. */
+  --color-text: #231f20;
+  --color-dark-green: #235337;
+  --color-mid-green: #2f8b53;
+  --color-light-green: #d9eee2;
+  --color-pale-green: #ebf7f0;
+  --color-link: #2f8b53;
+  --color-pick-bg: #fff3c4;
+  --color-pick-text: #8a5a00;
+
+  /* Type stacks. `--font-instrument-serif` is supplied by next/font in
+     layout.tsx, so it isn't re-declared here. */
+  --font-sans:
+    'SF Pro Text', 'San Francisco', -apple-system, BlinkMacSystemFont,
+    Helvetica, Arial, sans-serif;
+  --font-mono:
+    'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+
+  /* Font-size scale. Eight tokens, all in rem so they scale with the
+     browser's user-set base size. Use the named tokens in component
+     CSS rather than hardcoding `rem`/`px` values. */
+  --font-size-xs: 0.75rem; /* 12px — kickers, badges, dates       */
+  --font-size-sm: 0.875rem; /* 14px — meta, captions, footer       */
+  --font-size-base: 1rem; /* 16px — body                         */
+  --font-size-md: 1.125rem; /* 18px — intro, blockquote, mid       */
+  --font-size-lg: 1.375rem; /* 22px — card titles, h3 small        */
+  --font-size-xl: 1.75rem; /* 28px — h3 large, episode title      */
+  --font-size-2xl: 2.25rem; /* 36px — h2                           */
+  --font-size-3xl: 3rem; /* 48px — article h1, h2 desktop       */
+
+  /* Shared size for every place the site sets `font-family: var(--font-mono)`
+     (kickers, bylines, dates, the header tagline). Code blocks and
+     inline `code` opt out — they have their own sizing. Overridden
+     slightly larger at the desktop breakpoint below. */
+  --font-size-mono: 0.6rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  :root {
+    --font-size-mono: 0.65rem;
+  }
+}
+
 body {
-  font-family:
-    'SF Pro Text',
-    'San Francisco',
-    -apple-system,
-    BlinkMacSystemFont,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: var(--font-sans);
   src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
   background: #fff;
-  color: #231f20;
-  font-size: 18px;
+  color: var(--color-text);
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.3;
   min-height: 100%;
   margin: 0;
   padding: 1.5rem;
-  border-top: 12px solid #84d9a6;
 }
 
 nav {
-  font-size: 14px;
-}
-
-nav .home,
-nav .home.link-home {
-  display: none;
+  font-size: var(--font-size-sm);
 }
 
 a,
 a:visited {
-  color: cornflowerblue;
+  color: var(--color-link);
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: darkblue;
+  color: var(--color-dark-green);
 }
 
-a.button {
-  background: #cbead8;
-  display: block;
-  padding: 8px;
-  text-align: center;
-  color: #235337;
-  border-radius: 2px;
-  margin: 1em 0;
+/* Body links inside paragraphs and blockquotes get a soft light-blue
+   underline so they read as inline hyperlinks without distracting from
+   the surrounding prose. Other contexts (nav, cards, buttons) keep the
+   undecorated treatment from the rule above. */
+p a,
+p a:visited,
+blockquote a,
+blockquote a:visited,
+li a,
+li a:visited {
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
-blockquote,
-p.intro {
-  line-height: 1.3;
-  font-size: 24px;
-  margin: 1rem 0 3rem 0;
+p a:hover,
+p a:focus,
+blockquote a:hover,
+blockquote a:focus,
+li a:hover,
+li a:focus {
+  text-decoration-color: currentColor;
+}
+
+/* Black pill button — same look as the one used inside articles. Explicit
+   :visited and `a` selectors override the site link-color rules above. */
+a.black-button,
+a.black-button:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 8px 14px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: 1;
+  background: var(--color-dark-green);
+  color: #fff;
+  border: 1px solid var(--color-dark-green);
+  border-radius: 100px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Smaller variant — applied alongside the base class for tighter
+   contexts (e.g. inline buttons inside compact cards or asides). */
+a.black-button.black-button--small,
+a.black-button.black-button--small:visited {
+  padding: 6px 12px;
+  font-size: var(--font-size-sm);
+  gap: 0.35rem;
+}
+
+/* Arrow/icon inside the button (any inline child) slides right on hover. */
+a.black-button > span {
+  transition: transform 0.2s ease;
+}
+
+a.black-button:hover,
+a.black-button:focus {
+  background: var(--color-mid-green);
+  color: #fff;
+  border-color: var(--color-mid-green);
+  box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
+  transform: translateY(-1px);
+  text-decoration: none;
+  outline: none;
+}
+
+a.black-button:hover > span,
+a.black-button:focus > span {
+  transform: translateX(3px);
+}
+
+blockquote {
+  line-height: 1.5;
+  font-size: var(--font-size-lg);
+  margin: 2rem 0;
   font-weight: 400;
+  color: #444;
+  font-style: italic;
+  border-left: 2px solid #84d9a6;
+  padding-left: 1.2rem;
+}
+
+/* Reset paragraph margins inside a blockquote so the quote and its
+   attribution sit tightly together. */
+blockquote p {
+  margin: 0;
+}
+
+/* Speaker / citation line — a second paragraph inside the blockquote
+   (separated by a blank line in markdown, or a second `<p>` in JSX).
+   Smaller, upright (non-italic), uppercase dark-green so it reads as
+   attribution rather than part of the quote itself. */
+blockquote p + p {
+  margin-top: 0.5em;
+  font-style: normal;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-dark-green);
+}
+
+blockquote p + p a,
+blockquote p + p a:visited {
+  color: var(--color-dark-green);
+  text-decoration: none;
+  font-weight: 500;
 }
 
 p.intro {
-  font-size: 22px;
-  line-height: 1.43;
+  line-height: 1.5;
+  font-size: var(--font-size-md);
+  margin: 1rem 0 3rem 0;
+  font-weight: 300;
+}
+
+/* Oversized page-opening paragraph (a "lede"). Instrument Serif —
+   --font-size-xl on mobile, --font-size-2xl on desktop. Apply to the
+   opening paragraph on top-level pages (About, Newsletter, etc.) that
+   use the .page-narrow reading column. */
+p.page-lede {
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 1rem 0 5rem 0;
+  text-wrap: balance;
+}
+
+@media only screen and (min-width: 1000px) {
+  p.page-lede {
+    font-size: var(--font-size-2xl);
+  }
 }
 
 .tags {
@@ -69,27 +221,354 @@ p.intro {
 .tag {
   display: inline-block;
   white-space: nowrap;
-  padding: 2px 10px;
+  padding: 4px 10px;
   margin: 4px 4px 4px 0;
-  font-size: 0.8rem;
-  background: #d9eee2;
-  color: #235337;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-light-green);
+  color: var(--color-dark-green);
   border-radius: 100px;
   font-weight: 400;
 }
 
-.disabled b {
-  font-weight: 100;
-  color: #444;
+/* Article image → click to open the full-size source in a new tab.
+   Added server-side in articles.ts by wrapping non-.float-right <img>
+   tags in an anchor. Kill the paragraph-link underline and give the
+   image a subtle brighten on hover for click-affordance. */
+.article-image-link,
+.article-image-link:visited {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.article-image-link img {
+  transition: filter 0.2s ease;
+}
+
+.article-image-link:hover img,
+.article-image-link:focus-visible img {
+  filter: brightness(1.03) saturate(1.05);
+}
+
+/* Light-green underline used inline in article headings to draw the eye
+   to a phrase (e.g. the section qualifier on the books article).
+   text-decoration lets us tuck the stroke close to the baseline via
+   text-underline-offset. */
+.highlight-underline {
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 0.12em;
+  text-decoration-skip-ink: none;
+}
+
+/* Small-caps kicker used above listing columns — e.g. the jobs-board
+   "COUNTRY" filter labels, the "N JOBS" count above the results, and the
+   article-type heading on /articles/type/[type]. Applied alongside any
+   element-specific spacing from a module SCSS. */
+.small-header {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Small red mono pill — mirrors the "NEW" chip used above article
+   thumbnails. Use as `<span class="notice-pill">Coming soon…</span>`. */
+.notice-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: #e85a3a;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 5px;
+}
+
+.tag-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  margin-left: 0.6em;
+  background: var(--color-pick-bg);
+  color: var(--color-pick-text);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-sans);
+  vertical-align: middle;
+}
+
+/* Utility: bump the saturation and brightness of any descendant
+   image/svg/video when the carrier element is hovered or focused.
+   Apply to the link/wrapper, not the image itself, so all thumbnail
+   surfaces (article cards, newsletter, coworking tiles, team photos)
+   share one source of truth. */
+.hover-saturate img,
+.hover-saturate svg,
+.hover-saturate video {
+  transition: filter 0.2s ease;
+}
+
+.hover-saturate:hover img,
+.hover-saturate:hover svg,
+.hover-saturate:hover video,
+.hover-saturate:focus img,
+.hover-saturate:focus svg,
+.hover-saturate:focus video,
+.hover-saturate:focus-visible img,
+.hover-saturate:focus-visible svg,
+.hover-saturate:focus-visible video {
+  filter: saturate(1.5) brightness(1.02);
 }
 
 h1 {
   font-weight: 700;
   line-height: 1;
-  font-size: 32px;
-  letter-spacing: -0.06rem;
+  font-size: var(--font-size-lg);
+  letter-spacing: -0.04rem;
   display: block;
   font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+/* Mission-statement tagline that sits above the site header on both
+   mobile and desktop. Mirrors the .sectorKicker treatment from the
+   jobs preview. */
+.site-tagline {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: var(--color-mid-green);
+  margin: 0 0 1.25rem 0;
+  line-height: 1.4;
+}
+
+/* Forced line break in the tagline — visible on mobile, hidden on
+   desktop so the sentence reflows back to one line. */
+.site-tagline-break {
+  display: inline;
+}
+
+/* Rotating word at the end of the tagline. All candidate words live
+   inside this wrapper stacked on top of each other in a single grid
+   cell so the wrapper's width always equals the widest word — that
+   stops the centered tagline from shifting horizontally as words
+   change. */
+.site-tagline-rotator {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  vertical-align: bottom;
+}
+
+.site-tagline-rotator-word {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+}
+
+.site-tagline-rotator-icon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 4px;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+}
+
+/* Site-wide footer band — light green background that bleeds out
+   through body's padding to the viewport edges. The negative side
+   margins extend the element beyond body's content area; the matching
+   padding restores the content's visual indent. */
+.site-footer {
+  background: var(--color-pale-green);
+  margin: 6em -1.5rem -1.5rem -1.5rem;
+  padding: 1.5rem 1.5rem 5rem 1.5rem;
+}
+
+/* Mission-statement block rendered above the footer on every page
+   except /about. White band that bleeds edge-to-edge with a green
+   stroke on top. Lives as a sibling of <footer> in layout.tsx, so the
+   adjacent-sibling selector below collapses the footer's top margin
+   only when the intro is present. */
+.footer-intro {
+  background: #fff;
+  margin: 6em 0 0 0;
+  padding: 3rem 0 5rem 0;
+  border-top: 1px solid #b7ddc8;
+}
+
+.footer-intro + .site-footer {
+  margin-top: 0;
+}
+
+.footer-intro-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-intro p {
+  margin: 0 0 1.25rem 0;
+}
+
+.footer-intro p:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer columns: stack on mobile, switch to a 3-up grid on desktop
+   using the same column width and gap as the article-card list. */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+}
+
+/* Normalize h3 top margin in every footer column so the three titles
+   line up — Registration has a float-right image before its h3, which
+   would otherwise leave the h3 with a default browser top margin. */
+.footer-col h3 {
+  margin-top: 0;
+}
+
+/* Lay out each footer column as a flex stack with an explicit gap.
+   This avoids the margin-collapse / inline-flex quirks that made the
+   copyright line sit further from the row above than the link rows did. */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-col p {
+  margin: 0;
+}
+
+/* Three-column header: nav cluster (left), Hard Problems logo (center),
+   nav cluster (right). Both nav clusters are hidden on mobile — the
+   standalone TopBar below the header carries navigation there. */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 0 10rem 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid #b7ddc8;
+  border-bottom: 1px solid #b7ddc8;
+}
+
+/* Mobile: with both nav clusters hidden, collapse the header to a
+   single centered column so the logo stays centered, and drop the
+   desktop bottom margin so the TopBar butts against the header. */
+@media only screen and (max-width: 999px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin-bottom: 0;
+  }
+}
+
+/* Inline nav clusters on either side of the logo. Hidden on mobile
+   (the below-header TopBar takes over there). */
+.site-header-nav {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.site-header-nav--left {
+  justify-self: start;
+}
+
+.site-header-nav--right {
+  justify-self: end;
+}
+
+.site-header-nav a,
+.site-header-nav a:visited {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.125s ease;
+}
+
+.site-header-nav a:hover,
+.site-header-nav a:focus-visible {
+  color: var(--color-mid-green);
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  outline: none;
+}
+
+.site-header-nav a.active {
+  color: var(--color-mid-green);
+}
+
+/* Home link in the top-left of the header. Same line as the Hard
+   Problems logo on both mobile and desktop. Renders as an inline-flex
+   so the left-caret SVG sits flush against the "Home" text. */
+.site-header-home,
+.site-header-home:visited {
+  justify-self: start;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  font-size: var(--font-size-sm);
+  color: var(--color-dark-green);
+  text-decoration: none;
+}
+
+.site-header-home:hover {
+  color: #0d4f27;
+  text-decoration: underline;
+}
+
+.site-header-home-icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  transition: transform 0.2s ease;
+}
+
+/* On hover, slide the arrow a few pixels to the left for a subtle
+   "going back" feel. The house icon stays put. */
+.site-header-home:hover .site-header-home-icon:first-child,
+.site-header-home:focus-visible .site-header-home-icon:first-child {
+  transform: translateX(-3px);
+}
+
+/* Visually hidden but still read by screen readers. Use on inline
+   text that's needed for accessibility but should not be visible
+   (e.g. labels inside icon-only links/buttons). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 h1 a:link,
@@ -99,60 +578,205 @@ h1 a:visited {
 
 h1 a span.hp-period {
   color: #3aa36d;
+  display: inline-block;
+  transform-origin: bottom left;
+  transition: transform 0.2s ease;
+}
+
+h1 a:hover span.hp-period,
+h1 a:focus-visible span.hp-period {
+  transform: translateX(2px);
 }
 
 h2 {
-  font-weight: 700;
-  line-height: 1;
-  font-size: 28px;
-  letter-spacing: -0.06rem;
+  font-weight: 400;
+  line-height: 1.05;
+  font-size: var(--font-size-3xl);
+  letter-spacing: 0;
   display: block;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+}
+
+/* On mobile, tighten the gap between a page's main heading (h2) and
+   the .intro paragraph that usually follows it. Desktop keeps the
+   browser default + intro top margin (taller hierarchy works better
+   at wide widths). */
+@media only screen and (max-width: 999px) {
+  h2 {
+    margin-bottom: 0.2em;
+  }
+
+  h2 + p.intro {
+    margin-top: 0;
+  }
 }
 
 h3 {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 0.1rem;
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  text-transform: none;
+  font-size: var(--font-size-xl);
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin-bottom: 0.3rem;
+}
+
+h3 + p {
+  margin-top: 0.5em;
 }
 
 h3.divider {
-  padding-top: 40px;
+  padding-top: 0;
   margin-top: 4rem;
-  border-top: 1px solid #84d9a6;
 }
 
 h4 {
-  margin: 0.2em 0;
+  margin: 1.2em 0 0 0;
+}
+
+h4 + p {
+  margin-top: 0.3em;
 }
 
 nav {
-  margin-bottom: 3em;
+  margin: 0;
 }
 
 nav a,
 nav a:visited {
-  margin: 0 10px 0 0;
-  padding: 4px 0;
-  color: #2f8b53;
+  color: var(--color-text);
 }
 
 nav a:hover {
-  color: #0d4f27;
-}
-
-nav a.active {
-  border-bottom: 4px solid #84d9a6;
   color: #000;
 }
 
-.footer p {
-  font-size: 14px;
+nav a.active {
+  background: transparent;
+  color: #3aa36d;
 }
 
-.footer h3 {
-  font-size: 12px;
+/* Centered nav bar that sits directly below the site header. Links
+   are bold and sit at their natural width — the group is centered as
+   a whole. The active link gets a thicker green underline that sits
+   directly on the nav's bottom stroke, like a selected tab. On narrow
+   viewports the row scrolls horizontally if the labels don't fit. */
+nav.site-nav-bar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: nowrap;
+  margin: 0 0 2rem 0;
+  border-bottom: 1px solid #b7ddc8;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+nav.site-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.site-nav-bar a,
+.site-nav-bar a:visited {
+  flex: 0 0 auto;
+  text-align: center;
+  white-space: nowrap;
+  padding: 1.2rem 0.6rem;
+  font-weight: 500;
+  border-radius: 0;
+  margin: 0;
+  position: relative;
+  transition: color 0.125s ease;
+}
+
+.site-nav-bar a:hover,
+.site-nav-bar a:focus-visible {
+  color: var(--color-mid-green);
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  outline: none;
+}
+
+.site-nav-bar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: #3aa36d;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.site-nav-bar a.active::after {
+  transform: scaleX(1);
+}
+
+/* Default: short labels visible, long hidden. Swap at the desktop
+   breakpoint below. */
+.nav-label-short {
+  display: inline;
+}
+
+.nav-label-long {
+  display: none;
+}
+
+.site-footer p {
+  font-size: var(--font-size-sm);
+  max-width: 22em;
+  /* Balance line lengths so short footer paragraphs don't end on a
+     single dangling word — same idea as the thumbnail titles. */
+  text-wrap: balance;
+}
+
+.site-footer h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: 0.5rem;
+  color: var(--color-dark-green);
+}
+
+.site-footer a,
+.site-footer a:visited {
+  color: var(--color-dark-green);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #0d4f27;
+  text-decoration: none;
+}
+
+/* Contact links with a leading icon — keep the icon vertically centred
+   with the first line of text and give it a little breathing room. */
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.footer-contact-icon {
+  flex-shrink: 0;
+  color: var(--color-dark-green);
+  opacity: 0.5;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* On hover, the icon next to an actual footer link (not the static
+   copyright row) brightens to full opacity and lifts up 1px. */
+a.footer-contact-link:hover .footer-contact-icon,
+a.footer-contact-link:focus .footer-contact-icon {
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 b {
@@ -164,6 +788,9 @@ li,
 dd {
   font-weight: 300;
   line-height: 1.6;
+  /* Reduce orphans — the browser avoids leaving a single short word
+     on the last line. Falls back gracefully on older browsers. */
+  text-wrap: pretty;
 }
 
 p.indent {
@@ -215,12 +842,12 @@ pre:has(+ .code-copy-button) {
   margin: 0 0 1.5rem auto;
   padding: 8px 14px;
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: var(--font-size-base);
   font-weight: 500;
   line-height: 1;
-  background: #231f20;
+  background: var(--color-dark-green);
   color: #fff;
-  border: 1px solid #231f20;
+  border: 1px solid var(--color-dark-green);
   border-radius: 100px;
   cursor: pointer;
   transition:
@@ -232,16 +859,16 @@ pre:has(+ .code-copy-button) {
 
 .code-copy-button:hover,
 .code-copy-button:focus {
-  background: #235337;
-  border-color: #235337;
-  box-shadow: 0 4px 16px rgba(35, 83, 55, 0.25);
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
+  box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
   transform: translateY(-1px);
   outline: none;
 }
 
 .code-copy-button.copied {
-  background: #2f8b53;
-  border-color: #2f8b53;
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
 }
 
 .code-copy-icon {
@@ -259,6 +886,12 @@ li strong {
 
 ol > li {
   margin: 0.75em 0;
+  padding-left: 0.5em;
+}
+
+ol > li::marker {
+  color: var(--color-dark-green);
+  font-weight: 500;
 }
 
 p a,
@@ -285,8 +918,10 @@ dd {
   display: none;
 }
 
-.no-margin {
-  margin: 0;
+/* Shown on mobile, hidden at the desktop breakpoint (inverse of
+   .desktop). */
+.mobile-only {
+  display: block;
 }
 
 .none {
@@ -301,7 +936,7 @@ dd {
 }
 
 .space-top-large {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .space-top-small {
@@ -314,15 +949,99 @@ ul li {
 
 ul ul li {
   margin: 0.5rem 0 0 0;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 /* Custom newsletter subscribe form — replaces the Beehiiv iframe.
    The client component posts to /api/subscribe, which forwards to the
    Beehiiv API server-side. */
 .newsletter-form {
-  margin: 0.4em 0 0 0;
   width: 100%;
+}
+
+/* Full-width newsletter call-to-action band (NewsletterModule.tsx).
+   Drop-in anywhere on the site; light-green fill matches the footer,
+   and the label + pill sit centred within a comfortable max-width. */
+.newsletter-module {
+  box-sizing: border-box;
+  clear: both;
+  border-top: 1px solid var(--color-light-green);
+  border-bottom: 1px solid var(--color-light-green);
+  margin: 0;
+  width: 100%;
+}
+
+.newsletter-module-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.newsletter-module .newsletter-form {
+  margin: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.newsletter-module .newsletter-form-label {
+  display: block;
+  margin: 0;
+  white-space: normal;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--color-text);
+  max-width: 32em !important;
+  text-wrap: balance;
+}
+
+.newsletter-module .newsletter-form-label a,
+.newsletter-module .newsletter-form-label a:visited {
+  font-weight: 400;
+  color: var(--color-dark-green);
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.newsletter-module .newsletter-form-field {
+  /* Scales with the viewport on narrow screens (75vw) and caps at
+     340px on desktop, so the pill looks proportional whatever the
+     window width. */
+  width: min(340px, 75vw);
+}
+
+/* Desktop: try to sit the label to the left of the pill. Uses
+   flex-wrap so that if the sentence + pill won't fit alongside each
+   other (the label would have to wrap awkwardly) the label flows onto
+   its own row above the pill — same result as the mobile stacked
+   layout. */
+@media only screen and (min-width: 1000px) {
+  .newsletter-module-inner {
+    max-width: 820px;
+  }
+
+  .newsletter-module .newsletter-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem 1.25rem;
+  }
+
+  .newsletter-module .newsletter-form-label {
+    flex: 0 1 auto;
+    text-align: right;
+    font-size: var(--font-size-base);
+    max-width: 24em;
+    white-space: nowrap;
+  }
 }
 
 .newsletter-form-field {
@@ -332,7 +1051,61 @@ ul ul li {
   background: #fff;
   border: 1px solid #cbead8;
   border-radius: 100px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Footer copy of the newsletter form — keep the pill compact so it
+   doesn't dominate the column, and drop the form's default top margin
+   so the label sits flush under the "Newsletter" heading. */
+.footer-col .newsletter-form {
+  margin-top: 0;
+}
+
+.footer-col .newsletter-form-field {
+  max-width: 220px;
+}
+
+/* Footer label carries a longer descriptive sentence — let it wrap,
+   always render the linked "newsletter" (mobile default hides it),
+   and add a half-line gap before the pill. Match the footer paragraph
+   font-size for consistency with the other columns. */
+.footer-col .newsletter-form-label {
+  display: block;
+  margin-bottom: 1em;
+  white-space: normal;
+  font-size: var(--font-size-sm);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+.footer-col .newsletter-form-label a,
+.footer-col .newsletter-form-label a:visited {
+  text-decoration: none;
+}
+
+.newsletter-form-label {
+  font-size: 0.95rem;
+  color: #231f20;
+  white-space: nowrap;
+}
+
+.newsletter-form-label a,
+.newsletter-form-label a:visited {
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.newsletter-form-label a:hover,
+.newsletter-form-label a:focus {
+  text-decoration-color: currentColor;
 }
 
 .newsletter-form-icon {
@@ -371,21 +1144,44 @@ ul ul li {
 
 .newsletter-form-submit {
   flex: 0 0 auto;
-  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
   height: 32px;
+  padding: 0;
   font: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #fff;
-  background: #231f20;
-  border: 1px solid #231f20;
+  color: #231f20;
+  background: #fff;
+  border: 1px solid #cbead8;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.newsletter-form-submit-icon {
+  display: block;
+}
+
+.newsletter-form-submit-icon--spin {
+  animation: newsletter-submit-spin 0.9s linear infinite;
+}
+
+@keyframes newsletter-submit-spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .newsletter-form-submit:hover:not(:disabled),
 .newsletter-form-submit:focus-visible:not(:disabled) {
+  color: #fff;
   background: #235337;
   border-color: #235337;
   outline: none;
@@ -448,7 +1244,9 @@ ul ul li {
   border: none;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .newsletter-modal-close:hover,
@@ -496,36 +1294,65 @@ ul ul li {
   font-size: 0.95rem;
   font-weight: 500;
   color: #fff;
-  background: #231f20;
-  border: 1px solid #231f20;
+  background: var(--color-dark-green);
+  border: 1px solid var(--color-dark-green);
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .newsletter-modal-cta:hover,
 .newsletter-modal-cta:focus-visible {
-  background: #235337;
-  border-color: #235337;
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
   outline: none;
 }
 
 @keyframes newsletter-modal-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes newsletter-modal-pop {
-  from { opacity: 0; transform: translateY(6px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-
 
 .container section.left,
 .container section.right {
-  border-top: 1px solid #84d9a6;
-  padding-top: 24px;
-  margin-top: 42px;
+  padding-top: 0;
+  margin-top: 1rem;
+}
+
+/* Standard single-column reading width. Apply to any page section
+   (About, Podcast, Newsletter, etc.) that should share the same
+   reading measure. Bumped to 840px on desktop so the writable content
+   inside `.container section`'s 42px side padding still measures
+   ~760px — matching the article body. On mobile the container has no
+   side padding, so the box just fills the viewport up to the cap. */
+.container section.page-narrow {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container section.page-narrow {
+    max-width: 920px;
+  }
 }
 
 .image-full {
@@ -534,13 +1361,11 @@ ul ul li {
 }
 
 .illustration-home {
-  text-align: center;
-  margin-top: -20px;
+  display: none;
 }
 
 .illustration-home img {
-  width: 75%;
-  max-width: 400px;
+  max-width: 300px;
   height: auto;
 }
 
@@ -561,7 +1386,7 @@ ul ul li {
 }
 
 .event-image {
-  background: #ebf7f0;
+  background: var(--color-pale-green);
   text-align: center;
   padding: 10px;
   position: relative;
@@ -573,7 +1398,7 @@ ul ul li {
   top: 20px;
   left: 20px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   text-transform: uppercase;
 }
 
@@ -587,66 +1412,122 @@ ul ul li {
   margin-top: 0.3em;
 }
 
-.other-event {
-  margin: 2em 0;
-}
-
-.other-event-title {
-  font-weight: 700;
-  margin: 0 0 0.2em 0;
-}
-
-.other-event-date {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  margin: 0.4em 0 0 0;
-}
-
-.episode {
-  background: #ebf7f0;
-  padding: 24px 140px 24px 24px;
-  position: relative;
-  margin: 2em 0 1em 0;
-  min-height: 160px;
-}
-
-.episode .podcast-image {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  width: 160px;
-  height: 160px;
-  border: 6px solid #cbead8;
-}
-
-.episode .podcast-player {
-  width: 60%;
-}
-
-.episode h3 {
-  margin-top: 0;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.episode div {
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.columns-2 .column {
-  margin-bottom: 2em;
-}
-
 .float-right {
   float: right;
   margin: 0 0 1em 1em;
 }
 
-.grid-layout {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap: 6%;
+/* Hand-drawn checklist — apply `class="hand-drawn-checklist"` to a <ul>
+   (or to a wrapping div around one) and each <li> renders with a sketchy
+   hand-drawn checkbox marker instead of a bullet. Used in articles and
+   on /about. */
+.hand-drawn-checklist,
+.hand-drawn-checklist ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.hand-drawn-checklist li,
+.hand-drawn-checklist ul li {
+  position: relative;
+  padding-left: 1.7em;
+  margin: 0.8em 0;
+  min-height: 1.3em;
+}
+
+.hand-drawn-checklist li::before,
+.hand-drawn-checklist ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 1.15em;
+  height: 1.15em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23231f20' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6,5L27,4L28,27L5,26Z'/%3E%3Cpath d='M10,16L15,22L25,9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Grid of offering cards (used on /about right column). Reuses the
+   .grid-cell visual treatment. Single column on mobile, 2x2 grid on
+   desktop (overrides the desktop 46% width). */
+.offer-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Tighter padding + smaller icons just inside the offer-stack so the
+   section reads as a compact list of offerings rather than a series
+   of poster-sized cards. */
+.offer-stack .grid-cell {
+  width: 100%;
+  margin-top: 0;
+  padding: 16px 20px 32px;
+  border: 0;
+  border-radius: 0;
+  /* Same translucent inset stroke as .articleCardImageWrap so the
+     Thank you cards feel visually related to the article thumbnails. */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.offer-stack a.grid-cell:hover,
+.offer-stack a.grid-cell:focus-visible {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Rotate through very soft pastel fills so the Thank you grid reads
+   as a friendly wall of gratitude rather than a stack of matching
+   cards. The name inside each card takes a darker sibling of the same
+   hue by tinting the card's own colour (grid-detail keeps its own
+   grey via a more specific rule below). */
+.offer-stack a.grid-cell:nth-of-type(4n + 1),
+.offer-stack a.grid-cell:nth-of-type(4n + 1):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 1):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 1):focus-visible {
+  background: #f5fbf6;
+  color: #1f4b30;
+}
+
+.offer-stack a.grid-cell:nth-of-type(4n + 2),
+.offer-stack a.grid-cell:nth-of-type(4n + 2):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 2):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 2):focus-visible {
+  background: #fef7f3;
+  color: #8a3d1a;
+}
+
+.offer-stack a.grid-cell:nth-of-type(4n + 3),
+.offer-stack a.grid-cell:nth-of-type(4n + 3):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 3):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 3):focus-visible {
+  background: #f7f8fd;
+  color: #1e3a8a;
+}
+
+.offer-stack a.grid-cell:nth-of-type(4n + 4),
+.offer-stack a.grid-cell:nth-of-type(4n + 4):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 4):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 4):focus-visible {
+  background: #fdf7f9;
+  color: #7a1e3a;
+}
+
+.offer-stack .grid-cell img {
+  height: 64px;
+  margin: 0.5em 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  .offer-stack {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .grid-cell {
@@ -659,25 +1540,28 @@ ul ul li {
   width: 100%;
 }
 
+.grid-cell img {
+  width: auto;
+  height: 84px;
+}
+
 .grid-link {
   display: block;
 }
 
-.grid-cell p {
-  margin-top: 0.5em;
-  font-size: 18px;
-  line-height: 1.3;
-  color: #231f20;
-}
-
+/* Small descriptor sitting under the card title — matches the
+   article-card excerpt size so the two card surfaces feel related. */
 .grid-cell p.grid-detail {
-  font-weight: 500;
-  font-size: 14px;
+  margin: 0.3em 0 0 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: #444;
+  font-weight: 400;
 }
 
 .captions {
   color: green;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   font-style: italic;
 }
 
@@ -698,8 +1582,25 @@ ul ul li {
 @media only screen and (min-width: 1000px) {
   body {
     padding: 3rem;
-    border-top: 20px solid #84d9a6;
     background: white;
+  }
+
+  /* Show the inline nav clusters and hide the below-header TopBar on
+     desktop, where the header has room for the nav links inline. */
+  .site-header-nav {
+    display: flex;
+    font-size: var(--font-size-base);
+  }
+
+  nav.site-nav-bar {
+    display: none;
+  }
+
+  /* Restore the larger intro size on desktop — mobile uses the
+     smaller 18px set on the base p.intro rule above. */
+  p.intro {
+    font-size: var(--font-size-lg);
+    line-height: 1.43;
   }
 
   .main {
@@ -707,26 +1608,77 @@ ul ul li {
     margin: 0 auto;
   }
 
+  /* Desktop body padding is 3rem; match the bleed margins/padding so
+     the footer extends through that wider gutter. The .main inside
+     re-applies the 1400px max-width so the content stays aligned. */
+  .site-footer {
+    margin: 3rem -3rem -3rem -3rem;
+    padding: 3rem 3rem 5rem 3rem;
+  }
+
+  /* Match the article-card list at this breakpoint: three equal
+     columns with a 3rem row / 2rem column gap. The 42px horizontal
+     padding matches `.container section { padding: 42px }` so the
+     footer columns start/end at the same x-coordinate as the article
+     columns above. */
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem 2rem;
+    padding: 0 42px;
+  }
+
   nav {
-    margin-top: 8px;
-    margin-bottom: 0;
-    float: right;
+    margin: 0;
     font-size: inherit;
   }
 
   nav a {
-    margin-left: 24px;
-    padding-bottom: 12px;
-    padding-left: 1px;
-    padding-right: 1px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  nav a:last-child {
+    margin-right: 0;
+  }
+
+  /* Desktop: roomier horizontal padding on the nav links. Mobile keeps
+     the tighter padding so the labels fit on narrow viewports. */
+  .site-nav-bar a {
+    padding: 1.2rem 1.2rem;
+  }
+
+  /* Desktop: swap the short mobile labels for the full names. */
+  .nav-label-short {
+    display: none;
+  }
+
+  .nav-label-long {
+    display: inline;
+  }
+
+  /* Desktop: hide the mobile-only forced line break so the tagline
+     reads on one line. */
+  .site-tagline-break {
+    display: none;
+  }
+
+  .site-tagline {
+    margin: 0 0 2.5rem 0;
+  }
+
+  .site-header {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    margin: 1rem 0 2rem 0;
+    /* Pad to the same 42px that .container section uses, so the nav
+       links align with the article grid's left/right edges. Vertical
+       padding sets how close the green top/bottom rules sit to the
+       header contents. */
+    padding: 1.25rem 42px;
   }
 
   h1 {
-    font-size: 36px;
-  }
-
-  blockquote {
-    font-size: 24px;
+    font-size: 1.8rem;
   }
 
   .container {
@@ -743,7 +1695,7 @@ ul ul li {
   .container section.right {
     width: 40%;
     padding-top: 40px;
-    border-top: 1px solid #84d9a6;
+    border-top: none;
     margin-top: 0;
   }
 
@@ -751,31 +1703,7 @@ ul ul li {
     width: 60%;
     padding-right: 60px;
     padding-top: 40px;
-    border-right: 1px solid #84d9a6;
     margin-top: 0;
-  }
-
-  .container section.left:before {
-    content: '.';
-    background: #84d9a6;
-    width: 1px;
-    height: 50px;
-    position: absolute;
-    right: -1px;
-    top: -20px;
-    overflow: hidden;
-    text-indent: -1000em;
-  }
-
-  .columns-2 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2%;
-  }
-
-  .columns-2 .column {
-    width: 49%;
   }
 
   .grid-cell {
@@ -784,32 +1712,34 @@ ul ul li {
 
   .grid-cell img {
     width: auto;
-    height: 100px;
+    height: 70px;
     margin: 1em 0;
   }
 
   a.grid-cell:hover {
-    border-color: cornflowerblue;
-  }
-
-  h1 {
-    margin: 42px;
+    border-color: var(--color-link);
   }
 
   h3.divider {
-    padding: 40px 40px 0 60px;
-    margin-left: -60px;
-    margin-right: -40px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .desktop {
     display: block;
   }
 
+  .mobile-only {
+    display: none;
+  }
+
   .illustration-home {
     width: 50%;
-    margin: 70px -20px 2rem 0.5rem;
+    margin: 0;
     float: right;
+    display: inline-block;
+    margin-right: -100px !important;
   }
 
   .illustration-home img {

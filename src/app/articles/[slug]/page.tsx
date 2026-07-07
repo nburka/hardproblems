@@ -1,18 +1,56 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { Footer } from '../../../components/Footer';
+import { BookOpen } from 'lucide-react';
+import ArticleCard from '../../../components/ArticleCard';
+import NewsletterModule from '../../../components/NewsletterModule';
 import {
   articleTypeSlug,
   formatPublishedDate,
   getAllArticles,
   getArticleBySlug,
+  getAuthorImage,
   topicDisplay
 } from '../../../lib/articles';
 import { getAuthorUrl } from '../../../lib/authors';
 import styles from './article.module.scss';
 
+// Hand-picked slugs shown in the "Top articles" rail at the bottom of
+// every article page. Order here is the order they render. Extra slugs
+// past the first three serve as backfill when the current article is
+// itself one of the picks (so the rail always shows three cards).
+const TOP_ARTICLE_SLUGS = [
+  'hard-problems-explained',
+  'use-a-spreadsheet-to-choose-your-next-role',
+  'join-nonprofit-board-or-advisory-group',
+  'hard-problems-job-board',
+  'missing-piece-design-career',
+  'tricks-find-meaningful-job-linkedin'
+];
+
 type Props = { params: Promise<{ slug: string }> };
+
+// Split the article HTML at the boundary where the byline should be
+// inserted. Preferred boundary is the end of the `.intro` paragraph (the
+// lede); if there's no intro, fall back to the end of the H1 (title) so
+// the byline still sits between the title and the body copy.
+function splitForByline(html: string): { before: string; after: string } {
+  const introIdx = html.search(/class=["']intro["']/i);
+  if (introIdx !== -1) {
+    const close = html.indexOf('</p>', introIdx);
+    if (close !== -1) {
+      const end = close + '</p>'.length;
+      return { before: html.slice(0, end), after: html.slice(end) };
+    }
+  }
+  const h1 = /<\/h1>/i.exec(html);
+  if (h1) {
+    const end = h1.index + h1[0].length;
+    return { before: html.slice(0, end), after: html.slice(end) };
+  }
+  return { before: '', after: html };
+}
 
 // Pre-render every published article at build time. New articles ship by
 // adding a .md file under content/articles/.
@@ -68,75 +106,125 @@ export default async function ArticlePage({ params }: Props) {
   )
     notFound();
 
+  const { before, after } = splitForByline(article.contentHtml);
+
+  // Build the "Top articles" rail. Filter out the current article so a
+  // post never recommends itself, and skip any slug that doesn't resolve
+  // to a published article (so a typo in the list above degrades
+  // gracefully). Cap at 3 — extra slugs in TOP_ARTICLE_SLUGS act as
+  // backfill when one of the top picks is the current article.
+  const topArticles = TOP_ARTICLE_SLUGS.map((s) => getArticleBySlug(s))
+    .filter(
+      (a): a is NonNullable<typeof a> =>
+        a != null && a.status === 'published' && a.slug !== article.slug
+    )
+    .slice(0, 3);
+
+  // Build counts for every articleType and topic across all published
+  // articles, used to annotate each row in "More articles about…".
+  const allArticles = getAllArticles();
+  const typeCounts = new Map<string, number>();
+  const topicCounts = new Map<string, number>();
+  for (const a of allArticles) {
+    if (a.articleType) {
+      typeCounts.set(
+        a.articleType,
+        (typeCounts.get(a.articleType) || 0) + 1
+      );
+    }
+    for (const t of a.topics) {
+      topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+    }
+  }
+
   return (
     <>
+      <div className={styles.newsletterWrap}>
+        <NewsletterModule />
+      </div>
       <section className={styles.articleWrap}>
-        <div className={styles.topBar}>
-          <p className={styles.breadcrumb}>
-            <Link href="/articles">
-              <span aria-hidden="true">←</span> Articles
-            </Link>
-            {article.articleType &&
-              article.articleType.toLowerCase() !== 'article' && (
-                <>
-                  <span
-                    aria-hidden="true"
-                    className={styles.breadcrumbSep}
-                  >
-                    {' / '}
-                  </span>
-                  <Link
-                    href={`/articles/type/${articleTypeSlug(
-                      article.articleType
-                    )}`}
-                  >
-                    {article.articleType}
-                  </Link>
-                </>
-              )}
-          </p>
-          <ArticleByline article={article} />
-        </div>
-
         <article className={styles.article}>
         <header className={styles.header}>
-          {article.articleType &&
-            (article.articleType.toLowerCase() === 'book review' ||
-              article.articleType.toLowerCase() === 'opinion' ||
-              article.articleType.toLowerCase() === 'video') && (
-              <p className={styles.preTitleLabel}>{article.articleType}</p>
-            )}
+          {article.articleType && (
+            <p className={styles.preTitleLabel}>
+              <Link
+                href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+              >
+                {article.articleType}
+              </Link>
+            </p>
+          )}
         </header>
 
-        <div
-          className={styles.body}
-          dangerouslySetInnerHTML={{ __html: article.contentHtml }}
-        />
+        <div className={styles.body}>
+          <div dangerouslySetInnerHTML={{ __html: before }} />
+          <ArticleByline article={article} />
+          <div dangerouslySetInnerHTML={{ __html: after }} />
+        </div>
 
-        {article.topics.length > 0 && (
+        {(article.articleType || article.topics.length > 0) && (
           <>
-            <h3 className={styles.tagsLabel}>Tags</h3>
-            <div className={styles.topics}>
+            <h2 className={styles.tagsLabel}>Related content&hellip;</h2>
+            <ul className={styles.topics}>
+              {article.articleType && (
+                <li>
+                  <Link
+                    href={`/articles/type/${articleTypeSlug(article.articleType)}`}
+                    className={styles.topicTag}
+                  >
+                    <span>{article.articleType}</span>
+                    <span className={styles.topicTagMeta}>
+                      <span className={styles.topicTagCount}>
+                        {typeCounts.get(article.articleType) ?? 0}
+                      </span>
+                      <BookOpen
+                        className={styles.topicTagIcon}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Link>
+                </li>
+              )}
               {article.topics.map((t) => (
-                <Link
-                  key={t}
-                  href={`/articles/topic/${t}`}
-                  className={`tag ${styles.topicTag}`}
-                >
-                  {topicDisplay(t)}
-                </Link>
+                <li key={t}>
+                  <Link
+                    href={`/articles/type/${t}`}
+                    className={styles.topicTag}
+                  >
+                    <span>{topicDisplay(t)}</span>
+                    <span className={styles.topicTagMeta}>
+                      <span className={styles.topicTagCount}>
+                        {topicCounts.get(t) ?? 0}
+                      </span>
+                      <BookOpen
+                        className={styles.topicTagIcon}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </>
         )}
         </article>
+
+        {topArticles.length > 0 && (
+          <aside className={styles.topArticles}>
+            <h2 className={styles.topArticlesHeading}>Top articles</h2>
+            <ul className={styles.topArticlesList}>
+              {topArticles.map((a) => (
+                <ArticleCard key={a.slug} article={a} />
+              ))}
+            </ul>
+          </aside>
+        )}
       </section>
-      <Footer />
     </>
   );
 }
 
-// Byline row shown in the article's top bar: "By <Author> · <Date> · N min read".
+// Byline row shown above the article body: "By <Author> · <Date> · N min read".
 // Each piece is conditional, so the dot separators only appear between pieces
 // that are actually rendered. Author becomes a link when we have a URL for them.
 function ArticleByline({
@@ -150,8 +238,33 @@ function ArticleByline({
 
   if (article.author) {
     const name = <strong>{article.author}</strong>;
+    const avatarSrc = getAuthorImage(article.authorSlug);
+    const avatar = avatarSrc ? (
+      <Image
+        src={avatarSrc}
+        width={64}
+        height={64}
+        alt=""
+        className={styles.authorAvatar}
+      />
+    ) : null;
     parts.push(
       <span key="author">
+        {avatar &&
+          (authorUrl ? (
+            <Link
+              href={authorUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-hidden="true"
+              tabIndex={-1}
+              className={`${styles.authorAvatarLink} hover-saturate`}
+            >
+              {avatar}
+            </Link>
+          ) : (
+            avatar
+          ))}
         By{' '}
         {authorUrl ? (
           <Link
@@ -176,7 +289,18 @@ function ArticleByline({
     );
   }
   if (article.readingTime) {
-    parts.push(<span key="read">{article.readingTime} min read</span>);
+    const articleTypeLower = article.articleType?.toLowerCase();
+    const unit =
+      articleTypeLower === 'video'
+        ? 'video'
+        : articleTypeLower === 'podcast'
+          ? 'podcast'
+          : 'read';
+    parts.push(
+      <span key="read" className={styles.bylineReadingTime}>
+        {article.readingTime} min {unit}
+      </span>
+    );
   }
 
   return (

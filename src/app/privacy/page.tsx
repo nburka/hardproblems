@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Footer } from '../../components/Footer';
 
 export default function Page() {
   return (
@@ -161,7 +160,6 @@ export default function Page() {
         <p>Helpline number: 0303 123 1113</p>
         <p>Website: <Link href="https://www.ico.org.uk/make-a-complaint">ico.org.uk/make-a-complaint</Link></p>
       </section>
-      <Footer />
     </>
   );
 }

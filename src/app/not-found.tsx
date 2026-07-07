@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { Footer } from '../components/Footer';
 
 export const metadata: Metadata = {
   title: 'Page not found — Hard Problems',
@@ -11,36 +11,46 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <section className="left">
+      <section
+        style={{
+          width: '100%',
+          maxWidth: '720px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          textAlign: 'center'
+        }}
+      >
         <h2>Page not found</h2>
         <p className="intro">
-          Sorry — the page you were looking for doesn’t exist, or it
+          Sorry, the page you were looking for doesn’t exist, or it
           moved.
         </p>
         <p>
-          <Link href="/" className="button">
-            Back to the homepage
+          <Link href="/" className="black-button">
+            Back to the homepage <span aria-hidden="true">→</span>
           </Link>
         </p>
-      </section>
-      <section className="right">
-        <h3>Did we break a link?</h3>
+        <Image
+          src="/images/illustration-connection.svg"
+          width="360"
+          height="360"
+          alt=""
+          style={{
+            display: 'block',
+            margin: '2rem auto 0',
+            width: '360px',
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
+
+        <h3 className="space-top-large">Did we break a link?</h3>
         <p>
-          If you got here from a link on our own site, please tell us so
-          we can fix it. Email{' '}
+          Please tell us so we can fix it.
+          <br />
           <em>contact@hardproblems.com</em>
         </p>
-
-        <h3 className="divider">Hard Problems</h3>
-        <p>
-          A nonprofit helping designers to work on the hard problems
-          that matter in the world: problems like{' '}
-          <em className="highlight">public health</em>,{' '}
-          <em className="highlight">climate change</em>, and{' '}
-          <em className="highlight">good government</em>.
-        </p>
       </section>
-      <Footer />
     </>
   );
 }

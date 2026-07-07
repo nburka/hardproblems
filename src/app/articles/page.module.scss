@@ -1,17 +1,16 @@
 .articles {
   width: 100%;
-  border-top: 1px solid #84d9a6;
-  padding-top: 24px;
-  margin-top: 42px;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .articleList {
   list-style: none;
   padding: 0;
-  margin: 2rem 0 5em 0;
+  margin: 2rem 0 0 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 4rem;
 }
 
 .articleCard {
@@ -21,13 +20,17 @@
 .articleCardLink {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.5rem;
   color: inherit;
   text-decoration: none;
 
   &:hover .articleCardTitle,
   &:focus .articleCardTitle {
-    color: darkblue;
+    color: var(--color-dark-green);
+    text-decoration: underline;
+    text-decoration-color: #b7ddc8;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 
   &:hover .articleCardImageWrap::after,
@@ -80,57 +83,125 @@
   gap: 0.4rem;
 }
 
-.articleType {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #235337;
-  background: #d9eee2;
-  padding: 2px 10px;
-  border-radius: 100px;
-}
-
-// When the type tag lives inside the image wrap, overlay it at the
-// bottom-left corner of the thumbnail. White pill on a small shadow so it
-// stays legible regardless of what's behind it in the image.
-.articleCardImageWrap .articleType {
+// White pill overlay at the bottom-left of the thumbnail for Video
+// ("Watch") and Podcast ("Listen") cards. Includes an inline SVG
+// icon followed by a short verb. Light shadow keeps it legible over
+// any image / video poster.
+.articleCardBadge {
   position: absolute;
   left: 12px;
   bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 6px 12px 6px 10px;
   background: #fff;
-  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.articleCardBadgeIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+// Row above the thumbnail carrying the "NEW" chip (recent articles
+// only) followed by the article-type kicker. Rendered as an inline
+// flex row so both sit on the same baseline. Mono-kicker typography
+// is set here so the NEW chip and the article-type link share it.
+.articleCardKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.3rem 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+// Article-type kicker sitting above the thumbnail (e.g. "OPINION",
+// "VIDEO", "BOOK REVIEW"). Plain text, no pill background — matches
+// the .preTitleLabel treatment used on the article page itself.
+.articleType,
+.articleType:visited {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: var(--color-dark-green);
+  text-decoration: none;
+  margin: 0;
+  padding: 2px 6px;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 5px;
+}
+
+.articleType:hover,
+.articleType:focus {
+  color: #0d4f27;
+  border-color: currentColor;
+  text-decoration: none;
 }
 
 .articleCardTitle {
   margin: 0.2rem 0 0 0;
-  font-size: 1.05rem;
-  line-height: 1.3;
-  font-weight: 700;
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-size: var(--font-size-xl);
+  line-height: 1.15;
+  font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: cornflowerblue;
+  color: var(--color-mid-green);
   transition: color 0.15s ease;
+  text-wrap: balance;
 }
 
 .articleCardExcerpt {
   margin: 0;
   color: #444;
-  font-size: 1rem;
-  line-height: 1.45;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  text-wrap: balance;
 }
 
-.articleCardMeta {
-  display: flex;
-  flex-wrap: wrap;
+// Small "N min read · date" line above the card title — grey-blue tint
+// to keep it quiet against the darker title/excerpt text.
+.articleCardReadingTime {
+  margin: 0.2rem 0 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7d8c;
+}
+
+// "NEW" chip sitting next to the article-type kicker on any article
+// published in the last 30 days.
+.articleCardNew {
+  display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.3rem;
-  font-size: 0.85rem;
-  color: #666;
+  color: #e85a3a;
+  font-weight: 600;
+  padding: 2px 6px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.articleCardNewIcon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 2px;
+  vertical-align: -0.15em;
+  stroke-width: 1.8;
 }
 
 // Hero row at the top of /articles — newest article on the left, a
@@ -139,6 +210,24 @@
 // horizontal space.
 .heroRow {
   margin-bottom: 3rem;
+}
+
+// Mobile-only hero treatment: center the title/excerpt, bump the
+// title size, and add extra space below the hero before the next
+// article. Desktop overrides live in the @media block further down.
+@media only screen and (max-width: 999px) {
+  .heroRow {
+    margin-bottom: 5rem;
+  }
+
+  .heroList .articleCardBody {
+    text-align: center;
+  }
+
+  .heroList .articleCardTitle,
+  .articleCardHero .articleCardTitle {
+    font-size: var(--font-size-xl);
+  }
 }
 
 .heroList {
@@ -157,8 +246,244 @@
   display: none;
 }
 
-.heroJobs h3 {
+// Mobile-only Newest jobs panel slotted into the article list after
+// the 3rd article. Hidden on desktop where the .heroJobs panel to the
+// right of the hero already covers this.
+.mobileJobsTeaser {
+  margin: 0;
+}
+
+.mobileJobsTeaser h3 {
   margin: 0 0 1rem 0;
+}
+
+// Mobile-only "More content" heading rendered just before the first
+// compact card. Hidden on desktop where the layout returns to the
+// 3-up grid of standard cards.
+.moreContentHeading {
+  margin: 0;
+}
+
+.moreContentHeading h3 {
+  margin: 0;
+}
+
+// Two slots for the NewsletterModule call-to-action:
+//   - .newsletterModuleRow      → desktop, spans all 3 grid columns
+//                                 right before the coworking aside.
+//   - .newsletterModuleRowMobile → mobile, sits just above the
+//                                 "More content" heading.
+// Each is hidden at the other breakpoint below.
+.newsletterModuleRow {
+  display: none;
+  margin: 0;
+}
+
+.newsletterModuleRowMobile {
+  margin: 0;
+}
+
+// Coworking aside slotted into the article grid on desktop next to
+// the secondary hero. Hidden on mobile via display:none; the desktop
+// @media block below positions it as col 1 spanning 2 rows so the
+// hero on its right (col 2-3, also spanning 2 rows) lines up.
+.coworkingAside {
+  display: none;
+}
+
+.coworkingAside h3 {
+  margin: 0 0 0.75rem 0;
+}
+
+.coworkingAsideIntro {
+  margin: 0 0 1rem 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.45;
+  color: #444;
+}
+
+// "Learn more…" CTA sits below the rotator, left-aligned.
+.coworkingAsideCta {
+  margin: 1.25rem 0 0 0;
+}
+
+.coworkingAsideList {
+  list-style: none;
+  padding-left: 0;
+  margin: 2rem 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 0.75rem;
+  column-gap: 0.75rem;
+}
+
+// Zero out line-height + margin on the li so the cell height equals
+// the square image's height — keeps the vertical gap between rows
+// identical to the horizontal gap between columns.
+.coworkingAsideList li {
+  margin: 0;
+  line-height: 0;
+}
+
+// The link itself is the square box; the image inside fills 100% of
+// it via object-fit. This is more reliable than putting
+// `aspect-ratio` directly on the <img> (where browsers can fall back
+// to the image's intrinsic dimensions and leave a slice of empty
+// space inside the border). `overflow: visible` so the hover tooltip
+// can render outside the thumbnail.
+.coworkingAsideLink {
+  display: block;
+  position: relative;
+  aspect-ratio: 512 / 410;
+}
+
+// 1px semi-transparent inner stroke — matches the article-card image
+// inner-stroke treatment.
+.coworkingAsideLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+
+.coworkingAsideThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// Hover tooltip showing the company description — mirrors the yellow
+// job-board tooltip. Sits above the thumbnail with a small arrow
+// pointing down toward it.
+.coworkingAsideTooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  background: #fef9e7;
+  border: 1px solid #ebd2b3;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  box-shadow: 0 6px 18px rgba(139, 105, 20, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.12s ease,
+    visibility 0.12s ease;
+  z-index: 10;
+}
+
+// Two-layer arrow below the tooltip pointing down at the thumbnail.
+// ::before is the border-coloured outer triangle, ::after is the
+// bg-coloured inner triangle one pixel smaller so the arrow shows
+// a clean border.
+.coworkingAsideTooltip::before,
+.coworkingAsideTooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.coworkingAsideTooltip::before {
+  margin-left: -8px;
+  border-style: solid;
+  border-width: 8px 8px 0 8px;
+  border-color: #ebd2b3 transparent transparent transparent;
+}
+
+.coworkingAsideTooltip::after {
+  margin-left: -7px;
+  border-style: solid;
+  border-width: 7px 7px 0 7px;
+  border-color: #fef9e7 transparent transparent transparent;
+}
+
+.coworkingAsideLink:hover .coworkingAsideTooltip,
+.coworkingAsideLink:focus-visible .coworkingAsideTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.coworkingAsideTooltipName {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+// Compact mobile card — image left, type/title/excerpt right, with a
+// thin line above each card. Used on the homepage for articles after
+// the 3rd. Negative top margin pulls the card up into the article
+// list's 4rem grid gap so the stack reads as a tight list with rule
+// separators rather than widely-spaced cards. Resets to the normal
+// stacked layout on desktop via the @media rule below.
+.articleCardCompact {
+  margin-top: -2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-light-green);
+}
+
+.articleCardCompact .articleCardLink {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  grid-template-areas:
+    'image type'
+    'image body';
+  gap: 0.3rem 1rem;
+  align-items: start;
+}
+
+.articleCardCompact .articleType {
+  grid-area: type;
+  // Compact cards don't use the negative bottom-margin pull-up that
+  // the standard layout uses (image is to the right, not below).
+  margin: 0;
+}
+
+.articleCardCompact .articleCardImageWrap {
+  grid-area: image;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+// Hide the Watch / Listen badges on compact cards — the thumbnail is
+// too small for the pill to read cleanly.
+.articleCardCompact .articleCardBadge {
+  display: none;
+}
+
+// Crop the image / video to the square wrapper — sides may be
+// trimmed but the visible area always matches the layout.
+.articleCardCompact .articleCardImage,
+.articleCardCompact .articleCardVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleCardCompact .articleCardBody {
+  grid-area: body;
+}
+
+.articleCardCompact .articleCardTitle {
+  font-size: var(--font-size-lg);
+  line-height: 1.15;
+}
+
+// Hero card class — only takes effect on desktop (see the @media
+// block below). On mobile the card uses whatever other treatment is
+// active (typically `articleCardCompact`).
+
+.heroJobs h3 {
+  margin: 0.5rem 0 -0.3rem 0;
 }
 
 // Desktop: two-up grid for the listing, with the card image filling the
@@ -170,16 +495,174 @@
     margin-top: 0;
   }
 
+  .heroList {
+    margin-top: -1em;
+  }
+
   .articleList {
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem 2rem;
+    gap: 5rem 3rem;
+  }
+
+  // Desktop: show the module row and let it span all 3 columns.
+  .newsletterModuleRow {
+    display: block;
+    grid-column: 1 / -1;
+  }
+
+  // Desktop: hide the mobile-only module (the desktop one above
+  // covers the same role near the coworking aside).
+  .newsletterModuleRowMobile {
+    display: none;
+  }
+
+  // 2-up grid when the list lives inside a narrower left column
+  // (e.g. /articles/type/[type] and /articles/topic/[topic] which
+  // render with a categories sidebar on the right).
+  .articleListTwoCol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Hide the mobile-only jobs teaser slotted into the article list —
+  // on desktop the .heroJobs panel covers this role.
+  .mobileJobsTeaser {
+    display: none;
+  }
+
+  // "More content" heading is mobile-only — desktop has just one
+  // unbroken article grid.
+  .moreContentHeading {
+    display: none;
+  }
+
+  // Coworking aside — col 1 of the secondary hero row, spans 2 rows
+  // alongside the hero on the right.
+  .coworkingAside {
+    display: block;
+    grid-column: 1;
+    grid-row: span 2;
+    margin: 0;
+    align-self: start;
+  }
+
+  // Secondary hero — the 5th article (4th card in remainingArticles).
+  // Takes 2 of 3 grid columns AND spans 2 rows, sitting beside the
+  // Coworking aside on the left. The result is a magazine-style row:
+  // text rail on the left, big featured article on the right.
+  .articleCardHero {
+    grid-column: 2 / span 2;
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    margin-top: -1em;
+  }
+
+  .articleCardHero .articleCardLink {
+    width: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-areas: 'image body';
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .articleCardHero .articleCardImageWrap {
+    grid-area: image;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  // Crop the hero image / video to fill the doubled row height. The
+  // image always covers the area; sides may be trimmed.
+  .articleCardHero .articleCardImage,
+  .articleCardHero .articleCardVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .articleCardHero .articleCardBody {
+    grid-area: body;
+  }
+
+  // Secondary hero — same pill-on-image treatment as the main hero
+  // above. The hero link is already a grid container; position
+  // relative makes it the anchor for the absolutely positioned pill.
+  .articleCardHero .articleCardLink {
+    position: relative;
+  }
+
+  .articleCardHero .articleCardTitle {
+    font-size: var(--font-size-2xl);
+    line-height: 1.1;
+  }
+
+  .articleCardHero .articleCardExcerpt {
+    font-size: var(--font-size-base);
+    line-height: 1.45;
+  }
+
+  // Compact card is a mobile-only treatment — reset to the standard
+  // stacked card on desktop so it fits the 3-column grid.
+  .articleCardCompact {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .articleCardCompact .articleCardLink {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+    gap: 0.5rem;
+  }
+
+  .articleCardCompact .articleType,
+  .articleCardCompact .articleCardImageWrap,
+  .articleCardCompact .articleCardBody {
+    grid-area: auto;
+  }
+
+  // Reset the square crop applied on mobile — desktop compact cards
+  // fall back to the standard image layout (natural aspect ratio).
+  .articleCardCompact .articleCardImageWrap {
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .articleCardCompact .articleCardImage,
+  .articleCardCompact .articleCardVideo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  // Restore the Watch / Listen badge on desktop — hiding it was a
+  // mobile-only treatment for the small compact thumbnail.
+  .articleCardCompact .articleCardBadge {
+    display: inline-flex;
+  }
+
+  .articleCardCompact .articleCardTitle {
+    font-size: var(--font-size-lg);
+    line-height: 1.15;
+  }
+
+  // The secondary hero on the homepage carries both `.articleCardCompact`
+  // and `.articleCardHero`. Reassert the hero size here so it wins over
+  // the compact override above (same specificity, but this comes later
+  // in source order so it cascades correctly).
+  .articleCardHero.articleCardCompact .articleCardTitle,
+  .articleCardHero .articleCardTitle {
+    font-size: var(--font-size-2xl);
+    line-height: 1.1;
   }
 }
 
 @media only screen and (min-width: 1000px) {
   .heroJobs {
     display: block;
-    padding-top: 1em;
   }
 
   .heroRow {
@@ -192,12 +675,295 @@
   // Slightly larger title and excerpt on the hero card so it reads with
   // proper weight against the jobs panel on its right.
   .heroList .articleCardTitle {
-    font-size: 1.6rem;
-    line-height: 1.2;
+    font-size: var(--font-size-2xl);
+    line-height: 1.1;
   }
 
   .heroList .articleCardExcerpt {
-    font-size: 1.1rem;
-    line-height: 1.45;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+  }
+}
+
+// "Content" sidebar heading — mirrors the jobs board `.filterHeader h2`
+// treatment: zero top margin, tight bottom margin so the list sits
+// snug beneath it.
+.categoriesHeading {
+  margin: 0 0 0.5rem 0;
+}
+
+// "All categories" sidebar — used on the topic and type listing pages.
+// Vertical list with the label on the left, count + arrow on the right.
+.categoriesList {
+  list-style: none;
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+}
+
+.categoriesList li {
+  margin: 0;
+  border-top: 1px solid var(--color-light-green);
+}
+
+.categoriesList li:last-child {
+  border-bottom: 1px solid var(--color-light-green);
+}
+
+.categoriesLink,
+.categoriesLink:visited {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 1rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-link);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.categoriesLink:hover,
+.categoriesLink:focus {
+  color: var(--color-dark-green);
+  text-decoration: none;
+}
+
+.categoriesLinkActive,
+.categoriesLinkActive:visited {
+  color: var(--color-dark-green);
+  background: var(--color-pale-green);
+}
+
+.categoriesMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.categoriesCount {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  font-weight: 400;
+  color: var(--color-mid-green);
+}
+
+.categoriesIcon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  stroke-width: 1.8;
+  color: var(--color-dark-green);
+  opacity: 0.5;
+}
+
+// "Watch our intro" featured-article block on the About page, slotted
+// inside the left column under "What success looks like".
+.aboutFeaturedArticle {
+  margin-top: 2rem;
+}
+
+.aboutFeaturedArticle .articleList {
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .aboutFeaturedArticle .articleList {
+    grid-template-columns: 1fr;
+  }
+}
+
+// --- Very compact article listing --------------------------------------
+// Reused by the /articles/type/[type] pages via the CompactArticleList
+// component. Mobile: bulleted single-column stack (no thumbnails).
+// Desktop: 3-column grid of thumbnail + reading-time meta + title.
+
+.compactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+.compactListItem {
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+
+.compactListLink,
+.compactListLink:visited {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+
+  // Title sits directly under the meta line — pull it up with a
+  // negative margin to counter the flex gap so they read as one unit
+  // above the thumbnail padding below.
+  .compactListMeta + .compactListTitle {
+    margin-top: -0.4rem;
+  }
+}
+
+.compactListThumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-light-green);
+}
+
+// Same 1px translucent inset stroke used by the large article-card
+// thumbnails, so the small ones feel like part of the same system.
+.compactListThumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.compactListImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.compactListTitle {
+  margin: 0.25rem 0 0 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-mid-green);
+  text-transform: none;
+  letter-spacing: 0;
+  text-wrap: balance;
+  transition: color 0.15s ease;
+}
+
+.compactListLink:hover .compactListTitle,
+.compactListLink:focus .compactListTitle {
+  color: var(--color-dark-green);
+  text-decoration: underline;
+  text-decoration-color: #b7ddc8;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.compactListMeta {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7d8c;
+}
+
+// Mobile: hide the thumbnails and render as a bulleted list, tight
+// spacing between items.
+@media only screen and (max-width: 999px) {
+  .compactList {
+    gap: 0;
+  }
+
+  .compactListItem {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  // Bullet rendered as a flex item so `align-items: baseline` on the
+  // parent aligns it with the first line of the title — same visual
+  // position as a native `<li>` marker.
+  .compactListItem::before {
+    content: '•';
+    flex: 0 0 auto;
+    margin-left: -5px;
+    color: var(--color-dark-green);
+    font-weight: 700;
+  }
+
+  // Let the Link fill the remaining width so long titles wrap next to
+  // the bullet, not below it. Also zero the flex-column gap since
+  // there's no thumbnail padding between the meta and title on mobile.
+  .compactListLink {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 0;
+  }
+
+  .compactListTitle {
+    margin-top: 0;
+    line-height: 1.2;
+  }
+
+  .compactListMeta {
+    line-height: 1;
+  }
+
+  .compactListThumb {
+    display: none;
+  }
+}
+
+// Desktop: 3-column grid of thumbnails.
+@media only screen and (min-width: 1000px) {
+  .compactList {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.5rem;
+  }
+}
+
+// --- /articles/type/[type] two-column layout --------------------------
+// Mirrors the /jobs board: a 320px categories sidebar on the left, the
+// article grid on the right. Falls back to a stacked single column on
+// mobile with the sidebar sitting above the articles.
+.typeLayout {
+  display: block;
+}
+
+.typeFilters {
+  margin-bottom: 3rem;
+}
+
+.typeResults {
+  min-width: 0;
+}
+
+// Small-caps heading above the articles grid. Typography comes from
+// the shared `.small-header` global class; this rule only owns the
+// spacing that aligns it with the sidebar's first entry.
+.typeHeading {
+  margin: 0 0 0.75rem 0;
+  padding-top: 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  // On desktop, add the same top padding used by `.filterCount` so the
+  // heading vertically aligns with the first filter label in the left
+  // column.
+  .typeHeading {
+    padding-top: 2.2em;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .typeLayout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .typeFilters {
+    margin-bottom: 0;
   }
 }

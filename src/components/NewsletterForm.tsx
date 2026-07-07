@@ -7,11 +7,26 @@ import {
   type FormEvent
 } from 'react';
 import { createPortal } from 'react-dom';
-import { Mail, X, Check, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
+import {
+  Mail,
+  X,
+  Check,
+  AlertCircle,
+  ArrowRight,
+  Loader2
+} from 'lucide-react';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
-export default function NewsletterForm() {
+type Props = {
+  // Trailing text that appears after "Join our newsletter" in the
+  // label. Defaults to a colon for the compact header pill; the footer
+  // passes a longer descriptive sentence.
+  labelSuffix?: string;
+};
+
+export default function NewsletterForm({ labelSuffix = ':' }: Props = {}) {
   const [email, setEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<Status>('idle');
@@ -130,6 +145,10 @@ export default function NewsletterForm() {
           />
         </label>
 
+        <span className="newsletter-form-label">
+          Join our <Link href="/newsletter">newsletter</Link>
+          {labelSuffix}
+        </span>
         <div className="newsletter-form-field">
           <Mail
             className="newsletter-form-icon"
@@ -142,7 +161,7 @@ export default function NewsletterForm() {
             type="email"
             name="email"
             required
-            placeholder="you@example.com"
+            placeholder="Your email..."
             aria-label="Your email address"
             autoComplete="email"
             value={email}
@@ -153,8 +172,24 @@ export default function NewsletterForm() {
             type="submit"
             className="newsletter-form-submit"
             disabled={status === 'loading'}
+            aria-label={status === 'loading' ? 'Subscribing' : 'Subscribe'}
+            aria-busy={status === 'loading'}
           >
-            {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
+            {status === 'loading' ? (
+              <Loader2
+                className="newsletter-form-submit-icon newsletter-form-submit-icon--spin"
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+            ) : (
+              <ArrowRight
+                className="newsletter-form-submit-icon"
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+            )}
           </button>
         </div>
       </form>

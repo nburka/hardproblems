@@ -1,9 +1,24 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Instrument_Serif } from 'next/font/google';
 import TopBar from '../components/TopBar';
 import CodeBlockCopyButtons from '../components/CodeBlockCopyButtons';
 import PostHogProvider from '../components/PostHogProvider';
+import { Footer } from '../components/Footer';
+import FooterIntro from '../components/FooterIntro';
+import RotatingTagline from '../components/RotatingTagline';
+import SiteHeaderNav from '../components/SiteHeaderNav';
 import './globals.css';
+
+// Used for article titles (listing cards and the article H1). Exposed as a
+// CSS variable so SCSS modules can reference it via var(...).
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://hardproblems.com'),
@@ -13,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Hard Problems',
     description:
-      'A not-for-profit helping designers to work on the hard problems that matter in the world.',
+      'A nonprofit helping designers to work on the hard problems that matter in the world.',
     url: 'https://hardproblems.com',
     siteName: 'Hard Problems',
     type: 'website'
@@ -24,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Hard Problems',
     description:
-      'A not-for-profit helping designers to work on the hard problems that matter in the world.'
+      'A nonprofit helping designers to work on the hard problems that matter in the world.'
     // twitter:image is auto-populated by Next.js from each route's
     // opengraph-image.tsx, so no need to specify it here.
   }
@@ -36,18 +51,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={instrumentSerif.variable}>
       <body>
         <PostHogProvider>
           <div className="main">
+            <RotatingTagline />
+            <header className="site-header">
+              <SiteHeaderNav side="left" />
+              <h1>
+                <Link href="/">
+                  Hard Problems<span className="hp-period">.</span>
+                </Link>
+              </h1>
+              <SiteHeaderNav side="right" />
+            </header>
             <TopBar />
-            <h1>
-              <Link href="/">
-                Hard Problems<span className="hp-period">.</span>
-              </Link>
-            </h1>
             <div className="container">{children}</div>
           </div>
+          <FooterIntro />
+          <footer className="site-footer">
+            <div className="main">
+              <Footer />
+            </div>
+          </footer>
           <CodeBlockCopyButtons />
         </PostHogProvider>
       </body>

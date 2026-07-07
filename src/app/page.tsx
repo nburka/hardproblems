@@ -1,138 +1,138 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
-import NewsletterForm from '../components/NewsletterForm';
-import Image from 'next/image';
-import { Footer } from '../components/Footer';
-import { Team } from '../components/Team';
+import ArticleCard from '../components/ArticleCard';
+import CoworkingRotator from '../components/CoworkingRotator';
+import NewsletterModule from '../components/NewsletterModule';
+import { getAllArticles } from '../lib/articles';
 import { fetchJobs } from './jobs/fetchJobs';
 import JobsTeaser from './jobs/JobsTeaser';
+import styles from './articles/page.module.scss';
+
+// Homepage doubles as the articles index. At desktop, the newest article
+// renders as a large hero on the left with a compact job-board teaser to
+// its right; below, the remaining articles fall into a regular 3-up grid.
+// On mobile the right-of-hero teaser is hidden — a second teaser is
+// inserted into the article list after the 3rd article instead.
+// Slug pinned to the secondary-hero slot (i === 3 in the remaining list)
+// so it always sits on the same row as the Coworking London aside.
+const COWORKING_HERO_SLUG = 'hard-problems-coworking-space';
 
 export default async function Home() {
+  const articles = getAllArticles();
+  // Cap the main homepage listing at 11 total (1 hero + up to 10
+  // more). Anything past that only surfaces via the /articles/type/all
+  // page.
+  const HOMEPAGE_MAX_ARTICLES = 11;
+  const heroArticle = articles[0];
+  let remainingArticles = articles.slice(1, HOMEPAGE_MAX_ARTICLES);
+
+  // Pin the coworking article into the secondary-hero slot.
+  const coworkingIdx = remainingArticles.findIndex(
+    (a) => a.slug === COWORKING_HERO_SLUG
+  );
+  if (coworkingIdx !== -1 && coworkingIdx !== 3) {
+    const [coworkingArticle] = remainingArticles.splice(coworkingIdx, 1);
+    const insertAt = Math.min(3, remainingArticles.length);
+    remainingArticles = [
+      ...remainingArticles.slice(0, insertAt),
+      coworkingArticle,
+      ...remainingArticles.slice(insertAt)
+    ];
+  }
+
   const jobs = await fetchJobs();
   const recentJobs = jobs.slice(0, 5);
+
   return (
     <>
-      <section className="left">
-        <div className="illustration-home">
-          <Image
-            src="/images/illustration-directions.svg"
-            width="80"
-            height="80"
-            alt="Illustration of a person considering which way their career might take."
-          />
-        </div>
-        <h3>The challenge</h3>
-        <blockquote>
-          “The best minds of my generation are thinking about how to make people
-          click ads. That sucks.” &#8212; Jeff Hammerbacher, 2011
-        </blockquote>
-        <h3>Our mission</h3>
-        <p>
-          We are a nonprofit that helps designers to work on the hard problems
-          that matter in the world: problems like{' '}
-          <em className="highlight">public health</em>,{' '}
-          <em className="highlight">climate change</em>, and{' '}
-          <em className="highlight">good government</em>.
-        </p>
-        <p>
-          While the loudest part of the tech world is focused on AI, crypto,
-          fin-tech, and advertising, other people are trying to tackle the
-          hardest, thorniest problems.
-        </p>
-        <p>
-          Designers, product managers, user researchers, copywriters, and others
-          know that these hard problems matter but they often wring their hands
-          and stand by, unsure how to have any positive impact.
-        </p>
-        <p>
-          It’s time to refocus the tech world on what matters most. It’s time to
-          build new relationships between doctors, environmentalists,
-          scientists, not-for-profit leaders, public servants, and others
-          tackling the world’s hardest problems with designers who can help make
-          practical tools to help them succeed.
-        </p>
-        <p>
-          We are a multi-skilled team of very experienced tech veterans and
-          other subject-matter experts. We aim to push this effort &#8212;
-          whether it’s by building teams to work on issues, creating bridges
-          between ambitious experts and designers, finding ways to fund tech
-          initiatives, or inspiring a generation of designers to work on these
-          fundamentally important problems.
-        </p>
-        <p>
-          We are in the earliest stages of forming the Hard Problems nonprofit.
-          We don’t have all of the answers, but we’ll start anyhow and learn
-          along the way.
-        </p>
+      <section className={styles.articles}>
+        {heroArticle && (
+          <div className={styles.heroRow}>
+            <ul className={styles.heroList}>
+              <ArticleCard article={heroArticle} />
+            </ul>
+            <aside className={styles.heroJobs}>
+              <h3>New on the job board</h3>
+              <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
+            </aside>
+          </div>
+        )}
 
-        <h3 className="space-top-large">What we offer</h3>
-        <div className="grid-layout">
-          <Link href="/jobs" className="grid-cell">
-            <Image
-              src="/images/icon-piggy-bank.svg"
-              width="120"
-              height="120"
-              alt="Illustration of a piggy bank."
-            />
-            <b className="grid-link">Job board</b>
-            <p className="grid-detail">Find your next full-time role</p>
-            <p>Job listings from orgs working on climate change and health.</p>
-          </Link>
-
-          <Link href="/newsletter" className="grid-cell">
-            <Image
-              src="/images/icon-mailbox.svg"
-              width="120"
-              height="120"
-              alt="Mailbox"
-            />
-            <b className="grid-link">Email newsletter</b>
-            <p className="grid-detail">Sign up today</p>
-            <p>News, job opportunities, and events from around the world.</p>
-          </Link>
-
-          <Link href="/podcast" className="grid-cell">
-            <Image
-              src="/images/icon-mic.svg"
-              width="120"
-              height="120"
-              alt="Mic"
-            />
-            <b className="grid-link">Podcast</b>
-            <p className="grid-detail">Coming soon...</p>
-            <p>Interview designers who work on hard problems.</p>
-          </Link>
-
-          <Link href="/coworking" className="grid-cell">
-            <Image
-              src="/images/icon-lamp.svg"
-              width="120"
-              height="120"
-              alt="Work lamp."
-            />
-            <b className="grid-link">Co-working space</b>
-            <p className="grid-detail">Apply for a desk in London</p>
-            <p>A space for people who work on hard problems.</p>
-          </Link>
-        </div>
+        {remainingArticles.length > 0 && (
+          <ul className={styles.articleList}>
+            {remainingArticles.map((article, i) => (
+              <Fragment key={article.slug}>
+                {/* Mobile-only newsletter module inserted just above the
+                    "More content" heading. Hidden on desktop — a
+                    desktop-only copy is slotted before the coworking
+                    aside further down. */}
+                {i === 2 && (
+                  <li className={styles.newsletterModuleRowMobile}>
+                    <NewsletterModule />
+                  </li>
+                )}
+                {/* Mobile-only "More content" heading right before the
+                    first compact card. Hidden on desktop. */}
+                {i === 2 && (
+                  <li className={styles.moreContentHeading}>
+                    <h3>More content</h3>
+                  </li>
+                )}
+                {/* hero = 1st article, list = 2nd onward. Indices 0,1
+                    are the 2nd and 3rd articles → standard card.
+                    Indices 2+ are the 4th onward → compact card on
+                    mobile (image left + text right with top rule).
+                    Desktop falls back to the normal card layout via
+                    the @media rules in page.module.scss. */}
+                {/* Desktop only — slot the Coworking aside into the
+                    left grid column right before the secondary hero
+                    so the row reads as: [aside | hero spanning 2/3].
+                    Hidden on mobile via CSS. */}
+                {i === 3 && (
+                  <li className={styles.newsletterModuleRow}>
+                    <NewsletterModule />
+                  </li>
+                )}
+                {i === 3 && (
+                  <li className={styles.coworkingAside}>
+                    <h3>Coworking in London</h3>
+                    <p className={styles.coworkingAsideIntro}>
+                      These health and climate organizations use our{' '}
+                      <Link href="/coworking">coworking space</Link> in London,
+                      UK. You can use our space if you are visiting the city.
+                    </p>
+                    <CoworkingRotator />
+                    <p className={styles.coworkingAsideCta}>
+                      <Link
+                        href="/coworking"
+                        className="black-button black-button--small"
+                      >
+                        Learn more…
+                      </Link>
+                    </p>
+                  </li>
+                )}
+                <ArticleCard
+                  article={article}
+                  compact={i >= 0}
+                  hero={i === 3}
+                  hideDate={article.slug === COWORKING_HERO_SLUG}
+                />
+                {/* Mobile-only jobs teaser slotted between the 3rd
+                    and 4th articles. Hidden on desktop where the
+                    .heroJobs teaser to the right of the hero already
+                    serves the same purpose. */}
+                {i === 1 && (
+                  <li className={styles.mobileJobsTeaser}>
+                    <h3>New on the job board</h3>
+                    <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
+                  </li>
+                )}
+              </Fragment>
+            ))}
+          </ul>
+        )}
       </section>
-      <section className="right">
-        <h3>Subscribe to our newsletter</h3>
-        <p className="no-margin">
-          We share job opportunities, great books, relevant news, and events.
-        </p>
-        <NewsletterForm />
-
-        <h3 className="divider">New jobs</h3>
-        <JobsTeaser jobs={recentJobs} totalCount={jobs.length} />
-
-        <h3 className="divider">Team</h3>
-        <p>
-          We are an all-volunteer team from around the world. Hard Problems is a
-          global nonprofit with a home base in London.
-        </p>
-        <Team />
-      </section>
-      <Footer />
     </>
   );
 }
