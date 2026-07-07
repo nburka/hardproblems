@@ -6,6 +6,80 @@
     max-width: 660px;
 }
 
+// Brick / mosaic photo gallery mirroring the `.image-bricks` treatment
+// on article pages — 5 photos where the first spans two rows on the
+// left and the remaining four sit in a 2×2 grid on the right. The
+// composite occupies roughly the same vertical space as a single
+// landscape image, which reads well inside the .left column.
+.photoBricks {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  aspect-ratio: 2 / 1;
+  gap: 8px;
+  margin: 1.5rem 0 0 0;
+  width: 100%;
+}
+
+.photoBricks > a {
+  display: block;
+  overflow: hidden;
+  margin: 0;
+}
+
+.photoBricks > a:first-child {
+  grid-row: span 2;
+}
+
+.photoBricks img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+// Below ~600px the asymmetric grid collapses to a simple vertical
+// stack, matching the article-body behavior.
+@media only screen and (max-width: 600px) {
+  .photoBricks {
+    display: block;
+    aspect-ratio: auto;
+  }
+  .photoBricks > a {
+    margin: 0.75rem 0;
+  }
+  .photoBricks > a:first-child {
+    grid-row: auto;
+  }
+  .photoBricks img {
+    height: auto;
+  }
+}
+
+// Side-by-side pair (Drop-in / Long-term). Stacks on narrow screens,
+// splits into two even columns from ~700px up.
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 2rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.twoCol > div {
+  margin-top: 1rem;
+}
+
+.twoCol > div > :first-child {
+  margin-top: 0;
+}
+
+@media only screen and (min-width: 700px) {
+  .twoCol {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .teamsGrid {
   list-style: none;
   padding: 0;

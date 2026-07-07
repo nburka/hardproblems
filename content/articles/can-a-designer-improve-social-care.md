@@ -76,6 +76,6 @@ With the costs of social care set to balloon across Europe and the United States
 
 <div class="note">
 
-**Co-working at Hard Problems in London:** Grene uses our co-working space in London for founders and designers who are working on important challenges. [Learn more...](/coworking)
+**Coworking at Hard Problems in London:** Grene uses our coworking space in London for founders and designers who are working on important challenges. [Learn more...](/coworking)
 
 </div>

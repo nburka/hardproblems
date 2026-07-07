@@ -16,6 +16,7 @@ const LEFT_ITEMS: NavItem[] = [
 
 const RIGHT_ITEMS: NavItem[] = [
   { href: '/about', label: 'About us' },
+  { href: '/coworking', label: 'Coworking' },
   { href: '/newsletter', label: 'Newsletter' }
 ];
 

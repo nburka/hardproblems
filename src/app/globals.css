@@ -1465,7 +1465,58 @@ ul ul li {
 .offer-stack .grid-cell {
   width: 100%;
   margin-top: 0;
-  padding: 16px 20px;
+  padding: 16px 20px 32px;
+  border: 0;
+  border-radius: 0;
+  /* Same translucent inset stroke as .articleCardImageWrap so the
+     Thank you cards feel visually related to the article thumbnails. */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.offer-stack a.grid-cell:hover,
+.offer-stack a.grid-cell:focus-visible {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Rotate through very soft pastel fills so the Thank you grid reads
+   as a friendly wall of gratitude rather than a stack of matching
+   cards. The name inside each card takes a darker sibling of the same
+   hue by tinting the card's own colour (grid-detail keeps its own
+   grey via a more specific rule below). */
+.offer-stack a.grid-cell:nth-of-type(4n + 1),
+.offer-stack a.grid-cell:nth-of-type(4n + 1):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 1):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 1):focus-visible {
+  background: #f5fbf6;
+  color: #1f4b30;
+}
+
+.offer-stack a.grid-cell:nth-of-type(4n + 2),
+.offer-stack a.grid-cell:nth-of-type(4n + 2):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 2):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 2):focus-visible {
+  background: #fef7f3;
+  color: #8a3d1a;
+}
+
+.offer-stack a.grid-cell:nth-of-type(4n + 3),
+.offer-stack a.grid-cell:nth-of-type(4n + 3):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 3):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 3):focus-visible {
+  background: #f7f8fd;
+  color: #1e3a8a;
+}
+
+.offer-stack a.grid-cell:nth-of-type(4n + 4),
+.offer-stack a.grid-cell:nth-of-type(4n + 4):visited,
+.offer-stack a.grid-cell:nth-of-type(4n + 4):hover,
+.offer-stack a.grid-cell:nth-of-type(4n + 4):focus-visible {
+  background: #fdf7f9;
+  color: #7a1e3a;
 }
 
 .offer-stack .grid-cell img {

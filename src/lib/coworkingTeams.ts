@@ -1,4 +1,4 @@
-// Companies / teams currently using the Hard Problems co-working space
+// Companies / teams currently using the Hard Problems coworking space
 // in Shoreditch, London. Shared between the /coworking page (full
 // grid + descriptions) and the homepage masonry aside (simple linked
 // bullet list).

@@ -7,7 +7,7 @@ import { Gem } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
 import { displaySector } from './filters';
 import { getSectorIcon } from './sectorIcons';
-import CompanyIcon from './CompanyIcon';
+import CompanyFavicon from './CompanyFavicon';
 import jobStyles from './page.module.scss';
 import teaserStyles from './jobsTeaser.module.scss';
 
@@ -20,7 +20,7 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://icons.duckduckgo.com/ip3/${hostname}.ico`;
+    return `/api/favicon?host=${encodeURIComponent(hostname)}`;
   } catch {
     return null;
   }
@@ -29,6 +29,27 @@ function buildFaviconUrl(rawUrl: string): string | null {
 // Country-only — the teaser omits city and remote/work-style tags.
 function formatLocation(job: SerializedJob): string {
   return job.country.trim();
+}
+
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#8a9b94"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <ellipse cx="12" cy="12" rx="4" ry="10" />
+    </svg>
+  );
 }
 
 const BULLET_SEPARATOR = '  •  ';
@@ -107,12 +128,22 @@ export default function JobsTeaser({
             );
           }
 
-          const iconContents = (
-            <CompanyIcon
-              faviconUrl={faviconUrl}
-              companyName={job.company}
-              hasCompanyLink={!!companyHref}
+          const globe = <GlobeIcon className={jobStyles.companyFavicon} />;
+          const iconContents = faviconUrl ? (
+            <CompanyFavicon
+              src={faviconUrl}
+              alt={
+                companyHref
+                  ? job.company
+                    ? `Icon of ${job.company}`
+                    : 'Company icon'
+                  : ''
+              }
+              className={jobStyles.companyFavicon}
+              fallback={globe}
             />
+          ) : (
+            globe
           );
 
           return (
@@ -258,8 +289,8 @@ export default function JobsTeaser({
         </p>
         <Link href="/jobs">
           {typeof totalCount === 'number'
-            ? `See all ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
-            : 'See all jobs'}{' '}
+            ? `All ${totalCount} ${totalCount === 1 ? 'job' : 'jobs'}`
+            : 'All jobs'}{' '}
           <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>

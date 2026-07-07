@@ -7,7 +7,7 @@ import { usePostHog } from 'posthog-js/react';
 import { Gem, Sparkle } from 'lucide-react';
 import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
-import CompanyIcon from './CompanyIcon';
+import CompanyFavicon from './CompanyFavicon';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
@@ -71,6 +71,27 @@ function formatRelativeDate(date: Date): string {
   return `in ${-diffDays} days`;
 }
 
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#8a9b94"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <ellipse cx="12" cy="12" rx="4" ry="10" />
+    </svg>
+  );
+}
+
 function buildFaviconUrl(rawUrl: string): string | null {
   const trimmed = rawUrl.trim();
   if (!trimmed) return null;
@@ -78,7 +99,7 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://icons.duckduckgo.com/ip3/${hostname}.ico`;
+    return `/api/favicon?host=${encodeURIComponent(hostname)}`;
   } catch {
     return null;
   }
@@ -961,12 +982,22 @@ export default function JobsList({
               );
             }
 
-            const iconContents = (
-              <CompanyIcon
-                faviconUrl={faviconUrl}
-                companyName={job.company}
-                hasCompanyLink={!!companyHref}
+            const globe = <GlobeIcon className={styles.companyFavicon} />;
+            const iconContents = faviconUrl ? (
+              <CompanyFavicon
+                src={faviconUrl}
+                alt={
+                  companyHref
+                    ? job.company
+                      ? `Icon of ${job.company}`
+                      : 'Company icon'
+                    : ''
+                }
+                className={styles.companyFavicon}
+                fallback={globe}
               />
+            ) : (
+              globe
             );
 
             return (

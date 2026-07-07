@@ -270,7 +270,7 @@
 
 // Two slots for the NewsletterModule call-to-action:
 //   - .newsletterModuleRow      → desktop, spans all 3 grid columns
-//                                 right before the co-working aside.
+//                                 right before the coworking aside.
 //   - .newsletterModuleRowMobile → mobile, sits just above the
 //                                 "More content" heading.
 // Each is hidden at the other breakpoint below.
@@ -283,7 +283,7 @@
   margin: 0;
 }
 
-// Co-working aside slotted into the article grid on desktop next to
+// Coworking aside slotted into the article grid on desktop next to
 // the secondary hero. Hidden on mobile via display:none; the desktop
 // @media block below positions it as col 1 spanning 2 rows so the
 // hero on its right (col 2-3, also spanning 2 rows) lines up.
@@ -511,7 +511,7 @@
   }
 
   // Desktop: hide the mobile-only module (the desktop one above
-  // covers the same role near the co-working aside).
+  // covers the same role near the coworking aside).
   .newsletterModuleRowMobile {
     display: none;
   }
@@ -535,7 +535,7 @@
     display: none;
   }
 
-  // Co-working aside — col 1 of the secondary hero row, spans 2 rows
+  // Coworking aside — col 1 of the secondary hero row, spans 2 rows
   // alongside the hero on the right.
   .coworkingAside {
     display: block;
@@ -547,7 +547,7 @@
 
   // Secondary hero — the 5th article (4th card in remainingArticles).
   // Takes 2 of 3 grid columns AND spans 2 rows, sitting beside the
-  // Co-working aside on the left. The result is a magazine-style row:
+  // Coworking aside on the left. The result is a magazine-style row:
   // text rail on the left, big featured article on the right.
   .articleCardHero {
     grid-column: 2 / span 2;

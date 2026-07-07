@@ -14,7 +14,7 @@ import styles from './articles/page.module.scss';
 // On mobile the right-of-hero teaser is hidden — a second teaser is
 // inserted into the article list after the 3rd article instead.
 // Slug pinned to the secondary-hero slot (i === 3 in the remaining list)
-// so it always sits on the same row as the Co-working London aside.
+// so it always sits on the same row as the Coworking London aside.
 const COWORKING_HERO_SLUG = 'hard-problems-coworking-space';
 
 export default async function Home() {
@@ -26,7 +26,7 @@ export default async function Home() {
   const heroArticle = articles[0];
   let remainingArticles = articles.slice(1, HOMEPAGE_MAX_ARTICLES);
 
-  // Pin the co-working article into the secondary-hero slot.
+  // Pin the coworking article into the secondary-hero slot.
   const coworkingIdx = remainingArticles.findIndex(
     (a) => a.slug === COWORKING_HERO_SLUG
   );
@@ -64,7 +64,7 @@ export default async function Home() {
               <Fragment key={article.slug}>
                 {/* Mobile-only newsletter module inserted just above the
                     "More content" heading. Hidden on desktop — a
-                    desktop-only copy is slotted before the co-working
+                    desktop-only copy is slotted before the coworking
                     aside further down. */}
                 {i === 2 && (
                   <li className={styles.newsletterModuleRowMobile}>
@@ -84,7 +84,7 @@ export default async function Home() {
                     mobile (image left + text right with top rule).
                     Desktop falls back to the normal card layout via
                     the @media rules in page.module.scss. */}
-                {/* Desktop only — slot the Co-working aside into the
+                {/* Desktop only — slot the Coworking aside into the
                     left grid column right before the secondary hero
                     so the row reads as: [aside | hero spanning 2/3].
                     Hidden on mobile via CSS. */}
@@ -95,10 +95,10 @@ export default async function Home() {
                 )}
                 {i === 3 && (
                   <li className={styles.coworkingAside}>
-                    <h3>Co-working in London</h3>
+                    <h3>Coworking in London</h3>
                     <p className={styles.coworkingAsideIntro}>
                       These health and climate organizations use our{' '}
-                      <Link href="/coworking">co-working space</Link> in London,
+                      <Link href="/coworking">coworking space</Link> in London,
                       UK. You can use our space if you are visiting the city.
                     </p>
                     <CoworkingRotator />
