@@ -29,14 +29,14 @@ export default function Page() {
     <>
       <section className="page-narrow">
         <p className="page-lede">
-          The podcast for designers and technologists who want to work on
+          The podcast for designers &amp; technologists who want to work on
           urgent problems.
         </p>
-
-        <p className="space-top-large">
+        <p>
           <span className="notice-pill">Coming soon…</span>
         </p>
-        <h3>What will the podcast be about?</h3>
+
+        <h3 className="space-top-large">What will the podcast be about?</h3>
         <p>
           We want to find out what works and what doesn&#8216;t work for
           designers who are working on the world&#8216;s challenges. And, we
@@ -85,22 +85,8 @@ export default function Page() {
           </li>
           <li>Takes a thoughtful and ethical approach to their work.</li>
           <li>
-            Likely works on tech related to:
-            <div style={{ marginTop: 10 }}>
-              <span className="tag">Climate change</span>
-              <br />
-              <span className="tag">Public health</span>
-              <br />
-              <span className="tag">Healthcare</span>
-              <br />
-              <span className="tag">Government</span>
-              <br />
-              <span className="tag">Civics</span>
-              <br />
-              <span className="tag">Education</span>
-              <br />
-              <span className="tag">Income inequality</span>
-            </div>
+            Likely works on tech related to climate change, public health,
+            healthcare, government, education, or income inequality.
           </li>
         </ul>
       </section>

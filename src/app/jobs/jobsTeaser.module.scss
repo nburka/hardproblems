@@ -58,7 +58,7 @@
 // At intermediate desktop widths (above mobile, below 1300px), the
 // hero row's two columns get squeezed — drop the 5th job so the teaser
 // stays readable next to the hero article.
-@media only screen and (min-width: 1000px) and (max-width: 1299px) {
+@media only screen and (min-width: 1000px) and (max-width: 1399px) {
   .teaserJob:nth-of-type(5) {
     display: none;
   }

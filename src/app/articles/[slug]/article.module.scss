@@ -363,36 +363,11 @@
     margin: 0.75em 0;
   }
 
+  // Wider vertical rhythm than the global blockquote — everything
+  // else (italic body, `p + p` uppercase attribution, link colour,
+  // etc.) comes from the site-wide `blockquote` rule in globals.css.
   blockquote {
     margin: 2.5em 0;
-    color: #444;
-    font-style: italic;
-
-    // Reset the default body paragraph margins inside the blockquote so
-    // the quote and its attribution sit tightly together.
-    p {
-      margin: 0;
-    }
-
-    // Speaker / citation line — sits as a second paragraph inside the
-    // blockquote (separated by a blank `>` line in the markdown source).
-    // Smaller, upright (non-italic), and lighter so it reads as
-    // attribution rather than part of the quote itself.
-    p + p {
-      margin-top: 0.5em;
-      font-style: normal;
-      font-size: var(--font-size-sm);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--color-dark-green);
-
-      a,
-      a:visited {
-        color: var(--color-dark-green);
-        text-decoration: none;
-        font-weight: 500;
-      }
-    }
   }
 
   // Note banner — yellow background with a lightbulb icon. Use by wrapping

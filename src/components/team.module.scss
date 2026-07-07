@@ -14,8 +14,10 @@
 .team div {
 	width: 33%;
 	color: #333;
-	font-size: var(--font-size-base);
-    letter-spacing: -0.3;
+	font-family: var(--font-mono);
+	font-size: var(--font-size-mono);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
 	margin: 16px 0 0 0;
 	text-align: center;
 }
