@@ -365,15 +365,33 @@ export function matchesSector(
   return opt.keywords.some((k) => lower.includes(k));
 }
 
+// Pretty-print a raw sector value into the label the UI shows on tags.
+// Exported so `matchesSectorPick` can normalize both sides to the same
+// space (URL params always carry the displayed form).
+//   - "Health (Healthcare)"    → "Healthcare"
+//   - "Good Government"        → "Good gov"
+//   - "Clean Energy"           → "Climate Tech"
+export function displaySector(sector: string): string {
+  const trimmed = sector.trim().replace(/\bnon-profit\b/gi, 'Nonprofit');
+  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
+  if (healthMatch) {
+    const inner = healthMatch[1].trim();
+    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
+  }
+  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
+  if (trimmed.toLowerCase() === 'clean energy') return 'Climate Tech';
+  return trimmed;
+}
+
 // Matches a job's raw sector against a specific displayed sector picked
-// from a job-card tag click. Comparison is case-insensitive and falls
-// back to checking the raw sector string when the displayed form
-// (e.g. "Healthcare") differs from the source ("Health (Healthcare)").
+// from a job-card tag click. Both sides go through `displaySector` so
+// e.g. the URL param `good gov` correctly matches a job whose sheet
+// sector is "Good Government".
 export function matchesSectorPick(jobSector: string, pick: string): boolean {
-  const a = jobSector.trim().toLowerCase();
+  const a = displaySector(jobSector).toLowerCase();
   const b = pick.trim().toLowerCase();
   if (!a || !b) return false;
-  return a === b || a.includes(`(${b})`);
+  return a === b;
 }
 
 // A job is one of Our Picks when its "good for world" score (sheet

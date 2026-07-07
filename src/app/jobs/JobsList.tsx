@@ -7,6 +7,7 @@ import { usePostHog } from 'posthog-js/react';
 import { Gem, Sparkle } from 'lucide-react';
 import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
+import CompanyIcon from './CompanyIcon';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
@@ -23,6 +24,7 @@ import {
   SeniorityCategory,
   WORK_STYLE_OPTIONS,
   WorkStyle,
+  displaySector,
   filterJobs,
   parseOrgParam,
   parseRoleParam,
@@ -44,25 +46,6 @@ type ClickSource = 'title' | 'company' | 'favicon';
 function displayRole(role: string): string {
   if (role.toLowerCase() === 'copywriter') return 'Copywriting';
   return role;
-}
-
-// Pretty-print the sector tag shown on each job row. The raw sheet value
-// is kept for filter matching, analytics, and the sector-keyword matcher
-// in filters.ts — this only affects what the user sees on the tag.
-//   - "Health (Healthcare)"     → "Healthcare"
-//   - "Health (Public Health)"  → "Public health"
-//   - "Health (Personal Health)" → "Personal health"
-//   - "Good Government"         → "Good gov"
-function displaySector(sector: string): string {
-  const trimmed = sector.trim().replace(/\bnon-profit\b/gi, 'Nonprofit');
-  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
-  if (healthMatch) {
-    const inner = healthMatch[1].trim();
-    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
-  }
-  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
-  if (trimmed.toLowerCase() === 'clean energy') return 'Climate Tech';
-  return trimmed;
 }
 
 const BULLET_SEPARATOR = '  •  ';
@@ -88,27 +71,6 @@ function formatRelativeDate(date: Date): string {
   return `in ${-diffDays} days`;
 }
 
-function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width={16}
-      height={16}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#8a9b94"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <ellipse cx="12" cy="12" rx="4" ry="10" />
-    </svg>
-  );
-}
-
 function buildFaviconUrl(rawUrl: string): string | null {
   const trimmed = rawUrl.trim();
   if (!trimmed) return null;
@@ -116,7 +78,7 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
+    return `https://icons.duckduckgo.com/ip3/${hostname}.ico`;
   } catch {
     return null;
   }
@@ -999,24 +961,12 @@ export default function JobsList({
               );
             }
 
-            const iconContents = faviconUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={faviconUrl}
-                alt={
-                  companyHref
-                    ? job.company
-                      ? `Icon of ${job.company}`
-                      : 'Company icon'
-                    : ''
-                }
-                width={16}
-                height={16}
-                className={styles.companyFavicon}
-                loading="lazy"
+            const iconContents = (
+              <CompanyIcon
+                faviconUrl={faviconUrl}
+                companyName={job.company}
+                hasCompanyLink={!!companyHref}
               />
-            ) : (
-              <GlobeIcon className={styles.companyFavicon} />
             );
 
             return (

@@ -10,6 +10,14 @@
   text-decoration: none;
 }
 
+// Tags inside the teaser (sector, Our Pick) sit slightly smaller
+// than on the main board — 90% of the `--font-size-mono` value the
+// site-wide `.tag` rule uses. Icons are sized in `em`, so they scale
+// with the font-size automatically.
+.teaser :global(.tag) {
+  font-size: calc(var(--font-size-mono) * 0.9);
+}
+
 // Applied alongside the main board's `.job` class to strip the top /
 // bottom divider borders and tighten the vertical padding — the teaser
 // reads cleaner and denser than the main board.

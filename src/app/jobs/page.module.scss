@@ -559,6 +559,25 @@ a.jobCompany:focus {
   display: block;
 }
 
+// Letter avatar shown when no favicon is available (or when the favicon
+// fetch errors). Fills the outer `.jobIcon` circle so it reads as the
+// company mark itself rather than an inner tile — the hue is derived
+// from the company name so the same company always looks the same.
+.companyLetter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+}
+
 .jobSalary,
 .jobLocation {
   color: #555;

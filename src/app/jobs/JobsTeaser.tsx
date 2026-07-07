@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { usePostHog } from 'posthog-js/react';
 import { Gem } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
+import { displaySector } from './filters';
 import { getSectorIcon } from './sectorIcons';
+import CompanyIcon from './CompanyIcon';
 import jobStyles from './page.module.scss';
 import teaserStyles from './jobsTeaser.module.scss';
 
@@ -18,51 +20,15 @@ function buildFaviconUrl(rawUrl: string): string | null {
   try {
     const { hostname } = new URL(withProto);
     if (!hostname) return null;
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
+    return `https://icons.duckduckgo.com/ip3/${hostname}.ico`;
   } catch {
     return null;
   }
 }
 
-// Pretty-print the sector for display. Mirrors the helper in JobsList.tsx
-// so the homepage and /articles previews simplify the same way the full
-// board does (e.g. "Health (Public Health)" → "Public health").
-function displaySector(sector: string): string {
-  const trimmed = sector.trim().replace(/\bnon-profit\b/gi, 'Nonprofit');
-  const healthMatch = trimmed.match(/^Health\s*\(([^)]+)\)\s*$/i);
-  if (healthMatch) {
-    const inner = healthMatch[1].trim();
-    return inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase();
-  }
-  if (trimmed.toLowerCase() === 'good government') return 'Good gov';
-  if (trimmed.toLowerCase() === 'clean energy') return 'Climate Tech';
-  return trimmed;
-}
-
 // Country-only — the teaser omits city and remote/work-style tags.
 function formatLocation(job: SerializedJob): string {
   return job.country.trim();
-}
-
-function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width={16}
-      height={16}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#8a9b94"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <ellipse cx="12" cy="12" rx="4" ry="10" />
-    </svg>
-  );
 }
 
 const BULLET_SEPARATOR = '  •  ';
@@ -141,24 +107,12 @@ export default function JobsTeaser({
             );
           }
 
-          const iconContents = faviconUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={faviconUrl}
-              alt={
-                companyHref
-                  ? job.company
-                    ? `Icon of ${job.company}`
-                    : 'Company icon'
-                  : ''
-              }
-              width={16}
-              height={16}
-              className={jobStyles.companyFavicon}
-              loading="lazy"
+          const iconContents = (
+            <CompanyIcon
+              faviconUrl={faviconUrl}
+              companyName={job.company}
+              hasCompanyLink={!!companyHref}
             />
-          ) : (
-            <GlobeIcon className={jobStyles.companyFavicon} />
           );
 
           return (
