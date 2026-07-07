@@ -28,11 +28,18 @@ export default function Page() {
   return (
     <>
       <section className="page-narrow">
+        <div className="illustration-home">
+          <Image
+            src="/images/illustration-podcast.svg"
+            width="80"
+            height="80"
+            alt="Illustration of a person talking at a mic."
+          />
+        </div>
         <p className="page-lede">
           The podcast for designers &amp; technologists who want to work on
           urgent problems.
-        </p>
-        <p>
+          <br />
           <span className="notice-pill">Coming soon…</span>
         </p>
 

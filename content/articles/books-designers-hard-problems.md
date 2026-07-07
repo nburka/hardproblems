@@ -7,8 +7,8 @@ excerpt: 'We often recommend these books to designers, user researchers, PMs, an
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-24'
-updatedAt: '2026-06-25'
+publishedAt: '2026-06-28'
+updatedAt: '2026-06-29'
 
 status: 'published' # draft | review | published
 

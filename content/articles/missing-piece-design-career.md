@@ -7,8 +7,8 @@ excerpt: 'Many senior designers feel burned out despite great salaries. The conc
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2025-05-01'
-updatedAt: '2025-05-01'
+publishedAt: '2025-05-05'
+updatedAt: '2025-05-05'
 
 status: 'published' # draft | review | published
 

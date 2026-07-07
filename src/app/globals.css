@@ -936,7 +936,7 @@ dd {
 }
 
 .space-top-large {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .space-top-small {
@@ -1354,45 +1354,17 @@ ul ul li {
   }
 }
 
-/* Two-column split for `.page-narrow` sections that want a wide main
-   column with a narrow aside. First direct child is the main content,
-   second is the aside. Mobile: stacks in DOM order (main on top).
-   Desktop: 2-col grid with a 3rem gap. On desktop the split also
-   pushes out past the enclosing `.page-narrow` section by 80px on
-   each side, so the two columns get more room than the surrounding
-   single-column copy. */
-.column-split {
-  display: block;
-}
-
-@media only screen and (min-width: 1000px) {
-  .column-split {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .container section.page-narrow > .column-split {
-    margin-left: -80px;
-    margin-right: -80px;
-  }
-}
-
-
 .image-full {
   width: 100%;
   height: auto;
 }
 
 .illustration-home {
-  text-align: center;
-  margin-top: -20px;
+  display: none;
 }
 
 .illustration-home img {
-  width: 75%;
-  max-width: 400px;
+  max-width: 300px;
   height: auto;
 }
 
@@ -1785,8 +1757,10 @@ ul ul li {
 
   .illustration-home {
     width: 50%;
-    margin: 70px -20px 2rem 0.5rem;
+    margin: 0;
     float: right;
+    display: inline-block;
+    margin-right: -100px !important;
   }
 
   .illustration-home img {

@@ -7,8 +7,8 @@ excerpt: 'A short video explaining why we want to see more people tackling urgen
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-22'
-updatedAt: '2026-06-22'
+publishedAt: '2026-06-26'
+updatedAt: '2026-06-26'
 
 status: 'published' # draft | review | published
 

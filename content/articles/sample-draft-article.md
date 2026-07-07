@@ -7,8 +7,8 @@ excerpt: "A short sample article used to verify that the article page styling ge
 author: 'Test Author'
 authorSlug: 'test-author'
 
-publishedAt: '2026-06-15'
-updatedAt: '2026-06-10'
+publishedAt: '2026-06-19'
+updatedAt: '2026-06-14'
 
 status: 'draft' # draft | review | published
 

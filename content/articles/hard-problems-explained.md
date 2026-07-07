@@ -7,8 +7,8 @@ excerpt: 'A 10 minute video introduction to Hard Problems and our goals.'
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-06-22'
-updatedAt: '2026-06-17'
+publishedAt: '2026-06-26'
+updatedAt: '2026-06-21'
 
 status: 'draft' # draft | review | published
 

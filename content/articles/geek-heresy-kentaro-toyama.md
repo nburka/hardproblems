@@ -7,8 +7,8 @@ excerpt: 'Well-intentioned technology doesn’t always solve the problems it’s
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
 
-publishedAt: '2026-06-18'
-updatedAt: '2026-06-18'
+publishedAt: '2026-06-22'
+updatedAt: '2026-06-22'
 
 status: 'published' # draft | review | published
 

@@ -7,8 +7,8 @@ excerpt: "Naomi Owolabi, founder of Grene, is using design to tackle one of adul
 author: 'Kane Lincoln'
 authorSlug: 'kane-lincoln'
 
-publishedAt: '2025-06-01'
-updatedAt: '2025-06-01'
+publishedAt: '2025-06-05'
+updatedAt: '2025-06-05'
 
 status: 'published' # draft | review | published
 

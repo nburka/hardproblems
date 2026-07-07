@@ -7,8 +7,8 @@ excerpt: "Two of India's leading public health experts share their experience wi
 author: 'Mahima Chandak'
 authorSlug: 'mahima-chandak'
 
-publishedAt: '2025-06-03'
-updatedAt: '2025-06-03'
+publishedAt: '2025-06-07'
+updatedAt: '2025-06-07'
 
 status: 'published' # draft | review | published
 
