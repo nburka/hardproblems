@@ -154,7 +154,7 @@ a.black-button:focus > span {
 blockquote {
   line-height: 1.5;
   font-size: var(--font-size-lg);
-  margin: 1rem 0 3rem 0;
+  margin: 2rem 0;
   font-weight: 400;
   color: #444;
   font-style: italic;
@@ -1476,79 +1476,6 @@ ul ul li {
   .offer-stack {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-/* Bento-style variant of `.offer-stack` — each cell gets a soft
-   colored fill (rotating pastel palette) and slightly rounder corners.
-   Applied alongside `.offer-stack` on the About page's aside so the
-   grid reads as a chunky bento box, not a dry list of icon boxes. */
-.offer-bento .grid-cell,
-.offer-bento .grid-cell:visited {
-  border: 0;
-  border-radius: 0;
-  color: var(--color-text);
-  transition:
-    transform 0.2s ease,
-    filter 0.2s ease;
-}
-
-.offer-bento .grid-cell:hover,
-.offer-bento .grid-cell:focus-visible {
-  transform: translateY(-2px);
-  filter: brightness(1.02) saturate(1.05);
-  outline: none;
-}
-
-.offer-bento .grid-cell:nth-child(5n + 1) {
-  background: #d9eee2; /* pale green */
-}
-
-.offer-bento .grid-cell:nth-child(5n + 2) {
-  background: #fff3c4; /* pale yellow */
-}
-
-.offer-bento .grid-cell:nth-child(5n + 3) {
-  background: #fde6e0; /* pale peach */
-}
-
-.offer-bento .grid-cell:nth-child(5n + 4) {
-  background: #cfe4ec; /* pale blue */
-}
-
-.offer-bento .grid-cell:nth-child(5n) {
-  background: #ece2f0; /* pale purple */
-}
-
-/* Small pill CTA sitting at the bottom of each bento cell. Rendered
-   as a plain `<span>` — the surrounding `.grid-cell` is the actual
-   link, so this is purely a visual affordance. */
-.bento-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-  padding: 6px 14px;
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  line-height: 1;
-  color: #fff;
-  background: var(--color-dark-green);
-  border-radius: 100px;
-}
-
-/* "Coming soon" variant — matches the site's `.notice-pill`
-   treatment so it reads as informational rather than actionable. */
-.bento-cta--soon {
-  color: #e85a3a;
-  background: transparent;
-  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  border-radius: 5px;
-  padding: 4px 8px;
 }
 
 .grid-cell {

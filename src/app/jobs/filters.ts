@@ -376,7 +376,7 @@ export function matchesSectorPick(jobSector: string, pick: string): boolean {
   return a === b || a.includes(`(${b})`);
 }
 
-// A job is a Hard Problems Pick when its "good for world" score (sheet
+// A job is a Our Pick when its "good for world" score (sheet
 // column F) parses to a number greater than 8. Mirrors the inline check
 // in JobsList that drives the pill rendering.
 export function isHardProblemsPick(goodForWorld: string): boolean {

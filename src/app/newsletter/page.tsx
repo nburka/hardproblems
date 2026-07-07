@@ -56,14 +56,14 @@ export default function Page() {
           on hard problems.
         </p>
 
-        <NewsletterModule />
-
         <ul className={styles.checklist}>
           <li>1-2 emails per month</li>
           <li>No spam</li>
           <li>We will never share our email list</li>
           <li>Easy unsubscribe</li>
         </ul>
+
+        <NewsletterModule />
 
         <h3 className="space-top-large">Recent newsletters</h3>
         <div className={styles.newsletters}>
@@ -106,7 +106,10 @@ export default function Page() {
                           className={styles.newsletterDateIcon}
                           aria-hidden="true"
                         />
-                        {newsletter.pubDate.toLocaleDateString('en-GB', dateFormat)}
+                        {newsletter.pubDate.toLocaleDateString(
+                          'en-GB',
+                          dateFormat
+                        )}
                       </span>
                     </div>
                   </Link>

@@ -44,7 +44,7 @@
   }
 }
 
-// The Hard Problems Pick pill is rendered as a link in the teaser
+// The Our Pick pill is rendered as a link in the teaser
 // (unlike the main board's button), so the site-wide `a:visited`
 // color rule would otherwise override the pick's yellow text on
 // visited jobs. Pin the pick's own colour.
@@ -55,11 +55,19 @@
   color: var(--color-pick-text);
 }
 
-// At intermediate desktop widths (above mobile, below 1300px), the
-// hero row's two columns get squeezed — drop the 5th job so the teaser
-// stays readable next to the hero article.
+// The teaser sits alongside the hero article at desktop widths, so
+// the number of visible jobs scales with the space available:
+//   1000–1199px → 3 jobs (hide 4th and 5th)
+//   1200–1399px → 4 jobs (hide 5th)
+//   ≥1400px     → 5 jobs
 @media only screen and (min-width: 1000px) and (max-width: 1399px) {
   .teaserJob:nth-of-type(5) {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1199px) {
+  .teaserJob:nth-of-type(4) {
     display: none;
   }
 }

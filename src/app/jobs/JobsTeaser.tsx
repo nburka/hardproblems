@@ -241,13 +241,13 @@ export default function JobsTeaser({
                       <Link
                         href="/jobs?pick=1"
                         className={`tag ${jobStyles.jobStaffPick} ${jobStyles.jobTagButton} ${teaserStyles.teaserPick}`}
-                        aria-label="See only Hard Problems Picks on the job board"
+                        aria-label="See only Our Picks on the job board"
                       >
                         <Gem
                           className={jobStyles.jobStaffPickStar}
                           aria-hidden="true"
                         />
-                        Hard Problems Pick
+                        Our Pick
                       </Link>
                     )}
                   </div>
@@ -282,7 +282,7 @@ export default function JobsTeaser({
                           className={jobStyles.jobDescriptionPickIcon}
                           aria-hidden="true"
                         />
-                        Hard Problems Pick
+                        Our Pick
                       </strong>
                       <p>
                         We hand-select great jobs at orgs whose primary

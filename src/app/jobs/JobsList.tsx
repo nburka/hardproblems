@@ -578,8 +578,8 @@ export default function JobsList({
     });
   };
 
-  // Toggles the Hard Problems Pick filter — driven by clicking the
-  // "Hard Problems Pick" pill on a job card. Only the `pick` URL param
+  // Toggles the Our Pick filter — driven by clicking the
+  // "Our Pick" pill on a job card. Only the `pick` URL param
   // changes; every other filter is preserved.
   const togglePicksOnly = () => {
     updateParams((params) => {
@@ -710,7 +710,7 @@ export default function JobsList({
   if (picksOnly) {
     activeChips.push({
       key: 'picksOnly',
-      label: 'Hard Problems Pick',
+      label: 'Our Pick',
       remove: togglePicksOnly
     });
   }
@@ -1132,13 +1132,13 @@ export default function JobsList({
                             picksOnly ? styles.jobTagButtonActive : ''
                           }`}
                           aria-pressed={picksOnly}
-                          aria-label="Filter to Hard Problems Picks only"
+                          aria-label="Filter to Our Picks only"
                         >
                           <Gem
                             className={styles.jobStaffPickStar}
                             aria-hidden="true"
                           />
-                          Hard Problems Pick
+                          Our Pick
                         </button>
                       )}
                     </div>
@@ -1166,7 +1166,7 @@ export default function JobsList({
                             className={styles.jobDescriptionPickIcon}
                             aria-hidden="true"
                           />
-                          Hard Problems Pick
+                          Our Pick
                         </strong>
                         <p>
                           We hand-select great jobs at orgs whose primary

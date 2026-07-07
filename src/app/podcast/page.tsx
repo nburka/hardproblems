@@ -38,7 +38,7 @@ export default function Page() {
         </div>
         <p className="page-lede">
           The podcast for designers &amp; technologists who want to work on
-          urgent problems.
+          urgent problems like public health and climate change.
           <br />
           <span className="notice-pill">Coming soon…</span>
         </p>
@@ -46,9 +46,10 @@ export default function Page() {
         <h3 className="space-top-large">What will the podcast be about?</h3>
         <p>
           We want to find out what works and what doesn&#8216;t work for
-          designers who are working on the world&#8216;s challenges. And, we
-          want to inspire people (you?) to make the jump to work on hard
-          problems.
+          designers who are working on the world&#8216;s most urgent challenges.
+          We will share the best ideas from experts in the field with you, so
+          you're better prepared to work in these spaces. And, we want to
+          inspire people (you?) to make the jump to work on hard problems.
         </p>
 
         <h3 className="space-top-large">Episodes</h3>

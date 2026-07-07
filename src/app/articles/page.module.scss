@@ -240,7 +240,6 @@
   margin: 0;
 }
 
-
 // Hide the entire Newest jobs panel on mobile — it eats too much vertical
 // space below the hero article. Re-enabled at desktop in the @media block.
 .heroJobs {
@@ -376,7 +375,9 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.12s ease, visibility 0.12s ease;
+  transition:
+    opacity 0.12s ease,
+    visibility 0.12s ease;
   z-index: 10;
 }
 
@@ -417,7 +418,6 @@
   font-weight: 600;
   color: var(--color-text);
 }
-
 
 // Compact mobile card — image left, type/title/excerpt right, with a
 // thin line above each card. Used on the homepage for articles after
@@ -483,7 +483,7 @@
 // active (typically `articleCardCompact`).
 
 .heroJobs h3 {
-  margin: 0 0 1rem 0;
+  margin: 0.5rem 0 -0.3rem 0;
 }
 
 // Desktop: two-up grid for the listing, with the card image filling the
@@ -534,7 +534,6 @@
   .moreContentHeading {
     display: none;
   }
-
 
   // Co-working aside — col 1 of the secondary hero row, spans 2 rows
   // alongside the hero on the right.

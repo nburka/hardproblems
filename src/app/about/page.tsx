@@ -78,64 +78,6 @@ export default function Page() {
         <p>We are an all-volunteer team from around the world.</p>
         <Team />
 
-        <h3 className="space-top-large">Funding</h3>
-        <p>
-          We are a lean organization that is primarily self-funded by our
-          founding team. But, we could use help.{' '}
-          <Link href="/give">Learn how...</Link>
-        </p>
-
-        <h3 className="space-top-large">What we offer</h3>
-        <div className="offer-stack offer-bento">
-          <Link href="/jobs" className="grid-cell">
-            <Image
-              src="/images/icon-piggy-bank.svg"
-              width="120"
-              height="120"
-              alt="Illustration of a piggy bank."
-            />
-            <b className="grid-link">Job board</b>
-            <p className="grid-detail">For designers</p>
-            <span className="bento-cta">Browse jobs</span>
-          </Link>
-
-          <Link href="/" className="grid-cell">
-            <Image
-              src="/images/icon-conversation.svg"
-              width="120"
-              height="120"
-              alt="Speech bubbles."
-            />
-            <b className="grid-link">Articles &amp; advice</b>
-            <p className="grid-detail">For designers and orgs</p>
-            <span className="bento-cta">Read articles</span>
-          </Link>
-
-          <Link href="/podcast" className="grid-cell">
-            <Image
-              src="/images/icon-mic.svg"
-              width="120"
-              height="120"
-              alt="Mic"
-            />
-            <b className="grid-link">Podcast</b>
-            <p className="grid-detail">(coming soon)</p>
-            <span className="bento-cta bento-cta--soon">Coming soon</span>
-          </Link>
-
-          <Link href="/coworking" className="grid-cell">
-            <Image
-              src="/images/icon-lamp.svg"
-              width="120"
-              height="120"
-              alt="Work lamp."
-            />
-            <b className="grid-link">Co-working space</b>
-            <p className="grid-detail">In London, UK</p>
-            <span className="bento-cta">Book a tour</span>
-          </Link>
-        </div>
-
         <h3 className="space-top-large">Hard Problems explained...</h3>
         {featuredArticle && (
           <div className={articlesStyles.aboutFeaturedArticle}>
