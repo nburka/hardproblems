@@ -87,8 +87,6 @@ export default function JobsTeaser({
       <ul className={jobStyles.jobs}>
         {jobs.map((job, i) => {
           const location = formatLocation(job);
-          const hasSalary =
-            job.salary && job.salary.toLowerCase() !== 'n/a';
           const faviconUrl = buildFaviconUrl(job.companyUrl);
           const companyHref = job.companyUrl
             ? job.companyUrl.startsWith('http')
@@ -120,11 +118,6 @@ export default function JobsTeaser({
           if (location) {
             metaItems.push(
               <span className={jobStyles.jobLocation}>{location}</span>
-            );
-          }
-          if (hasSalary) {
-            metaItems.push(
-              <span className={jobStyles.jobSalary}>{job.salary}</span>
             );
           }
 
