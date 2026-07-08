@@ -3,7 +3,7 @@
 import { Fragment, type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePostHog } from 'posthog-js/react';
-import { Gem } from 'lucide-react';
+import { Earth, Gem } from 'lucide-react';
 import type { SerializedJob } from './fetchJobs';
 import { displaySector } from './filters';
 import { getSectorIcon } from './sectorIcons';
@@ -29,27 +29,6 @@ function buildFaviconUrl(rawUrl: string): string | null {
 // Country-only — the teaser omits city and remote/work-style tags.
 function formatLocation(job: SerializedJob): string {
   return job.country.trim();
-}
-
-function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width={16}
-      height={16}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#8a9b94"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <ellipse cx="12" cy="12" rx="4" ry="10" />
-    </svg>
-  );
 }
 
 const BULLET_SEPARATOR = '  •  ';
@@ -121,7 +100,13 @@ export default function JobsTeaser({
             );
           }
 
-          const globe = <GlobeIcon className={jobStyles.companyFavicon} />;
+          const globe = (
+            <Earth
+              className={jobStyles.companyFavicon}
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          );
           const iconContents = faviconUrl ? (
             <CompanyFavicon
               src={faviconUrl}

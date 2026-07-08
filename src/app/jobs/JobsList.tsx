@@ -4,7 +4,7 @@ import { Fragment, ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
-import { Gem, Sparkle } from 'lucide-react';
+import { Earth, Gem, Sparkle } from 'lucide-react';
 import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
 import CompanyFavicon from './CompanyFavicon';
@@ -69,27 +69,6 @@ function formatRelativeDate(date: Date): string {
   if (diffDays > 1) return `${diffDays} days ago`;
   if (diffDays === -1) return 'Tomorrow';
   return `in ${-diffDays} days`;
-}
-
-function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width={16}
-      height={16}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#8a9b94"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <ellipse cx="12" cy="12" rx="4" ry="10" />
-    </svg>
-  );
 }
 
 function buildFaviconUrl(rawUrl: string): string | null {
@@ -982,7 +961,13 @@ export default function JobsList({
               );
             }
 
-            const globe = <GlobeIcon className={styles.companyFavicon} />;
+            const globe = (
+              <Earth
+                className={styles.companyFavicon}
+                strokeWidth={1.5}
+                aria-hidden="true"
+              />
+            );
             const iconContents = faviconUrl ? (
               <CompanyFavicon
                 src={faviconUrl}
