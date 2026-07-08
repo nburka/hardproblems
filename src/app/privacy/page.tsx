@@ -34,6 +34,11 @@ export default function Page() {
           We collect or use the following personal information for service updates or marketing purposes:
           <br /><span className="tag">Names and contact details</span>
         </p>
+        <p>
+          We collect or use the following personal information to deliver personalized job alerts you have signed up for:
+          <br /><span className="tag">Email addresses</span>
+          <br /><span className="tag">Saved job-filter preferences</span>
+        </p>
         <p>We collect or use the following personal information for dealing with queries, complaints or claims:
           <br /><span className="tag">Names and contact details</span>
         </p>
@@ -65,6 +70,8 @@ export default function Page() {
           <p className="indent">Consent - we have permission from you after we gave you all the relevant information. All of your data protection rights may apply, except the right to object. To be clear, you do have the right to withdraw your consent at any time.</p>
           <p>Our lawful bases for collecting or using personal information for <b>dealing with queries, complaints or claims</b> are:</p>
           <p className="indent">Consent - we have permission from you after we gave you all the relevant information. All of your data protection rights may apply, except the right to object. To be clear, you do have the right to withdraw your consent at any time.</p>
+          <p>Our lawful bases for collecting or using personal information to <b>deliver personalized job alerts you have signed up for</b> are:</p>
+          <p className="indent">Consent - you confirm your email address by clicking a link we send you (double opt-in) after we gave you all the relevant information about what we will send and how often. All of your data protection rights may apply, except the right to object. You can withdraw your consent at any time by clicking the unsubscribe link in any job-alert email, or by contacting us using the details at the top of this privacy notice.</p>
         </div>
 
         <h3 className="space-top-large" id="cookies">Analytics</h3>
@@ -123,6 +130,21 @@ export default function Page() {
             email address is stored by Beehiiv on our behalf. Beehiiv Inc. is
             based in the United States.
           </dd>
+          <dt>Resend</dt>
+          <dd>
+            Transactional email delivery for job alerts. If you sign up for
+            job alerts, we send confirmation and daily-digest emails through
+            Resend on our behalf; Resend receives your email address and the
+            content of each message it delivers. Resend, Inc. is based in the
+            United States.
+          </dd>
+          <dt>Supabase</dt>
+          <dd>
+            Managed database used to store job-alert subscribers, their
+            saved filter preferences, and a log of which listings have
+            already been sent to each subscriber. Supabase Inc. is based in
+            the United States.
+          </dd>
           <dt>Luma</dt>
           <dd>
             Event RSVPs and attendee management. When you RSVP to one of our
@@ -139,10 +161,11 @@ export default function Page() {
 
         <h3 className="space-top-large" id="keep">How long we keep information</h3>
         <p>Newsletter email addresses are kept until you unsubscribe from the newsletter.</p>
+        <p>Job-alert email addresses and saved filter preferences are kept until you unsubscribe, at which point the record is permanently deleted within 30 days.</p>
         <p>Contact information provided for the purpose of attending an event or applying for a service are removed after 3 months.</p>
 
         <h3 className="space-top-large">Last updated</h3>
-        <p>30 May 2026</p>
+        <p>8 July 2026</p>
       </section>
       <section className="right">
         <h3 id="complain">How to complain</h3>
