@@ -176,7 +176,7 @@ export async function GET(request: Request) {
       const unsubscribeUrl = `${site}/api/alerts/unsubscribe?token=${sub.unsubscribe_token}`;
 
       try {
-        await resend.emails.send({
+        const result = await resend.emails.send({
           from,
           to: sub.email,
           replyTo: 'contact@hardproblems.com',
@@ -198,8 +198,17 @@ export async function GET(request: Request) {
             'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
           }
         });
+        if (result.error) {
+          console.error(
+            '[alerts/cron] resend returned error',
+            result.error,
+            { subscriberId: sub.id }
+          );
+          totals.failed++;
+          continue;
+        }
       } catch (err) {
-        console.error('[alerts/cron] resend send failed', err, {
+        console.error('[alerts/cron] resend threw', err, {
           subscriberId: sub.id
         });
         totals.failed++;

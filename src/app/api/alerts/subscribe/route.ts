@@ -171,7 +171,10 @@ export async function POST(request: Request) {
 
   try {
     const resend = getResend();
-    await resend.emails.send({
+    // Resend SDK v6+ returns { data, error } — it does NOT throw on
+    // API errors. So we have to inspect the returned object as well
+    // as catch actual network throws.
+    const result = await resend.emails.send({
       from: alertsFromAddress(),
       to: email,
       replyTo: 'contact@hardproblems.com',
@@ -185,9 +188,20 @@ export async function POST(request: Request) {
         'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
       }
     });
+    if (result.error) {
+      console.error('[alerts/subscribe] resend returned error', result.error, {
+        subscriberId
+      });
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "We couldn't send the confirmation email. Please try again."
+        },
+        { status: 502 }
+      );
+    }
   } catch (err) {
-    console.error('[alerts/subscribe] resend failed', err, { subscriberId });
-    // Leave the pending row in place — they can retry from the form.
+    console.error('[alerts/subscribe] resend threw', err, { subscriberId });
     return NextResponse.json(
       {
         ok: false,
