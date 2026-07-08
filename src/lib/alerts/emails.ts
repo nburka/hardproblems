@@ -274,7 +274,7 @@ export function digestHtml({
         </td></tr>
         <tr><td class="hp-body" style="padding:16px 32px 24px;">
           <p style="margin:0;">
-            <a href="${boardUrlTagged}" style="display:inline-block;padding:10px 18px;background:#235337;color:#ffffff;text-decoration:none;border-radius:100px;font-weight:500;font-size:14px;">See all matching jobs on the board →</a>
+            <a href="${boardUrlTagged}" style="display:inline-block;padding:10px 18px;background:#235337;color:#ffffff;text-decoration:none;border-radius:100px;font-weight:500;font-size:14px;">See all jobs →</a>
           </p>
         </td></tr>
         <tr><td class="hp-body" style="padding:0 32px 28px;border-top:1px solid #eaeaea;">
@@ -314,7 +314,7 @@ export function digestText({
     if (j.url) lines.push(j.url);
     lines.push('');
   }
-  lines.push(`See all matching jobs: ${boardUrlTagged}`);
+  lines.push(`See all jobs: ${boardUrlTagged}`);
   lines.push('');
   lines.push(
     `You're getting this because you signed up for a daily digest at ${siteJobsTagged}.`

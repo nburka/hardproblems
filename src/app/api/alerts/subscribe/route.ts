@@ -114,7 +114,13 @@ export async function POST(request: Request) {
   }
 
   if (existing?.status === 'active') {
-    // Already active — succeed silently so we don't leak subscription state.
+    // Already active — succeed silently so we don't leak subscription
+    // state to enumeration probes. This IS a real successful return
+    // as far as the user is concerned; log it so it's visible in
+    // Vercel logs and doesn't look like "nothing happened".
+    console.log('[alerts/subscribe] already active, skipping send', {
+      subscriberId: existing.id
+    });
     return NextResponse.json({ ok: true, already: true });
   }
 
