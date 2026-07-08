@@ -26,6 +26,20 @@ async function loadInterFonts() {
   return cachedFonts;
 }
 
+// Bind the final two words together with a non-breaking space so the
+// last line of a wrapped run never ends with a single orphan word.
+// Satori (the engine behind next/og) doesn't reliably ship
+// `text-wrap: pretty`, so we do the widow/orphan control by hand at
+// the string level.
+function preventOrphan(text: string): string {
+  const trimmed = text.trimEnd();
+  const lastSpace = trimmed.lastIndexOf(' ');
+  if (lastSpace === -1) return trimmed;
+  return (
+    trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
+  );
+}
+
 // Returns an ImageResponse rendering the OG card with the page's title and
 // optional subtitle. Inter is loaded once and reused.
 export async function createOGImage({
@@ -36,10 +50,16 @@ export async function createOGImage({
   subtitle?: string;
 }) {
   const fonts = await loadInterFonts();
-  return new ImageResponse(<OGCard title={title} subtitle={subtitle} />, {
-    ...OG_SIZE,
-    fonts
-  });
+  return new ImageResponse(
+    <OGCard
+      title={preventOrphan(title)}
+      subtitle={subtitle ? preventOrphan(subtitle) : undefined}
+    />,
+    {
+      ...OG_SIZE,
+      fonts
+    }
+  );
 }
 
 function OGCard({
