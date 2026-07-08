@@ -1,0 +1,204 @@
+// Signup callout at the top of the job board. Sits above the filter
+// controls, matches the site palette (dark-green button / pale-green
+// panel), and collapses gracefully on mobile.
+.wrapper {
+  margin: 0.5rem 0 1.5rem 0;
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  background: var(--color-pale-green);
+  border: 1px solid var(--color-light-green);
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.headerIcon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--color-dark-green);
+}
+
+.header strong {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-dark-green);
+  line-height: 1.25;
+}
+
+.headerBody {
+  margin: 0.15rem 0 0 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: #444;
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+// Single rounded pill wraps the mail icon, the email input, and the
+// submit button — same shape as the site newsletter form so both feel
+// like part of one family.
+.field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 4px 4px 4px 0.75rem;
+  background: #fff;
+  border: 1px solid var(--color-light-green);
+  border-radius: 100px;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.field:focus-within {
+  border-color: var(--color-mid-green);
+}
+
+.fieldIcon {
+  color: var(--color-mid-green);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.input::placeholder {
+  color: color-mix(in srgb, var(--color-mid-green) 60%, transparent);
+}
+
+// Icon-only submit button — sits inside the pill at the right edge,
+// mirroring the newsletter form's "arrow-in-a-pill" pattern.
+.submit {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  padding: 0;
+  color: #231f20;
+  background: #fff;
+  border: 1px solid var(--color-light-green);
+  border-radius: 100px;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.submit:hover:not(:disabled),
+.submit:focus-visible:not(:disabled) {
+  color: #fff;
+  background: var(--color-dark-green);
+  border-color: var(--color-dark-green);
+  outline: none;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submitIconSpin {
+  display: block;
+  animation: alerts-submit-spin 0.9s linear infinite;
+}
+
+@keyframes alerts-submit-spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.summary {
+  margin: 0.75rem 0 0 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  color: #555;
+}
+
+.summary strong {
+  color: var(--color-dark-green);
+  font-weight: 500;
+}
+
+.terms {
+  margin: 0.35rem 0 0 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  color: #777;
+}
+
+.error {
+  margin: 0.5rem 0 0 0;
+  font-size: var(--font-size-sm);
+  color: #b23a2a;
+}
+
+// Honeypot — visually hidden but focusable-by-DOM so bots see it and
+// fill it in. Skips actual screen-reader announcement via aria-hidden.
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// Sent confirmation panel replaces the form entirely.
+.sent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sentIcon {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--color-dark-green);
+}
+
+.sent strong {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-dark-green);
+  line-height: 1.25;
+}
+
+.sentBody {
+  margin: 0.15rem 0 0 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: #333;
+}
+
+.sentBody em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-dark-green);
+}

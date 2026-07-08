@@ -10,6 +10,9 @@ import { ArrowRight } from 'lucide-react';
 export default function FooterIntro() {
   const pathname = usePathname();
   if (pathname === '/about') return null;
+  // Job-alert status pages (/jobs/alerts/ok, unsubscribed, invalid) are
+  // small confirmation screens — the mission blurb would drown them out.
+  if (pathname?.startsWith('/jobs/alerts/')) return null;
 
   return (
     <div className="footer-intro">

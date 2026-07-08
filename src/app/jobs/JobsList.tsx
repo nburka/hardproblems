@@ -8,6 +8,7 @@ import { Gem, Sparkle } from 'lucide-react';
 import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
 import CompanyFavicon from './CompanyFavicon';
+import JobAlertsForm from './JobAlertsForm';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
@@ -718,6 +719,7 @@ export default function JobsList({
         {filterHeader && (
           <div className={styles.filterHeader}>{filterHeader}</div>
         )}
+        <JobAlertsForm />
         <label className={styles.filterField}>
           <span className={`${styles.filterLabel} small-header`}>Country</span>
           <select

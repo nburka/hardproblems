@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.23.0",
     "markdown-it": "^14.2.0",
@@ -21,6 +22,7 @@
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-loading-skeleton": "^3.5.0",
+    "resend": "^6.17.1",
     "rss-parser": "^3.13.0"
   },
   "devDependencies": {
