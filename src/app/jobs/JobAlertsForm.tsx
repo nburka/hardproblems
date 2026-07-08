@@ -23,6 +23,9 @@ export default function JobAlertsForm() {
   const [error, setError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  // Track email-input focus so we can reveal the "Alerts for: …"
+  // summary only while the user is actively engaging with the form.
+  const [inputFocused, setInputFocused] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   // Portals need document.body — only render the modal after mount so
@@ -110,10 +113,6 @@ export default function JobAlertsForm() {
   // wrapper and the mobile modal.
   const renderForm = (): ReactNode => (
     <>
-      <p className={styles.terms}>
-        We&rsquo;ll only email you jobs. See{' '}
-        <Link href="/privacy">Privacy notice</Link>.
-      </p>
       <form className={styles.form} onSubmit={onSubmit} noValidate>
         <label className={styles.field}>
           <span className="sr-only">Email address</span>
@@ -130,6 +129,8 @@ export default function JobAlertsForm() {
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
             disabled={status === 'submitting'}
             className={styles.input}
           />
@@ -164,14 +165,16 @@ export default function JobAlertsForm() {
           />
         </label>
       </form>
-      <p
-        className={styles.summary}
-        style={hasFilters ? undefined : { visibility: 'hidden' }}
-        aria-hidden={!hasFilters}
-      >
-        Alerts for: <strong>{summary || 'All jobs'}</strong>
-      </p>
+      {hasFilters && inputFocused && (
+        <p className={styles.summary}>
+          Alerts for: <strong>{summary}</strong>
+        </p>
+      )}
       {error && <p className={styles.error}>{error}</p>}
+      <p className={styles.terms}>
+        We&rsquo;ll only email you jobs. See{' '}
+        <Link href="/privacy">Privacy notice</Link>.
+      </p>
     </>
   );
 
