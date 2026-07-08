@@ -1,14 +1,66 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import CompactArticleList from '../../../../components/CompactArticleList';
+import ArticleCard from '../../../../components/ArticleCard';
 import CategoriesSidebar from '../../../../components/CategoriesSidebar';
+import CategoriesDropdown, {
+  type CategoryEntry
+} from '../../../../components/CategoriesDropdown';
 import {
   articleTypeSlug,
   getAllArticles,
   pluralize,
-  topicDisplay
+  topicDisplay,
+  type Article
 } from '../../../../lib/articles';
 import styles from '../../page.module.scss';
+
+// Assemble the [All, …type slugs…, …topic slugs…] entries the sidebar
+// + dropdown share. Server-side so the client dropdown doesn't have to
+// touch the filesystem-backed article helpers.
+function buildCategoryEntries(allArticles: Article[]): CategoryEntry[] {
+  const typeCounts = new Map<string, number>();
+  const topicCounts = new Map<string, number>();
+  for (const a of allArticles) {
+    if (a.articleType) {
+      typeCounts.set(
+        a.articleType,
+        (typeCounts.get(a.articleType) || 0) + 1
+      );
+    }
+    for (const t of a.topics) {
+      topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+    }
+  }
+  const rest: CategoryEntry[] = [];
+  for (const [type, count] of typeCounts) {
+    rest.push({
+      key: `type:${articleTypeSlug(type)}`,
+      label: type,
+      href: `/articles/type/${articleTypeSlug(type)}`,
+      count
+    });
+  }
+  for (const [topic, count] of topicCounts) {
+    rest.push({
+      key: `type:${topic}`,
+      label: topicDisplay(topic),
+      href: `/articles/type/${topic}`,
+      count
+    });
+  }
+  rest.sort((a, b) =>
+    a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+  );
+  return [
+    {
+      key: 'type:all',
+      label: 'All',
+      href: '/articles/type/all',
+      count: allArticles.length
+    },
+    ...rest
+  ];
+}
 
 type Props = { params: Promise<{ type: string }> };
 
@@ -90,10 +142,20 @@ export default async function TypePage({ params }: Props) {
             allArticles={allArticles}
             activeKey={`type:${type}`}
           />
+          <CategoriesDropdown
+            entries={buildCategoryEntries(allArticles)}
+            activeKey={`type:${type}`}
+          />
         </aside>
         <div className={styles.typeResults}>
           <h2 className={`${styles.typeHeading} small-header`}>{label}</h2>
-          <CompactArticleList articles={articles} />
+          <ul
+            className={`${styles.articleList} ${styles.articleListTwoCol}`}
+          >
+            {articles.map((article) => (
+              <ArticleCard key={article.slug} article={article} compact />
+            ))}
+          </ul>
         </div>
       </div>
     </section>

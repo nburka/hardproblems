@@ -125,6 +125,40 @@
   font-weight: 400;
 }
 
+// Mobile: flip the natural DOM order so the article-type link and
+// NEW badge appear *below* the excerpt instead of above the image.
+// Uses flex ordering rather than reflowing the JSX so the desktop
+// stack (kicker → thumbnail → title → excerpt) stays intact.
+@media only screen and (max-width: 999px) {
+  .articleCard {
+    display: flex;
+    flex-direction: column;
+  }
+  .articleCardLink {
+    order: 1;
+  }
+  .articleCardKicker {
+    order: 2;
+    margin: 0.6rem 0 0 0;
+  }
+
+  // Compact cards use a 110px image column + 1rem gap. Push the
+  // kicker in by that amount so the tags line up with the left edge
+  // of the title/excerpt column above, rather than the outside edge
+  // of the thumbnail.
+  .articleCardCompact .articleCardKicker {
+    padding-left: calc(110px + 1rem);
+  }
+
+  // Hero card only — center the tags row under the excerpt so it
+  // reads as a focused "the featured thing" rather than a chip left
+  // aligned in the mobile column.
+  .heroList .articleCardKicker {
+    align-self: center;
+  }
+}
+
+
 // Article-type kicker sitting above the thumbnail (e.g. "OPINION",
 // "VIDEO", "BOOK REVIEW"). Plain text, no pill background — matches
 // the .preTitleLabel treatment used on the article page itself.
@@ -434,9 +468,7 @@
 .articleCardCompact .articleCardLink {
   display: grid;
   grid-template-columns: 110px 1fr;
-  grid-template-areas:
-    'image type'
-    'image body';
+  grid-template-areas: 'image body';
   gap: 0.3rem 1rem;
   align-items: start;
 }
@@ -692,6 +724,51 @@
   margin: 0 0 0.5rem 0;
 }
 
+// Mobile-only <select> replacement for the CategoriesSidebar. On
+// desktop the sidebar list wins; on mobile the dropdown wins and the
+// heading + list are hidden. Styled to match the jobs board's mobile
+// Country pill: black-on-black with a white chevron so it reads as
+// the primary content-navigation control at the top of the article
+// list on narrow screens.
+.categoriesDropdown {
+  display: none;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  width: 100%;
+  padding: 8px 38px 8px 16px;
+  background-color: var(--color-text);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  border: 1px solid var(--color-text);
+  border-radius: 100px;
+  color: #fff;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0 0 4rem 0;
+}
+
+@media only screen and (max-width: 999px) {
+  // Show the dropdown, hide the sidebar list + heading.
+  .categoriesDropdown {
+    display: block;
+  }
+  .categoriesHeading,
+  .categoriesList {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  // Hard-hide on desktop just in case display:none from the mobile
+  // rule flips somewhere else in the cascade.
+  .categoriesDropdown {
+    display: none;
+  }
+}
+
 // "All categories" sidebar — used on the topic and type listing pages.
 // Vertical list with the label on the left, count + arrow on the right.
 .categoriesList {
@@ -931,7 +1008,10 @@
 }
 
 .typeFilters {
-  margin-bottom: 3rem;
+  // Mobile: no bottom margin on the aside — the CategoriesDropdown's
+  // own margin-bottom owns the spacing to the article list below.
+  // Desktop resets this to 0 anyway (see the grid rule further down).
+  margin-bottom: 0;
 }
 
 .typeResults {
@@ -941,9 +1021,18 @@
 // Small-caps heading above the articles grid. Typography comes from
 // the shared `.small-header` global class; this rule only owns the
 // spacing that aligns it with the sidebar's first entry.
+// Hidden on mobile — the categories sidebar (which stacks above the
+// list there) already communicates the active category, so a second
+// heading would just add noise.
 .typeHeading {
   margin: 0 0 0.75rem 0;
   padding-top: 0;
+}
+
+@media only screen and (max-width: 999px) {
+  .typeHeading {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
