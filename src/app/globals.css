@@ -1527,6 +1527,26 @@ ul ul li {
 @media only screen and (min-width: 1000px) {
   .offer-stack {
     grid-template-columns: repeat(2, 1fr);
+    /* Bento treatment: let cells with explicit spans backfill any
+       leftover slots so a taller "hero" cell coexists with normal
+       ones without leaving gaps. */
+    grid-auto-flow: dense;
+  }
+
+  /* Make the first card (Funsize) tall — spans 2 rows on the left so
+     it reads as the flagship acknowledgement. Center its contents to
+     avoid a lonely block of copy floating at the top of a tall cell. */
+  .offer-stack > :first-child {
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Scale the flagship illustration up so the tall cell doesn't feel
+     empty inside. */
+  .offer-stack > :first-child img {
+    height: 96px;
   }
 }
 
