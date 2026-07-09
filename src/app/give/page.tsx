@@ -123,6 +123,19 @@ export default function Page() {
               For gifting a beautiful coffee machine.
             </p>
           </a>
+
+          <a className="grid-cell" href="https://imcurious.io/">
+            <Image
+              src="/images/illustration-thanks.svg"
+              width="120"
+              height="120"
+              alt="Illustration of hands in a heart shape."
+            />
+            <b className="grid-link">Aarron Walter</b>
+            <p className="grid-detail">
+              For a free subscription to Curious.
+            </p>
+          </a>
         </div>
       </section>
     </>
