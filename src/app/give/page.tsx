@@ -15,9 +15,8 @@ export default function Page() {
           />
         </div>
         <p className="page-lede">
-          We are a nonprofit that is primarily funded by the founding team. We
-          keep our expenses low, which allows us to run sustainably. That said,
-          we could benefit from your help to do more.
+          We are a lean organization that is primarily self-funded by our
+          founding team. But, we could use help so we can do more.
         </p>
         <p>
           <a
@@ -33,9 +32,9 @@ export default function Page() {
         </p>
         <h3 className="space-top-xlarge">Ideas for gifts</h3>
         <p>
-          Here are a few ideas for gifts. We&rsquo;re open to all kinds of
-          new ideas too, so please get in touch if you have ideas that
-          might be helpful to Hard Problems. Thank you.
+          Here are a few ideas for gifts. We&rsquo;re open to all kinds of new
+          ideas too, so please get in touch if you have ideas that might be
+          helpful to Hard Problems. Thank you.
         </p>
         <ul className="hand-drawn-checklist">
           <li>
@@ -46,35 +45,35 @@ export default function Page() {
             designer by giving £450 one-time or per month.
           </li>
           <li>
-            <b>Outfit the office.</b> Gift a smaller amount to help us
-            outfit the office &#8212; buy a chair (£100) or even gift a bag
-            of good coffee (£10). Any gift would be appreciated.
+            <b>Outfit the office.</b> Gift a smaller amount to help us outfit
+            the office &#8212; buy a chair (£100) or even gift a bag of good
+            coffee (£10). Any gift would be appreciated.
           </li>
           <li>
-            <b>Sponsor an event.</b> We will run events in 2026 with an
-            audience of people who work on hard problems all over the world.
-            If you or your company is interested in sponsoring an event,
-            please get in touch. You will get a nice shout-out at the event.
+            <b>Sponsor an event.</b> We will run events in 2026 with an audience
+            of people who work on hard problems all over the world. If you or
+            your company is interested in sponsoring an event, please get in
+            touch. You will get a nice shout-out at the event.
           </li>
           <li>
             <b>Sponsor the job board.</b> For £3,000/month, your organization
             could sponsor the Job Board. We would put a (fairly subtle)
-            sponsorship line at the top of the jobs and we would thank you
-            in our Newsletter.
+            sponsorship line at the top of the jobs and we would thank you in
+            our Newsletter.
           </li>
         </ul>
         <h3 className="space-top-xlarge">Thank you</h3>
         <p>
-          If you give us a gift, we will add you to a &#8216;Thank you wall&#8217; here
-          on the website.
+          Thank you to all of these generous people who have helped Hard
+          Problems.
         </p>
-        <div className="offer-stack">
+        <div className="bento-group">
           <a className="grid-cell" href="https://www.funsize.co/">
             <Image
-              src="/images/illustration-thanks.svg"
+              src="/images/icon-hearts.svg"
               width="120"
               height="120"
-              alt="Illustration of hands in a heart shape."
+              alt="Illustration of hearts."
             />
             <b className="grid-link">Funsize</b>
             <p className="grid-detail">
@@ -91,7 +90,7 @@ export default function Page() {
               alt="Illustration of hands in a heart shape."
             />
             <b className="grid-link">d.MBA</b>
-            <p className="grid-detail">For their generous gift.</p>
+            <p className="grid-detail">For their generous cash gift.</p>
           </a>
 
           <a
@@ -132,9 +131,7 @@ export default function Page() {
               alt="Illustration of hands in a heart shape."
             />
             <b className="grid-link">Aarron Walter</b>
-            <p className="grid-detail">
-              For a free subscription to Curious.
-            </p>
+            <p className="grid-detail">For a free subscription to Curious.</p>
           </a>
         </div>
       </section>

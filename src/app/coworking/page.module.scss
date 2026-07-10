@@ -1,9 +1,9 @@
 .playerIframe {
-    border: 0px;
-    border-radius: 12px;
-    width: 100%;
-    height: 450px;
-    max-width: 660px;
+  border: 0px;
+  border-radius: 12px;
+  width: 100%;
+  height: 450px;
+  max-width: 660px;
 }
 
 // Brick / mosaic photo gallery mirroring the `.image-bricks` treatment
@@ -85,7 +85,7 @@
   padding: 0;
   margin: 1.5em 0 0 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 3rem 1.25rem;
 }
 

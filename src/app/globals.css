@@ -200,7 +200,9 @@ p.intro {
    opening paragraph on top-level pages (About, Newsletter, etc.) that
    use the .page-narrow reading column. */
 p.page-lede {
-  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  font-family:
+    var(--font-instrument-serif), 'Instrument Serif', Georgia,
+    'Times New Roman', serif;
   font-size: var(--font-size-xl);
   font-weight: 400;
   line-height: 1.25;
@@ -1452,17 +1454,17 @@ ul ul li {
 /* Grid of offering cards (used on /about right column). Reuses the
    .grid-cell visual treatment. Single column on mobile, 2x2 grid on
    desktop (overrides the desktop 46% width). */
-.offer-stack {
+.bento-group {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
   margin-top: 1.5rem;
 }
 
-/* Tighter padding + smaller icons just inside the offer-stack so the
+/* Tighter padding + smaller icons just inside the bento-group so the
    section reads as a compact list of offerings rather than a series
    of poster-sized cards. */
-.offer-stack .grid-cell {
+.bento-group .grid-cell {
   width: 100%;
   margin-top: 0;
   padding: 16px 20px 32px;
@@ -1475,8 +1477,8 @@ ul ul li {
   transition: box-shadow 0.15s ease;
 }
 
-.offer-stack a.grid-cell:hover,
-.offer-stack a.grid-cell:focus-visible {
+.bento-group a.grid-cell:hover,
+.bento-group a.grid-cell:focus-visible {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   outline: none;
@@ -1487,45 +1489,53 @@ ul ul li {
    cards. The name inside each card takes a darker sibling of the same
    hue by tinting the card's own colour (grid-detail keeps its own
    grey via a more specific rule below). */
-.offer-stack a.grid-cell:nth-of-type(4n + 1),
-.offer-stack a.grid-cell:nth-of-type(4n + 1):visited,
-.offer-stack a.grid-cell:nth-of-type(4n + 1):hover,
-.offer-stack a.grid-cell:nth-of-type(4n + 1):focus-visible {
+.bento-group a.grid-cell:nth-of-type(4n + 1),
+.bento-group a.grid-cell:nth-of-type(4n + 1):visited,
+.bento-group a.grid-cell:nth-of-type(4n + 1):hover,
+.bento-group a.grid-cell:nth-of-type(4n + 1):focus-visible {
   background: #f5fbf6;
   color: #1f4b30;
 }
 
-.offer-stack a.grid-cell:nth-of-type(4n + 2),
-.offer-stack a.grid-cell:nth-of-type(4n + 2):visited,
-.offer-stack a.grid-cell:nth-of-type(4n + 2):hover,
-.offer-stack a.grid-cell:nth-of-type(4n + 2):focus-visible {
-  background: #fef7f3;
-  color: #8a3d1a;
+.bento-group a.grid-cell:nth-of-type(4n + 2),
+.bento-group a.grid-cell:nth-of-type(4n + 2):visited,
+.bento-group a.grid-cell:nth-of-type(4n + 2):hover,
+.bento-group a.grid-cell:nth-of-type(4n + 2):focus-visible {
+  background: #fefdf3;
+  color: #8a7819;
 }
 
-.offer-stack a.grid-cell:nth-of-type(4n + 3),
-.offer-stack a.grid-cell:nth-of-type(4n + 3):visited,
-.offer-stack a.grid-cell:nth-of-type(4n + 3):hover,
-.offer-stack a.grid-cell:nth-of-type(4n + 3):focus-visible {
+.bento-group a.grid-cell:nth-of-type(4n + 3),
+.bento-group a.grid-cell:nth-of-type(4n + 3):visited,
+.bento-group a.grid-cell:nth-of-type(4n + 3):hover,
+.bento-group a.grid-cell:nth-of-type(4n + 3):focus-visible {
   background: #f7f8fd;
   color: #1e3a8a;
 }
 
-.offer-stack a.grid-cell:nth-of-type(4n + 4),
-.offer-stack a.grid-cell:nth-of-type(4n + 4):visited,
-.offer-stack a.grid-cell:nth-of-type(4n + 4):hover,
-.offer-stack a.grid-cell:nth-of-type(4n + 4):focus-visible {
+.bento-group a.grid-cell:nth-of-type(4n + 4),
+.bento-group a.grid-cell:nth-of-type(4n + 4):visited,
+.bento-group a.grid-cell:nth-of-type(4n + 4):hover,
+.bento-group a.grid-cell:nth-of-type(4n + 4):focus-visible {
   background: #fdf7f9;
   color: #7a1e3a;
 }
 
-.offer-stack .grid-cell img {
+.bento-group a.grid-cell:nth-of-type(4n + 5),
+.bento-group a.grid-cell:nth-of-type(4n + 5):visited,
+.bento-group a.grid-cell:nth-of-type(4n + 5):hover,
+.bento-group a.grid-cell:nth-of-type(4n + 5):focus-visible {
+  background: #faf7fd;
+  color: #581d7a;
+}
+
+.bento-group .grid-cell img {
   height: 64px;
   margin: 0.5em 0;
 }
 
 @media only screen and (min-width: 1000px) {
-  .offer-stack {
+  .bento-group {
     grid-template-columns: repeat(2, 1fr);
     /* Bento treatment: let cells with explicit spans backfill any
        leftover slots so a taller "hero" cell coexists with normal
@@ -1536,7 +1546,7 @@ ul ul li {
   /* Make the first card (Funsize) tall — spans 2 rows on the left so
      it reads as the flagship acknowledgement. Center its contents to
      avoid a lonely block of copy floating at the top of a tall cell. */
-  .offer-stack > :first-child {
+  .bento-group > :first-child {
     grid-row: span 2;
     display: flex;
     flex-direction: column;
@@ -1545,7 +1555,7 @@ ul ul li {
 
   /* Scale the flagship illustration up so the tall cell doesn't feel
      empty inside. */
-  .offer-stack > :first-child img {
+  .bento-group > :first-child img {
     height: 96px;
   }
 }
