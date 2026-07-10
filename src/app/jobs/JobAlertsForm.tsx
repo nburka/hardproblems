@@ -180,7 +180,7 @@ export default function JobAlertsForm() {
 
   const headerCopy = (
     <div>
-      <strong>Daily jobs email</strong>
+      <strong>Custom daily alerts</strong>
       <p className={styles.headerBody}>
         One daily email with new jobs that match your filters. Unsubscribe
         anytime.
@@ -234,7 +234,7 @@ export default function JobAlertsForm() {
               </button>
               <div className={styles.header}>
                 <div>
-                  <strong id="alerts-modal-title">Daily jobs email</strong>
+                  <strong id="alerts-modal-title">Custom daily alerts</strong>
                   <p className={styles.headerBody}>
                     One daily email with new jobs that match your filters.
                     Unsubscribe anytime.
