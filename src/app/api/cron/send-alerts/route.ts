@@ -216,6 +216,9 @@ export async function GET(request: Request) {
       }
 
       // 5. Log every job URL to alert_sent so we don't send it again.
+      // Use upsert with `ignoreDuplicates: true` so a single already-
+      // logged row doesn't blow away the entire batch (which would
+      // leave the fresh rows unrecorded → they'd re-send tomorrow).
       const sentAt = new Date().toISOString();
       const insertRows = digestJobs.map((j) => ({
         subscriber_id: sub.id,
@@ -224,13 +227,12 @@ export async function GET(request: Request) {
       }));
       const { error: insertErr } = await db
         .from('alert_sent')
-        .insert(insertRows);
+        .upsert(insertRows, {
+          onConflict: 'subscriber_id,job_url',
+          ignoreDuplicates: true
+        });
       if (insertErr) {
-        // Send already succeeded — log but don't fail the run. The
-        // unique index on (subscriber_id, job_url) still protects
-        // against future re-sends of the same URL even if the write
-        // partially failed here.
-        console.error('[alerts/cron] alert_sent insert failed', insertErr, {
+        console.error('[alerts/cron] alert_sent upsert failed', insertErr, {
           subscriberId: sub.id,
           count: insertRows.length
         });
