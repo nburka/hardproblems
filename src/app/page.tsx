@@ -19,12 +19,8 @@ const COWORKING_HERO_SLUG = 'hard-problems-coworking-space';
 
 export default async function Home() {
   const articles = getAllArticles();
-  // Cap the main homepage listing at 11 total (1 hero + up to 10
-  // more). Anything past that only surfaces via the /articles/type/all
-  // page.
-  const HOMEPAGE_MAX_ARTICLES = 11;
   const heroArticle = articles[0];
-  let remainingArticles = articles.slice(1, HOMEPAGE_MAX_ARTICLES);
+  let remainingArticles = articles.slice(1);
 
   // Pin the coworking article into the secondary-hero slot.
   const coworkingIdx = remainingArticles.findIndex(

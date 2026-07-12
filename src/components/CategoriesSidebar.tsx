@@ -67,7 +67,7 @@ export default function CategoriesSidebar({
 
   return (
     <>
-      <h2 className={styles.categoriesHeading}>Content</h2>
+      <h2 className={styles.categoriesHeading}>Categories</h2>
       <ul className={styles.categoriesList}>
         {[allEntry, ...entries].map((entry) => {
           const isActive = entry.key === activeKey;
