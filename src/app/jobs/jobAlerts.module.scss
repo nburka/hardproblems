@@ -1,14 +1,3 @@
-// Signup callout at the top of the job board. Sits above the filter
-// controls, matches the site palette (dark-green button / pale-green
-// panel), and collapses gracefully on mobile.
-.wrapper {
-  margin: 0.5rem 0 1.5rem 0;
-  padding: 1.25rem 1.25rem 1rem 1.25rem;
-  background: var(--color-pale-green);
-  border: 1px solid var(--color-light-green);
-  border-radius: 8px;
-}
-
 .header {
   display: flex;
   align-items: flex-start;
@@ -135,7 +124,7 @@
 }
 
 .summary {
-  margin: 0.75rem 0 0 0;
+  margin: 0 0 0.75rem 0;
   font-size: var(--font-size-xs);
   line-height: 1.4;
   color: #555;
@@ -203,14 +192,33 @@
   color: var(--color-dark-green);
 }
 
-// Mobile-only trigger — hidden on desktop where the inline callout
-// renders instead. Presents the CTA as a compact link-styled button.
+// Trigger button — the ONLY on-page entry point to the alerts form.
+// Sits at the top of the results column as a row-shaped link with the
+// same pale-green top border every .job below it carries, so it reads
+// as the first entry in the list.
 .mobileLink {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1.1rem 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--color-pale-green);
+  color: var(--color-link);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
 }
 
-.mobileLinkArrow {
-  transition: transform 0.15s ease;
+.mobileLink:hover,
+.mobileLink:focus-visible {
+  color: var(--color-dark-green);
+  outline: none;
 }
 
 // Modal shell — position:fixed backdrop, centered card, portal-rendered
@@ -293,32 +301,3 @@
   }
 }
 
-// Breakpoint: hide the inline callout below 1000px (matches the site's
-// desktop/mobile split) and show the mobile trigger instead.
-@media only screen and (max-width: 999px) {
-  .wrapper {
-    display: none;
-  }
-
-  .mobileLink {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0 2rem 0;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    color: var(--color-link);
-    font: inherit;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .mobileLink:hover,
-  .mobileLink:focus-visible {
-    color: var(--color-dark-green);
-    outline: none;
-  }
-}

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Mail, Check, Loader2, X, BellRing } from 'lucide-react';
+import { Mail, Check, Loader2, X, MailPlus } from 'lucide-react';
 import { filtersSummary, serializeFilters } from '../../lib/alerts/filters';
 import styles from './jobAlerts.module.scss';
 
@@ -25,7 +25,6 @@ export default function JobAlertsForm() {
   const [mounted, setMounted] = useState(false);
   // Track email-input focus so we can reveal the "Alerts for: …"
   // summary only while the user is actively engaging with the form.
-  const [inputFocused, setInputFocused] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   // Portals need document.body — only render the modal after mount so
@@ -113,6 +112,11 @@ export default function JobAlertsForm() {
   // wrapper and the mobile modal.
   const renderForm = (): ReactNode => (
     <>
+      {hasFilters && (
+        <p className={styles.summary}>
+          Alerts for: <strong>{summary}</strong>
+        </p>
+      )}
       <form className={styles.form} onSubmit={onSubmit} noValidate>
         <label className={styles.field}>
           <span className="sr-only">Email address</span>
@@ -129,8 +133,6 @@ export default function JobAlertsForm() {
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            onFocus={() => setInputFocused(true)}
-            onBlur={() => setInputFocused(false)}
             disabled={status === 'submitting'}
             className={styles.input}
           />
@@ -165,11 +167,6 @@ export default function JobAlertsForm() {
           />
         </label>
       </form>
-      {hasFilters && inputFocused && (
-        <p className={styles.summary}>
-          Alerts for: <strong>{summary}</strong>
-        </p>
-      )}
       {error && <p className={styles.error}>{error}</p>}
       <p className={styles.terms}>
         We&rsquo;ll only email you jobs. See{' '}
@@ -178,32 +175,21 @@ export default function JobAlertsForm() {
     </>
   );
 
-  const headerCopy = (
-    <div>
-      <strong>Custom daily alerts</strong>
-      <p className={styles.headerBody}>
-        One daily email with new jobs that match your filters. Unsubscribe
-        anytime.
-      </p>
-    </div>
-  );
-
   return (
     <>
-      {/* Desktop inline callout — hidden below the mobile breakpoint. */}
-      <div className={styles.wrapper}>
-        <div className={styles.header}>{headerCopy}</div>
-        {status === 'sent' ? renderSent() : renderForm()}
-      </div>
-
-      {/* Mobile-only trigger — hidden on desktop. */}
+      {/* Trigger link — same on desktop and mobile. Opens the modal
+          where the actual signup form lives. */}
       <button
         type="button"
         className={styles.mobileLink}
         onClick={() => setModalOpen(true)}
       >
-        <BellRing size={16} strokeWidth={1.75} aria-hidden="true" />
-        <span>Get email alerts for jobs</span>
+        <MailPlus size={16} strokeWidth={1.75} aria-hidden="true" />
+        <span>
+          {hasFilters
+            ? 'Get email alerts for jobs that match filters'
+            : 'Get email alerts'}
+        </span>
       </button>
 
       {/* Modal — mounts into document.body via portal so it escapes any

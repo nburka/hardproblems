@@ -698,7 +698,6 @@ export default function JobsList({
         {filterHeader && (
           <div className={styles.filterHeader}>{filterHeader}</div>
         )}
-        <JobAlertsForm />
         <label className={styles.filterField}>
           <span className={`${styles.filterLabel} small-header`}>Country</span>
           <select
@@ -918,6 +917,7 @@ export default function JobsList({
           </div>
         )}
 
+        <JobAlertsForm />
         <ul className={styles.jobs}>
           {filtered.map((job, i) => {
             const date = job.date ? new Date(job.date) : null;
