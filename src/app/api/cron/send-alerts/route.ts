@@ -44,6 +44,14 @@ const RECENT_DIGEST_HOURS = 20;
 // filters so broad that "new since last digest" balloons.
 const MAX_JOBS_PER_DIGEST = 30;
 
+// Only include jobs whose listed date falls within this rolling window.
+// Keeps digests focused on recent listings rather than working backwards
+// through the historical backlog whenever the daily quota isn't met.
+// A 3-day window means a cron miss (or the subscriber signing up
+// yesterday) still catches recently-added jobs on the next successful
+// run.
+const RECENT_JOBS_WINDOW_DAYS = 3;
+
 type ActiveSubscriber = {
   id: string;
   email: string;
@@ -131,7 +139,18 @@ export async function GET(request: Request) {
       // matching logic stays perfectly aligned with the UI.
       const params = filtersToSearchParams(sub.filters);
       const parsed = parseFiltersFromParams(params);
-      const matching = filterJobs(jobs, parsed);
+      const allMatching = filterJobs(jobs, parsed);
+
+      // Restrict to jobs listed within the last N days so the digest
+      // stays focused on "recent" listings and doesn't slowly drain
+      // the older backlog whenever the daily count is low.
+      const cutoffMs =
+        now - RECENT_JOBS_WINDOW_DAYS * 24 * 3600 * 1000;
+      const matching = allMatching.filter((j) => {
+        if (!j.date) return false;
+        const jobMs = new Date(j.date).getTime();
+        return !Number.isNaN(jobMs) && jobMs >= cutoffMs;
+      });
 
       if (matching.length === 0) {
         totals.skipped++;
