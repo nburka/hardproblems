@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Mail, Check, Loader2, X, MailPlus } from 'lucide-react';
+import { Mail, Check, Loader2, X, MailPlus, BadgeInfo } from 'lucide-react';
 import { filtersSummary, serializeFilters } from '../../lib/alerts/filters';
 import styles from './jobAlerts.module.scss';
 
@@ -112,9 +112,22 @@ export default function JobAlertsForm() {
   // wrapper and the mobile modal.
   const renderForm = (): ReactNode => (
     <>
-      {hasFilters && (
+      {hasFilters ? (
         <p className={styles.summary}>
           Alerts for: <strong>{summary}</strong>
+        </p>
+      ) : (
+        <p className={styles.hint}>
+          <BadgeInfo
+            className={styles.hintIcon}
+            size={18}
+            strokeWidth={1.75}
+            aria-hidden="true"
+          />
+          <span>
+            <strong>Filter first?</strong> Add filters to get targeted job
+            emails for your location or type of role.
+          </span>
         </p>
       )}
       <form className={styles.form} onSubmit={onSubmit} noValidate>
