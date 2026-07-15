@@ -732,6 +732,21 @@ export default function JobsList({
           </select>
         </label>
 
+        <div className={styles.filterField}>
+          <span className={`${styles.filterLabel} small-header`}>Our Pick</span>
+          <div className={styles.checkboxes}>
+            <label className={styles.checkbox}>
+              <input
+                type="checkbox"
+                checked={picksOnly}
+                onChange={togglePicksOnly}
+              />
+              <span className={styles.checkboxBox} aria-hidden="true" />
+              &lsquo;Our pick&rsquo;
+            </label>
+          </div>
+        </div>
+
         <button
           type="button"
           className={styles.moreFiltersToggle}
