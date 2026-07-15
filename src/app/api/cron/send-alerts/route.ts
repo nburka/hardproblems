@@ -1,3 +1,4 @@
+import { timingSafeEqual } from 'crypto';
 import { NextResponse } from 'next/server';
 import { fetchJobs } from '../../../jobs/fetchJobs';
 import { filterJobs, parseFiltersFromParams } from '../../../jobs/filters';
@@ -64,7 +65,19 @@ function isAuthorized(request: Request): boolean {
   const expected = process.env.CRON_SECRET;
   if (!expected) return false;
   const header = request.headers.get('authorization') ?? '';
-  return header === `Bearer ${expected}`;
+  const expectedHeader = `Bearer ${expected}`;
+  // Length pre-check — timingSafeEqual requires equal-length buffers.
+  // The length itself is not sensitive (`Bearer ` + fixed-length secret),
+  // so a fast-path bail on length mismatch doesn't leak useful info.
+  if (header.length !== expectedHeader.length) return false;
+  try {
+    return timingSafeEqual(
+      Buffer.from(header),
+      Buffer.from(expectedHeader)
+    );
+  } catch {
+    return false;
+  }
 }
 
 export async function GET(request: Request) {

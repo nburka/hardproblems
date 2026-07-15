@@ -162,6 +162,7 @@ export default function Page() {
         <h3 className="space-top-large" id="keep">How long we keep information</h3>
         <p>Newsletter email addresses are kept until you unsubscribe from the newsletter.</p>
         <p>Job-alert email addresses and saved filter preferences are kept until you unsubscribe, at which point the record is permanently deleted within 30 days.</p>
+        <p>When you sign up for a job alert we record a truncated version of your IP address (the last octet is zeroed for IPv4, or the address is reduced to its /48 prefix for IPv6) as an anti-abuse signal. We do not keep the full address.</p>
         <p>Contact information provided for the purpose of attending an event or applying for a service are removed after 3 months.</p>
 
         <h3 className="space-top-large">Last updated</h3>

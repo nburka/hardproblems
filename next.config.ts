@@ -27,27 +27,32 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
-    return [
+    // Baseline site-wide security headers. Nothing here is aggressive
+    // (no strict script-src CSP, which would require nonces on every
+    // Next.js inline script) but they meaningfully limit clickjacking,
+    // MIME-sniffing, and referrer leakage.
+    const security = [
+      { key: 'X-Frame-Options', value: 'DENY' },
+      { key: 'X-Content-Type-Options', value: 'nosniff' },
       {
-        // matching all API routes
-        source: '/api/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: 'https://api.beehiiv.com'
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,DELETE,PATCH,POST,PUT'
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value:
-              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-          }
-        ]
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin'
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+      },
+      {
+        key: 'Strict-Transport-Security',
+        value: 'max-age=63072000; includeSubDomains; preload'
       }
+    ];
+    return [
+      { source: '/:path*', headers: security }
+      // Note: the earlier CORS block on /api/* was removed — it allowed
+      // credentials from api.beehiiv.com, which never calls this site;
+      // the config was accidental / harmless but signaled confused
+      // intent to auditors.
     ];
   },
   images: {

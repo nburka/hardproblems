@@ -23,6 +23,23 @@ export function clientIp(request: Request): string {
   );
 }
 
+// Return a coarse-grained IP suitable for storage as anti-abuse signal
+// without keeping personally-identifying detail. Zeros out the final
+// octet for IPv4 and collapses IPv6 to its first /48 block. GDPR-safer
+// pattern that still lets us group repeat abusive signups. Returns null
+// for unknown / malformed inputs.
+export function truncateIp(ip: string | null | undefined): string | null {
+  if (!ip || ip === 'unknown') return null;
+  const trimmed = ip.trim();
+  const ipv4 = trimmed.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3})\.\d{1,3}$/);
+  if (ipv4) return `${ipv4[1]}.0`;
+  const ipv6 = trimmed.match(
+    /^([0-9a-f]{1,4}:[0-9a-f]{1,4}:[0-9a-f]{1,4}):/i
+  );
+  if (ipv6) return `${ipv6[1]}::`;
+  return null;
+}
+
 export function isAllowedOrigin(request: Request): boolean {
   const originHeader =
     request.headers.get('origin') ?? request.headers.get('referer') ?? '';
@@ -39,7 +56,10 @@ export function isAllowedOrigin(request: Request): boolean {
     'localhost:3000',
     'localhost:3001'
   ];
-  if (host.endsWith('.vercel.app')) return true;
+  // Allow only OUR project's Vercel preview URLs, not any `*.vercel.app`
+  // deployment (which would let anyone host a CSRF page there).
+  // Preview hosts look like `hardproblems-<slug>-hard-problems.vercel.app`.
+  if (host.endsWith('-hard-problems.vercel.app')) return true;
   return allowed.includes(host);
 }
 

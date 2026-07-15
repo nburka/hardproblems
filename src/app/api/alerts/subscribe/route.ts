@@ -15,8 +15,10 @@ import {
   isAllowedOrigin,
   looksLikeBot,
   rateLimit,
-  siteUrl
+  siteUrl,
+  truncateIp
 } from '../../../../lib/alerts/http';
+import { isAllowedByRateLimit } from '../../../../lib/alerts/rate-limit';
 
 // POST /api/alerts/subscribe
 // Body: { email: string, filters: Record<string, string>, hp?: string }
@@ -40,7 +42,11 @@ export async function POST(request: Request) {
   }
 
   const ip = clientIp(request);
-  if (!rateLimit(ip)) {
+  // Durable Upstash-backed limit first (works across serverless
+  // instances). Falls back to the per-instance in-memory limiter for
+  // local dev / when Upstash isn't configured.
+  const upstashOk = await isAllowedByRateLimit(ip);
+  if (!upstashOk || !rateLimit(ip)) {
     return NextResponse.json(
       { ok: false, error: 'Too many attempts. Please try again shortly.' },
       { status: 429 }
@@ -136,7 +142,7 @@ export async function POST(request: Request) {
         unsubscribe_token,
         confirmed_at: null,
         unsubscribed_at: null,
-        signup_ip: ip === 'unknown' ? null : ip
+        signup_ip: truncateIp(ip)
       })
       .eq('id', existing.id);
     if (updateErr) {
@@ -156,7 +162,7 @@ export async function POST(request: Request) {
         filters,
         confirm_token,
         unsubscribe_token,
-        signup_ip: ip === 'unknown' ? null : ip
+        signup_ip: truncateIp(ip)
       })
       .select('id')
       .single();

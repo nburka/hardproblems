@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isAllowedByRateLimit } from '../../../lib/alerts/rate-limit';
 
 // Server-side endpoint that proxies newsletter signups to the Beehiiv
 // API. Called from the custom NewsletterForm client component so the
@@ -77,8 +78,9 @@ function isAllowedOrigin(request: Request): boolean {
     'localhost:3000',
     'localhost:3001'
   ];
-  // Also allow Vercel preview deployments.
-  if (host.endsWith('.vercel.app')) return true;
+  // Allow only OUR project's Vercel preview URLs, not any `*.vercel.app`
+  // (which would let anyone stand up a phishing / CSRF page there).
+  if (host.endsWith('-hard-problems.vercel.app')) return true;
   return allowed.includes(host);
 }
 
@@ -108,9 +110,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // 2. Per-IP rate limit.
+  // 2. Per-IP rate limit. Durable Upstash-backed check first so we
+  // survive Vercel's horizontal fan-out; per-instance in-memory
+  // limiter is kept as a fallback for local dev.
   const ip = clientIp(request);
-  if (!rateLimit(ip)) {
+  const upstashOk = await isAllowedByRateLimit(ip);
+  if (!upstashOk || !rateLimit(ip)) {
     return NextResponse.json(
       { ok: false, error: 'Too many attempts. Please try again shortly.' },
       { status: 429 }
