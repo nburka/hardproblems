@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import MarkdownIt from 'markdown-it';
+import sanitizeHtml from 'sanitize-html';
 import markdownItAttrs from 'markdown-it-attrs';
 
 // All articles live as Markdown files under content/articles/. Adding a new
@@ -32,6 +33,94 @@ const md: MarkdownIt = new MarkdownIt({
   linkify: true,
   typographer: true
 }).use(markdownItAttrs);
+
+// Defense-in-depth for markdown rendering. Source articles live in the
+// repo and are fully trusted today, but running the rendered HTML
+// through a strict allowlist means an accidentally-added <script> or
+// on* handler in a markdown file (or a future CMS ingestion path) can't
+// execute in a reader's browser.
+const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
+  allowedTags: [
+    ...sanitizeHtml.defaults.allowedTags,
+    'img',
+    'figure',
+    'figcaption',
+    'video',
+    'source',
+    'iframe',
+    'span',
+    'del',
+    'sub',
+    'sup'
+  ],
+  allowedAttributes: {
+    ...sanitizeHtml.defaults.allowedAttributes,
+    // NB: sanitize-html treats a tag-specific list as REPLACING the '*'
+    // wildcard for that tag. Anything we want on <a>, <img>, etc. must
+    // be listed here explicitly — including `class`, which our styles
+    // (e.g. `.article-image-link { display: inline-block }`) depend on.
+    '*': ['class', 'id', 'aria-hidden'],
+    a: ['href', 'name', 'target', 'rel', 'class', 'id'],
+    img: [
+      'src',
+      'alt',
+      'width',
+      'height',
+      'loading',
+      'srcset',
+      'sizes',
+      'class',
+      'id'
+    ],
+    video: [
+      'src',
+      'poster',
+      'autoplay',
+      'loop',
+      'muted',
+      'playsinline',
+      'preload',
+      'controls',
+      'width',
+      'height',
+      'class',
+      'id'
+    ],
+    source: ['src', 'type'],
+    iframe: [
+      'src',
+      'width',
+      'height',
+      'title',
+      'allow',
+      'allowfullscreen',
+      'loading',
+      'referrerpolicy',
+      'style',
+      'class',
+      'id'
+    ],
+    div: ['class', 'id'],
+    span: ['class', 'id']
+  },
+  allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+  allowedSchemesAppliedToAttributes: ['href', 'src', 'poster'],
+  // Only permit iframes from known-embed sources we actually use in
+  // articles (YouTube nocookie for videos, Google Maps for the
+  // coworking location). Anything else gets stripped.
+  allowedIframeHostnames: [
+    'www.youtube.com',
+    'www.youtube-nocookie.com',
+    'www.google.com',
+    'maps.google.com'
+  ],
+  // Enforce link hygiene — external links get target=_blank +
+  // rel="noopener noreferrer" so opened tabs can't reach back into
+  // our page context.
+  transformTags: {
+    a: sanitizeHtml.simpleTransform('a', { rel: 'noopener noreferrer' }, true)
+  }
+};
 
 export type ArticleStatus = 'draft' | 'review' | 'published';
 
@@ -121,7 +210,10 @@ function readArticleFile(filename: string): Article | null {
   const parsed = matter(raw);
   const data = parsed.data as Partial<Article>;
   const content = parsed.content;
-  const contentHtml = wrapImagesInLinks(md.render(content));
+  const contentHtml = sanitizeHtml(
+    wrapImagesInLinks(md.render(content)),
+    SANITIZE_OPTIONS
+  );
 
   return {
     slug: typeof data.slug === 'string' && data.slug ? data.slug : slug,

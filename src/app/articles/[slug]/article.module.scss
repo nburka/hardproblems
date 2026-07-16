@@ -647,18 +647,53 @@
     width: 100%;
   }
 
+  // Each image is wrapped in an <a> by wrapImagesInLinks so the
+  // reader can open the full-size photo. Grid children can therefore
+  // be either <img> (unwrapped) or <a> containing an <img>.
+  //
+  // Strategy: give each grid child a definite size (width/height 100%
+  // of its cell) AND `position: relative`, then absolutely position
+  // the inner <img> to fill it. That way the `object-fit: cover` crop
+  // is always relative to the actual grid cell, regardless of how the
+  // percentage-height chain resolves through the anchor.
+  :global(.image-bricks) > a,
   :global(.image-bricks) > img {
     margin: 0;
     width: 100%;
     height: 100%;
     max-width: none;
-    object-fit: cover;
     border-radius: 0;
     transform: none;
     margin-left: 0;
   }
 
-  // First image is the hero — spans both grid rows in the left column.
+  :global(.image-bricks) > img {
+    object-fit: cover;
+  }
+
+  :global(.image-bricks) > a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global(.image-bricks) > a > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    max-width: none;
+    border-radius: 0;
+    // Reset the desktop full-bleed transform applied by
+    // `.body img:not(.float-right)` — without this the img inside the
+    // anchor gets translateX(-50%)'d and sits half-off its grid cell.
+    transform: none;
+  }
+
+  // First cell is the hero — spans both grid rows in the left column.
+  :global(.image-bricks) > a:first-child,
   :global(.image-bricks) > img:first-child {
     grid-row: span 2;
   }
@@ -890,11 +925,19 @@
     display: block;
     aspect-ratio: auto;
   }
+  .body :global(.image-bricks) > a,
   .body :global(.image-bricks) > img {
+    display: block;
     margin: 0.75rem 0;
     width: 100%;
     height: auto;
   }
+  .body :global(.image-bricks) > a > img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .body :global(.image-bricks) > a:first-child,
   .body :global(.image-bricks) > img:first-child {
     grid-row: auto;
   }

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "next-dev",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["dev", "--port", "3100"],
+      "port": 3100,
+      "autoPort": true
+    }
+  ]
+}
