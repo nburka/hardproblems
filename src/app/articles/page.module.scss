@@ -258,7 +258,10 @@
     text-align: center;
   }
 
-  .heroList .articleCardTitle,
+  .heroList .articleCardTitle {
+    font-size: var(--font-size-2xl);
+  }
+
   .articleCardHero .articleCardTitle {
     font-size: var(--font-size-xl);
   }
