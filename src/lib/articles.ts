@@ -55,14 +55,53 @@ const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
   ],
   allowedAttributes: {
     ...sanitizeHtml.defaults.allowedAttributes,
-    // Everything we might want in an article body.
+    // NB: sanitize-html treats a tag-specific list as REPLACING the '*'
+    // wildcard for that tag. Anything we want on <a>, <img>, etc. must
+    // be listed here explicitly — including `class`, which our styles
+    // (e.g. `.article-image-link { display: inline-block }`) depend on.
     '*': ['class', 'id', 'aria-hidden'],
-    a: ['href', 'name', 'target', 'rel'],
-    img: ['src', 'alt', 'width', 'height', 'loading', 'srcset', 'sizes'],
-    video: ['src', 'poster', 'autoplay', 'loop', 'muted', 'playsinline', 'preload', 'controls', 'width', 'height'],
+    a: ['href', 'name', 'target', 'rel', 'class', 'id'],
+    img: [
+      'src',
+      'alt',
+      'width',
+      'height',
+      'loading',
+      'srcset',
+      'sizes',
+      'class',
+      'id'
+    ],
+    video: [
+      'src',
+      'poster',
+      'autoplay',
+      'loop',
+      'muted',
+      'playsinline',
+      'preload',
+      'controls',
+      'width',
+      'height',
+      'class',
+      'id'
+    ],
     source: ['src', 'type'],
-    iframe: ['src', 'width', 'height', 'title', 'allow', 'allowfullscreen', 'loading', 'referrerpolicy', 'style'],
-    div: ['class', 'id']
+    iframe: [
+      'src',
+      'width',
+      'height',
+      'title',
+      'allow',
+      'allowfullscreen',
+      'loading',
+      'referrerpolicy',
+      'style',
+      'class',
+      'id'
+    ],
+    div: ['class', 'id'],
+    span: ['class', 'id']
   },
   allowedSchemes: ['http', 'https', 'mailto', 'tel'],
   allowedSchemesAppliedToAttributes: ['href', 'src', 'poster'],
