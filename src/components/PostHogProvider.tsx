@@ -37,7 +37,32 @@ if (typeof window !== 'undefined') {
       // Auto-capture uncaught JS errors + unhandled promise rejections
       // as `$exception` events. Shows up in PostHog under Error Tracking.
       // Anonymous — no user identification, matches the cookieless posture.
-      capture_exceptions: true
+      capture_exceptions: true,
+      // Drop noise before it ships. Browser extensions frequently
+      // throw inside their own injected scripts; because those scripts
+      // are cross-origin and don't set CORS, the browser hands us a
+      // bare "Script error." with no stack. Nothing to debug and
+      // nothing we can fix — filter them out so the Error Tracking
+      // dashboard stays useful. Anything with a real stack frame
+      // still passes through.
+      before_send: (event) => {
+        if (!event || event.event !== '$exception') return event;
+        const excList = (event.properties as Record<string, unknown> | undefined)
+          ?.$exception_list;
+        const first = Array.isArray(excList) ? excList[0] : null;
+        if (!first || typeof first !== 'object') return event;
+        const value = String(
+          (first as { value?: unknown }).value ?? ''
+        ).trim();
+        const frames = (
+          first as { stacktrace?: { frames?: unknown[] } }
+        ).stacktrace?.frames;
+        const hasRealStack = Array.isArray(frames) && frames.length > 0;
+        if (!hasRealStack && /^script error\.?$/i.test(value)) {
+          return null;
+        }
+        return event;
+      }
     });
     posthogInitialised = true;
   }

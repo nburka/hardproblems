@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { alertsDb } from '../../../../lib/alerts/supabase';
 import { siteUrl } from '../../../../lib/alerts/http';
+import { logError } from '../../../../lib/posthog-server';
 
 // GET  /api/alerts/unsubscribe?token=… — user-facing link.
 // POST /api/alerts/unsubscribe?token=… — RFC 8058 one-click.
@@ -11,7 +12,7 @@ async function unsubscribeByToken(token: string): Promise<boolean> {
   try {
     db = alertsDb();
   } catch (err) {
-    console.error('[alerts/unsubscribe] misconfigured', err);
+    logError('[alerts/unsubscribe] misconfigured', err);
     return false;
   }
   const { data: sub, error: findErr } = await db
@@ -30,7 +31,7 @@ async function unsubscribeByToken(token: string): Promise<boolean> {
     })
     .eq('id', sub.id);
   if (updateErr) {
-    console.error('[alerts/unsubscribe] update failed', updateErr);
+    logError('[alerts/unsubscribe] update failed', updateErr);
     return false;
   }
   return true;

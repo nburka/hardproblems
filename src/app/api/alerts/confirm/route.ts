@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { alertsDb } from '../../../../lib/alerts/supabase';
 import { siteUrl } from '../../../../lib/alerts/http';
+import { logError } from '../../../../lib/posthog-server';
 
 // GET /api/alerts/confirm?token=…
 // Idempotent — clicking twice succeeds twice. Redirects to a small
@@ -23,7 +24,7 @@ export async function GET(request: Request) {
   try {
     db = alertsDb();
   } catch (err) {
-    console.error('[alerts/confirm] misconfigured', err);
+    logError('[alerts/confirm] misconfigured', err);
     return statusRedirect('invalid');
   }
 
@@ -48,7 +49,7 @@ export async function GET(request: Request) {
     .eq('id', sub.id);
 
   if (updateErr) {
-    console.error('[alerts/confirm] update failed', updateErr);
+    logError('[alerts/confirm] update failed', updateErr);
     return statusRedirect('invalid');
   }
 

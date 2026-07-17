@@ -19,6 +19,7 @@ import {
   truncateIp
 } from '../../../../lib/alerts/http';
 import { isAllowedByRateLimit } from '../../../../lib/alerts/rate-limit';
+import { logError } from '../../../../lib/posthog-server';
 
 // POST /api/alerts/subscribe
 // Body: { email: string, filters: Record<string, string>, hp?: string }
@@ -95,7 +96,7 @@ export async function POST(request: Request) {
   try {
     db = alertsDb();
   } catch (err) {
-    console.error('[alerts/subscribe] misconfigured', err);
+    logError('[alerts/subscribe] misconfigured', err);
     return NextResponse.json(
       { ok: false, error: 'Job alerts are not configured yet.' },
       { status: 500 }
@@ -112,7 +113,7 @@ export async function POST(request: Request) {
     .maybeSingle();
 
   if (findErr) {
-    console.error('[alerts/subscribe] lookup failed', findErr);
+    logError('[alerts/subscribe] lookup failed', findErr);
     return NextResponse.json(
       { ok: false, error: 'Something went wrong. Please try again.' },
       { status: 500 }
@@ -146,7 +147,9 @@ export async function POST(request: Request) {
       })
       .eq('id', existing.id);
     if (updateErr) {
-      console.error('[alerts/subscribe] update failed', updateErr);
+      logError('[alerts/subscribe] update failed', updateErr, {
+        subscriberId: existing.id
+      });
       return NextResponse.json(
         { ok: false, error: 'Something went wrong. Please try again.' },
         { status: 500 }
@@ -167,7 +170,7 @@ export async function POST(request: Request) {
       .select('id')
       .single();
     if (insertErr || !inserted) {
-      console.error('[alerts/subscribe] insert failed', insertErr);
+      logError('[alerts/subscribe] insert failed', insertErr);
       return NextResponse.json(
         { ok: false, error: 'Something went wrong. Please try again.' },
         { status: 500 }
@@ -201,7 +204,7 @@ export async function POST(request: Request) {
       }
     });
     if (result.error) {
-      console.error('[alerts/subscribe] resend returned error', result.error, {
+      logError('[alerts/subscribe] resend returned error', result.error, {
         subscriberId
       });
       return NextResponse.json(
@@ -213,7 +216,7 @@ export async function POST(request: Request) {
       );
     }
   } catch (err) {
-    console.error('[alerts/subscribe] resend threw', err, { subscriberId });
+    logError('[alerts/subscribe] resend threw', err, { subscriberId });
     return NextResponse.json(
       {
         ok: false,

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { isAllowedByRateLimit } from '../../../lib/alerts/rate-limit';
+import { logError } from '../../../lib/posthog-server';
 
 // Server-side endpoint that proxies newsletter signups to the Beehiiv
 // API. Called from the custom NewsletterForm client component so the
@@ -183,11 +184,9 @@ export async function POST(request: Request) {
 
     const responseText = await res.text().catch(() => '');
     if (!res.ok) {
-      console.error(
-        '[subscribe] Beehiiv error',
-        res.status,
-        responseText
-      );
+      logError('[subscribe] Beehiiv error', new Error(responseText || 'Beehiiv non-2xx'), {
+        status: res.status
+      });
       return NextResponse.json(
         {
           ok: false,
@@ -207,7 +206,7 @@ export async function POST(request: Request) {
     }
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error('[subscribe] Beehiiv request failed', err);
+    logError('[subscribe] Beehiiv request failed', err);
     return NextResponse.json(
       {
         ok: false,

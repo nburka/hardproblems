@@ -12,6 +12,7 @@ import {
 } from '../../../../lib/alerts/emails';
 import { filtersToSearchParams } from '../../../../lib/alerts/filters';
 import { siteUrl } from '../../../../lib/alerts/http';
+import { logError } from '../../../../lib/posthog-server';
 
 // GET /api/cron/send-alerts
 //
@@ -91,7 +92,7 @@ export async function GET(request: Request) {
   try {
     db = alertsDb();
   } catch (err) {
-    console.error('[alerts/cron] misconfigured', err);
+    logError('[alerts/cron] misconfigured', err);
     return NextResponse.json({ ok: false, error: 'misconfigured' }, {
       status: 500
     });
@@ -113,7 +114,7 @@ export async function GET(request: Request) {
     .limit(MAX_SUBSCRIBERS_PER_RUN);
 
   if (fetchErr) {
-    console.error('[alerts/cron] subscribers fetch failed', fetchErr);
+    logError('[alerts/cron] subscribers fetch failed', fetchErr);
     return NextResponse.json({ ok: false, error: 'db_fetch_failed' }, {
       status: 500
     });
@@ -179,7 +180,7 @@ export async function GET(request: Request) {
         .select('job_url')
         .eq('subscriber_id', sub.id);
       if (sentErr) {
-        console.error('[alerts/cron] alert_sent lookup failed', sentErr, {
+        logError('[alerts/cron] alert_sent lookup failed', sentErr, {
           subscriberId: sub.id
         });
         totals.failed++;
@@ -240,7 +241,7 @@ export async function GET(request: Request) {
           continue;
         }
       } catch (err) {
-        console.error('[alerts/cron] resend threw', err, {
+        logError('[alerts/cron] resend threw', err, {
           subscriberId: sub.id
         });
         totals.failed++;
@@ -264,7 +265,7 @@ export async function GET(request: Request) {
           ignoreDuplicates: true
         });
       if (insertErr) {
-        console.error('[alerts/cron] alert_sent upsert failed', insertErr, {
+        logError('[alerts/cron] alert_sent upsert failed', insertErr, {
           subscriberId: sub.id,
           count: insertRows.length
         });
@@ -276,14 +277,14 @@ export async function GET(request: Request) {
         .update({ last_digest_at: sentAt })
         .eq('id', sub.id);
       if (touchErr) {
-        console.error('[alerts/cron] last_digest_at update failed', touchErr, {
+        logError('[alerts/cron] last_digest_at update failed', touchErr, {
           subscriberId: sub.id
         });
       }
 
       totals.sent++;
     } catch (err) {
-      console.error('[alerts/cron] subscriber failed', err, {
+      logError('[alerts/cron] subscriber failed', err, {
         subscriberId: sub.id
       });
       totals.failed++;
