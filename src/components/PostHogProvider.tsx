@@ -33,7 +33,11 @@ if (typeof window !== 'undefined') {
       // navigation doesn't trigger PostHog's default pageview detection.
       capture_pageview: false,
       capture_pageleave: true,
-      person_profiles: 'identified_only'
+      person_profiles: 'identified_only',
+      // Auto-capture uncaught JS errors + unhandled promise rejections
+      // as `$exception` events. Shows up in PostHog under Error Tracking.
+      // Anonymous — no user identification, matches the cookieless posture.
+      capture_exceptions: true
     });
     posthogInitialised = true;
   }
