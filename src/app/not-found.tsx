@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import NotFoundTracker from '../components/NotFoundTracker';
 
 export const metadata: Metadata = {
   title: 'Page not found — Hard Problems',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
+      <NotFoundTracker />
       <section
         style={{
           width: '100%',
