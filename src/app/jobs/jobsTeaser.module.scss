@@ -21,7 +21,13 @@
 // Applied alongside the main board's `.job` class to strip the top /
 // bottom divider borders and tighten the vertical padding — the teaser
 // reads cleaner and denser than the main board.
-.teaserJob {
+//
+// Nested inside `.teaser` (bumping the selector to two classes) so it
+// deterministically beats `.job` regardless of the order Next.js loads
+// the two CSS module chunks. Without this, padding would flip between
+// 1.1rem (loose) and 0.8rem (tight) depending on which chunk streamed
+// first — visible as a spacing shimmer on refresh.
+.teaser .teaserJob {
   padding: 0.8rem 0;
   border-top: 0 !important;
   border-bottom: 0 !important;
@@ -29,18 +35,24 @@
 
 // Suppress the main board's whole-row hover background — the teaser
 // keeps its rows visually static.
-.teaserJob:hover {
+.teaser .teaserJob:hover {
   background: transparent !important;
 }
 
 // Applied alongside the main board's `.jobTitle` and `.jobMeta` to
 // drop the title and meta line one step in the type scale (tags stay
 // at their board size).
-.teaserTitle {
+//
+// Nested inside `.teaser` for the same reason as `.teaser .teaserJob`
+// above — both classes on the row are single-specificity, so the
+// cascade winner depends on which CSS module chunk streams first.
+// Nesting bumps these overrides to two classes so the teaser sizes
+// always win.
+.teaser .teaserTitle {
   font-size: var(--font-size-base);
 }
 
-.teaserMeta {
+.teaser .teaserMeta {
   font-size: var(--font-size-xs);
 
   // Force every meta-line child (company, country, salary) to inherit

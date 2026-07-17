@@ -34,3 +34,7 @@ yarn-error.log*
 .env.production.local
 .yarnrc
 .yarn/releases/yarn-1.22.22.cjs
+
+# Claude Code — per-user settings (permissions, prefs). Shared files
+# in .claude/ (launch.json, agents, workflows) stay tracked.
+.claude/settings.local.json
