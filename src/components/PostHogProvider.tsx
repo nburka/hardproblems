@@ -38,13 +38,19 @@ if (typeof window !== 'undefined') {
       // as `$exception` events. Shows up in PostHog under Error Tracking.
       // Anonymous — no user identification, matches the cookieless posture.
       capture_exceptions: true,
-      // Drop noise before it ships. Browser extensions frequently
-      // throw inside their own injected scripts; because those scripts
-      // are cross-origin and don't set CORS, the browser hands us a
-      // bare "Script error." with no stack. Nothing to debug and
-      // nothing we can fix — filter them out so the Error Tracking
-      // dashboard stays useful. Anything with a real stack frame
-      // still passes through.
+      // Drop noise before it ships. Two well-known browser-noise
+      // exceptions clog Error Tracking without ever representing a
+      // real bug:
+      //   1. "Script error." — a cross-origin exception from a
+      //      browser-extension script whose details the browser
+      //      strips for security.
+      //   2. "ResizeObserver loop completed with undelivered
+      //      notifications." / "ResizeObserver loop limit exceeded" —
+      //      Chrome / Safari's warning that an observer callback
+      //      triggered layout work; the browser recovers automatically,
+      //      Chrome's own DevRel calls it safe to ignore.
+      // Neither is actionable, so we drop them here rather than paying
+      // for them and letting them drown the real signal.
       before_send: (event) => {
         if (!event || event.event !== '$exception') return event;
         const excList = (event.properties as Record<string, unknown> | undefined)
@@ -59,6 +65,9 @@ if (typeof window !== 'undefined') {
         ).stacktrace?.frames;
         const hasRealStack = Array.isArray(frames) && frames.length > 0;
         if (!hasRealStack && /^script error\.?$/i.test(value)) {
+          return null;
+        }
+        if (/^ResizeObserver loop /i.test(value)) {
           return null;
         }
         return event;
