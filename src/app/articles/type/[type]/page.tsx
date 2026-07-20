@@ -14,6 +14,11 @@ import {
 } from '../../../../lib/articles';
 import styles from '../../page.module.scss';
 
+// Regenerate at most every hour so scheduled articles (status:
+// published + future `publishedAt`) surface in each category listing
+// once their date arrives — no redeploy required.
+export const revalidate = 3600;
+
 // Assemble the [All, …type slugs…, …topic slugs…] entries the sidebar
 // + dropdown share. Server-side so the client dropdown doesn't have to
 // touch the filesystem-backed article helpers.
