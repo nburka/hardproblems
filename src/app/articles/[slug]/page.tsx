@@ -16,6 +16,11 @@ import {
 import { getAuthorUrl } from '../../../lib/authors';
 import styles from './article.module.scss';
 
+// Regenerate at most every hour so a scheduled article's own URL
+// (status: published + future `publishedAt`) starts serving once
+// its date arrives — no redeploy required.
+export const revalidate = 3600;
+
 // Hand-picked slugs shown in the "Top articles" rail at the bottom of
 // every article page. Order here is the order they render. Extra slugs
 // past the first three serve as backfill when the current article is
@@ -96,9 +101,12 @@ export async function generateMetadata({
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
-  // 404 if the article doesn't exist at all. Drafts and in-review articles
-  // 404 in production but are viewable in `next dev` so authors can preview
-  // them at /articles/<slug> before flipping `status: published`.
+  // 404 if the article doesn't exist at all, or if it's a draft /
+  // in-review item. Articles whose `publishedAt` is in the future ARE
+  // still served at their canonical URL — they're just hidden from
+  // listings and search until their date arrives, so a direct link
+  // (from an author preview, an early recipient, or a scheduled tweet)
+  // continues to work.
   if (
     !article ||
     (article.status !== 'published' &&

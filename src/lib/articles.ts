@@ -253,15 +253,50 @@ function estimateReadingTime(content: string): number {
   return Math.max(1, Math.ceil(words / 250));
 }
 
-// Returns all published articles, newest-first. Drafts and review-status
-// items are excluded from the public listing but `getArticleBySlug` still
-// returns them (gated on `status` in the page component) so authors can
-// preview by visiting the URL directly during local dev.
+// True if the article should appear in PUBLIC LISTINGS right now:
+// status is `published` AND its `publishedAt` date (if set) is on or
+// before today in UTC.
+//
+// An article with a future `publishedAt` is "scheduled": it stays out
+// of every listing (homepage, category pages, feeds, sitemap) AND out
+// of any future search index / results, but its canonical
+// `/articles/<slug>` URL still serves the article — so a direct link
+// (from an author preview, an early recipient, a scheduled tweet)
+// continues to work. Once the date arrives, ISR revalidation on the
+// listing pages surfaces it automatically.
+//
+// Use this in every code path that enumerates articles for display or
+// discovery (getAllArticles, sitemap, RSS, any future search).
+// Do NOT use it for direct-slug rendering — that path only checks
+// `status === 'published'`.
+//
+// Missing / unparseable `publishedAt` is treated as "always visible"
+// so authors don't have to backfill a date on legacy content.
+export function isArticleLiveNow(article: Article): boolean {
+  if (article.status !== 'published') return false;
+  const raw = (article.publishedAt || '').trim();
+  if (!raw) return true;
+  const publishMs = Date.parse(raw);
+  if (Number.isNaN(publishMs)) return true;
+  const now = new Date();
+  const todayUTC = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate()
+  );
+  return publishMs <= todayUTC;
+}
+
+// Returns all published articles, newest-first. Drafts, in-review items,
+// and articles with a future publication date are all excluded here so
+// they never leak into the public site. `getArticleBySlug` still returns
+// them so authors can preview during local dev via the page component's
+// dev-only escape hatch.
 export function getAllArticles(): Article[] {
   const articles = listArticleFiles()
     .map(readArticleFile)
     .filter((a): a is Article => a !== null)
-    .filter((a) => a.status === 'published');
+    .filter(isArticleLiveNow);
 
   return articles.sort((a, b) =>
     (b.publishedAt || '').localeCompare(a.publishedAt || '')
@@ -351,7 +386,12 @@ export function articleTypeSubtitle(
   return ARTICLE_TYPE_SUBTITLES[typeSlug];
 }
 
-// Helper used by the article page header.
+// Helper used by the article page header. Formats a `YYYY-MM-DD`
+// frontmatter date. Pinned to UTC because `new Date('YYYY-MM-DD')`
+// parses as UTC midnight; without the `timeZone: 'UTC'` option the
+// formatter would render in the caller's local zone, so a machine or
+// serverless region west of UTC displays the *previous* day
+// (e.g. "2026-08-01" → "31 Jul 2026" in US timezones).
 export function formatPublishedDate(iso: string): string {
   if (!iso) return '';
   const d = new Date(iso);
@@ -359,6 +399,7 @@ export function formatPublishedDate(iso: string): string {
   return d.toLocaleDateString('en-GB', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
+    timeZone: 'UTC'
   });
 }

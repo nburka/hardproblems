@@ -8,6 +8,11 @@ import { fetchJobs } from './jobs/fetchJobs';
 import JobsTeaser from './jobs/JobsTeaser';
 import styles from './articles/page.module.scss';
 
+// Regenerate at most every hour so scheduled articles (status:
+// published + a future `publishedAt`) surface automatically once
+// their date arrives — no redeploy required.
+export const revalidate = 3600;
+
 // Homepage doubles as the articles index. At desktop, the newest article
 // renders as a large hero on the left with a compact job-board teaser to
 // its right; below, the remaining articles fall into a regular 3-up grid.
