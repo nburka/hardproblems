@@ -38,19 +38,25 @@ if (typeof window !== 'undefined') {
       // as `$exception` events. Shows up in PostHog under Error Tracking.
       // Anonymous — no user identification, matches the cookieless posture.
       capture_exceptions: true,
-      // Drop noise before it ships. Two well-known browser-noise
-      // exceptions clog Error Tracking without ever representing a
-      // real bug:
-      //   1. "Script error." — a cross-origin exception from a
-      //      browser-extension script whose details the browser
-      //      strips for security.
+      // Drop noise before it ships. Several classes of exception
+      // clog Error Tracking without ever representing a real bug:
+      //   1. "Script error." — a cross-origin exception whose details
+      //      the browser strips for security. Almost always from an
+      //      extension.
       //   2. "ResizeObserver loop completed with undelivered
       //      notifications." / "ResizeObserver loop limit exceeded" —
       //      Chrome / Safari's warning that an observer callback
       //      triggered layout work; the browser recovers automatically,
       //      Chrome's own DevRel calls it safe to ignore.
-      // Neither is actionable, so we drop them here rather than paying
-      // for them and letting them drown the real signal.
+      //   3. Any exception whose top stack frame comes from a
+      //      `chrome-extension://` / `moz-extension://` /
+      //      `safari-web-extension://` URL — that's an extension's
+      //      content script throwing, and we can neither reproduce nor
+      //      fix it. Catches Zotero Connector, 1Password, Grammarly,
+      //      LastPass, and every future extension without needing a
+      //      per-name pattern.
+      // None are actionable, so we drop them here rather than letting
+      // them drown the real signal.
       before_send: (event) => {
         if (!event || event.event !== '$exception') return event;
         const excList = (event.properties as Record<string, unknown> | undefined)
@@ -62,13 +68,25 @@ if (typeof window !== 'undefined') {
         ).trim();
         const frames = (
           first as { stacktrace?: { frames?: unknown[] } }
-        ).stacktrace?.frames;
+        ).stacktrace?.frames as
+          | { filename?: string }[]
+          | undefined;
         const hasRealStack = Array.isArray(frames) && frames.length > 0;
         if (!hasRealStack && /^script error\.?$/i.test(value)) {
           return null;
         }
         if (/^ResizeObserver loop /i.test(value)) {
           return null;
+        }
+        if (hasRealStack) {
+          const topFilename = frames[0]?.filename ?? '';
+          if (
+            /^(chrome-extension|moz-extension|safari-web-extension|webkit-masked-url):\/\//i.test(
+              topFilename
+            )
+          ) {
+            return null;
+          }
         }
         return event;
       }
