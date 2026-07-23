@@ -84,7 +84,7 @@ In my experience, a nonprofit board functions similarly to a corporate board but
 
 > "It might be surprising given my current design role but I'm often engaging with the executives around budgeting, roadmaps, and forecasting."
 >
-> — [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
+> — [Erin Casali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
 ## How to find a board or advisory role {#how-to-find-a-board-or-advisory-role}
 
@@ -98,7 +98,7 @@ There isn't a perfect framework for finding a nonprofit that will take you as a 
 
 > "I never got a role until I started pointing out to people that I was open for board roles."
 >
-> — [Erin Cassali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
+> — [Erin Casali](https://www.linkedin.com/in/erincasali/), Senior Director of Product Design at [Xero](https://xero.com)
 
 Most articles about board roles will tell you to be very strategic to find your first board role. However, none of the designers who I spoke to for this article landed their first board seat by targeting a specific charity. They had a vague sense of what interested them and then an opportunity came up through their social network and they they took it. For instance, [Rochelle King](https://www.linkedin.com/in/rochelleking), a former VP of design at [Netflix](https://netflix.com/), met another mother through a "mom's group" in her area — that mom happened to work at a fantastic human rights org and Rochelle ended up taking a board seat there after months of conversations.
 
