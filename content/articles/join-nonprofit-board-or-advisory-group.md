@@ -7,8 +7,8 @@ excerpt: "If you can’t tackle a hard problem full-time (yet), consider joining
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-07-02'
-updatedAt: '2026-06-27'
+publishedAt: '2026-07-20'
+updatedAt: '2026-07-23'
 
 status: 'published' # draft | review | published
 
