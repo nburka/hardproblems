@@ -136,7 +136,7 @@ I hope you find a way to contribute through a board or advisory role. When the t
 
 ### "Due diligence is your friend"
 
-[Jeff Barnes](https://www.linkedin.com/in/texburgher/), Head of Design at [Tavus](https://www.tavus.io), and ex-[Googler](https://google.com) says: "Make sure you understand the nature and requirements of the work up-front. Talk to other board members before you sign up. Board service can be incredibly gratifying but also emotionally taxing and time-consuming. As with any significant undertaking, due diligence is your friend. Once you commit, serve with joy and intensity. And maybe most importantly, establish success metrics, exit criteria, and succession planning intentions as early as you can. Too many servants let their noble commitments become albatrosses simply because they never planned to pass the baton."
+[Geoff Barnes](https://www.linkedin.com/in/texburgher/), Head of Design at [Tavus](https://www.tavus.io), and ex-[Googler](https://google.com) says: "Make sure you understand the nature and requirements of the work up-front. Talk to other board members before you sign up. Board service can be incredibly gratifying but also emotionally taxing and time-consuming. As with any significant undertaking, due diligence is your friend. Once you commit, serve with joy and intensity. And maybe most importantly, establish success metrics, exit criteria, and succession planning intentions as early as you can. Too many servants let their noble commitments become albatrosses simply because they never planned to pass the baton."
 
 ### "Direct experience is not required"
 
