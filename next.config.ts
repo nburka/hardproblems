@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
   // as the site so ad blockers don't see it. Configured for PostHog EU cloud.
   // For US cloud swap the destination hosts to us.i.posthog.com and
   // us-assets.i.posthog.com.
+  // Permanent (308) redirects for common misspellings / legacy URLs so
+  // typos and stale outbound links land on the right page.
+  async redirects() {
+    return [
+      { source: '/job', destination: '/jobs', permanent: true }
+    ];
+  },
+
   async rewrites() {
     return [
       {
