@@ -78,15 +78,39 @@ if (typeof window !== 'undefined') {
         if (/^ResizeObserver loop /i.test(value)) {
           return null;
         }
+        // Windows security-suite extensions (McAfee WebAdvisor,
+        // Norton Safe Web, etc.) throw a distinctively-shaped
+        // promise rejection when their in-page bridge can't find
+        // the expected page-side object. Same "not our code, nothing
+        // to fix" category as the extension checks above.
+        if (
+          /^Object Not Found Matching Id:\d+, MethodName:\S+, ParamCount:\d+/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
+        // Extension check — two passes, because extensions throw in
+        // varied shapes:
+        //   a) message contains a well-known extension name (works even
+        //      when the stack is missing / opaque).
+        //   b) ANY stack frame lives at an extension:// URL (catches
+        //      errors that bubble through browser bridge code before
+        //      the extension frame appears).
+        if (
+          /^(Zotero Connector|LastPass|1Password|Grammarly|Honey|MetaMask):/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
         if (hasRealStack) {
-          const topFilename = frames[0]?.filename ?? '';
-          if (
+          const anyFromExtension = frames.some((f) =>
             /^(chrome-extension|moz-extension|safari-web-extension|webkit-masked-url):\/\//i.test(
-              topFilename
+              f?.filename ?? ''
             )
-          ) {
-            return null;
-          }
+          );
+          if (anyFromExtension) return null;
         }
         return event;
       }
