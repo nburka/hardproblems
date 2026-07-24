@@ -5,7 +5,8 @@ import {
   File as FileIcon,
   HandHelping,
   FileHeart,
-  Copyright
+  Copyright,
+  Activity
 } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
 
@@ -124,6 +125,15 @@ export function Footer() {
           <Link href="/privacy" className="footer-contact-link">
             <FileIcon {...footerIconProps} />
             Privacy notice
+          </Link>
+        </p>
+        <p>
+          <Link
+            href="https://status.hardproblems.com"
+            className="footer-contact-link"
+          >
+            <Activity {...footerIconProps} />
+            Uptime status
           </Link>
         </p>
         <p>
