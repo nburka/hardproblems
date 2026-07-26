@@ -52,7 +52,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={instrumentSerif.variable}>
-      <body>
+      {/* `suppressHydrationWarning` on <body> only — browser
+          extensions (Grammarly, ColorZilla, password managers) inject
+          `data-*` attributes on the body element before React can
+          hydrate, which triggers React #418. This suppresses ONLY the
+          body-level attribute check; every child still hydrates
+          normally, so real hydration bugs inside our tree still
+          surface. */}
+      <body suppressHydrationWarning>
         <PostHogProvider>
           <div className="main">
             <RotatingTagline />
