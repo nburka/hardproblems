@@ -362,6 +362,21 @@
   border-color: #b8e0c9;
 }
 
+// Row that holds the two board-level actions (alerts trigger on the
+// left, submit trigger on the right). Sits directly above the .jobs
+// list and carries the same pale-green top border every job row uses,
+// so it visually reads as the first row of the list.
+.jobActionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  margin: 0.5rem 0 0 0;
+  border-top: 1px solid var(--color-pale-green);
+  flex-wrap: wrap;
+}
+
 .jobs {
   list-style: none;
   padding: 0;

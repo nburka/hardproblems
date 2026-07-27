@@ -43,7 +43,7 @@
   width: 100%;
   padding: 4px 4px 4px 0.75rem;
   background: #fff;
-  border: 1px solid var(--color-light-green);
+  border: 1px solid #84d9a6;
   border-radius: 100px;
   transition: border-color 0.15s ease;
   box-sizing: border-box;
@@ -86,7 +86,7 @@
   padding: 0;
   color: #231f20;
   background: #fff;
-  border: 1px solid var(--color-light-green);
+  border: 1px solid #84d9a6;
   border-radius: 100px;
   font: inherit;
   cursor: pointer;
@@ -216,26 +216,23 @@
   color: var(--color-dark-green);
 }
 
-// Trigger button — the ONLY on-page entry point to the alerts form.
-// Sits at the top of the results column as a row-shaped link with the
-// same pale-green top border every .job below it carries, so it reads
-// as the first entry in the list.
+// Trigger button — the on-page entry point to the alerts form. Sits
+// inline in the `.jobActionRow` at the top of the jobs list next to
+// the "Submit a job" trigger. The row wrapper owns the pale-green
+// top border and the vertical padding; this class only styles the
+// inline link text + icon.
 .mobileLink {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
-  padding: 1.1rem 0;
-  margin: 0;
+  padding: 0;
   background: transparent;
   border: 0;
-  border-top: 1px solid var(--color-pale-green);
   color: var(--color-link);
   font: inherit;
   font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
-  text-align: left;
   text-decoration: none;
 }
 

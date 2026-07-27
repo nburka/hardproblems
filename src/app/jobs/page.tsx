@@ -8,6 +8,15 @@ import { getAllArticles } from '../../lib/articles';
 import articleStyles from '../articles/page.module.scss';
 import styles from './page.module.scss';
 
+// Render on every request instead of serving an ISR-cached HTML
+// snapshot. The jobs board is the canonical "here's what's open right
+// now" view — visitors expect it to reflect a sheet update within
+// seconds, not up to 10 minutes stale. The underlying Sheet CSV is
+// still Data-Cached per fetchJobs's `next.revalidate` (currently 60s
+// — see fetchJobs.ts), so Google Sheets is hit at most once a minute
+// regardless of how many users land on the page.
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Job board for designers who want to work on hard problems',
   // Auto-discovery for RSS readers. The "raw" feed has every job; users can

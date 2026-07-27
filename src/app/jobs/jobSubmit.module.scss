@@ -1,0 +1,288 @@
+// Trigger button — filled dark-green pill matching the site's
+// `.black-button` treatment. Sits alongside the "Get email alerts"
+// text trigger; the button's visual weight signals the primary
+// action on this row (submitting is the thing we most want people
+// to do). Border-top on the parent `.jobActionRow` gives the whole
+// row its top divider — this class only styles the button chrome.
+.trigger {
+  // Sizing matches the site-wide `.black-button.black-button--small`
+  // treatment (padding / font-size / gap kept in sync). We copy the
+  // rules here rather than layering the global classes on because
+  // CSS modules can't easily compose module + global styles cleanly.
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 6px 12px;
+  background: var(--color-dark-green);
+  color: #fff;
+  border: 1px solid var(--color-dark-green);
+  border-radius: 100px;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
+  transform: translateY(-1px);
+  outline: none;
+  text-decoration: none;
+}
+
+// ---------------------------------------------------------------------
+// Modal shell — matches jobAlerts.module.scss so the two flows feel
+// like part of one system.
+// ---------------------------------------------------------------------
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 23, 20, 0.55);
+  animation: submit-modal-fade 0.15s ease-out;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: submit-modal-pop 0.18s ease-out;
+}
+
+.modalClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #6b6f6d;
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.modalClose:hover,
+.modalClose:focus-visible {
+  background: #f0f2f1;
+  color: #231f20;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-right: 2rem; // clear the close button
+}
+
+.header strong {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-dark-green);
+  line-height: 1.25;
+}
+
+.headerBody {
+  margin: 0.15rem 0 0 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: #444;
+}
+
+.hint {
+  margin: 0 0 0.75rem 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  color: #555;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  // Symmetric horizontal padding — the inline submit button that
+  // used to live on the right is gone; the dedicated submit button
+  // now sits below the fields.
+  padding: 4px 0.75rem;
+  background: #fff;
+  border: 1px solid #84d9a6;
+  border-radius: 100px;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.field:focus-within {
+  border-color: var(--color-mid-green);
+}
+
+.fieldIcon {
+  color: var(--color-mid-green);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.input::placeholder {
+  color: color-mix(in srgb, var(--color-mid-green) 60%, transparent);
+}
+
+// Full-width submit button below the URL + email fields. Matches the
+// site's `.black-button` treatment (same colors, same hover shadow)
+// so it feels consistent with the trigger that opens the modal.
+.formSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  padding: 8px 14px;
+  background: var(--color-dark-green);
+  color: #fff;
+  border: 1px solid var(--color-dark-green);
+  border-radius: 100px;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.formSubmit:hover:not(:disabled),
+.formSubmit:focus-visible:not(:disabled) {
+  background: var(--color-mid-green);
+  border-color: var(--color-mid-green);
+  box-shadow: 0 4px 16px rgba(47, 139, 83, 0.25);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.formSubmit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submitIconSpin {
+  display: block;
+  animation: submit-btn-spin 0.9s linear infinite;
+}
+
+@keyframes submit-btn-spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  margin: 0.75rem 0 0 0;
+  font-size: var(--font-size-sm);
+  color: #b23a2a;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.sent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sentIcon {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--color-dark-green);
+}
+
+.sent strong {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-dark-green);
+  line-height: 1.25;
+}
+
+.sentBody {
+  margin: 0.15rem 0 0 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: #333;
+}
+
+@keyframes submit-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes submit-modal-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

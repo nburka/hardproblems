@@ -106,7 +106,13 @@ function parseDate(s: string): Date | null {
 }
 
 export async function fetchJobs(): Promise<SerializedJob[]> {
-  const res = await fetch(SHEET_CSV_URL, { next: { revalidate: 600 } });
+  // 60s Data Cache TTL. Balances two things: the jobs board
+  // (`force-dynamic` — re-renders on every request) sees a Sheet at
+  // most 1 minute stale, AND Google Sheets is hit at most once a
+  // minute regardless of traffic. The homepage teaser sits inside a
+  // 1-hour ISR page, so it's fine with an hour of staleness in
+  // practice — it just uses whichever cached CSV is fresh at render.
+  const res = await fetch(SHEET_CSV_URL, { next: { revalidate: 60 } });
   if (!res.ok) return [];
   const text = await res.text();
   const rows = parseCSV(text).filter((r) => r.some((c) => c.trim().length > 0));

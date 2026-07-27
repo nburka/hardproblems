@@ -9,6 +9,7 @@ import { getSectorIcon } from './sectorIcons';
 import type { SerializedJob } from './fetchJobs';
 import CompanyFavicon from './CompanyFavicon';
 import JobAlertsForm from './JobAlertsForm';
+import JobSubmitForm from './JobSubmitForm';
 import {
   ORG_TYPE_OPTIONS,
   OrgCategory,
@@ -732,21 +733,6 @@ export default function JobsList({
           </select>
         </label>
 
-        <div className={styles.filterField}>
-          <span className={`${styles.filterLabel} small-header`}>Our Pick</span>
-          <div className={styles.checkboxes}>
-            <label className={styles.checkbox}>
-              <input
-                type="checkbox"
-                checked={picksOnly}
-                onChange={togglePicksOnly}
-              />
-              <span className={styles.checkboxBox} aria-hidden="true" />
-              &lsquo;Our pick&rsquo;
-            </label>
-          </div>
-        </div>
-
         <button
           type="button"
           className={styles.moreFiltersToggle}
@@ -761,6 +747,21 @@ export default function JobsList({
             showMore ? styles.moreFiltersOpen : ''
           }`}
         >
+          <div className={styles.filterField}>
+            <span className={`${styles.filterLabel} small-header`}>Our Pick</span>
+            <div className={styles.checkboxes}>
+              <label className={styles.checkbox}>
+                <input
+                  type="checkbox"
+                  checked={picksOnly}
+                  onChange={togglePicksOnly}
+                />
+                <span className={styles.checkboxBox} aria-hidden="true" />
+                &lsquo;Our pick&rsquo;
+              </label>
+            </div>
+          </div>
+
           {roles.length > 0 && (
             <div className={styles.filterField}>
               <span className={`${styles.filterLabel} small-header`}>Role</span>
@@ -932,7 +933,10 @@ export default function JobsList({
           </div>
         )}
 
-        <JobAlertsForm />
+        <div className={styles.jobActionRow}>
+          <JobAlertsForm />
+          <JobSubmitForm />
+        </div>
         <ul className={styles.jobs}>
           {filtered.map((job, i) => {
             const date = job.date ? new Date(job.date) : null;

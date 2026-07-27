@@ -1051,7 +1051,7 @@ ul ul li {
   align-items: center;
   padding: 4px 4px 4px 12px;
   background: #fff;
-  border: 1px solid #cbead8;
+  border: 1px solid #84d9a6;
   border-radius: 100px;
   transition:
     border-color 0.15s ease,
@@ -1117,7 +1117,7 @@ ul ul li {
 }
 
 .newsletter-form-field:focus-within {
-  border-color: #84d9a6;
+  border-color: #2f8b53;
   box-shadow: 0 0 0 3px rgba(132, 217, 166, 0.5);
 }
 
@@ -1155,7 +1155,7 @@ ul ul li {
   font: inherit;
   color: #231f20;
   background: #fff;
-  border: 1px solid #cbead8;
+  border: 1px solid #84d9a6;
   border-radius: 100px;
   cursor: pointer;
   transition:
