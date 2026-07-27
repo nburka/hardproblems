@@ -52,8 +52,9 @@ export default async function Page() {
       <Link href="https://linkedin.com">LinkedIn</Link>,{' '}
       <Link href="https://designgigsforgood.org">Design Gigs for Good</Link>,{' '}
       <Link href="https://techjobsforgood.com">Tech Jobs for Good</Link>,{' '}
-      <Link href="https://climatebase.org">Climate Base</Link>, and{' '}
-      <Link href="https://jobs.womenintech.co.uk/jobs/">Women in Tech</Link>.
+      <Link href="https://climatebase.org">Climate Base</Link>,{' '}
+      <Link href="https://jobs.womenintech.co.uk/jobs/">Women in Tech</Link>, and{' '}
+      <Link href="https://www.escapethecity.org/">Escape the City</Link>.
     </p>
   );
 
