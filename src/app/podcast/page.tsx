@@ -48,7 +48,7 @@ export default function Page() {
           We want to find out what works and what doesn&#8216;t work for
           designers who are working on the world&#8216;s most urgent challenges.
           We will share the best ideas from experts in the field with you, so
-          you're better prepared to work in these spaces. And, we want to
+          you&apos;re better prepared to work in these spaces. And, we want to
           inspire people (you?) to make the jump to work on hard problems.
         </p>
 
