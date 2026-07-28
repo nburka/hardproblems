@@ -78,6 +78,21 @@ if (typeof window !== 'undefined') {
         if (/^ResizeObserver loop /i.test(value)) {
           return null;
         }
+        // React hydration mismatches whose root cause is a browser
+        // extension mangling the DOM before React hydrates
+        // (Chrome/Safari auto-translate, Google Translate extension,
+        // some Grammarly builds). React self-heals by regenerating the
+        // affected subtree on the client — no user-visible breakage,
+        // just log noise. There's no per-user fix we can ship without
+        // breaking legitimate auto-translation, so drop the event.
+        // Matches both React 18 and React 19 wording.
+        if (
+          /Hydration failed because|server rendered HTML didn't match the client|Text content does not match server-rendered HTML|There was an error while hydrating/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
         // Windows security-suite extensions (McAfee WebAdvisor,
         // Norton Safe Web, etc.) throw a distinctively-shaped
         // promise rejection when their in-page bridge can't find

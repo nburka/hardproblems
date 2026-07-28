@@ -10,14 +10,23 @@ import RotatingTagline from '../components/RotatingTagline';
 import SiteHeaderNav from '../components/SiteHeaderNav';
 import './globals.css';
 
-// Used for article titles (listing cards and the article H1). Exposed as a
-// CSS variable so SCSS modules can reference it via var(...).
+// Used for article titles (listing cards and the article H1) and every
+// h2 / h3 heading site-wide. Exposed as a CSS variable so SCSS modules
+// can reference it via var(...).
+//
+// `display: 'optional'` deliberately trades brand-fidelity for CLS:
+//   - font already cached or loads within ~100ms → use Instrument Serif.
+//   - otherwise stick with Georgia for this session.
+// Either way headings render in a single font from first paint to last
+// paint, so nothing shifts. `display: 'swap'` was the previous setting;
+// it caused every page to score "Poor" on Core Web Vitals because the
+// large h2/h3 headings visibly resized when the swap fired.
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
   style: ['normal', 'italic'],
   variable: '--font-instrument-serif',
-  display: 'swap'
+  display: 'optional'
 });
 
 export const metadata: Metadata = {
