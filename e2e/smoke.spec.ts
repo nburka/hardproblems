@@ -25,16 +25,24 @@ test.describe('Marketing pages render', () => {
     // the hero — decoupling the test from any specific article slug
     // means content changes don't break the suite.
     await page.goto('/');
+    // Constrain to actual article-card main links — the article-card
+    // component also renders a smaller "type" link at the top that
+    // points at /articles/type/*, which uses a different template.
+    // articleCardLink is the anchor wrapping the card's image + title.
     const firstArticleLink = page
-      .locator('a[href^="/articles/"]')
+      .locator('[class*="articleCardLink"]')
       .first();
     await firstArticleLink.waitFor();
     const href = await firstArticleLink.getAttribute('href');
-    expect(href).toMatch(/^\/articles\//);
+    // Must be an article slug (/articles/<slug>), not a category page
+    // (/articles, /articles/type/*, /articles/topic/*).
+    expect(href).toMatch(/^\/articles\/[^/]+$/);
     await page.goto(href!);
-    // Every article renders its title as an h1 and a body wrapper.
+    // Every article renders its title as an h1 and body paragraphs
+    // inside a semantic <article> element. Asserting on `article p`
+    // is stable across CSS-module class-name churn.
     await expect(page.locator('h1').first()).toBeVisible();
-    await expect(page.locator('[class*="body"]').first()).toBeVisible();
+    await expect(page.locator('article p').first()).toBeVisible();
   });
 });
 
@@ -43,8 +51,12 @@ test.describe('Job board', () => {
     page
   }) => {
     await page.goto('/jobs');
-    // Board heading + at least one job in the list.
-    await expect(page.getByRole('heading', { name: /job board/i })).toBeVisible();
+    // Board heading + at least one job in the list. Anchored regex so
+    // we don't accidentally match article titles that contain the
+    // phrase "job board" (e.g. "We now have a job board for designers").
+    await expect(
+      page.getByRole('heading', { name: /^job board$/i })
+    ).toBeVisible();
     await expect(page.locator('[class*="job"]').first()).toBeVisible();
 
     // Toggle the "Our pick" filter and verify the URL picked it up.
@@ -91,7 +103,13 @@ test.describe('Subscribe forms roundtrip (mocked backends)', () => {
     }
     const modalEmail = page.locator('input[type="email"]').last();
     await modalEmail.fill('e2e-alerts@example.com');
-    await page.getByRole('button', { name: /subscribe/i }).click();
+    // Scope to the modal dialog — the footer newsletter form also has
+    // a Subscribe button on the same page, which would otherwise
+    // trigger a strict-mode match violation.
+    await page
+      .getByRole('dialog')
+      .getByRole('button', { name: /subscribe/i })
+      .click();
     await expect(page.getByText(/check your inbox/i)).toBeVisible({
       timeout: 5000
     });
