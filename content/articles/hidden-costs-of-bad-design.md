@@ -2,13 +2,13 @@
 title: 'The hidden costs of bad design'
 slug: 'hidden-costs-of-bad-design'
 
-excerpt: 'In fields like public health, education, and climate action, poor design is undermining programs.'
+excerpt: 'In fields like public health, education, and climate action, poor design is undermining success.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
 publishedAt: '2026-08-01'
-updatedAt: '2026-06-15'
+updatedAt: '2026-08-01'
 
 status: 'published' # draft | review | published
 
@@ -37,7 +37,7 @@ image: '/images/content/thumb-bad-design.jpg'
 imageAlt: 'Thumbs down'
 
 seoTitle: 'The Hidden Costs of Bad Design in Public Health'
-seoDescription: 'In fields like public health, education, and climate action, poor design is undermining programs.'
+seoDescription: 'In fields like public health, education, and climate action, poor design is undermining success.'
 
 canonicalUrl: ''
 ---
