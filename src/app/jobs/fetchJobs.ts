@@ -167,10 +167,15 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
     return bc - ac;
   });
 
-  // Hide jobs older than MAX_AGE_DAYS. Comparison is done in UTC days so it
-  // matches the relative date labels ("Today", "Yesterday", "N days ago").
-  // Jobs without a parseable date are kept so a missing value doesn't
-  // silently drop a listing.
+  // Hide jobs whose listed date is either OLDER than MAX_AGE_DAYS or
+  // in the FUTURE — the latter gives us proper scheduling (a job with
+  // a future date stays hidden until that day arrives, at which point
+  // it appears on the board and in the next digest).
+  //
+  // Comparison is done in UTC days so it matches the relative date
+  // labels ("Today", "Yesterday", "N days ago"). Jobs without a
+  // parseable date are kept so a missing value doesn't silently drop
+  // a listing.
   const now = new Date();
   const todayUTC = Date.UTC(
     now.getUTCFullYear(),
@@ -186,7 +191,7 @@ export async function fetchJobs(): Promise<SerializedJob[]> {
       d.getUTCDate()
     );
     const days = Math.round((todayUTC - jobUTC) / 86400000);
-    return days < MAX_AGE_DAYS;
+    return days >= 0 && days < MAX_AGE_DAYS;
   });
 
   return recentJobs;
