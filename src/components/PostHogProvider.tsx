@@ -78,6 +78,21 @@ if (typeof window !== 'undefined') {
         if (/^ResizeObserver loop /i.test(value)) {
           return null;
         }
+        // Autoplay-blocked <video> elements on article cards. Article
+        // thumbnails use `<video autoPlay muted playsInline>`, which
+        // works in most browsers but still gets refused in iOS Low
+        // Power Mode, Chrome's data-saver, and by users who set
+        // autoplay to "Never". The internal .play() rejects with a
+        // NotAllowedError, the poster image shows instead, no UI
+        // breakage — pure noise.
+        if (
+          /NotAllowedError/i.test(value) &&
+          /play(?:\(\))? (?:method|request) is not allowed|user (?:agent|denied)/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
         // React hydration mismatches whose root cause is a browser
         // extension mangling the DOM before React hydrates
         // (Chrome/Safari auto-translate, Google Translate extension,

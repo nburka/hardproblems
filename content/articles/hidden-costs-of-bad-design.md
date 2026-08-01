@@ -7,8 +7,8 @@ excerpt: 'In fields like public health, education, and climate action, poor desi
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
-publishedAt: '2026-08-01'
-updatedAt: '2026-08-01'
+publishedAt: '2026-08-04'
+updatedAt: '2026-08-04'
 
 status: 'published' # draft | review | published
 
