@@ -88,15 +88,52 @@ if (typeof window !== 'undefined') {
         if (/Can't find variable: __firefox__|__firefox__ is not defined/i.test(value)) {
           return null;
         }
-        // Crypto-wallet browser extensions (MetaMask, Coinbase Wallet,
-        // Rabby, Phantom, etc.) inject a `window.ethereum` provider
-        // into every page. When two wallets are installed, their
-        // provider-swap / teardown scripts race — one wallet's cleanup
-        // code hits a `window.ethereum` that another wallet has
-        // already removed, and throws. We're a jobs board, not a
-        // web3 site — nothing in our bundle references ethereum, so
-        // any error mentioning it is definitely extension noise.
-        if (/window\.ethereum/i.test(value)) {
+        // Crypto-wallet browser extensions inject provider globals
+        // (window.ethereum for EVM wallets like MetaMask/Coinbase,
+        // window.solana for Phantom, plus TronLink, Aptos, StarkNet,
+        // Sui, Polkadot). When two wallets are installed, their
+        // provider-swap / teardown scripts race and throw against
+        // whichever global just got removed. We're a jobs board, not
+        // a web3 site, so any error mentioning these is by
+        // definition from an injected wallet.
+        if (
+          /window\.(ethereum|solana|tron|tronWeb|starknet|aptos|sui|polkadot|bitcoin)/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
+        // Aborted fetches — fire every time a user navigates away
+        // during an in-flight request. React re-renders trigger this
+        // when cleanup cancels a pending fetch. Zero user-visible
+        // impact; the new page just loads. `AbortError` is the DOM
+        // exception; "The operation was aborted" is the WebKit
+        // wording. Both cover the same class.
+        if (
+          /^AbortError\b|The operation was aborted|signal is aborted without reason/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
+        // Network flakiness. `TypeError: Failed to fetch` (Chrome),
+        // `Load failed` (Safari), and `NetworkError when attempting
+        // to fetch resource.` (Firefox) all mean the same thing —
+        // the browser couldn't reach the server, usually because
+        // WiFi blipped or the user was navigating. Not an app bug.
+        if (
+          /^(?:TypeError: )?Failed to fetch$|^Load failed$|^NetworkError when attempting to fetch resource\.?$/i.test(
+            value
+          )
+        ) {
+          return null;
+        }
+        // Chunk load failure — Next.js code-split chunks 404 when a
+        // user had the tab open across a deploy. Next.js auto-recovers
+        // by reloading the page; nothing for us to fix. Filtering out
+        // means we lose visibility into deploy churn, but if the
+        // recovery is invisible to users it's not worth surfacing.
+        if (/ChunkLoadError|Loading chunk \d+ failed|Loading CSS chunk/i.test(value)) {
           return null;
         }
         // Autoplay-blocked <video> elements on article cards. Article
@@ -149,7 +186,7 @@ if (typeof window !== 'undefined') {
         //      errors that bubble through browser bridge code before
         //      the extension frame appears).
         if (
-          /^(Zotero Connector|LastPass|1Password|Grammarly|Honey|MetaMask):/i.test(
+          /^(Zotero Connector|LastPass|1Password|Grammarly|Honey|MetaMask|Bitwarden|Dashlane|Enpass|RoboForm|Keeper|NordPass|iCloud Passwords):/i.test(
             value
           )
         ) {
