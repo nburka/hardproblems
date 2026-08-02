@@ -78,6 +78,27 @@ if (typeof window !== 'undefined') {
         if (/^ResizeObserver loop /i.test(value)) {
           return null;
         }
+        // Firefox for iOS ships a WebKit-based browser that injects a
+        // `__firefox__` global to bridge JS with its native code. Its
+        // injected content scripts occasionally race with the page
+        // lifecycle (early load, or after navigation) and throw
+        // ReferenceError against a global that isn't defined yet or
+        // has been torn down. Nothing on the page or in our bundle to
+        // fix — same category as the extension noise below.
+        if (/Can't find variable: __firefox__|__firefox__ is not defined/i.test(value)) {
+          return null;
+        }
+        // Crypto-wallet browser extensions (MetaMask, Coinbase Wallet,
+        // Rabby, Phantom, etc.) inject a `window.ethereum` provider
+        // into every page. When two wallets are installed, their
+        // provider-swap / teardown scripts race — one wallet's cleanup
+        // code hits a `window.ethereum` that another wallet has
+        // already removed, and throws. We're a jobs board, not a
+        // web3 site — nothing in our bundle references ethereum, so
+        // any error mentioning it is definitely extension noise.
+        if (/window\.ethereum/i.test(value)) {
+          return null;
+        }
         // Autoplay-blocked <video> elements on article cards. Article
         // thumbnails use `<video autoPlay muted playsInline>`, which
         // works in most browsers but still gets refused in iOS Low
