@@ -1,0 +1,96 @@
+# Default: allow all crawlers to index the site.
+# Individual blocks below opt specific bots out.
+
+User-agent: *
+Allow: /
+
+# --- Search engines ---
+# Explicitly allowed. Left here so it's obvious we WANT to be indexed
+# by Google, Bing, DuckDuckGo, etc. — these lines are redundant with
+# the wildcard above but they document intent.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# --- LLM training crawlers ---
+# These scrape site content to train large language models. Blocking
+# them here doesn't affect search ranking. Well-behaved bots respect
+# these rules; malicious scrapers ignore them (for those, use rate
+# limiting or bot protection).
+#
+# `Google-Extended` and `Applebot-Extended` are the specific opt-outs
+# for Bard/Gemini and Apple Intelligence — they're SEPARATE from
+# Googlebot and Applebot, so blocking them doesn't hurt search
+# visibility.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training-data-crawler
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: Omgili
+Disallow: /

@@ -23,12 +23,31 @@ const CACHE_HEADERS = {
   'Cache-Control': 'public, max-age=86400, s-maxage=604800, immutable'
 };
 
+// Cache 4xx/5xx responses too, otherwise a scraper hitting malformed
+// or unreachable hostnames triggers a fresh function invocation on
+// every repeat — the edge never remembers "we already 404'd this".
+// Shorter windows than CACHE_HEADERS: bad hostnames rarely become
+// good, but transient upstream failures can recover, so 502s use the
+// smallest window.
+const BAD_REQUEST_CACHE_HEADERS = {
+  'Cache-Control': 'public, max-age=3600, s-maxage=86400'
+};
+const NOT_FOUND_CACHE_HEADERS = {
+  'Cache-Control': 'public, max-age=86400, s-maxage=86400'
+};
+const UPSTREAM_ERROR_CACHE_HEADERS = {
+  'Cache-Control': 'public, max-age=60, s-maxage=300'
+};
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const host = (searchParams.get('host') || '').trim().toLowerCase();
 
   if (!host || !HOSTNAME_RE.test(host)) {
-    return new NextResponse(null, { status: 400 });
+    return new NextResponse(null, {
+      status: 400,
+      headers: BAD_REQUEST_CACHE_HEADERS
+    });
   }
 
   const upstream = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(
@@ -45,18 +64,27 @@ export async function GET(request: Request) {
       next: { revalidate: 86400 }
     });
   } catch {
-    return new NextResponse(null, { status: 502 });
+    return new NextResponse(null, {
+      status: 502,
+      headers: UPSTREAM_ERROR_CACHE_HEADERS
+    });
   }
 
   if (!res.ok) {
-    return new NextResponse(null, { status: 404 });
+    return new NextResponse(null, {
+      status: 404,
+      headers: NOT_FOUND_CACHE_HEADERS
+    });
   }
 
   const buf = new Uint8Array(await res.arrayBuffer());
   const sha1 = createHash('sha1').update(buf).digest('hex');
 
   if (sha1 === GOOGLE_FALLBACK_SHA1) {
-    return new NextResponse(null, { status: 404, headers: CACHE_HEADERS });
+    return new NextResponse(null, {
+      status: 404,
+      headers: NOT_FOUND_CACHE_HEADERS
+    });
   }
 
   const contentType = res.headers.get('content-type') || 'image/png';
