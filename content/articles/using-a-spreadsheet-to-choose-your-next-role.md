@@ -2,13 +2,13 @@
 title: 'Use a spreadsheet to choose your next role'
 slug: 'use-a-spreadsheet-to-choose-your-next-role'
 
-excerpt: '"Job Rank" is a simple scoring framework that helps you score competing offers against your values.'
+excerpt: '“Job Rank” is a simple scoring framework that helps you score competing offers against your values.'
 
 author: 'Daniel Burka'
 authorSlug: 'daniel-burka'
 
 publishedAt: '2026-07-05'
-updatedAt: '2026-06-30'
+updatedAt: '2026-08-05'
 
 status: 'published' # draft | review | published
 
@@ -37,14 +37,14 @@ image: '/images/content/thumb-job-rank-spreadsheet.jpg'
 imageAlt: 'A weighted-scoring spreadsheet comparing job offers against personal values'
 
 seoTitle: 'Use a Spreadsheet to Choose Your Next Role — The Job Rank Framework'
-seoDescription: '"Job Rank" is a simple weighted-scoring spreadsheet framework for evaluating job offers against your values, helping you make career decisions with more clarity.'
+seoDescription: '“Job Rank” is a simple weighted-scoring spreadsheet framework for evaluating job offers against your values, helping you make career decisions with more clarity.'
 
 canonicalUrl: ''
 ---
 
 # Use a spreadsheet to choose your next role {#using-a-spreadsheet-to-choose-your-next-role}
 
-_"Job Rank" is a simple framework to identify the job that best aligns with your values._{.intro}
+_“Job Rank” is a simple framework to identify the job that best aligns with your values._{.intro}
 
 ![](/images/illustration-found-it.svg){.float-right}
 
@@ -58,15 +58,15 @@ I've been there three times in my career:
 
 When the stakes are high, I turn to a simple framework: a weighted scoring spreadsheet. This approach forces you to stop and define your internal metrics before you evaluate each option, which helps you make a more objective decision. By setting your criteria up front, you can evaluate each opportunity according to a common set of priorities instead of getting overexcited about any one option.
 
-## Using the "Job Rank" template {#using-the-job-rank-template}
+## Using the “Job Rank” template {#using-the-job-rank-template}
 
 The idea is simple: Create a rubric of what matters to you right now, assign a weight to each metric, and then score any potential job (or even your made-up dream job) against it.
 
-<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get our free "Job Rank" template <span aria-hidden="true">→</span></a>
+<a class="black-button" href="https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy">Get our free “Job Rank” template <span aria-hidden="true">→</span></a>
 
 [![Example of the Job Rank spreadsheet in use, comparing several job offers side-by-side](/images/content/job-rank-example.jpg)](https://docs.google.com/spreadsheets/d/1icOop1dtF0Ije08uxilTBOd5eWqF3NSdR0COsoXvZUE/copy)
 
-Here's a quick-start guide to the "Job Rank" template:
+Here's a quick-start guide to the “Job Rank” template:
 
 ## Step 1: Choose your values (The Metrics) {#step-1-choose-your-values}
 
@@ -105,4 +105,12 @@ Now, take every role you're considering and score each value. You'll have to mak
 
 **Action:**{.highlight} The role with the highest total weighted score is the one most aligned with your current life priorities.
 
-In an industry defined by moving fast and breaking things, the "Job Rank" framework is your anchor. It gives you an objective metric for a deeply subjective life decision. Use it to choose your next chapter wisely.
+In an industry defined by moving fast and breaking things, the “Job Rank” framework is your anchor. It gives you an objective metric for a deeply subjective life decision. Use it to choose your next chapter wisely.
+
+## Watch an explanation of “Job Rank”
+
+I was interviewed on the [d.mba](https://d.mba) podcast about “Job Rank”. The host and I discuss how the framework came about and how to use it.
+
+<div class="video-embed">
+<iframe src="https://www.youtube-nocookie.com/embed/EDO8WT4Tyck" title="Job Rank explained on the d.mba podcast" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>

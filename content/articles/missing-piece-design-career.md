@@ -58,7 +58,7 @@ I can't promise it will be easy, but at least you'll know why you get out of bed
 If you're looking for your next career move, maybe we can help. At Hard Problems we made some resources to help:
 
 - [Job board](https://www.hardproblems.com/jobs) with great career options for you
-- ["Job Rank" framework](https://www.hardproblems.com/articles/use-a-spreadsheet-to-choose-your-next-role) you might find useful for choosing your next career move
+- [“Job Rank” framework](https://www.hardproblems.com/articles/use-a-spreadsheet-to-choose-your-next-role) you might find useful for choosing your next career move
 - [Tips for using LinkedIn](https://www.hardproblems.com/articles/tricks-find-meaningful-job-linkedin) to find your next role
 
 I can also recommend a few books. I think [Moral Ambition](/articles/moral-ambition-rutger-bregman) makes a strong case for why you should dedicate your life to a larger purpose. [80,000 Hours](https://80000hours.org/career-guide/) will give you a good framework for deciding where to apply your skills (though don't get too drawn in by some of their arguments about money), and [Geek Heresy](https://geekheresy.org/) provides a sensible foundation for thinking what tech can and can't do to make the world better.
