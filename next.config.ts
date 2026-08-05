@@ -1,6 +1,14 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Emit .js.map files alongside the client bundles so PostHog Error
+  // Tracking can decode minified stack frames back to real function
+  // names + source-line numbers. Costs ~30% extra CDN bytes on the
+  // *.js.map files (only fetched by DevTools and PostHog, not by
+  // regular users), and removes the "who is Ek() at line 224?"
+  // guessing game when triaging production errors.
+  productionBrowserSourceMaps: true,
+
   // Required for the PostHog reverse-proxy rewrites below, so /ingest/decide
   // (and any other unslashed PostHog endpoints) aren't redirected.
   skipTrailingSlashRedirect: true,
