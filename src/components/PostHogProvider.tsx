@@ -158,11 +158,17 @@ if (typeof window !== 'undefined') {
         // affected subtree on the client — no user-visible breakage,
         // just log noise. There's no per-user fix we can ship without
         // breaking legitimate auto-translation, so drop the event.
-        // Matches both React 18 and React 19 wording.
+        // Two matcher branches because prod React throws minified
+        // errors that reference the code number ("Minified React
+        // error #418") while dev throws the full descriptive text.
+        // Covers hydration failure (418), Suspense hydration error
+        // (422), root hydration error (423), and text-content
+        // mismatch (425).
         if (
           /Hydration failed because|server rendered HTML didn't match the client|Text content does not match server-rendered HTML|There was an error while hydrating/i.test(
             value
-          )
+          ) ||
+          /Minified React error #(418|422|423|425)\b/.test(value)
         ) {
           return null;
         }
