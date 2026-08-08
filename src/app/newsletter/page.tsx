@@ -65,7 +65,7 @@ export default function Page() {
         </p>
 
         <ul className={styles.checklist}>
-          <li>1-2 emails per month</li>
+          <li>4-5 emails each month</li>
           <li>No spam</li>
           <li>We will never share emails</li>
           <li>Easy unsubscribe</li>
