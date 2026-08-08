@@ -398,6 +398,26 @@
   border-top: 1px solid var(--color-pale-green);
 }
 
+// Modifier — applied on the /jobs/[location] SEO pages via
+// `${styles.job} ${styles.locationJob}`. Top-aligns the favicon and
+// the "Today" date pill with the job title, rather than centering
+// them vertically as on the main board (where the shorter card is
+// visually balanced by centring). The card's existing 1.1rem top
+// padding provides the "offset from the top" of the row.
+.job.locationJob {
+  align-items: flex-start;
+}
+
+// Location pages get smaller sector/type/staff-pick chips — the SEO
+// pages already have a lot of visible info per row (inline
+// description, favicon, date), so downscaling the chips keeps the
+// card visually calm. `:global(.tag)` because .tag lives in
+// globals.css and isn't module-scoped.
+.locationJob .jobSectorRow :global(.tag) {
+  font-size: 0.55rem;
+  padding: 2px 8px;
+}
+
 .jobDescription {
   // Hidden by default — the tooltip only makes sense on desktop where the
   // filter column exists for it to overlay. Re-enabled in the desktop

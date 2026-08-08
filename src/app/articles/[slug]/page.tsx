@@ -13,7 +13,12 @@ import {
   getAuthorImage,
   topicDisplay
 } from '../../../lib/articles';
-import { getAuthorUrl } from '../../../lib/authors';
+import {
+  authorInternalUrl,
+  authorSameAs,
+  getAuthorByName,
+  getAuthorUrl
+} from '../../../lib/authors';
 import styles from './article.module.scss';
 
 // Regenerate at most every hour so a scheduled article's own URL
@@ -145,8 +150,59 @@ export default async function ArticlePage({ params }: Props) {
     }
   }
 
+  // schema.org Article structured data — feeds Google's article-rich-
+  // result surfaces (headline, author, publish date) and reinforces
+  // E-E-A-T signals (an article authored by a named Person is treated
+  // as more authoritative than the same content authored by
+  // "Website"). Serialised inline as a <script type="application/ld+json">
+  // right before the article body.
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt || article.seoDescription || undefined,
+    image: article.image
+      ? [`https://hardproblems.com${article.image}`]
+      : undefined,
+    datePublished: article.publishedAt || undefined,
+    dateModified: article.updatedAt || article.publishedAt || undefined,
+    author: (() => {
+      if (!article.author) return undefined;
+      const profile = getAuthorByName(article.author);
+      const sameAs = profile ? authorSameAs(profile) : [];
+      return {
+        '@type': 'Person',
+        name: article.author,
+        url: profile
+          ? `https://hardproblems.com${authorInternalUrl(profile.slug)}`
+          : undefined,
+        sameAs: sameAs.length > 0 ? sameAs : undefined
+      };
+    })(),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Hard Problems',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://hardproblems.com/opengraph-image'
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://hardproblems.com/articles/${article.slug}`
+    },
+    articleSection: article.articleType || undefined,
+    keywords: article.topics.length ? article.topics.join(', ') : undefined
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // JSON stringified from vetted frontmatter — no untrusted
+        // user input reaches this string.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className={styles.newsletterWrap}>
         <NewsletterModule />
       </div>
@@ -241,7 +297,18 @@ function ArticleByline({
   article: ReturnType<typeof getArticleBySlug>;
 }) {
   if (!article) return null;
-  const authorUrl = article.author ? getAuthorUrl(article.author) : null;
+  // Prefer the internal author profile page (keeps readers on-site and
+  // strengthens internal link equity for the author page). Falls back to
+  // the LinkedIn/external URL if the author isn't in the AUTHORS
+  // registry — matches the pre-registry behaviour so existing bylines
+  // don't regress.
+  const authorProfile = getAuthorByName(article.author);
+  const authorUrl = authorProfile
+    ? authorInternalUrl(authorProfile.slug)
+    : article.author
+      ? getAuthorUrl(article.author)
+      : null;
+  const authorLinkIsInternal = !!authorProfile;
   const parts: React.ReactNode[] = [];
 
   if (article.author) {
@@ -262,8 +329,9 @@ function ArticleByline({
           (authorUrl ? (
             <Link
               href={authorUrl}
-              target="_blank"
-              rel="noreferrer"
+              {...(authorLinkIsInternal
+                ? {}
+                : { target: '_blank', rel: 'noreferrer' })}
               aria-hidden="true"
               tabIndex={-1}
               className={`${styles.authorAvatarLink} hover-saturate`}
@@ -277,8 +345,9 @@ function ArticleByline({
         {authorUrl ? (
           <Link
             href={authorUrl}
-            target="_blank"
-            rel="noreferrer"
+            {...(authorLinkIsInternal
+              ? {}
+              : { target: '_blank', rel: 'noreferrer' })}
             className={styles.authorLink}
           >
             {name}

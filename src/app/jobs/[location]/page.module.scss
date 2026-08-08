@@ -1,0 +1,47 @@
+// Scoped styles for the SEO jobs-by-location page. The globals.css
+// h1 rule is tuned for the site wordmark ("Hard Problems.") — small
+// Helvetica, centered — so we override with the same treatment the
+// site's h2 uses for page-level headings.
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+// Inline job-description paragraph inside each card. On the main
+// /jobs board the description lives in a hover-tooltip (dense, 200+
+// jobs, needs scannability). On these SEO landing pages the
+// description is inline instead — better SEO signal and better mobile
+// UX for users arriving from search (no hover on touchscreens).
+.inlineDescription {
+  font-size: var(--font-size-xs);
+  color: #444;
+  line-height: 1.5;
+  margin: 0.5rem 0 0;
+}
+
+.heading {
+  font-family:
+    var(--font-instrument-serif),
+    Georgia,
+    'Times New Roman',
+    serif;
+  font-size: var(--font-size-3xl);
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin: 0.5em 0 0.25em;
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+.backLink {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
