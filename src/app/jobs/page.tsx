@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import JobsList from './JobsList';
 import { fetchJobs } from './fetchJobs';
+import JobPostingSchema from './JobPostingSchema';
 import ArticleCard from '../../components/ArticleCard';
 import { getAllArticles } from '../../lib/articles';
 import articleStyles from '../articles/page.module.scss';
@@ -60,6 +61,10 @@ export default async function Page() {
 
   return (
     <>
+      {/* schema.org JobPosting entries for Google's Jobs Card.
+          Rendered up front so it's in the SSR HTML before the
+          client-side JobsList hydrates. */}
+      <JobPostingSchema jobs={jobs} />
       <section className={styles.board}>
         {jobs.length === 0 ? (
           <p>
